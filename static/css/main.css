@@ -2349,7 +2349,7 @@
 
 	#nav {
 		cursor: default;
-		background-color: #925520;
+		background-color: #3f566d;
 		padding: 0;
 		text-align: right;
 		-webkit-box-shadow: 0 2px 10px 1px #6E6E6E;
@@ -2526,7 +2526,7 @@
 	#footer {
 		color: white;
 		height: 3em;
-        background-color: #925520;
+        background-color: #3f566d;
         margin-top: 1em;
         width: 100%;
 
