@@ -4,20 +4,20 @@ import os
 
 SERVER_URI = os.environ["SERVER_URI"] if "SERVER_URI" in os.environ else None
 
-PROJECT_VERSION = os.getenv("PROJECT_VERSION", "3.8.0")
+PROJECT_VERSION = os.getenv("PROJECT_VERSION", "3.9.0")
 """ :py:class:`str`: Project version number.
 """
 
 # Website customization
-WEBSITE_SHORT_TITLE = "MDCS"
-CUSTOM_DATA = "Materials Data"
+WEBSITE_SHORT_TITLE = "AsphaltMine"
+CUSTOM_DATA = "AsphaltMine"
 CUSTOM_NAME = (
     os.environ["SERVER_NAME"] if "SERVER_NAME" in os.environ else "Curator"
 )
-CUSTOM_TITLE = "Materials Data Curation System"
-CUSTOM_SUBTITLE = "Part of the Materials Genome Initiative"
+CUSTOM_TITLE = "AsphaltMine"
+CUSTOM_SUBTITLE = "Asphalt Test Performance Database"
 CURATE_MENU_NAME = "Data Curation"
-WEBSITE_ADMIN_COLOR = "yellow"
+WEBSITE_ADMIN_COLOR = "blue"
 # black, black-light, blue, blue-light, green, green-light, purple, purple-light, red, red-light, yellow, yellow-light
 
 DATA_SOURCES_EXPLORE_APPS = [
@@ -78,10 +78,10 @@ DEFAULT_DATE_TOGGLE_VALUE = True
 DISPLAY_PRIVACY_POLICY_FOOTER = False
 """ boolean: display the privacy policy link in the footer
 """
-DISPLAY_TERMS_OF_USE_FOOTER = True
+DISPLAY_TERMS_OF_USE_FOOTER = False
 """ boolean: display the terms of use link in the footer
 """
-DISPLAY_CONTACT_FOOTER = False
+DISPLAY_CONTACT_FOOTER = True
 """ boolean: display the contact link in the footer
 """
 DISPLAY_HELP_FOOTER = False
