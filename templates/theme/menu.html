@@ -6,9 +6,9 @@
         <!-- Start MDCS title left -->
         <li id="cdcs-main" style="padding:0;">
             <div id="cdcs-menu-title">
-                <a href="https://cdcs.nist.gov/"
-                   title="Configurable Data Curation System (CDCS)">
-                    Materials Data Curation System
+                <a href="https://asphaltmine.org/"
+                   title="AsphaltMine">
+                    AsphaltMine
                 </a>
             </div>
         </li>
@@ -20,7 +20,7 @@
             {% for item in menus.nodropdown %}
                 <li>
                     <a href="{{ item.url }}">{% if item|get_attribute:'icon' %}
-                        <i class="fas fa-{{ item.icon }}"></i>{% endif %} {{ item.title }}
+                        <i></i>{% endif %} {{ item.title }}
                     </a>
                 </li>
             {% endfor %}
@@ -53,7 +53,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="nested">
+            <!--<li class="nested">
                 <div class="dropdown">
                     <a class="dropdown-toggle"
                        type="button"
@@ -80,6 +80,10 @@
                         {% endfor %}
                     </ul>
                 </div>
+            </li>-->
+        
+            <li>
+                <a href="{% url 'gensel' %}">GV Form</a>
             </li>
         {% endblock %}
         <!-- End float left menu-->
