@@ -78,10 +78,10 @@ DEFAULT_DATE_TOGGLE_VALUE = True
 DISPLAY_PRIVACY_POLICY_FOOTER = False
 """ boolean: display the privacy policy link in the footer
 """
-DISPLAY_TERMS_OF_USE_FOOTER = True
+DISPLAY_TERMS_OF_USE_FOOTER = False
 """ boolean: display the terms of use link in the footer
 """
-DISPLAY_CONTACT_FOOTER = False
+DISPLAY_CONTACT_FOOTER = True
 """ boolean: display the contact link in the footer
 """
 DISPLAY_HELP_FOOTER = False
