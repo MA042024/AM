@@ -9,15 +9,15 @@ PROJECT_VERSION = os.getenv("PROJECT_VERSION", "3.8.0")
 """
 
 # Website customization
-WEBSITE_SHORT_TITLE = "MDCS"
-CUSTOM_DATA = "Materials Data"
+WEBSITE_SHORT_TITLE = "AsphaltMine"
+CUSTOM_DATA = "AsphaltMine"
 CUSTOM_NAME = (
     os.environ["SERVER_NAME"] if "SERVER_NAME" in os.environ else "Curator"
 )
-CUSTOM_TITLE = "Materials Data Curation System"
-CUSTOM_SUBTITLE = "Part of the Materials Genome Initiative"
+CUSTOM_TITLE = "AsphaltMine"
+CUSTOM_SUBTITLE = "Asphalt Test Performance Database"
 CURATE_MENU_NAME = "Data Curation"
-WEBSITE_ADMIN_COLOR = "yellow"
+WEBSITE_ADMIN_COLOR = "blue"
 # black, black-light, blue, blue-light, green, green-light, purple, purple-light, red, red-light, yellow, yellow-light
 
 DATA_SOURCES_EXPLORE_APPS = [
