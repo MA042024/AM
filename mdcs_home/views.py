@@ -60,7 +60,7 @@ def tiles(request):
             "logo": "fa-flask",
             "link": reverse("core_explore_example_index"),
             "title": "Build your own queries",
-            "text": "Click here to search for Materials Data in the repository using flexible queries.",
+            "text": "Click here to search for Asphalt Data in the repository using flexible queries.",
         }
 
         context["tiles"].append(explore_example_tile)
@@ -70,7 +70,7 @@ def tiles(request):
             "logo": "fa-search",
             "link": reverse("core_explore_keyword_app_search"),
             "title": "Search by keyword",
-            "text": "Click here to explore for Materials Data in the repository using keywords.",
+            "text": "Click here to explore for Asphalt Data in the repository using keywords.",
         }
 
         context["tiles"].append(explore_keywords_tile)
