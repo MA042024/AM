@@ -49,7 +49,7 @@ def tiles(request):
         curate_tile = {
             "logo": "fa-edit",
             "link": reverse("core_curate_index"),
-            "title": "Curate your Materials Data",
+            "title": "Curate your Asphalt Data",
             "text": "Click here to select a form template and then fill out the corresponding form.",
         }
 
@@ -75,7 +75,7 @@ def tiles(request):
 
         context["tiles"].append(explore_keywords_tile)
 
-    if "core_composer_app" in installed_apps:
+    """if "core_composer_app" in installed_apps:
         compose_tile = {
             "logo": "fa-file-code",
             "link": reverse("core_composer_index"),
@@ -84,5 +84,5 @@ def tiles(request):
         }
 
         context["tiles"].append(compose_tile)
-
+    """
     return render(request, "mdcs_home/tiles.html", context)
