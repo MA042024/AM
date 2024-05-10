@@ -49,31 +49,32 @@ def tiles(request):
         curate_tile = {
             "logo": "fa-edit",
             "link": reverse("core_curate_index"),
-            "title": "Curate your Materials Data",
-            "text": "Click here to select a form template and then fill out the corresponding form.",
+            "title": "Curate your Test Data",
+            "text": "Click here to select a performance test and then enter data.",
         }
 
         context["tiles"].append(curate_tile)
-
-    if "core_explore_example_app" in installed_apps:
-        explore_example_tile = {
-            "logo": "fa-flask",
-            "link": reverse("core_explore_example_index"),
-            "title": "Build your own queries",
-            "text": "Click here to search for Materials Data in the repository using flexible queries.",
-        }
-
-        context["tiles"].append(explore_example_tile)
 
     if "core_explore_keyword_app" in installed_apps:
         explore_keywords_tile = {
             "logo": "fa-search",
             "link": reverse("core_explore_keyword_app_search"),
             "title": "Search by keyword",
-            "text": "Click here to explore for Materials Data in the repository using keywords.",
+            "text": "Click here to explore for test data in the repository.",
         }
 
         context["tiles"].append(explore_keywords_tile)
+
+    """using keywords.","""
+    """if "core_explore_example_app" in installed_apps:
+        explore_example_tile = {
+            "logo": "fa-cog",
+            "link": reverse("core_explore_example_index"),
+            "title": "Build your own queries",
+            "text": "Click here to search for test data in the repository using flexible queries.",
+        }
+
+        context["tiles"].append(explore_example_tile)
 
     if "core_composer_app" in installed_apps:
         compose_tile = {
@@ -84,5 +85,5 @@ def tiles(request):
         }
 
         context["tiles"].append(compose_tile)
-
+    """
     return render(request, "mdcs_home/tiles.html", context)
