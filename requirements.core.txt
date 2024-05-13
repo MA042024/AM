@@ -18,4 +18,4 @@ core_module_chemical_composition_simple_app==2.8.*
 core_module_text_area_app==2.8.*
 core_file_preview_app==2.8.*
 core_linked_records_app==2.8.*
--e git+https://github.com/MA042024/core_website_app.git#egg=core_website_app
+-e git+https://github.com/MA042024/core_website_app.git#egg=core_website_app --git-executable=/usr/bin/git
