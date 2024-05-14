@@ -49,8 +49,8 @@ def tiles(request):
         curate_tile = {
             "logo": "fa-edit",
             "link": reverse("core_curate_index"),
-            "title": "Curate your Asphalt Data",
-            "text": "Click here to select a form template and then fill out the corresponding form.",
+            "title": "Curate your Test Data",
+            "text": "Click here to select a performance test and then enter data.",
         }
 
         context["tiles"].append(curate_tile)
@@ -60,7 +60,7 @@ def tiles(request):
             "logo": "fa-search",
             "link": reverse("core_explore_keyword_app_search"),
             "title": "Search by keyword",
-            "text": "Click here to explore for Asphalt Data in the repository using keywords.",
+            "text": "Click here to explore for test data in the repository using keywords.",
         }
 
         context["tiles"].append(explore_keywords_tile)
@@ -70,7 +70,7 @@ def tiles(request):
             "logo": "fa-cog",
             "link": reverse("core_explore_example_index"),
             "title": "Build your own queries",
-            "text": "Click here to search for Asphalt Data in the repository using flexible queries.",
+            "text": "Click here to search for test data in the repository using flexible queries.",
         }
 
         context["tiles"].append(explore_example_tile)
