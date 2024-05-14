@@ -1,6 +1,5 @@
 core_main_app[mongodb]==2.9.*
 core_composer_app==2.9.*
-core_curate_app==2.9.*
 core_dashboard_common_app==2.9.*
 core_dashboard_app==2.9.*
 core_explore_example_app==2.9.*
@@ -19,3 +18,4 @@ core_module_text_area_app==2.9.*
 core_file_preview_app==2.9.*
 core_linked_records_app==2.9.*
 -e git+https://github.com/MA042024/core_website_app.git#egg=core_website_app
+-e git+https://github.com/MA042024/core_curate_app.git#egg=core_curate_app
