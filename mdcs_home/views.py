@@ -86,3 +86,6 @@ def tiles(request):
         context["tiles"].append(compose_tile)
     """
     return render(request, "mdcs_home/tiles.html", context)
+
+def gensel_view(request):
+    return render(request, 'gensel.html')
