@@ -15,6 +15,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+
+    {% include 'menu.html' %}
+    
     <div class="sidebar">
         <span class="side-title"> GS Form v1.0</span>
         <ul>
@@ -1863,6 +1866,8 @@
             <p id="error-message"></p>
         </div>
     </div>
+
+     {% include 'default.html' %}
 </body>
 <script src="{% static 'js/gensel.js' %}"></script>
 
