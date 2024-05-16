@@ -1,5 +1,5 @@
 from django.shortcuts import render
 
-def new_tab_view(request):
+def gensel_view(request):
     return render(request, 'gensel.html')
 
