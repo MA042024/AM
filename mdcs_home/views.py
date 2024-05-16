@@ -88,4 +88,4 @@ def tiles(request):
     return render(request, "mdcs_home/tiles.html", context)
 
 def gensel_view(request):
-    return render(request, 'gensel.html')
+    return render(request, 'mdcs_home/gensel.html')
