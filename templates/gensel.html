@@ -5,18 +5,35 @@
 <!------------------------------------------------------>
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
+{% block theme_css %}
+    <link rel=icon href="{% static 'img/favicon.png' %}" sizes="16x16" type="image/png">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/menu.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/extra.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/btn_custom.css' %}" />
+{% endblock %}
+{% block theme_js %}
+    <script src="{% static 'js/util.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/btn_custom.js' %}"></script>
+    <script src="{% static 'core_main_app/common/js/debounce.js' %}"></script>
+{% endblock %}
+
+{% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GS Form</title>
+    <title> GS Form</title>
     <link rel="stylesheet" href="{% static 'css/gensel.css' %}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
+    <script src="{% static 'js/gensel.js' %}"></script>
+{% endblock %}
 
-    {% include 'theme/menu.html' %}
+{% block body %}
+    <div id="page-wrapper">
+        {# Page header #}
+        {% include 'theme/menu.html' %}
+    
     
     <div class="sidebar">
         <span class="side-title"> GS Form v1.0</span>
@@ -1867,8 +1884,8 @@
         </div>
     </div>
 
-     {% include 'theme/footer/default.html' %}
-</body>
-<script src="{% static 'js/gensel.js' %}"></script>
+            {% include 'theme/footer/default.html' %}
+    </div>
+{% endblock %}
 
 </html>
