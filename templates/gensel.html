@@ -1,0 +1,1854 @@
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--      Created by Mohammad Abbas - April 2024      -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+
+    <div class="sidebar">
+        <span class="side-title"> GenSel Form v1.0</span>
+        <ul>
+            <li><a href="#OuterfieldA"><b>Data Source</b></a>
+            </li>
+            <li><a href="#OuterfieldB"  class="dropdown"><b>Mixture</b></a>
+                <ul>
+                    <li><a href="#field5">Mixture Identifiers</a></li>
+                    <li><a href="#field6" class="dropdown">Mixture Recipe</a>
+                        <ul>
+                            <li><a href="#field6">Composition</a></li>
+                            <li><a href="#field7">Grain Size Distributions</a></li>
+                            <li><a href="#field8">Mixture Maximum Density</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#field9" class="dropdown">Mixture Component Properties</a>
+                        <ul>
+                            <li><a href="#field9">Virgin Aggregates</a></li>
+                            <li><a href="#field10">Filler</a></li>
+                            <li><a href="#field11">Virgin Binder</a></li>
+                            <li><a href="#field12">Reclaimed Asphalt</a></li>
+                            <li><a href="#field13">Reclaimed Asphalt Binder</a></li>
+                            <li><a href="#field14">Additives</a></li>
+                            <li><a href="#field15">Premixing Binder Blend</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#field16">Mixing</a></li>
+                    <li><a href="#field17" class="dropdown">Recovered Materials</a>
+                        <ul>
+                            <li><a href="#field17">Recovered Aggregates</a></li>
+                            <li><a href="#field18">Recovered Binder</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="#OuterfieldC"  class="dropdown"><b>Test Results</b></a>
+                <ul>
+                    <li><a href="#field20">Sample Properties</a></li>
+                    <li><a href="#field21">Results</a></li>
+                </ul>
+            </li>
+            <li><a href="#OuterfieldD"><b>Notes</b></a></li>
+        </ul>
+        <!--<a href="#GenerateButton"> Generate</a>
+        <a href="#SelectButton"> Select</a>-->
+    </div>
+
+    <form id="myForm" onsubmit="return generateXML()">    
+            
+        <fieldset  id="OuterfieldA" class="outer-fieldset">
+            <legend class="outer-legend">Data Source</legend>
+
+            <fieldset  id="field1">
+                    <div class="form-group">
+                        <label for="measurementCampaignID" title="Denotes a unique alpha-numeric identifier (key) for a measurement campaign within the organization reporting the data. It is formatted as an alpha-numeric string (e.g., A3-021).">Measurement Campaign ID:  <span class="red-text">*</span></label>
+                        <input type="text" id="measurementCampaignID" name="measurementCampaignID" required>
+
+                        <label for="organizationName" title="Name of the organization where the data were reported (Company, Institute, Laboratory, etc). Use a string value (e.g., XYZ Corporation).">Organization Name:  <span class="red-text">*</span></label>
+                        <input type="text" id="organizationName" name="organizationName" required>
+
+                        <label for="locationCountry" title="Indicates the country where the work was performed and/or the location of the corresponding organization. Use a string value (e.g., Germany).">Location Country:  <span class="red-text">*</span></label>
+                        <input type="text" id="locationCountry" name="locationCountry" required>
+
+                        <label for="year" title="Year when the work referenced by the data was completed. Use a four-digit integer (e.g., 2010).">Year:  <span class="red-text">*</span></label>
+                        <input type="number" id="year" name="year" min="1900" max="2100" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="RecordType">Data Record Type:</label>
+                        <select id="RecordType" onchange="RecordFucntion()">
+                            <option value="none">Select</option>
+                            <option value="completeForm">Complete Data Record</option>
+                            <option value="doiOnly">DOI Identifier Only</option>
+                        </select>
+                    </div>
+                    <div id="Complete" class="form-group hidden">
+                        <label for="completerecordType">Complete Record Type:</label>
+                        <select id="completerecordType" onchange="showRecordForm()">
+                            <option value="">Select </option>
+                            <option value="ArticleInJournal">Journal Article</option>
+                            <option value="ArticleInConferenceProceedings">Article in Conference Proceedings</option>
+                            <option value="BookPublication">Book Publication</option>
+                            <option value="PublishedReport">Published Report</option>
+                            <option value="UnpublishedReport">Unpublished Report</option>
+                            <option value="OtherBibliographic">Other Bibliographic</option>
+                        </select>
+                    </div>
+            </fieldset>
+
+            <fieldset  id="field2" class="hidden">
+                <legend>Complete Record</legend>
+                <div id="ArticleInJournal" class="specific-form form-group hidden">
+                    
+                    <label for="firstAuthor" title="The full name of the first author of the journal article in which the data are reported (e.g., Huang, Y.).">
+                        First Author:
+                    </label>
+                    <input type="text" id="firstAuthor" name="firstAuthor">
+                
+                    <label for="coAuthors" title="The full name of a co-author of the journal article in which the data are reported. Multiple instances can be generated to include more than one co-author (e.g., Huang, Y.).">
+                        Co-Authors <span class="semicolon">(semicolon separated)</span> :
+                    </label>
+                    <input type="text" id="coAuthors" name="coAuthors">
+                
+                    <label for="articleTitle" title="The title of the journal article in which the data are reported (e.g., A review of the use of recycled solid waste materials in asphalt pavements).">
+                        Article Title: <span class="red-text">*</span>
+                    </label>
+                    <input type="text" id="articleTitle" name="articleTitle" required>
+                
+                    <label for="journalTitle" title="The title of the journal in which the article reporting the data was published (e.g., Resources, Conservation and Recycling).">
+                        Journal Title: <span class="red-text">*</span>
+                    </label>
+                    <input type="text" id="journalTitle" name="journalTitle" required>
+
+                    <label for="journalVolumeNumber" title="The volume number of the journal where the article reporting the data was published (e.g., 52).">
+                        Journal Volume Number:
+                    </label>
+                    <input type="number" id="journalVolumeNumber" name="journalVolumeNumber">
+
+                    <label for="journalIssueNumber" title="The issue number of the journal where the article reporting the data was published (e.g., 1).">
+                        Journal Issue Number:
+                    </label>
+                    <input type="number" id="journalIssueNumber" name="journalIssueNumber">
+
+                    <label for="articleStartingPage" title="The starting page of the article in which the data are reported (e.g., 58).">
+                        Article Starting Page:
+                    </label>
+                    <input type="number" id="articleStartingPage" name="articleStartingPage">
+
+                    <label for="articleEndingPage" title="The ending page of the article in which the data are reported (e.g., 73).">
+                        Article Ending Page:
+                    </label>
+                    <input type="number" id="articleEndingPage" name="articleEndingPage">
+
+                    <label for="articleNumber" title="The article number in the journal in which the data are reported, applicable if the corresponding journal uses article numbers instead of pages (013202).">
+                        Article Number:
+                    </label>
+                    <input type="text" id="articleNumber" name="articleNumber">
+
+                    <label for="Artyear" title="The year when the article was published in printed form (e.g., 2007).">
+                        Year: <span class="red-text">*</span>
+                    </label>
+                    <input type="number" id="Artyear" name="Artyear" min="1900" max="2100" required>
+
+                    <label for="publisher" title="The name of the publisher of the journal in which the article reporting the data was published (e.g., Elsevier).">
+                        Publisher:
+                    </label>
+                    <input type="text" id="publisher" name="publisher">
+
+                    <label for="doi" title="The DOI code assigned to the journal article in which the data are reported (e.g., 10.1016/j.resconrec.2007.02.002).">
+                        DOI:
+                    </label>
+                    <input type="text" id="doi" name="doi">
+
+                    <label for="issn" title="The International Standard Serial Number (ISSN) of the journal in which the data-reporting article was published. The print ISSN precedes a forward slash, followed by the online ISSN (e.g., 0921-3449/1879-0658).">
+                        ISSN:
+                    </label>
+                    <input type="text" id="issn" name="issn">
+
+                </div>
+
+                <div id="ArticleInConferenceProceedings" class="specific-form form-group hidden">
+                
+                    <label for="confFirstAuthor" title="The full name of the first author of the proceedings article in which the data are reported (e.g., Huang, Y.).">
+                        First Author:
+                    </label>
+                    <input type="text" id="confFirstAuthor" name="confFirstAuthor">
+                    
+                    <label for="confCoAuthors" title="The full name of a co-author of the conference proceedings article in which the data are reported. Multiple instances can be generated to include more than one co-author (e.g., Huang, Y.).">
+                        Co-Authors <span class="semicolon">(semicolon separated)</span> :
+                    </label>
+                    <input type="text" id="confCoAuthors" name="confCoAuthors">
+                    
+                    <label for="confArticleTitle" title="The title of the conference proceedings article in which the data is reported (e.g., Micromechanical Surface Investigation of Bio-modified RAP Binder).">
+                        Article Title: <span class="red-text">*</span>
+                    </label>
+                    <input type="text" id="confArticleTitle" name="confArticleTitle" required>
+                    
+                    <label for="confConferenceTitle" title="The title of the conference in which the article reporting the data was presented (e.g., 5th International Symposium on Asphalt Pavements & Environment (APE)).">
+                        Conference Title: <span class="red-text">*</span>
+                    </label>
+                    <input type="text" id="confConferenceTitle" name="confConferenceTitle" required>
+                    
+                    <label for="confConferenceCity" title="The name of the city where the conference was held (e.g., Padova).">
+                        Conference City:
+                    </label>
+                    <input type="text" id="confConferenceCity" name="confConferenceCity">
+                    
+                    <label for="confConferenceCountry" title="The name of the country where the conference was held (e.g., Italy).">
+                        Conference Country:
+                    </label>
+                    <input type="text" id="confConferenceCountry" name="confConferenceCountry">
+                    
+                    <label for="confProceedingsTitle" title="The title of the conference proceedings in which the article reporting the data was published.">
+                        Conference Proceedings Title:
+                    </label>
+                    <input type="text" id="confProceedingsTitle" name="confProceedingsTitle">
+                    
+                    <label for="confProceedingsVolumeNumber" title="The number of the volume of the conference proceedings if available (e.g., 48).">
+                        Conference Proceedings Volume Number:
+                    </label>
+                    <input type="text" id="confProceedingsVolumeNumber" name="confProceedingsVolumeNumber">
+                    
+                    <label for="confProceedingsStartingPage" title="The starting page of the conference proceedings article in which the data are reported.">
+                        Conference Proceedings Starting Page:
+                    </label>
+                    <input type="text" id="confProceedingsStartingPage" name="confProceedingsStartingPage">
+                    
+                    <label for="confProceedingsEndingPage" title="The ending page of the conference proceedings article in which the data are reported.">
+                        Conference Proceedings Ending Page:
+                    </label>
+                    <input type="text" id="confProceedingsEndingPage" name="confProceedingsEndingPage">
+                    
+                    <label for="confYear" title="The year when the conference proceedings article was published in print form (e.g., 2020).">
+                        Year: <span class="red-text">*</span>
+                    </label>
+                    <input type="number" id="confYear" name="confYear" min="1900" max="2100" required>
+                    
+                    <label for="confPublisher" title="The name of the publisher of the conference proceedings in which the article reporting the data was published (e.g., Springer Cham).">
+                        Publisher:
+                    </label>
+                    <input type="text" id="confPublisher" name="confPublisher">
+                    
+                    <label for="confDOI" title="The DOI code assigned to the conference proceedings article in which the data are reported (e.g., 10.1007/978-3-030-29779-4_2)">
+                        DOI:
+                    </label>
+                    <input type="text" id="confDOI" name="confDOI">
+                    
+                </div>
+
+                <div id="BookPublication" class="specific-form form-group hidden">
+                
+                    <label for="bookFirstAuthor" title="The full name of the first author of the book (or book chapter) in which the data are reported (e.g., G.Speight, J.).">
+                        First Author:
+                    </label>
+                    <input type="text" id="bookFirstAuthor" name="bookFirstAuthor">
+                    
+                    <label for="bookCoAuthors" title="The full name of a co-author of the book (or book chapter) in which the data are reported. Multiple instances can be generated to include more than one co-author (e.g., G.Speight, J.).">
+                        Co-Authors <span class="semicolon">(semicolon separated)</span> :
+                    </label>
+                    <input type="text" id="bookCoAuthors" name="bookCoAuthors">
+                    
+                    <label for="bookTitle" title="The title of the book in which the data are reported (e.g., Asphalt Materials Science and Technology).">
+                        Book Title: <span class="red-text">*</span>
+                    </label>
+                    <input type="text" id="bookTitle" name="bookTitle" required>
+                    
+                    <label for="bookChapterTitle" title="The title of the chapter of the book in which the data are reported (e.g., Rubber modified bitumen).">
+                        Book Chapter Title:
+                    </label>
+                    <input type="text" id="bookChapterTitle" name="bookChapterTitle">
+                    
+                    <label for="bookChapterNumber" title="The number of the chapter of the book in which the data are reported (e.g., 4).">
+                        Chapter Number:
+                    </label>
+                    <input type="text" id="bookChapterNumber" name="bookChapterNumber">
+                    
+                    <label for="bookEditors" title="The name of the Editors of the book if the case applies (e.g., Tony McNally).">
+                        Editors:
+                    </label>
+                    <input type="text" id="bookEditors" name="bookEditors">
+                    
+                    <label for="bookEditionNumber" title="The edition number of the book in which the chapter reporting the data was published (e.g., 1).">
+                        Edition Number:
+                    </label>
+                    <input type="text" id="bookEditionNumber" name="bookEditionNumber">
+                    
+                    <label for="bookChapterStartingPage" title="The starting page of the book chapter in which the data are reported (e.g., 72).">
+                        Chapter Starting Page:
+                    </label>
+                    <input type="text" id="bookChapterStartingPage" name="bookChapterStartingPage">
+                    
+                    <label for="bookChapterEndingPage" title="The ending page of the book chapter in which the data are reported (e.g., 97).">
+                        Chapter Ending Page:
+                    </label>
+                    <input type="text" id="bookChapterEndingPage" name="bookChapterEndingPage">
+                    
+                    <label for="bookYear" title="The year when the book chapter was published in print form (e.g., 2011).">
+                        Year: <span class="red-text">*</span>
+                    </label>
+                    <input type="number" id="bookYear" name="bookYear" min="1900" max="2100" required>
+                    
+                    <label for="bookPublisher" title="The name of the publisher of the book in which the chapter reporting the data was published (e.g., Woodhead).">
+                        Publisher:
+                    </label>
+                    <input type="text" id="bookPublisher" name="bookPublisher">
+                    
+                    <label for="bookDOI" title="The DOI code assigned to the book chapter in which the data are reported (e.g., 10.1533/9780857093721.1.72).">
+                        DOI:
+                    </label>
+                    <input type="text" id="bookDOI" name="bookDOI">
+                    
+                    <label for="bookISBN" title="The International Standard Book Number of the book in which the data are reported (e.g., 978-0-85709-048-5).">
+                        ISBN:
+                    </label>
+                    <input type="text" id="bookISBN" name="bookISBN">
+                    
+                </div>
+
+                <div id="PublishedReport" class="specific-form form-group hidden">
+                
+                    <label for="reportFirstAuthor" title="The full name of the first author of the published report in which the data are reported (e.g., Poulikakos, L.).">
+                        First Author:
+                    </label>
+                    <input type="text" id="reportFirstAuthor" name="reportFirstAuthor">
+                    
+                    <label for="reportCoAuthors" title="The full name of a co-author of the published report in which the data are reported. Multiple instances can be generated to include more than one co-author (e.g., Poulikakos, L. ).">
+                        Co-Authors <span class="semicolon">(semicolon separated)</span> :
+                    </label>
+                    <input type="text" id="reportCoAuthors" name="reportCoAuthors">
+                    
+                    <label for="reportTitle" title="The title of the published report in which the data are reported.">
+                        Report Title: <span class="red-text">*</span>
+                    </label>
+                    <input type="text" id="reportTitle" name="reportTitle" required>
+                    
+                    <label for="reportNumber" title="The alphanumeric identifier of the published report in which the data are reported (e.g., R2024_043).">
+                        Report Number:
+                    </label>
+                    <input type="text" id="reportNumber" name="reportNumber">
+                    
+                    <label for="reportYear" title="The year when the published report reporting the data was published in print or digital form, depending on the case (e.g., 2017).">
+                        Year: <span class="red-text">*</span>
+                    </label>
+                    <input type="number" id="reportYear" name="reportYear" min="1900" max="2100" required>
+                    
+                    <label for="reportPublisher" title="The name of the publisher or Organization that published the report in which the data are reported (e.g., Asphalt Institute).">
+                        Publisher:
+                    </label>
+                    <input type="text" id="reportPublisher" name="reportPublisher">
+                    
+                    <label for="reportDOI" title="The DOI code assigned to the published report in which the data are reported (e.g., 10.1533/9780857093721.1.72).">
+                        DOI:
+                    </label>
+                    <input type="text" id="reportDOI" name="reportDOI">
+                    
+                    <label for="reportURL" title="The Uniform Resource Locator of the published report (e.g., https://www.wsdot.wa.gov/research/reports/fullreports/116.1.pdf).">
+                        URL:
+                    </label>
+                    <input type="text" id="reportURL" name="reportURL">
+                    
+                </div>
+                    
+                <div id="UnpublishedReport" class="specific-form form-group hidden">
+                
+                    <label for="unreportFirstAuthor" title="The full name of the first author of the unpublished report in which the data are reported (e.g., Poulikakos, L.).">
+                        First Author:
+                    </label>
+                    <input type="text" id="unreportFirstAuthor" name="unreportFirstAuthor">
+                    
+                    <label for="unreportCoAuthors" title="The full name of a co-author of the unpublished report in which the data are reported. Multiple instances can be generated to include more than one co-author (e.g., Poulikakos, L. ).">
+                        Co-Authors <span class="semicolon">(semicolon separated)</span> :
+                    </label>
+                    <input type="text" id="unreportCoAuthors" name="unreportCoAuthors">
+                    
+                    <label for="unreportTitle" title="The title of the unpublished report in which the data are reported.">
+                        Report Title: <span class="red-text">*</span>
+                    </label>
+                    <input type="text" id="unreportTitle" name="unreportTitle" required>
+                    
+                    <label for="unreportYear" title="The year when the unpublished report reporting the data was first available in print or digital form, depending on the case (e.g., 2015).">
+                        Year: <span class="red-text">*</span>
+                    </label>
+                    <input type="number" id="unreportYear" name="unreportYear" min="1900" max="2100" required>
+
+                    <label for="unreportURL" title="The Uniform Resource Locator of the unpublished report (e.g., https://www.wsdot.wa.gov/research/reports/fullreports/116.1.pdf).">
+                        URL:
+                    </label>
+                    <input type="text" id="unreportURL" name="unreportURL">
+                    
+                </div>
+                    
+                <div id="OtherBibliographic" class="specific-form form-group hidden">
+    
+                    <label for="otherBibInformation" title="Information describing the data source in text format (e.g., Data in the laboratory).">Information: <span class="red-text">*</span></label>
+                    <input type="text" id="otherBibInformation" name="otherBibInformation" required>
+                </div>
+
+            </fieldset>
+
+            <fieldset id="field3" class="hidden">
+                <legend>DOI Identifier</legend>
+                <div id="doiOnlySection" class="form-group">
+                    <label for="doiOnly" title="The DOI code assigned to the document in which the data are reported, serving as the sole bibliographic information (e.g., 10.1016/j.resconrec.2007.02.002).">DOI: <span class="red-text">*</span></label>
+                    <input type="text" id="doiOnly" name="doiOnly" >
+                </div>
+            </fieldset>
+
+            <fieldset id="field4">
+                <div id="NotesSource" class="form-group">  
+                    <label for="NotesSourceContent" title="The content of the text note concerning the data source.">Data Source Notes:</label>
+                    <input type="text" id="NotesSourceContent" name="NotesSourceContent">
+                </div>
+            </fieldset>
+        </fieldset>
+
+
+
+
+        <fieldset id="OuterfieldB" class="outer-fieldset">
+            <legend class="outer-legend">Mixture</legend>
+
+            <fieldset id="field5">
+                <legend>Mixture Identifiers</legend>
+                <div id="MixtureIdentifiers" class="form-group">
+                    <label for="MixtureID" title="The local identifier used for the mixture (e.g., B-102).">Mixture ID: </label>
+                    <input type="text" id="MixtureID" name="MixtureID" >
+                    <label for="MixtureType" title="The mixture type (e.g., AC B-32).">Mixture Type: <span class="red-text">*</span></label>
+                    <input type="text" id="MixtureType" name="MixtureType" required>
+                </div>
+            </fieldset>
+
+            <fieldset id="field6">
+                <legend title="The percentage by mass of the components of the bituminous mixture.">Composition</legend>
+                <div id="MixtureComposition" class="form-group">
+                    <label for="CoarseAggregates" title="The percentage by mass of the coarse aggregates (particle size greater than 4 mm) to the total mass of the bituminous mixture (e.g., 44).">Coarse Aggregates (%): </label>
+                    <input type="text" id="CoarseAggregates" name="CoarseAggregates" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <label for="FineAggregates" title="The percentage by mass of the fine aggregates (particle size 0/4 mm) to the total mass of the bituminous mixture (e.g., 41).">Fine Aggregates (%): </label>
+                    <input type="text" id="FineAggregates" name="FineAggregates" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <label for="AddedFiller" title="The percentage by mass of the added fillers to the total mass of the bituminous mixture(e.g., 3.2).">Added Filler (%): </label>
+                    <input type="text" id="AddedFiller" name="AddedFiller" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <label for="ReclaimedAsphalt" title="The percentage by mass of the reclaimed asphalt to the total mass of the bituminous mixture (e.g., 4.6).">Reclaimed Asphalt (%): </label>
+                    <input type="text" id="ReclaimedAsphalt" name="ReclaimedAsphalt" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <label for="Rejuvenator" title="The percentage by mass of the rejuvenator to the total mass of the bituminous mixture (e.g., 2.3).">Rejuvenator (%): </label>
+                    <input type="text" id="Rejuvenator" name="Rejuvenator" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                </div>
+                <fieldset id="field6-1">
+                    <legend class="specific-legend">Binder</legend>
+                    <div id="MixtureCompositionBinder" class="form-group">
+                        <label for="TargetBinderGrade" title="The target binder grade, as reported in the form X/Y-Z or any other format (e.g., 50/75-60).">Target Binder Grade: </label>
+                        <input type="text" id="TargetBinderGrade" name="TargetBinderGrade" >
+                        <label for="Binder" title="The percentage by mass of the binder, including that extracted from the reclaimed asphalt, to the total mass of the bituminous mixture (e.g., 4.1).">Binder Content (%): </label>
+                        <input type="text" id="Binder" name="Binder" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    </div>
+                </fieldset>
+            </fieldset>
+
+            <fieldset id="field7">
+                <legend>Grain Size Distributions</legend>
+                <fieldset id="field7-1">
+                    <legend class="specific-legend" title="The distribution of grain sizes by mass for the virign aggregates.">Virgin Aggregates <span class="semicolon">(semicolon separated)</span></legend>
+                    <div id="GrainSizeDistributionVirgin" class="graph-form-group">
+                        <label for="SizeVirgin" title="The nominal size of the sieve in millimeters (e.g., 5.6).">Size (mm): </label>
+                        <input type="text" id="SizeVirgin" name="SizeVirgin">
+                        <label for="PercentageVirgin" title="The percentage distribution by mass for particles passing the specified size (e.g., 70.4).">Proportion (%): </label>
+                        <input type="text" id="PercentageVirgin" name="PercentageVirgin">
+                        <button class="graph-form-group-button" type="button"  title="Show or hide plot." onclick="PlotGraph('field7-1','Virgin Aggregates Distribution','SizeVirgin','Size','PercentageVirgin','Proportion')">&#x1F4C8;</button>
+                    </div>
+                </fieldset>
+                <fieldset id="field7-2">
+                    <legend class="specific-legend" title="The distribution of grain sizes by mass for the reclaimed aggregates.">Reclaimed Aggregates <span class="semicolon">(semicolon separated)</span></legend>
+                    <div id="GrainSizeDistributionReclaimed" class="graph-form-group">
+                        <label for="SizeReclaimed" title="The nominal size of the sieve in millimeters (e.g., 5.6).">Size (mm): </label>
+                        <input type="text" id="SizeReclaimed" name="SizeReclaimed">
+                        <label for="PercentageReclaimed" title="The percentage distribution by mass for particles passing the specified size (e.g., 70.4).">Proportion (%): </label>
+                        <input type="text" id="PercentageReclaimed" name="PercentageReclaimed">
+                        <button class="graph-form-group-button" type="button" title="Show or hide plot." onclick="PlotGraph('field7-2','Reclaimed Aggregates Distribution','SizeReclaimed','Size','PercentageReclaimed','Proportion')">&#x1F4C8;</button>
+                    </div>
+                </fieldset>
+            </fieldset>
+
+            <fieldset id="field8">
+                <legend>Mixture Maximum Density</legend>
+                <div id="MixtureMaximumDensity" class="form-group">
+                    <label for="MaximumDensityValue" title="The value of the maximum density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.48).">Maximum Density (Mg/m&sup3;): </label>
+                    <input type="text" id="MaximumDensityValue" name="MaximumDensityValue" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                </div>
+            </fieldset>
+
+            <fieldset id="field9">
+                <legend>Virgin Aggregates</legend>
+                <div id="VirginAggregates-1" class="form-group-3c">
+                    <label for="NatureVA" title="The nature of the aggregates in the bituminous mixture (e.g., Granite).">Nature: </label>
+                    <input type="text" id="NatureVA" name="NatureVA">
+                    <span></span>
+
+                    <label for="LosAngelesTestResultVA" title="The percentage of wear calculated during the Los Angeles Abrasion Test according to EN 1097-2, expressed as a percentage of the original weight of the sample (e.g., 25).">Los Angeles Test Result (%): </label>
+                    <input type="text" id="LosAngelesTestResultVA" name="LosAngelesTestResultVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 1097-2</span>
+                    
+                    <label for="FlakinessIndexVA" title="The flakiness index of aggregates, expressed as a percentage, which is measured according to EN 933-3 (e.g., 22).">Flakiness Index (%): </label>
+                    <input type="text" id="FlakinessIndexVA" name="FlakinessIndexVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 933-3</span>
+
+                    <label for="ShapeIndexVA" title="The shape index of aggregates according to EN 933-4, expressed as a percentage (e.g., 30).">Shape Index (%): </label>
+                    <input type="text" id="ShapeIndexVA" name="ShapeIndexVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 933-4</span>
+
+                    <label for="FlowCoefficientVA" title="The value of the flow coefficient of the aggregate according to EN 933-6, expressed in seconds (e.g., 40).">Flow Coefficient (seconds): </label>
+                    <input type="text" id="FlowCoefficientVA" name="FlowCoefficientVA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 933-6</span>
+
+                    <label for="NordicAbrasionValueVA" title="The value of the Nordic abrasion according to EN 1097-9, expressed in percentage (e.g., 45).">Nordic Abrasion Value (%): </label>
+                    <input type="text" id="NordicAbrasionValueVA" name="NordicAbrasionValueVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 1097-9</span>
+                </div>
+
+                <div id="VirginAggregates-2" class="form-group">
+                    <fieldset id="field9-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The percentage of semi-crushed, totally crushed, semi-rounded and totally rounded aggregate particles according to EN 933-5.">Rounded and Crushed Proportions &nbsp;&nbsp;&nbsp;<span class="standard"> EN 933-5 </span> &nbsp;</legend>
+                        <div id="RoundedAndCrushedVA" class="form-group">
+                            <label for="SemiCrushedParticlesVA" title="The percentage of the semi-crushed coarse aggregate particles according to EN 12697-11 (e.g., 27.5).">Semi-Crushed Particles (%): </label>
+                            <input type="text" id="SemiCrushedParticlesVA" name="SemiCrushedParticlesVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="TotallyCrushedParticlesVA" title="The percentage of the totally crushed coarse aggregate particles according to EN 12697-11 (e.g., 53.4).">Totally Crushed Particles (%): </label>
+                            <input type="text" id="TotallyCrushedParticlesVA" name="TotallyCrushedParticlesVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="SemiRoundedParticlesVA" title="The percentage of the semi-rounded coarse aggregate particles according to EN 12697-11 (e.g., 26.8).">Semi-Rounded Particles (%): </label>
+                            <input type="text" id="SemiRoundedParticlesVA" name="SemiRoundedParticlesVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." >
+                            
+                            <label for="TotallyRoundedParticlesVA" title="The percentage of the totally rounded coarse aggregate particles according to EN 12697-11 (e.g., 40.6).">Totally Rounded Particles (%): </label>
+                            <input type="text" id="TotallyRoundedParticlesVA" name="TotallyRoundedParticlesVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." >
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div id="VirginAggregates-3" class="form-group-3c">
+                    <label for="BitumenCoverageDegreeVA" title="The average proportion of the surface area of the aggregate particles that are covered with bitumen according to EN 12697-11, expressed as a percentage (e.g., 45).">Bitumen Coverage Degree (%): </label>
+                    <input type="text" id="BitumenCoverageDegreeVA" name="BitumenCoverageDegreeVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 12697-11</span>
+                </div>
+
+                <div id="VirginAggregates-4" class="form-group">
+                    <fieldset id="field9-2" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                        <div id="AdditionalPropertiesVA" class="form-group">
+                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
+                            <label for="TestMethodVA_1" title="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: </label>
+                            <input type="text" id="TestMethodVA_1" name="TestMethodVA_1">
+                            
+                            <label for="ValueVA_1" title="The value of the additional property of the considered raw material (e.g., 16).">Value: </label>
+                            <input type="text" id="ValueVA_1" name="ValueVA_1">
+                            
+                            <label for="UnitVA_1" title="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: </label>
+                            <input type="text" id="UnitVA_1" name="UnitVA_1">
+                        </div>
+                    </fieldset>
+                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field9-2','VA','form-group TwoColumn dynamicPro')">&#10010; Property</button>
+                </div>
+            </fieldset>
+
+            <fieldset id="field10">
+                <legend>Filler</legend>
+                <div id="Filler-1" class="form-group-3c">
+                    <label for="NatureFiller" title="The nature of the filler in the bituminous mixture (e.g., Limestone powder).">Nature: </label>
+                    <input type="text" id="NatureFiller" name="NatureFiller">
+                    <span></span>
+                    
+                    <label for="StiffeningEffectFiller" title="The value of the stiffening effect of filler aggregate when mixed with bitumen, measured in Degrees Celsius, according to EN 13179-1 (e.g., 20).">Stiffening Effect (°C): </label>
+                    <input type="text" id="StiffeningEffectFiller" name="StiffeningEffectFiller"  pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 13179-1</span>
+
+                    <label for="ParticleDensityFillerValue" title="The value of the particle density of the filler according to EN 1097-7, expressed in Mg/m&sup3; (e.g., 2.753).">Particle Density (Mg/m&sup3;): </label>
+                    <input type="text" id="ParticleDensityFillerValue" name="ParticleDensityFillerValue" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 1097-7</span>
+
+                    <label for="WaterSusceptibilityFiller" title="The value of the water susceptibility of fillers for bituminous mixtures, expressed in percentage, according to EN 1744-4 (e.g., 25).">Water Susceptibility (%): </label>
+                    <input type="text" id="WaterSusceptibilityFiller" name="WaterSusceptibilityFiller" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 1744-4</span>
+                </div>
+
+                <div id="Filler-2" class="form-group">
+                    <fieldset id="field10-2" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                        <div id="AdditionalPropertiesFiller" class="form-group">
+                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
+                            <label for="TestMethodFiller_1" title="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: </label>
+                            <input type="text" id="TestMethodFiller_1" name="TestMethodFiller_1">
+                            
+                            <label for="ValueFiller_1" title="The value of the additional property of the considered raw material (e.g., 16).">Value: </label>
+                            <input type="text" id="ValueFiller_1" name="ValueFiller_1">
+                            
+                            <label for="UnitFiller_1" title="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: </label>
+                            <input type="text" id="UnitFiller_1" name="UnitFiller_1">
+                        </div>
+                    </fieldset>
+                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field10-2','Filler','form-group TwoColumn dynamicPro')"> &#10010; Property</button>                    
+                </div>
+            </fieldset>
+
+            <fieldset id="field11">
+                <legend>Virgin Binder</legend>
+                <div id="VirginBinder-1" class="form-group-3c">
+                    <label for="PenetrationVB" title="The measured penetration of a standard needle at 25 Degrees Celsius according to EN 1426, expressed in tenths of a millimeter (e.g., 55).">Penetration (0.1mm): </label>
+                    <input type="text" id="PenetrationVB" name="PenetrationVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 1426</span>
+
+                    <label for="SofteningPointVB" title="The temperature at which the binder begins to soften and lose its rigidity according to EN 1427, measured in Degrees Celsius (e.g., 45).">Softening Point (°C): </label>
+                    <input type="text" id="SofteningPointVB" name="SofteningPointVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                     <span class="standard">EN 1427</span>
+
+                    <label for="KinematicViscosityVB" title="The value of the kinematic viscosity of the binder according to EN 12595, measured in square millimeter per second (e.g., 30).">Kinematic Viscosity (mm&sup2;/s): </label>
+                    <input type="text" id="KinematicViscosityVB" name="KinematicViscosityVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                     <span class="standard">EN 12595</span>
+
+                    <label for="DynamicViscosityVB" title="The value of the dynamic viscosity of the binder according to EN 12596, measured in Pascal-second (e.g., 11).">Dynamic Viscosity (Pa.s): </label>
+                    <input type="text" id="DynamicViscosityVB" name="DynamicViscosityVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 12596</span>
+                </div>
+
+                <div id="VirginBinder-2" class="form-group">
+                    <fieldset id="field11-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The results of the Binder Fast Characterization Test (BTSV) according to EN 17643.">BTSV &nbsp;&nbsp;&nbsp;<span class="standard">EN 17643</span>&nbsp;</legend>
+                        <div id="BTSVVB" class="form-group">
+                            <label for="TemperatureVB" title="The value of the Binder Fast Characterization Test (BTSV) temperature, which is determined using the Dynamic Shear Rheometer (DSR), measured in Degrees Celsius (e.g., 65).">Temperature (°C): </label>
+                            <input type="text" id="TemperatureVB" name="TemperatureVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="PhaseAngleVB" title="The value of the Binder Fast Characterization Test (BTSV) phase angle, which is determined using the Dynamic Shear Rheometer (DSR), measured in Angle Degrees (e.g., 42).">Phase Angle (°): </label>
+                            <input type="text" id="PhaseAngleVB" name="PhaseAngleVB" pattern="^(90(\.0{1,4})?|[1-8]?\d(\.\d{1,4})?|0(\.\d{1,4})?)$" title="Enter a valid number between 0 and 90.">
+                            
+                            <fieldset id="field11-1-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                                <div id="AdditionalPropertiesBTSVVB" class="form-group">
+                                    <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
+                                    <label for="TestMethodBTSVVB_1" title="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: </label>
+                                    <input type="text" id="TestMethodBTSVVB_1" name="TestMethodBTSVVB_1">
+                                    
+                                    <label for="ValueBTSVVB_1" title="The value of the additional property of the considered raw material (e.g., 16).">Value: </label>
+                                    <input type="text" id="ValueBTSVVB_1" name="ValueBTSVVB_1">
+                                    
+                                    <label for="UnitBTSVVB_1" title="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: </label>
+                                    <input type="text" id="UnitBTSVVB_1" name="UnitBTSVVB_1">
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field11-1-1','BTSVVB','form-group TwoColumn dynamicPro')">&#10010; BTSV Property</button>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div id="VirginBinder-3" class="form-group">
+                    <fieldset id="field11-2" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The results of the Multiple Stress Creep and Recovery Test (MSCRT) according to EN 16659.">MSCRT &nbsp;&nbsp;&nbsp;<span class="standard">EN 16659</span>&nbsp;</legend>
+                        <div id="MSCRTVB" class="form-group">
+                            <label for="AveragePercentRecovery100PaVB" title="The value of the average percentage recovery at 100 Pa (e.g., 40.5).">Average Recovery at 0.1kPa (%): </label>
+                            <input type="text" id="AveragePercentRecovery100PaVB" name="AveragePercentRecovery100PaVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="AveragePercentRecovery3200PaVB" title="The value of the average percentage recovery at 3200 Pa (e.g., 64.7).">Average Recovery at 3.2kPa (%): </label>
+                            <input type="text" id="AveragePercentRecovery3200PaVB" name="AveragePercentRecovery3200PaVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="RecoveryPercentageDifferenceVB" title="The value of the percentage difference in recovery between 100 Pa and 3200 Pa (e.g., 10.8).">Recovery Difference (%): </label>
+                            <input type="text" id="RecoveryPercentageDifferenceVB" name="RecoveryPercentageDifferenceVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="NonrecoverableCreepCompliance100PaVB" title="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): </label>
+                            <input type="text" id="NonrecoverableCreepCompliance100PaVB" name="NonrecoverableCreepCompliance100PaVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="NonrecoverableCreepCompliance3200PaVB" title="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): </label>
+                            <input type="text" id="NonrecoverableCreepCompliance3200PaVB" name="NonrecoverableCreepCompliance3200PaVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="NonrecoverableCreepCompliancePercentageDifferenceVB" title="The value of the percentage difference in non-recoverable creep compliance between 100 Pa and 3200 Pa (e.g., 16.1).">Nonrecoverable Creep Difference (%): </label>
+                            <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceVB" name="NonrecoverableCreepCompliancePercentageDifferenceVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <fieldset id="field11-2-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">MSCRT Non-standard Stress</legend>
+                                <div id="NonstandardStressVB" class="form-group">
+                                    <label for="SpecifiedStressVB" title="The value of the non-standard specified stress, other than 100 Pa and 3200 Pa, expressed in Pascal (e.g., 10000).">Specified Stress (Pa): </label>
+                                    <input type="text" id="SpecifiedStressVB" name="SpecifiedStressVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="AveragePercentRecoverySpecifiedStressVB" title="The value of the average percentage recovery at the specified stress (e.g., 59.5).">Average Recovery (%): </label>
+                                    <input type="text" id="AveragePercentRecoverySpecifiedStressVB" name="AveragePercentRecoverySpecifiedStressVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="RecoveryPercentageDifferenceSpecifiedStressVB" title="The value of the percentage difference in recovery between 3200 Pa and the specified stress (e.g., 15.7).">Recovery Difference (%): </label>
+                                    <input type="text" id="RecoveryPercentageDifferenceSpecifiedStressVB" name="RecoveryPercentageDifferenceSpecifiedStressVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="NonrecoverableCreepComplianceSpecifiedStressVB" title="The value of the non-recoverable creep compliance at the specified stress, expressed in 1/kPa (e.g., 0.227).">Nonrecoverable Creep (1/kPa): </label>
+                                    <input type="text" id="NonrecoverableCreepComplianceSpecifiedStressVB" name="NonrecoverableCreepComplianceSpecifiedStressVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressVB" title="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecoverable Creep Difference (%): </label>
+                                    <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressVB" name="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                                   
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div id="VirginBinder-4" class="form-group-3c">
+                    <label for="FraassBreakingPointVB" title="The value of the Fraass breaking point according to EN 12593, at which a film of bituminous binder of a specified and uniform thickness will break under defined loading conditions, measured in Degrees Celsius (e.g., 110).">Fraass Breaking Point (°C): </label>
+                    <input type="text" id="FraassBreakingPointVB" name="FraassBreakingPointVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 12593</span>
+                </div>
+                
+                <div id="VirginBinder-5" class="form-group">
+                    <fieldset id="field11-3" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The results of the Rolling Thin Film Oven Test (RTFOT) according to EN 12607-1.">Aging Resistance &nbsp;&nbsp;&nbsp;<span class="standard">EN 12607-1</span>&nbsp;</legend>
+                        <div id="AgingResistanceVB" class="form-group">
+                            <label for="MassChangeVB" title="The change in mass according to EN 12607-1, expressed as a percentage (e.g., 0.95).">Mass Change (%): </label>
+                            <input type="text" id="MassChangeVB" name="MassChangeVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="PenetrationChangeVB" title="The change in penetration according to EN 12607-1 and EN 1426,  expressed as a percentage (e.g., 75.07).">Retained Penetration (%): </label>
+                            <input type="text" id="PenetrationChangeVB" name="PenetrationChangeVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        
+                            <label for="SofteningPointChangeVB" title="The absolute change in softening point according to EN 12607-1 and EN 1427, measured in Degrees Celsius (e.g., 5.02).">Softening Point Change (°C): </label>
+                            <input type="text" id="SofteningPointChangeVB" name="SofteningPointChangeVB" pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+                        </div>
+                    </fieldset>
+
+                </div>
+
+                <div id="VirginBinder-6" class="form-group-3c">
+                    <label for="ElasticRecoveryVB" title="The value of the elastic recovery of the binder according to EN 13398 at 25 Degrees Celsius, expressed as a percentage (e.g., 50).">Elastic Recovery (%) at 25°C: </label>
+                    <input type="text" id="ElasticRecoveryVB" name="ElasticRecoveryVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 13398</span>
+                    
+                    <label for="CohesionEnergyVB" title="The value of cohesion energy of the bitumen obtained from the force ductility method according to EN 13589 at 5 Degrees Celsius, measured in joules per square centimetres (e.g., 0.9).">Cohesion Energy (J/cm&sup2;) at 5°C: </label>
+                    <input type="text" id="CohesionEnergyVB" name="CohesionEnergyVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 13589</span>
+
+                    <label for="SolubilityVB" title="The value of the percentage of mass of the soluble material to the total mass according to EN 12592 (e.g., 7.6).">Solubility (%): </label>
+                    <input type="text" id="SolubilityVB" name="SolubilityVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 12592</span>
+                </div>
+                
+                <div id="VirginBinder-7" class="form-group">
+                    <fieldset id="field11-4" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                        <div id="AdditionalPropertiesVB" class="form-group">
+                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
+                            <label for="TestMethodVB_1" title="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: </label>
+                            <input type="text" id="TestMethodVB_1" name="TestMethodVB_1">
+                            
+                            <label for="ValueVB_1" title="The value of the additional property of the considered raw material (e.g., 16).">Value: </label>
+                            <input type="text" id="ValueVB_1" name="ValueVB_1">
+                            
+                            <label for="UnitVB_1" title="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: </label>
+                            <input type="text" id="UnitVB_1" name="UnitVB_1">
+                        </div>
+                    </fieldset>
+                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field11-4','VB','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                </div>
+            </fieldset>
+
+            <fieldset id="field12">
+                <legend>Reclaimed Asphalt</legend>
+                <div id="ReclaimedAsphaltdiv-1" class="form-group-3c">
+                    <label for="NatureRA" title="The nature of the aggregates in the bituminous mixture (e.g., Granite).">Nature: </label>
+                    <input type="text" id="NatureRA" name="NatureRA">
+                    <span></span>
+
+                    <label for="LosAngelesTestResultRA" title="The percentage of wear calculated during the Los Angeles Abrasion Test according to EN 1097-2, expressed as a percentage of the original weight of the sample (e.g., 25).">Los Angeles Test Result (%): </label>
+                    <input type="text" id="LosAngelesTestResultRA" name="LosAngelesTestResultRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 1097-2</span>
+
+                    <label for="FlakinessIndexRA" title="The flakiness index of the reclaimed aggregates, expressed as a percentage, which is measured according to EN 933-3 (e.g., 22).">Flakiness Index (%): </label>
+                    <input type="text" id="FlakinessIndexRA" name="FlakinessIndexRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 933-3</span>
+
+                    <label for="ShapeIndexRA" title="The shape index of the reclaimed aggregates according to EN 933-4, expressed as a percentage (e.g., 30).">Shape Index (%): </label>
+                    <input type="text" id="ShapeIndexRA" name="ShapeIndexRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 933-4</span>
+
+                    <label for="FlowCoefficientRA" title="The value of the flow coefficient of the reclaimed aggregate according to EN 933-6, expressed in seconds (e.g., 40).">Flow Coefficient (seconds): </label>
+                    <input type="text" id="FlowCoefficientRA" name="FlowCoefficientRA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 933-6</span>
+
+                    <label for="NordicAbrasionValueRA" title="The value of the Nordic abrasion according to EN 1097-9, expressed in percentage (e.g., 45).">Nordic Abrasion Value (%): </label>
+                    <input type="text" id="NordicAbrasionValueRA" name="NordicAbrasionValueRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 1097-9</span>
+                </div>
+
+                <div id="ReclaimedAsphaltdiv-2" class="form-group">
+                    <fieldset id="field12-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The percentage of semi-crushed, totally crushed, semi-rounded and totally rounded reclaimed aggregate particles according to EN 933-5.">Rounded and Crushed Proportions &nbsp;&nbsp;&nbsp;<span class="standard"> EN 933-5 </span> &nbsp;</legend>
+                        <div id="RoundedAndCrushedRA" class="form-group">
+                            <label for="SemiCrushedParticlesRA" title="The percentage of the semi-crushed coarse aggregate particles according to EN 12697-11 (e.g., 27.5).">Semi-Crushed Particles (%): </label>
+                            <input type="text" id="SemiCrushedParticlesRA" name="SemiCrushedParticlesRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="TotallyCrushedParticlesRA" title="The percentage of the totally crushed coarse aggregate particles according to EN 12697-11 (e.g., 53.4).">Totally Crushed Particles (%): </label>
+                            <input type="text" id="TotallyCrushedParticlesRA" name="TotallyCrushedParticlesRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="SemiRoundedParticlesRA" title="The percentage of the semi-rounded coarse aggregate particles according to EN 12697-11 (e.g., 26.8).">Semi-Rounded Particles (%): </label>
+                            <input type="text" id="SemiRoundedParticlesRA" name="SemiRoundedParticlesRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." >
+                            
+                            <label for="TotallyRoundedParticlesRA" title="The percentage of the totally rounded coarse aggregate particles according to EN 12697-11 (e.g., 40.6).">Totally Rounded Particles (%): </label>
+                            <input type="text" id="TotallyRoundedParticlesRA" name="TotallyRoundedParticlesRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." >
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div id="ReclaimedAsphaltdiv-3" class="form-group-3c">
+                    <label for="BitumenCoverageDegreeRA" title="The average proportion of the surface area of the reclaimed aggregate particles that are covered with bitumen according to EN 12697-11, expressed as a percentage (e.g., 45).">Bitumen Coverage Degree (%): </label>
+                    <input type="text" id="BitumenCoverageDegreeRA" name="BitumenCoverageDegreeRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 12697-11</span>
+                </div>
+
+                <div id="ReclaimedAsphaltdiv-4" class="form-group">
+                    <fieldset id="field12-2" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                        <div id="AdditionalPropertiesRA" class="form-group">
+                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
+                            <label for="TestMethodRA_1" title="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: </label>
+                            <input type="text" id="TestMethodRA_1" name="TestMethodRA_1">
+                            
+                            <label for="ValueRA_1" title="The value of the additional property of the considered raw material (e.g., 16).">Value: </label>
+                            <input type="text" id="ValueRA_1" name="ValueRA_1">
+                            
+                            <label for="UnitRA_1" title="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: </label>
+                            <input type="text" id="UnitRA_1" name="UnitRA_1">
+                        </div>
+                    </fieldset>
+                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field12-2','RA','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                </div>
+            </fieldset>
+
+            <fieldset id="field13">
+                <legend>Reclaimed Asphalt Binder</legend>
+                <div id="ReclaimedAsphaltBinder-1" class="form-group-3c">
+                    <label for="PercentageContentRB" title="The percentage by mass of the binder in the reclaimed asphalt (e.g., 6.3).">Percentage Content (%): </label>
+                    <input type="text" id="PercentageContentRB" name="PercentageContentRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span></span>
+
+                    <label for="PenetrationRB" title="The measured penetration of a standard needle at 25 Degrees Celsius according to EN 1426, expressed in tenths of a millimeter (e.g., 55).">Penetration (0.1mm): </label>
+                    <input type="text" id="PenetrationRB" name="PenetrationRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 1426</span>
+
+                    <label for="SofteningPointRB" title="The temperature at which the reclaimed binder begins to soften and lose its rigidity according to EN 1427, measured in Degrees Celsius (e.g., 45).">Softening Point (°C): </label>
+                    <input type="text" id="SofteningPointRB" name="SofteningPointRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 1427</span>
+
+                    <label for="KinematicViscosityRB" title="The value of the kinematic viscosity of the reclaimed binder according to EN 12595, measured in square millimeter per second (e.g., 30).">Kinematic Viscosity (mm&sup2;/s): </label>
+                    <input type="text" id="KinematicViscosityRB" name="KinematicViscosityRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 12595</span>
+
+                    <label for="DynamicViscosityRB" title="The value of the dynamic viscosity of the reclaimed binder according to EN 12596, measured in Pascal-second (e.g., 11).">Dynamic Viscosity (Pa.s): </label>
+                    <input type="text" id="DynamicViscosityRB" name="DynamicViscosityRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 12596</span>
+                </div>
+
+                <div id="ReclaimedAsphaltBinder-2" class="form-group">
+                    <fieldset id="field13-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The results of the Binder Fast Characterization Test (BTSV) according to EN 17643.">BTSV&nbsp;&nbsp;&nbsp;<span class="standard">EN 17643</span>&nbsp;</legend>
+                        <div id="BTSVRB" class="form-group">
+                            <label for="TemperatureRB" title="The value of the Binder Fast Characterization Test (BTSV) temperature, which is determined using the Dynamic Shear Rheometer (DSR), measured in Degrees Celsius (e.g., 65).">Temperature (°C): </label>
+                            <input type="text" id="TemperatureRB" name="TemperatureRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="PhaseAngleRB" title="The value of the Binder Fast Characterization Test (BTSV) phase angle, which is determined using the Dynamic Shear Rheometer (DSR), measured in Angle Degrees (e.g., 42).">Phase Angle (°): </label>
+                            <input type="text" id="PhaseAngleRB" name="PhaseAngleRB" pattern="^(90(\.0{1,4})?|[1-8]?\d(\.\d{1,4})?|0(\.\d{1,4})?)$" title="Enter a valid number between 0 and 90.">
+                            
+                            <fieldset id="field13-1-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                                <div id="AdditionalPropertiesBTSVRB" class="form-group">
+                                    <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
+                                    <label for="TestMethodBTSVRB_1" title="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: </label>
+                                    <input type="text" id="TestMethodBTSVRB_1" name="TestMethodBTSVRB_1">
+                                    
+                                    <label for="ValueBTSVRB_1" title="The value of the additional property of the considered raw material (e.g., 16).">Value: </label>
+                                    <input type="text" id="ValueBTSVRB_1" name="ValueBTSVRB_1">
+                                    
+                                    <label for="UnitBTSVRB_1" title="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: </label>
+                                    <input type="text" id="UnitBTSVRB_1" name="UnitBTSVRB_1">
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field13-1-1','BTSVRB','form-group TwoColumn dynamicPro')">&#10010; BTSV Property</button>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div id="ReclaimedAsphaltBinder-3" class="form-group">
+                    <fieldset id="field13-2" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The results of the Multiple Stress Creep and Recovery Test (MSCRT) according to EN 16659.">MSCRT &nbsp;&nbsp;&nbsp;<span class="standard">EN 16659</span>&nbsp;</legend>
+                        <div id="MSCRTRB" class="form-group">
+                            <label for="AveragePercentRecovery100PaRB" title="The value of the average percentage recovery at 100 Pa (e.g., 40.5).">Average Recovery at 0.1kPa (%): </label>
+                            <input type="text" id="AveragePercentRecovery100PaRB" name="AveragePercentRecovery100PaRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="AveragePercentRecovery3200PaRB" title="The value of the average percentage recovery at 3200 Pa (e.g., 64.7).">Average Recovery at 3.2kPa (%): </label>
+                            <input type="text" id="AveragePercentRecovery3200PaRB" name="AveragePercentRecovery3200PaRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="RecoveryPercentageDifferenceRB" title="The value of the percentage difference in recovery between 100 Pa and 3200 Pa (e.g., 10.8).">Recovery Difference (%): </label>
+                            <input type="text" id="RecoveryPercentageDifferenceRB" name="RecoveryPercentageDifferenceRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="NonrecoverableCreepCompliance100PaRB" title="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): </label>
+                            <input type="text" id="NonrecoverableCreepCompliance100PaRB" name="NonrecoverableCreepCompliance100PaRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="NonrecoverableCreepCompliance3200PaRB" title="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): </label>
+                            <input type="text" id="NonrecoverableCreepCompliance3200PaRB" name="NonrecoverableCreepCompliance3200PaRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="NonrecoverableCreepCompliancePercentageDifferenceRB" title="The value of the percentage difference in non-recoverable creep compliance between 100 Pa and 3200 Pa (e.g., 16.1).">Nonrecoverable Creep Difference (%): </label>
+                            <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceRB" name="NonrecoverableCreepCompliancePercentageDifferenceRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <fieldset id="field13-2-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">MSCRT Non-standard Stress</legend>
+                                <div id="NonstandardStressRB" class="form-group">
+                                    <label for="SpecifiedStressRB" title="The value of the non-standard specified stress, other than 100 Pa and 3200 Pa, expressed in Pascal (e.g., 10000).">Specified Stress (Pa): </label>
+                                    <input type="text" id="SpecifiedStressRB" name="SpecifiedStressRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="AveragePercentRecoverySpecifiedStressRB" title="The value of the average percentage recovery at the specified stress (e.g., 59.5).">Average Recovery (%): </label>
+                                    <input type="text" id="AveragePercentRecoverySpecifiedStressRB" name="AveragePercentRecoverySpecifiedStressRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="RecoveryPercentageDifferenceSpecifiedStressRB" title="The value of the percentage difference in recovery between 3200 Pa and the specified stress (e.g., 15.7).">Recovery Difference (%): </label>
+                                    <input type="text" id="RecoveryPercentageDifferenceSpecifiedStressRB" name="RecoveryPercentageDifferenceSpecifiedStressRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="NonrecoverableCreepComplianceSpecifiedStressRB" title="The value of the non-recoverable creep compliance at the specified stress, expressed in 1/kPa (e.g., 0.227).">Nonrecoverable Creep (1/kPa): </label>
+                                    <input type="text" id="NonrecoverableCreepComplianceSpecifiedStressRB" name="NonrecoverableCreepComplianceSpecifiedStressRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressRB" title="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecoverable Creep Difference (%): </label>
+                                    <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressRB" name="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                                   
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+                </div>
+                
+                <div id="ReclaimedAsphaltBinder-4" class="form-group-3c">
+                    <label for="FraassBreakingPointRB" title="The value of the Fraass breaking point according to EN 12593, at which a film of bituminous binder of a specified and uniform thickness will break under defined loading conditions, measured in Degrees Celsius (e.g., 110).">Fraass Breaking Point (°C): </label>
+                    <input type="text" id="FraassBreakingPointRB" name="FraassBreakingPointRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 12593</span>
+
+                    <label for="ElasticRecoveryRB" title="The value of the elastic recovery of the binder according to EN 13398 at 25 Degrees Celsius, expressed as a percentage (e.g., 50).">Elastic Recovery (%) at 25°C: </label>
+                    <input type="text" id="ElasticRecoveryRB" name="ElasticRecoveryRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 13398</span>
+
+                    <label for="CohesionEnergyRB" title="The value of cohesion energy of the bitumen obtained from the force ductility method according to EN 13589 at 5 Degrees Celsius, measured in joules per square centimetres (e.g., 0.9).">Cohesion Energy (J/cm&sup2;) at 5°C: </label>
+                    <input type="text" id="CohesionEnergyRB" name="CohesionEnergyRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 13589</span>
+
+                    <label for="SolubilityRB" title="The value of the percentage of mass of the soluble material to the total mass according to EN 12592 (e.g., 7.6).">Solubility (%): </label>
+                    <input type="text" id="SolubilityRB" name="SolubilityRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 12592</span>
+                </div>    
+
+                <div id="ReclaimedAsphaltBinder-5" class="form-group">
+                    <fieldset id="field13-3" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                        <div id="AdditionalPropertiesRB" class="form-group">
+                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
+                            <label for="TestMethodRB_1" title="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: </label>
+                            <input type="text" id="TestMethodRB_1" name="TestMethodRB_1">
+                            
+                            <label for="ValueRB_1" title="The value of the additional property of the considered raw material (e.g., 16).">Value: </label>
+                            <input type="text" id="ValueRB_1" name="ValueRB_1">
+                            
+                            <label for="UnitRB_1" title="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: </label>
+                            <input type="text" id="UnitRB_1" name="UnitRB_1">
+                        </div>
+                    </fieldset>
+                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field13-3','RB','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                </div>
+            </fieldset>
+
+            <fieldset id="field14">
+                <legend>Additives</legend>
+                <div id="Additive_1" class="form-group">
+                    <span class="multilabel multilabellarger"> &#11201;&nbsp; Additive 1 &nbsp;&#11201; </span>
+                    <label for="TypeAddtv_1" title=">The type of the additive (e.g., Recycling agent).">Type: </label>
+                    <input type="text" id="TypeAddtv_1" name="TypeAddtv_1">
+
+                    <label for="PercentageMassAddtv_1" title="The percentage by mass of this additive to the total mass of the bituminous mixture (e.g., 1.1).">Percentage by Mass (%): </label>
+                    <input type="text" id="PercentageMassAddtv_1" name="PercentageMassAddtv_1" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+
+                    <fieldset id="field14-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                        <div id="AdditionalPropertiesAddtv_1" class="form-group">
+                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
+                            <label for="TestMethodAddtv_1_1" title="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: </label>
+                            <input type="text" id="TestMethodAddtv_1_1" name="TestMethodAddtv_1_1">
+                            
+                            <label for="ValueAddtv_1_1" title="The value of the additional property of the considered raw material (e.g., 16).">Value: </label>
+                            <input type="text" id="ValueAddtv_1_1" name="ValueAddtv_1_1">
+                            
+                            <label for="UnitAddtv_1_1" title="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: </label>
+                            <input type="text" id="UnitAddtv_1_1" name="UnitAddtv_1_1">
+                        </div>
+                    </fieldset>
+                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field14-1','Addtv_1','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                </div>
+            </fieldset>
+            
+            <button type="button" class= "special-button TwoColumn"  onclick="addAdditive('field14','form-group')">&#10010; Additive</button>                    
+    
+            <fieldset id="field15">
+                <legend title="The properties of the binder blend that contains the virgin binder, the reclaimed binder and the additives.">Premixing Binder Blend</legend>
+                <div id="PreMixingBinderBlend-1" class="form-group-3c">
+
+                    <label for="PenetrationPmB" title="The measured penetration of a standard needle at 25 Degrees Celsius according to EN 1426, expressed in tenths of a millimeter (e.g., 55).">Penetration (0.1mm): </label>
+                    <input type="text" id="PenetrationPmB" name="PenetrationPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 1426</span>
+
+                    <label for="SofteningPointPmB" title="The temperature at which the binder begins to soften and lose its rigidity according to EN 1427, measured in Degrees Celsius (e.g., 45).">Softening Point (°C): </label>
+                    <input type="text" id="SofteningPointPmB" name="SofteningPointPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 1427</span>
+
+                    <label for="KinematicViscosityPmB" title="The value of the kinematic viscosity of the binder according to EN 12595, measured in square millimeter per second (e.g., 30).">Kinematic Viscosity (mm&sup2;/s): </label>
+                    <input type="text" id="KinematicViscosityPmB" name="KinematicViscosityPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 12595</span>
+
+                    <label for="DynamicViscosityPmB" title="The value of the dynamic viscosity of the binder according to EN 12596, measured in Pascal-second (e.g., 11).">Dynamic Viscosity (Pa.s): </label>
+                    <input type="text" id="DynamicViscosityPmB" name="DynamicViscosityPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 12596</span>
+                </div>
+                
+                <div id="PreMixingBinderBlend-2" class="form-group">
+                    <fieldset id="field15-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The results of the Binder Fast Characterization Test (BTSV) according to EN 17643.">BTSV &nbsp;&nbsp;&nbsp;<span class="standard">EN 17643</span>&nbsp;</legend>
+                        <div id="BTSVPmB" class="form-group">
+                            <label for="TemperaturePmB" title="The value of the Binder Fast Characterization Test (BTSV) temperature, which is determined using the Dynamic Shear Rheometer (DSR), measured in Degrees Celsius (e.g., 65).">Temperature (°C): </label>
+                            <input type="text" id="TemperaturePmB" name="TemperaturePmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="PhaseAnglePmB" title="The value of the Binder Fast Characterization Test (BTSV) phase angle, which is determined using the Dynamic Shear Rheometer (DSR), measured in Angle Degrees (e.g., 42).">Phase Angle (°): </label>
+                            <input type="text" id="PhaseAnglePmB" name="PhaseAnglePmB" pattern="^(90(\.0{1,4})?|[1-8]?\d(\.\d{1,4})?|0(\.\d{1,4})?)$" title="Enter a valid number between 0 and 90.">
+                            
+                            <fieldset id="field15-1-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                                <div id="AdditionalPropertiesBTSVPmB" class="form-group">
+                                    <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
+                                    <label for="TestMethodBTSVPmB_1" title="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: </label>
+                                    <input type="text" id="TestMethodBTSVPmB_1" name="TestMethodBTSVPmB_1">
+                                    
+                                    <label for="ValueBTSVPmB_1" title="The value of the additional property of the considered raw material (e.g., 16).">Value: </label>
+                                    <input type="text" id="ValueBTSVPmB_1" name="ValueBTSVPmB_1">
+                                    
+                                    <label for="UnitBTSVPmB_1" title="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: </label>
+                                    <input type="text" id="UnitBTSVPmB_1" name="UnitBTSVPmB_1">
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field15-1-1','BTSVPmB','form-group TwoColumn dynamicPro')">&#10010; BTSV Property</button>
+                        </div>
+                    </fieldset>
+                </div>
+                
+                <div id="PreMixingBinderBlend-3" class="form-group">
+                    <fieldset id="field15-2" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The results of the Multiple Stress Creep and Recovery Test (MSCRT) according to EN 16659.">MSCRT &nbsp;&nbsp;&nbsp;<span class="standard">EN 16659</span>&nbsp;</legend>
+                        <div id="MSCRTPmB" class="form-group">
+                            <label for="AveragePercentRecovery100PaPmB" title="The value of the average percentage recovery at 100 Pa (e.g., 40.5).">Average Recovery at 0.1kPa (%): </label>
+                            <input type="text" id="AveragePercentRecovery100PaPmB" name="AveragePercentRecovery100PaPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="AveragePercentRecovery3200PaPmB" title="The value of the average percentage recovery at 3200 Pa (e.g., 64.7).">Average Recovery at 3.2kPa (%): </label>
+                            <input type="text" id="AveragePercentRecovery3200PaPmB" name="AveragePercentRecovery3200PaPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="RecoveryPercentageDifferencePmB" title="The value of the percentage difference in recovery between 100 Pa and 3200 Pa (e.g., 10.8).">Recovery Difference (%): </label>
+                            <input type="text" id="RecoveryPercentageDifferencePmB" name="RecoveryPercentageDifferencePmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="NonrecoverableCreepCompliance100PaPmB" title="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): </label>
+                            <input type="text" id="NonrecoverableCreepCompliance100PaPmB" name="NonrecoverableCreepCompliance100PaPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="NonrecoverableCreepCompliance3200PaPmB" title="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): </label>
+                            <input type="text" id="NonrecoverableCreepCompliance3200PaPmB" name="NonrecoverableCreepCompliance3200PaPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="NonrecoverableCreepCompliancePercentageDifferencePmB" title="The value of the percentage difference in non-recoverable creep compliance between 100 Pa and 3200 Pa (e.g., 16.1).">Nonrecoverable Creep Difference (%): </label>
+                            <input type="text" id="NonrecoverableCreepCompliancePercentageDifferencePmB" name="NonrecoverableCreepCompliancePercentageDifferencePmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <fieldset id="field15-2-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">MSCRT Non-standard Stress</legend>
+                                <div id="NonstandardStressPmB" class="form-group">
+                                    <label for="SpecifiedStressPmB" title="The value of the non-standard specified stress, other than 100 Pa and 3200 Pa, expressed in Pascal (e.g., 10000).">Specified Stress (Pa): </label>
+                                    <input type="text" id="SpecifiedStressPmB" name="SpecifiedStressPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="AveragePercentRecoverySpecifiedStressPmB" title="The value of the average percentage recovery at the specified stress (e.g., 59.5).">Average Recovery (%): </label>
+                                    <input type="text" id="AveragePercentRecoverySpecifiedStressPmB" name="AveragePercentRecoverySpecifiedStressPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="RecoveryPercentageDifferenceSpecifiedStressPmB" title="The value of the percentage difference in recovery between 3200 Pa and the specified stress (e.g., 15.7).">Recovery Difference (%): </label>
+                                    <input type="text" id="RecoveryPercentageDifferenceSpecifiedStressPmB" name="RecoveryPercentageDifferenceSpecifiedStressPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="NonrecoverableCreepComplianceSpecifiedStressPmB" title="The value of the non-recoverable creep compliance at the specified stress, expressed in 1/kPa (e.g., 0.227).">Nonrecoverable Creep (1/kPa): </label>
+                                    <input type="text" id="NonrecoverableCreepComplianceSpecifiedStressPmB" name="NonrecoverableCreepComplianceSpecifiedStressPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressPmB" title="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecoverable Creep Difference (%): </label>
+                                    <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressPmB" name="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                                   
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+                </div>
+                
+                <div id="PreMixingBinderBlend-4" class="form-group-3c">
+                    <label for="FraassBreakingPointPmB" title="The value of the Fraass breaking point according to EN 12593, at which a film of bituminous binder of a specified and uniform thickness will break under defined loading conditions, measured in Degrees Celsius (e.g., 110).">Fraass Breaking Point (°C): </label>
+                    <input type="text" id="FraassBreakingPointPmB" name="FraassBreakingPointPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 12593</span>
+                </div>
+
+                <div id="PreMixingBinderBlend-5" class="form-group">
+                    <fieldset id="field15-3" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The results of the Rolling Thin Film Oven Test (RTFOT) according to EN 12607-1.">Aging Resistance &nbsp;&nbsp;&nbsp;<span class="standard">EN 12607-1</span>&nbsp;</legend>
+                        <div id="AgingResistancePmB" class="form-group">
+                            <label for="MassChangePmB" title="The change in mass according to EN 12607-1, expressed as a percentage (e.g., 0.95).">Mass Change (%): </label>
+                            <input type="text" id="MassChangePmB" name="MassChangePmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="PenetrationChangePmB" title="The change in penetration according to EN 12607-1 and EN 1426,  expressed as a percentage (e.g., 75.07).">Retained Penetration (%): </label>
+                            <input type="text" id="PenetrationChangePmB" name="PenetrationChangePmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        
+                            <label for="SofteningPointChangePmB" title="The absolute change in softening point according to EN 12607-1 and EN 1427, measured in Degrees Celsius (e.g., 5.02).">Softening Point Change (°C): </label>
+                            <input type="text" id="SofteningPointChangePmB" name="SofteningPointChangePmB" pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div id="PreMixingBinderBlend-6" class="form-group-3c">
+                    <label for="ElasticRecoveryPmB" title="The value of the elastic recovery of the binder according to EN 13398 at 25 Degrees Celsius, expressed as a percentage (e.g., 50).">Elastic Recovery (%) at 25 °C: </label>
+                    <input type="text" id="ElasticRecoveryPmB" name="ElasticRecoveryPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 13398</span>
+
+                    <label for="CohesionEnergyPmB" title="The value of cohesion energy of the bitumen obtained from the force ductility method according to EN 13589 at 5 Degrees Celsius, measured in joules per square centimetres (e.g., 0.9).">Cohesion Energy (J/cm&sup2;) at 5°C: </label>
+                    <input type="text" id="CohesionEnergyPmB" name="CohesionEnergyPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 13589</span>
+
+                    <label for="SolubilityPmB" title="The value of the percentage of mass of the soluble material to the total mass according to EN 12592 (e.g., 7.6).">Solubility (%): </label>
+                    <input type="text" id="SolubilityPmB" name="SolubilityPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 12592</span>
+                </div>
+                
+                <div id="PreMixingBinderBlend-7" class="form-group">
+                    <fieldset id="field15-4" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                        <div id="AdditionalPropertiesPmB" class="form-group">
+                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
+                            <label for="TestMethodPmB_1" title="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: </label>
+                            <input type="text" id="TestMethodPmB_1" name="TestMethodPmB_1">
+                            
+                            <label for="ValuePmB_1" title="The value of the additional property of the considered raw material (e.g., 16).">Value: </label>
+                            <input type="text" id="ValuePmB_1" name="ValuePmB_1">
+                            
+                            <label for="UnitPmB_1" title="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: </label>
+                            <input type="text" id="UnitPmB_1" name="UnitPmB_1">
+                        </div>
+                    </fieldset>
+                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field15-4','PmB','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                </div>
+            </fieldset>
+
+            <fieldset id="field16">
+                <legend>Mixing</legend>
+                <div id="Mixing" class="form-group">
+                    <label for="MixingStandard" title="The standard used in the mixing procedure (e.g., EN 12697-35).">Mixing Standard: </label>
+                    <input type="text" id="MixingStandard" name="MixingStandard">
+
+                    <fieldset id="field16-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The mixing method used and the type of mixer.">Mixing Method</legend>
+                        <div id="MixingMethoddiv" class="form-group">
+                            <label for="MixingMethod" title="The name of the mixing method used (e.g., Laboratory mechanical mixing).">Method: <span class="red-text">*</span></label>
+                            <select id="MixingMethod" name="MixingMethod" required>
+                                <option value="" disabled selected> Select </option>
+                                <option value="Laboratory hand mixing">Laboratory hand mixing</option>
+                                <option value="Laboratory mechanical mixing">Laboratory mechanical mixing</option>
+                                <option value="Plant mixing">Plant mixing</option>
+                            </select>
+                            
+                            <label for="TypeofMixer" title="The type of mechanical mixer used (e.g., Countertop mixer).">Type of Mixer: </label>
+                            <input type="text" id="TypeofMixer" name="TypeofMixer">
+                        </div>
+                    </fieldset>
+                    
+                    <label for="MixingSequence" title="The mixing sequence followed during the mixing process of the bituminous mixture (e.g. aggregates &gt; binder &gt; additive).">Mixing Sequence: </label>
+                    <input type="text" id="MixingSequence" name="MixingSequence">
+
+                    <label for="MixtureTemperature" title=">The value of the mixture temperature in Degrees Celsius (e.g., 150).">MixtureTemperature (°C): </label>
+                    <input type="text" id="MixtureTemperature" name="MixtureTemperature" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    
+                    <label for="ReclaimedAsphaltTemperature" title="The temperature at which the reclaimed asphalt was heated before mixing, measured in degrees Celsius (e.g., 120).">Reclaimed Asphalt Temperature (°C): </label>
+                    <input type="text" id="ReclaimedAsphaltTemperature" name="ReclaimedAsphaltTemperature" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                    <fieldset id="field16-2" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The duration of mixing and its unit of measurement.">Mixing Duration</legend>
+                        <div id="MixingDurationdiv" class="form-group">
+                            <label for="MixingDurationValue" title="The duration of mixing (e.g., 3).">Duration: </label>
+                            <input type="text" id="MixingDurationValue" name="MixingDurationValue" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="MixingDurationUnit" title="The unit of measurement of the duration of mixing (e.g., s).">Unit: </label>
+                            <select id="MixingDurationUnit" name="MixingDurationUnit">
+                                <option value=""> Select </option>
+                                <option value="s">seconds</option>
+                                <option value="min">minutes</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field16-3" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The name, value, and unit of measurement for any other non-standard property in the mixing design process.">Other Mixing Properties</legend>
+                        <div id="OtherMixingPropertydiv" class="form-group">
+                            <span class="multilabel"> &#9664;&nbsp; Property 1 &nbsp;&#9654; </span>
+                            <label for="OtherMixingPropertyName_1" title="The name of a non-standard property in the mixing design process (e.g., Fibres percentage).">Name: </label>
+                            <input type="text" id="OtherMixingPropertyName_1" name="OtherMixingPropertyName_1">
+                            
+                            <label for="OtherMixingPropertyValue_1" title="The value of the non-standard property in the mixing design process (e.g., 0.042).">Value: </label>
+                            <input type="text" id="OtherMixingPropertyValue_1" name="OtherMixingPropertyValue_1">
+                            
+                            <label for="OtherMixingPropertyUnit_1" title="The unit of measurement for the non-standard property in the mixing design process (e.g., Mass-%).">Unit: </label>
+                            <input type="text" id="OtherMixingPropertyUnit_1" name="OtherMixingPropertyUnit_1">
+                        </div>
+                    </fieldset>
+                    <button type="button" class= "special-button TwoColumn"  onclick="addmixdesign('field16-3','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                </div>
+            </fieldset>
+
+
+            <fieldset id="field17">
+                <legend>Recovered Aggregates</legend>
+                <div id="RecoveredAggregatesdiv-1" class="form-group-3c">
+                    <label for="NatureCA" title="The nature of the aggregates in the bituminous mixture (e.g., Granite).">Nature: </label>
+                    <input type="text" id="NatureCA" name="NatureCA">
+                    <span></span>
+
+                    <label for="LosAngelesTestResultCA" title="The percentage of wear calculated during the Los Angeles Abrasion Test according to EN 1097-2, expressed as a percentage of the original weight of the sample (e.g., 25).">Los Angeles Test Result (%): </label>
+                    <input type="text" id="LosAngelesTestResultCA" name="LosAngelesTestResultCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 1097-2</span>
+
+                    <label for="FlakinessIndexCA" title="The flakiness index of the recovered aggregates, expressed as a percentage, which is measured according to EN 933-3 (e.g., 22).">Flakiness Index (%): </label>
+                    <input type="text" id="FlakinessIndexCA" name="FlakinessIndexCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 933-3</span>
+
+                    <label for="ShapeIndexCA" title="The shape index of the recovered aggregates according to EN 933-4, expressed as a percentage (e.g., 30).">Shape Index (%): </label>
+                    <input type="text" id="ShapeIndexCA" name="ShapeIndexCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 933-4</span>
+
+                    <label for="FlowCoefficientCA" title="The value of the flow coefficient of the recovered aggregate according to EN 933-6, expressed in seconds (e.g., 40).">Flow Coefficient (seconds): </label>
+                    <input type="text" id="FlowCoefficientCA" name="FlowCoefficientCA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 933-6</span>
+
+                    <label for="NordicAbrasionValueCA" title="The value of the Nordic abrasion according to EN 1097-9, expressed in percentage (e.g., 45).">Nordic Abrasion Value (%): </label>
+                    <input type="text" id="NordicAbrasionValueCA" name="NordicAbrasionValueCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 1097-9</span>
+                </div>
+                
+                <div id="RecoveredAggregatesdiv-2" class="form-group">
+                    <fieldset id="field17-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The percentage of semi-crushed, totally crushed, semi-rounded and totally rounded recovered aggregate particles according to EN 933-5.">Rounded and Crushed Proportions &nbsp;&nbsp;&nbsp;<span class="standard">EN 933-5</span>&nbsp;</legend>
+                        <div id="RoundedAndCrushedCA" class="form-group">
+                            <label for="SemiCrushedParticlesCA" title="The percentage of the semi-crushed coarse aggregate particles according to EN 12697-11 (e.g., 27.5).">Semi-Crushed Particles (%): </label>
+                            <input type="text" id="SemiCrushedParticlesCA" name="SemiCrushedParticlesCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="TotallyCrushedParticlesCA" title="The percentage of the totally crushed coarse aggregate particles according to EN 12697-11 (e.g., 53.4).">Totally Crushed Particles (%): </label>
+                            <input type="text" id="TotallyCrushedParticlesCA" name="TotallyCrushedParticlesCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="SemiRoundedParticlesCA" title="The percentage of the semi-rounded coarse aggregate particles according to EN 12697-11 (e.g., 26.8).">Semi-Rounded Particles (%): </label>
+                            <input type="text" id="SemiRoundedParticlesCA" name="SemiRoundedParticlesCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." >
+                            
+                            <label for="TotallyRoundedParticlesCA" title="The percentage of the totally rounded coarse aggregate particles according to EN 12697-11 (e.g., 40.6).">Totally Rounded Particles (%): </label>
+                            <input type="text" id="TotallyRoundedParticlesCA" name="TotallyRoundedParticlesCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." >
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div id="RecoveredAggregatesdiv-3" class="form-group-3c">    
+                    <label for="BitumenCoverageDegreeCA" title="The average proportion of the surface area of the recovered aggregate particles that are covered with bitumen according to EN 12697-11, expressed as a percentage (e.g., 45).">Bitumen Coverage Degree (%): </label>
+                    <input type="text" id="BitumenCoverageDegreeCA" name="BitumenCoverageDegreeCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 12697-11</span>
+                </div>
+
+                <div id="RecoveredAggregatesdiv-4" class="form-group"> 
+                    <fieldset id="field17-2" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                        <div id="AdditionalPropertiesCA" class="form-group">
+                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
+                            <label for="TestMethodCA_1" title="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: </label>
+                            <input type="text" id="TestMethodCA_1" name="TestMethodCA_1">
+                            
+                            <label for="ValueCA_1" title="The value of the additional property of the considered raw material (e.g., 16).">Value: </label>
+                            <input type="text" id="ValueCA_1" name="ValueCA_1">
+                            
+                            <label for="UnitCA_1" title="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: </label>
+                            <input type="text" id="UnitCA_1" name="UnitCA_1">
+                        </div>
+                    </fieldset>
+                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field17-2','CA','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                </div>
+
+                <div id="RecoveredAggregatesdiv-5" class="form-group"> 
+                    <fieldset id="field17-3" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The distribution of grain sizes by mass for the recovered aggregates.">Grain Size Distribution <span class="semicolon">(semicolon separated)</span></legend>
+                        <div id="GrainSizeDistributionRecovered" class="graph-form-group">
+                            <label for="SizeCA" title="The nominal size of the sieve in millimeters (e.g., 5.6).">Size (mm): </label>
+                            <input type="text" id="SizeCA" name="SizeCA">
+                            <label for="PercentageCA" title="The percentage distribution by mass for particles passing the specified size (e.g., 70.4).">Proportion (%): </label>
+                            <input type="text" id="PercentageCA" name="PercentageCA">
+                            <button class="graph-form-group-button" type="button" title="Show or hide plot." onclick="PlotGraph('field17-3','Recovered Aggregates Distribution','SizeCA','Size','PercentageCA','Proportion')">&#x1F4C8;</button>
+                        </div>
+                    </fieldset>
+                </div>
+            </fieldset>
+
+            <fieldset id="field18">
+                <legend>Recovered Binder</legend>
+                <div id="RecoveredBinderdiv-1" class="form-group-3c">
+                    <label for="PercentageContentCB" title="The percentage by mass of the binder in the recovered asphalt (e.g., 6.3).">Percentage Content (%): </label>
+                    <input type="text" id="PercentageContentCB" name="PercentageContentCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span></span>
+
+                    <label for="PenetrationCB" title="The measured penetration of a standard needle at 25 Degrees Celsius according to EN 1426, expressed in tenths of a millimeter (e.g., 55).">Penetration (0.1mm): </label>
+                    <input type="text" id="PenetrationCB" name="PenetrationCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 1426</span>
+
+                    <label for="SofteningPointCB" title="The temperature at which the binder begins to soften and lose its rigidity according to EN 1427, measured in Degrees Celsius (e.g., 45).">Softening Point (°C): </label>
+                    <input type="text" id="SofteningPointCB" name="SofteningPointCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 1427</span>
+
+                    <label for="KinematicViscosityCB" title="The value of the kinematic viscosity of the recovered binder according to EN 12595, measured in square millimeter per second (e.g., 30).">Kinematic Viscosity (mm&sup2;/s): </label>
+                    <input type="text" id="KinematicViscosityCB" name="KinematicViscosityCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 12595</span>
+
+                    <label for="DynamicViscosityCB" title="The value of the dynamic viscosity of the recovered binder according to EN 12596, measured in Pascal-second (e.g., 11).">Dynamic Viscosity (Pa.s): </label>
+                    <input type="text" id="DynamicViscosityCB" name="DynamicViscosityCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 12596</span>
+                </div>
+
+                <div id="RecoveredBinderdiv-2" class="form-group">
+                    <fieldset id="field18-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The results of the Binder Fast Characterization Test (BTSV) according to EN 17643.">BTSV &nbsp;&nbsp;&nbsp;<span class="standard">EN 17643</span>&nbsp;</legend>
+                        <div id="BTSVCB" class="form-group">
+                            <label for="TemperatureCB" title="The value of the Binder Fast Characterization Test (BTSV) temperature, which is determined using the Dynamic Shear Rheometer (DSR), measured in Degrees Celsius (e.g., 65).">Temperature (°C): </label>
+                            <input type="text" id="TemperatureCB" name="TemperatureCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="PhaseAngleCB" title="The value of the Binder Fast Characterization Test (BTSV) phase angle, which is determined using the Dynamic Shear Rheometer (DSR), measured in Angle Degrees (e.g., 42).">Phase Angle (°): </label>
+                            <input type="text" id="PhaseAngleCB" name="PhaseAngleCB" pattern="^(90(\.0{1,4})?|[1-8]?\d(\.\d{1,4})?|0(\.\d{1,4})?)$" title="Enter a valid number between 0 and 90.">
+                            
+                            <fieldset id="field18-1-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                                <div id="AdditionalPropertiesBTSVCB" class="form-group">
+                                    <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
+                                    <label for="TestMethodBTSVCB_1" title="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: </label>
+                                    <input type="text" id="TestMethodBTSVCB_1" name="TestMethodBTSVCB_1">
+                                    
+                                    <label for="ValueBTSVCB_1" title="The value of the additional property of the considered raw material (e.g., 16).">Value: </label>
+                                    <input type="text" id="ValueBTSVCB_1" name="ValueBTSVCB_1">
+                                    
+                                    <label for="UnitBTSVCB_1" title="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: </label>
+                                    <input type="text" id="UnitBTSVCB_1" name="UnitBTSVCB_1">
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field18-1-1','BTSVCB','form-group TwoColumn dynamicPro')">&#10010; BTSV Property</button>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <div id="RecoveredBinderdiv-3" class="form-group">
+                    <fieldset id="field18-2" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The results of the Multiple Stress Creep and Recovery Test (MSCRT) according to EN 16659.">MSCRT &nbsp;&nbsp;&nbsp;<span class="standard">EN 16659</span>&nbsp;</legend>
+                        <div id="MSCRTCB" class="form-group">
+                            <label for="AveragePercentRecovery100PaCB" title="The value of the average percentage recovery at 100 Pa (e.g., 40.5).">Average Recovery at 0.1kPa (%): </label>
+                            <input type="text" id="AveragePercentRecovery100PaCB" name="AveragePercentRecovery100PaCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="AveragePercentRecovery3200PaCB" title="The value of the average percentage recovery at 3200 Pa (e.g., 64.7).">Average Recovery at 3.2kPa (%): </label>
+                            <input type="text" id="AveragePercentRecovery3200PaCB" name="AveragePercentRecovery3200PaCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="RecoveryPercentageDifferenceCB" title="The value of the percentage difference in recovery between 100 Pa and 3200 Pa (e.g., 10.8).">Recovery Difference (%): </label>
+                            <input type="text" id="RecoveryPercentageDifferenceCB" name="RecoveryPercentageDifferenceCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="NonrecoverableCreepCompliance100PaCB" title="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): </label>
+                            <input type="text" id="NonrecoverableCreepCompliance100PaCB" name="NonrecoverableCreepCompliance100PaCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="NonrecoverableCreepCompliance3200PaCB" title="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): </label>
+                            <input type="text" id="NonrecoverableCreepCompliance3200PaCB" name="NonrecoverableCreepCompliance3200PaCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="NonrecoverableCreepCompliancePercentageDifferenceCB" title="The value of the percentage difference in non-recoverable creep compliance between 100 Pa and 3200 Pa (e.g., 16.1).">Nonrecoverable Creep Difference (%): </label>
+                            <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceCB" name="NonrecoverableCreepCompliancePercentageDifferenceCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <fieldset id="field18-2-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">MSCRT Non-standard Stress</legend>
+                                <div id="NonstandardStressCB" class="form-group">
+                                    <label for="SpecifiedStressCB" title="The value of the non-standard specified stress, other than 100 Pa and 3200 Pa, expressed in Pascal (e.g., 10000).">Specified Stress (Pa): </label>
+                                    <input type="text" id="SpecifiedStressCB" name="SpecifiedStressCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="AveragePercentRecoverySpecifiedStressCB" title="The value of the average percentage recovery at the specified stress (e.g., 59.5).">Average Recovery (%): </label>
+                                    <input type="text" id="AveragePercentRecoverySpecifiedStressCB" name="AveragePercentRecoverySpecifiedStressCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="RecoveryPercentageDifferenceSpecifiedStressCB" title="The value of the percentage difference in recovery between 3200 Pa and the specified stress (e.g., 15.7).">Recovery Difference (%): </label>
+                                    <input type="text" id="RecoveryPercentageDifferenceSpecifiedStressCB" name="RecoveryPercentageDifferenceSpecifiedStressCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="NonrecoverableCreepComplianceSpecifiedStressCB" title="The value of the non-recoverable creep compliance at the specified stress, expressed in 1/kPa (e.g., 0.227).">Nonrecoverable Creep (1/kPa): </label>
+                                    <input type="text" id="NonrecoverableCreepComplianceSpecifiedStressCB" name="NonrecoverableCreepComplianceSpecifiedStressCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressCB" title="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecoverable Creep Difference (%): </label>
+                                    <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressCB" name="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                                   
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+                </div>
+                
+                <div id="RecoveredBinderdiv-4" class="form-group-3c">
+                    <label for="FraassBreakingPointCB" title="The value of the Fraass breaking point according to EN 12593, at which a film of bituminous binder of a specified and uniform thickness will break under defined loading conditions, measured in Degrees Celsius (e.g., 110).">Fraass Breaking Point (°C): </label>
+                    <input type="text" id="FraassBreakingPointCB" name="FraassBreakingPointCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 12593</span>
+                </div>
+                
+                <div id="RecoveredBinderdiv-5" class="form-group">
+                    <fieldset id="field18-3" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The results of the Rolling Thin Film Oven Test (RTFOT) according to EN 12607-1.">Aging Resistance &nbsp;&nbsp;&nbsp;<span class="standard">EN 12607-1</span>&nbsp;</legend>
+                        <div id="AgingResistanceCB" class="form-group">
+                            <label for="MassChangeCB" title="The change in mass according to EN 12607-1, expressed as a percentage (e.g., 0.95).">Mass Change (%): </label>
+                            <input type="text" id="MassChangeCB" name="MassChangeCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="PenetrationChangeCB" title="The change in penetration according to EN 12607-1 and EN 1426,  expressed as a percentage (e.g., 75.07).">Retained Penetration (%): </label>
+                            <input type="text" id="PenetrationChangeCB" name="PenetrationChangeCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        
+                            <label for="SofteningPointChangeCB" title="The absolute change in softening point according to EN 12607-1 and EN 1427, measured in Degrees Celsius (e.g., 5.02).">Softening Point Change (°C): </label>
+                            <input type="text" id="SofteningPointChangeCB" name="SofteningPointChangeCB" pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+                        </div>
+                    </fieldset>
+                </div>
+                
+                <div id="RecoveredBinderdiv-6" class="form-group-3c">
+                    <label for="ElasticRecoveryCB" title="The value of the elastic recovery of the recovered binder according to EN 13398 at 25 Degrees Celsius, expressed as a percentage (e.g., 50).">Elastic Recovery (%) at 25 °C: </label>
+                    <input type="text" id="ElasticRecoveryCB" name="ElasticRecoveryCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 13398</span>
+
+                    <label for="CohesionEnergyCB" title="The value of cohesion energy of the bitumen obtained from the force ductility method according to EN 13589 at 5 Degrees Celsius, measured in joules per square centimetres (e.g., 0.9).">Cohesion Energy (J/cm&sup2;)  at 5°C: </label>
+                    <input type="text" id="CohesionEnergyCB" name="CohesionEnergyCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span class="standard">EN 13589</span>
+
+                    <label for="SolubilityCB" title="The value of the percentage of mass of the soluble material to the total mass according to EN 12592 (e.g., 7.6).">Solubility (%): </label>
+                    <input type="text" id="SolubilityCB" name="SolubilityCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    <span class="standard">EN 12592</span>
+                </div>
+                
+                <div id="RecoveredBinderdiv-7" class="form-group">
+                    <fieldset id="field18-4" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                        <div id="AdditionalPropertiesCB" class="form-group">
+                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
+                            <label for="TestMethodCB_1" title="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: </label>
+                            <input type="text" id="TestMethodCB_1" name="TestMethodCB_1">
+                            
+                            <label for="ValueCB_1" title="The value of the additional property of the considered raw material (e.g., 16).">Value: </label>
+                            <input type="text" id="ValueCB_1" name="ValueCB_1">
+                            
+                            <label for="UnitCB_1" title="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: </label>
+                            <input type="text" id="UnitCB_1" name="UnitCB_1">
+                        </div>
+                    </fieldset>
+                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field18-4','CB','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                </div>
+            </fieldset>
+
+            <fieldset id="field19">
+                <div id="NotesMixture" class="form-group">  
+                    <label for="NotesMixtureContent" title="The content of the text note concerning the mixture.">Mixture Notes:</label>
+                    <input type="text" id="NotesMixtureContent" name="NotesMixtureContent">
+                </div>
+            </fieldset>
+
+        </fieldset>
+
+        <fieldset  id="OuterfieldC" class="outer-fieldset">
+            <legend class="outer-legend">Test Results</legend>
+
+            <fieldset id="field20">
+                <legend>Sample Properties</legend>
+                <div id="SamplePropertiesdiv" class="form-group">
+                    <fieldset id="field20-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The dimensions of the considered rectangular parallelepiped sample (slab), including its length, width, and nominal thickness.">Sample Dimensions</legend>
+                        <div id="SampleDimensionsdiv" class="form-group">
+                            <label for="Length" title="The value of the length of the sample in mm (e.g., 550).">Length (mm): </label>
+                            <input type="text" id="Length" name="Length" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="Width" title="The value of the width of the sample in mm (e.g., 150).">Width (mm): </label>
+                            <input type="text" id="Width" name="Width" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="NominalThickness" title="The value of the nominal thickness of the sample in mm (e.g., 50).">Nominal Thickness (mm): <span class="red-text">*</span></label>
+                            <input type="text" id="NominalThickness" name="NominalThickness" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number." required>
+                        </div>
+                    </fieldset>
+
+                    <label for="Sampling" title="The type of sampling (e.g., Pavement Coring).">Sample Preparation: </label>
+                    <select id="Sampling" name="Sampling" onchange="SamplePrepFucntion()">
+                        <option value=""> Select</option>
+                        <option value="PavementCoring">Pavement Coring</option>
+                        <option value="LooseMixture">Loose Mixture</option>
+                    </select>  
+
+                    <fieldset id="field20-2" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The coring properties of of the specimen.">Coring</legend>
+                        <div id="Coringdiv" class="form-group">
+                            <label for="PavingDate" title="The date the pavement from which the sample was cored was paved (e.g., 2011-06-12).">Paving Date: </label>
+                            <input type="date" id="PavingDate" name="PavingDate" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringDate" title="The date when the specimen was cored from the pavement (e.g., 2021-08-31).">Coring Date: </label>
+                            <input type="date" id="CoringDate" name="CoringDate" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringLocation" title="The location where the specimen was cored from the pavement (e.g., Berlin).">Coring Location:</label>
+                            <input type="text" id="CoringLocation" name="CoringLocation">
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field20-3" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The compaction properties of of the specimen.">Sample Compaction &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-33</span>&nbsp;</legend>
+                        <div id="SampleCompactiondiv" class="form-group">
+                            <label for="CompactionDate" title="The date of the compaction of the specimen (e.g., 2020-07-18).">Compaction Date: </label>
+                            <input type="date" id="CompactionDate" name="CompactionDate" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="RollerType" title="The type of roller used during the compaction process (e.g., Steel roller sector).">Roller Type:</label>
+                            <select id="RollerType" name="RollerType">
+                                <option value="">Select </option>
+                                <option value="Wheel fitted with pneumatic tyres">Wheel fitted with pneumatic tyres</option>
+                                <option value="Smooth steel roller">Smooth steel roller</option>
+                                <option value="Smooth steel roller used on wheel fitted with pneumatic tyres">Smooth steel roller used on wheel fitted with pneumatic tyres</option>
+                                <option value="Smooth steel roller running on vertical sliding steel plates">Smooth steel roller running on vertical sliding steel plates</option>
+                                <option value="Steel roller sector">Steel roller sector</option>
+                            </select>
+                            
+                            <label for="CompactionTarget" title="The target of compaction followed, either by specified energy or volume (e.g., Compaction by a specified energy).">Compaction Target:</label>
+                            <select id="CompactionTarget" name="CompactionTarget">
+                                <option value=""> Select</option>
+                                <option value="Compaction by a specified energy">Compaction by a specified energy</option>
+                                <option value="Compaction by a specified volume or air void">Compaction by a specified volume or air void</option>
+                            </select>
+                            
+                            <label for="CompactionTemperature" title="The temperature at which the specimen is compacted, measured in Degrees Celsius (e.g., 180).">Compaction Temperature (°C):</label>
+                            <input type="text" id="CompactionTemperature" name="CompactionTemperature" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        </div>
+                    </fieldset>
+    
+                    <fieldset id="field20-6" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" title="The age of the loose and compacted sample.">Sample Age</legend>
+                        <div id="SampleAgediv" class="form-group">
+                            <label for="LooseSample" title="The age of the loose sample before compaction, expressed in days (e.g., 6).">Loose Sample (days): </label>
+                            <input type="text" id="LooseSample" name="LooseSample" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="CompactedSample" title="The age of the compacted sample prior to testing, expressed in days (e.g., 11).">Compacted Sample (days): </label>
+                            <input type="text" id="CompactedSample" name="CompactedSample" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        </div>
+                    </fieldset>
+
+                    <label for="StorageConditions" title="The storage conditions under which the sample was kept (e.g., Stored at 25 degrees Celsius).">Storage Conditions:</label>
+                    <input type="text" id="StorageConditions" name="StorageConditions">                  
+
+                </div>
+            </fieldset>
+            
+            <fieldset id="field21">
+                <legend>Results</legend>
+                <div id="Resultsdiv-0" class="form-group-3c">
+                    <label for="TestTemperature" title="The temperature at which the test was conducted, measured in Degrees Celsius (e.g., 130).">Test Temperature (°C):<span class="red-text">*</span> </label>
+                    <input type="text" id="TestTemperature" name="TestTemperature" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number." required>
+                    <span></span>
+
+                    <label for="ResultsSelection" title="The results of the rutting test experiment when using large-size, extra-large size or small-size devices, based on EN 12697-22.">Method of Measurement: <span class="red-text">*</span></label>
+                    <select id="ResultsSelection" name="ResultsSelection" onchange="showResultsForm()" required>
+                        <option value="" disabled selected>Select </option>
+                        <option value="LargeOrExtraLargeDevices">Large or Extra-Large Devices</option>
+                        <option value="SmallSizeDeviceMethod_A_Air">Small Size Device in Air - Method A </option>
+                        <option value="SmallSizeDeviceMethod_B_Air">Small Size Device in Air - Method B</option>
+                        <option value="SmallSizeDeviceMethod_B_Water">Small Size Device in Water - Method B</option>
+                    </select>
+                    <span class="standard">EN 12697-22</span>
+                </div>
+
+                <div id="Resultsdiv" class="form-group">
+                    <fieldset id="field21-1" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The results of the rutting test experiment when using large or extra large devices as described by EN 12697-22.">Large or Extra-large Devices - Mean Results</legend>
+                        <div id="LargeOrExtraLargeDevicesdiv" class="form-group">
+                            <label for="CyclesNumberL" title="The required number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Number of Cycles: <span class="red-text">*</span></label>
+                            <input type="number" id="CyclesNumberL" min="0" title="Enter a valid positive integer.">
+                           
+                            <label for="MeanProportionalRutDepthL" title="The average depth of a rut at the corresponding measurement cycle for a group of samples, expressed as a percentage (e.g., 3.5).">Mean Proportional Rut Depth (%):<span class="red-text">*</span> </label>
+                            <input type="text" id="MeanProportionalRutDepthL" name="MeanProportionalRutDepthL" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        
+                            <fieldset id="field21-1-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The value, unit of measurement, and method of measurement for the bulk density of the specimen according to EN 12697-6.">Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                                <div id="BulkDensitydivL" class="form-group">
+                                    <label for="BulkDensityValueL" title="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density (Mg/m&sup3;): </label>
+                                    <input type="text" id="BulkDensityValueL" name="BulkDensityValueL" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+        
+                                    <label for="BulkDensityMethodL" title="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement:<span class="red-text">*</span> </label>
+                                    <select id="BulkDensityMethodL" name="BulkDensityMethodL">
+                                        <option value="">Select </option>
+                                        <option value="Bulk density - dry">Bulk density - dry</option>
+                                        <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                        <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                        <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                        <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+        
+                            <fieldset id="field21-1-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The percentage of voids in the bituminous sample, according to EN 12697-8.">Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp; </legend>
+                                <div id="VoidsdivL" class="form-group">
+                                    <label for="AirVoidsL" title="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): </label>
+                                    <input type="text" id="AirVoidsL" name="AirVoidsL" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="MineralAggregateVoidsL" title="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): </label>
+                                    <input type="text" id="MineralAggregateVoidsL" name="MineralAggregateVoidsL" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                
+                                    <label for="VoidsFilledWithBitumenL" title="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): </label>
+                                    <input type="text" id="VoidsFilledWithBitumenL" name="VoidsFilledWithBitumenL" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="field21-1-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend">Proportional Rut Depth versus Cycles <span class="semicolon">(semicolon separated)</span></legend>
+                                <div id="ProportionalRutDepthVersusCyclesGraphdiv" class="graph-form-group">
+                                    <label for="CycleLg" title="The number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Cycles: </label>
+                                    <input type="text" id="CycleLg" name="CycleLg" title="Enter valid positive integers, separated by semicolons.">
+                                    <label for="ProportionalRutDepthLg" title="The average depth of a rut at the corresponding measurement cycle for the specimen, expressed as a percentage (e.g., 3.2).">Proportional Rut Depths (%): </label>
+                                    <input type="text" id="ProportionalRutDepthLg" name="ProportionalRutDepthLg" title="Enter valid numbers between 0 and 100, separated by semicolons.">
+                                    <button class="graph-form-group-button" type="button" title="Show or hide plot." onclick="PlotGraph('field21-1-3','Large or Extra-large Devices - Mean Results graph','CycleLg','Cycles','ProportionalRutDepthLg','Proportional Rut Depth')">&#x1F4C8;</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset id="field21-1-S" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The results of the rutting test experiment when using large or extra large devices as described by EN 12697-22.">Large or Extra-large Devices - Replications Results</legend>
+                    </fieldset> 
+                    
+                    <button type="button" id="Largebutton" class= "special-button TwoColumn hidden-class"  onclick="addLarge('field21-1-S', 'form-group')">&#10010; Replication</button>
+
+                    <fieldset id="field21-2" class="TwoColumn-fieldset inner-fieldset hidden-fieldset" >
+                        <legend class="specific-legend" title="The results of the rutting test experiment when using small-sized devices, following Method A in air as described by EN 12697-22.">Small Size Device Method A in Air - Mean Results</legend>
+                        <div id="SmallSizeDeviceAairdiv" class="form-group">
+
+                            <label for="MeanWheelTrackingRateSA" title="The mean rate at which the rut depth increases with time under repeated passes of a loaded wheel of a small size device Method A in air for the entire considered group of specimens, measured in micrometers per cycle (e.g., 30).">Mean Wheel Tracking Rate (&micro;m/cycle):<span class="red-text">*</span> </label>
+                            <input type="text" id="MeanWheelTrackingRateSA" name="MeanWheelTrackingRateSA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="CyclesNumberSA" title="The required number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Number of Cycles:<span class="red-text">*</span></label>
+                            <input type="number" id="CyclesNumberSA" min="0" title="Enter a valid positive integer.">
+                            
+                            <label for="MeanRutDepthSA" title="The average depth of a rut for the considered group of samples, measured in mm (e.g., 1.3).">Mean Rut Depth (mm):<span class="red-text">*</span></label>
+                            <input type="text" id="MeanRutDepthSA" name="MeanRutDepthSA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <fieldset id="field21-2-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The value, unit of measurement, and method of measurement for the bulk density of the specimen according to EN 12697-6.">Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                                <div id="BulkDensitydivSA" class="form-group">
+                                    <label for="BulkDensityValueSA" title="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density (Mg/m&sup3;): </label>
+                                    <input type="text" id="BulkDensityValueSA" name="BulkDensityValueSA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+        
+                                    <label for="BulkDensityMethodSA" title="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement:<span class="red-text">*</span> </label>
+                                    <select id="BulkDensityMethodSA" name="BulkDensityMethodSA">
+                                        <option value="">Select </option>
+                                        <option value="Bulk density - dry">Bulk density - dry</option>
+                                        <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                        <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                        <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                        <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+        
+                            <fieldset id="field21-2-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The percentage of voids in the bituminous sample, according to EN 12697-8.">Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp; </legend>
+                                <div id="VoidsdivSA" class="form-group">
+                                    <label for="AirVoidsSA" title="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): </label>
+                                    <input type="text" id="AirVoidsSA" name="AirVoidsSA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="MineralAggregateVoidsSA" title="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): </label>
+                                    <input type="text" id="MineralAggregateVoidsSA" name="MineralAggregateVoidsSA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                
+                                    <label for="VoidsFilledWithBitumenSA" title="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): </label>
+                                    <input type="text" id="VoidsFilledWithBitumenSA" name="VoidsFilledWithBitumenSA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="field21-2-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend">Rut Depth versus Cycles <span class="semicolon">(semicolon separated)</span></legend>
+                                <div id="RutDepthVersusCyclesGraphSAdiv" class="graph-form-group">
+                                    <label for="CycleSAg" title="The number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Cycles: </label>
+                                    <input type="text" id="CycleSAg" name="CycleSAg" title="Enter valid positive integers, separated by semicolons.">
+                                    <label for="RutDepthSAg" title="The average depth of a rut at the corresponding measurement cycle for the specimen, measured in mm (e.g., 1.3).">Rut Depth (mm): </label>
+                                    <input type="text" id="RutDepthSAg" name="RutDepthSAg" title="Enter valid positive numbers, separated by semicolons.">
+                                    <button class="graph-form-group-button" type="button" title="Show or hide plot." onclick="PlotGraph('field21-2-3','Small Size Device Method A in Air - Mean Results graph','CycleSAg','Cycles','RutDepthSAg','Rut Depth')">&#x1F4C8;</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-2-S" class="TwoColumn-fieldset inner-fieldset hidden-fieldset" >
+                        <legend class="specific-legend" title="The results of the rutting test experiment when using small-sized devices, following Method A in air as described by EN 12697-22.">Small Size Device Method A in Air - Replications Results</legend>
+                    </fieldset>
+
+                    <button type="button" id="SmallAAirbutton" class= "special-button TwoColumn hidden-class"  onclick="addSAAir('field21-2-S', 'form-group')">&#10010; Replication</button>
+
+                    <fieldset id="field21-3" class="TwoColumn-fieldset inner-fieldset hidden-fieldset" >
+                        <legend class="specific-legend" title="The results of the rutting test experiment when using small-sized devices, following Method B in air as described by EN 12697-22.">Small Size Device Method B in Air - Mean Results</legend>
+                        <div id="SmallSizeDeviceBairdiv" class="form-group">
+                            
+                            <label for="MeanWheelTrackingSlopeSBA" title="The mean rate at which the rut depth increases with time under repeated passes of a loaded wheel of a small size device Method B in air for the entire considered group of specimens, measured in micrometers per 1000 cycles (e.g., 30).">Mean Wheel Tracking Slope (&micro;m/1000cycle): <span class="red-text">*</span> </label>
+                            <input type="text" id="MeanWheelTrackingSlopeSBA" name="MeanWheelTrackingSlopeSBA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="CyclesNumberSBA" title="The required number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Number of Cycles:<span class="red-text">*</span></label>
+                            <input type="number" id="CyclesNumberSBA" min="0" title="Enter a valid positive integer.">
+                            
+                            <label for="MeanProportionalRutDepthSBA" title="The average depth of a rut at 10000 cycles or at the number of cycles reached by all samples in the group, expressed as a percentage (e.g., 2.48)">Mean Proportional Rut Depth (%): <span class="red-text">*</span></label>
+                            <input type="text" id="MeanProportionalRutDepthSBA" name="MeanProportionalRutDepthSBA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                  
+
+                            <label for="MeanRutDepthSBA" title="The average depth of a rut at 10000 cycles or at the number of cycles reached by all samples in the group, measured in mm (e.g., 1.7).">Mean Rut Depth (mm): <span class="red-text">*</span></label>
+                            <input type="text" id="MeanRutDepthSBA" name="MeanRutDepthSBA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <fieldset id="field21-3-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The value, unit of measurement, and method of measurement for the bulk density of the specimen according to EN 12697-6.">Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                                <div id="BulkDensitydivSBA" class="form-group">
+                                    <label for="BulkDensityValueSBA" title="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density (Mg/m&sup3;): </label>
+                                    <input type="text" id="BulkDensityValueSBA" name="BulkDensityValueSBA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+        
+                                    <label for="BulkDensityMethodSBA" title="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement:<span class="red-text">*</span> </label>
+                                    <select id="BulkDensityMethodSBA" name="BulkDensityMethodSBA">
+                                        <option value="">Select </option>
+                                        <option value="Bulk density - dry">Bulk density - dry</option>
+                                        <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                        <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                        <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                        <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+        
+                            <fieldset id="field21-3-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The percentage of voids in the bituminous sample, according to EN 12697-8.">Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp; </legend>
+                                <div id="VoidsdivSBA" class="form-group">
+                                    <label for="AirVoidsSBA" title="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): </label>
+                                    <input type="text" id="AirVoidsSBA" name="AirVoidsSBA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="MineralAggregateVoidsSBA" title="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): </label>
+                                    <input type="text" id="MineralAggregateVoidsSBA" name="MineralAggregateVoidsSBA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                
+                                    <label for="VoidsFilledWithBitumenSBA" title="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): </label>
+                                    <input type="text" id="VoidsFilledWithBitumenSBA" name="VoidsFilledWithBitumenSBA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="field21-3-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend">Rut Depth versus Cycles <span class="semicolon">(semicolon separated)</span></legend>
+                                <div id="RutDepthVersusCyclesGraphSBAdiv" class="graph-form-group">
+                                    <label for="CycleSBAg" title="The number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Cycles: </label>
+                                    <input type="text" id="CycleSBAg" name="CycleSBAg" title="Enter valid positive integers, separated by semicolons.">
+                                    <label for="RutDepthSBAg" title="The average depth of a rut at the corresponding measurement cycle for the specimen, measured in mm (e.g., 2.2).">Rut Depth (mm): </label>
+                                    <input type="text" id="RutDepthSBAg" name="RutDepthSBAg" title="Enter valid positive numbers, separated by semicolons.">
+                                    <button class="graph-form-group-button" type="button" title="Show or hide plot." onclick="PlotGraph('field21-3-3','Small Size Device Method B in Air - Mean Results graph','CycleSBAg','Cycles','RutDepthSBAg','Rut Depth')">&#x1F4C8;</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-3-S" class="TwoColumn-fieldset inner-fieldset hidden-fieldset" >
+                        <legend class="specific-legend" title="The results of the rutting test experiment when using small-sized devices, following Method B in air as described by EN 12697-22.">Small Size Device Method B in Air - Replications Results</legend>
+                    </fieldset>
+                    
+                    <button type="button" id="SmallBAirbutton" class= "special-button TwoColumn hidden-class"  onclick="addSB('field21-3','field21-3-S', 'SBA', 'form-group')">&#10010; Replication</button>
+
+                    <fieldset id="field21-4" class="TwoColumn-fieldset inner-fieldset hidden-fieldset" >
+                        <legend class="specific-legend" title="The results of the rutting test experiment when using small-sized devices, following Method B in water as described by EN 12697-22:2020.">Small Size Device Method B in Water - Mean Results</legend>
+                        <div id="SmallSizeDeviceBwaterdiv" class="form-group">
+                              
+                            <label for="MeanWheelTrackingSlopeSBW" title="The mean rate at which the rut depth increases with time under repeated passes of a loaded wheel of a small size device Method B in water for the entire considered group of specimens, measured in millimeters per 1000 cycles (e.g., 30).">Mean Wheel Tracking Slope (mm/1000cycle): <span class="red-text">*</span> </label>
+                            <input type="text" id="MeanWheelTrackingSlopeSBW" name="MeanWheelTrackingSlopeSBW" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="CyclesNumberSBW" title="The required number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Number of Cycles:<span class="red-text">*</span></label>
+                            <input type="number" id="CyclesNumberSBW" min="0" title="Enter a valid positive integer.">
+                            
+                            <label for="MeanProportionalRutDepthSBW" title="The average depth of a rut at 10000 cycles or at the number of cycles reached by all samples in the group, expressed as a percentage (e.g., 2.48)">Mean Proportional Rut Depth (%):<span class="red-text">*</span> </label>
+                            <input type="text" id="MeanProportionalRutDepthSBW" name="MeanProportionalRutDepthSBW" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                  
+
+                            <label for="MeanRutDepthSBW" title="The average depth of a rut at 10000 cycles or at the number of cycles reached by all samples in the group, measured in mm (e.g., 2.8).">Mean Rut Depth (mm):<span class="red-text">*</span></label>
+                            <input type="text" id="MeanRutDepthSBW" name="MeanRutDepthSBW" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <fieldset id="field21-4-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The value, unit of measurement, and method of measurement for the bulk density of the specimen according to EN 12697-6.">Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                                <div id="BulkDensitydivSBW" class="form-group">
+                                    <label for="BulkDensityValueSBW" title="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density (Mg/m&sup3;): </label>
+                                    <input type="text" id="BulkDensityValueSBW" name="BulkDensityValueSBW" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+        
+                                    <label for="BulkDensityMethodSBW" title="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement:<span class="red-text">*</span> </label>
+                                    <select id="BulkDensityMethodSBW" name="BulkDensityMethodSBW">
+                                        <option value=""> Select</option>
+                                        <option value="Bulk density - dry">Bulk density - dry</option>
+                                        <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                        <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                        <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                        <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+        
+                            <fieldset id="field21-4-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The percentage of voids in the bituminous sample, according to EN 12697-8.">Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp; </legend>
+                                <div id="VoidsdivSBW" class="form-group">
+                                    <label for="AirVoidsSBW" title="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): </label>
+                                    <input type="text" id="AirVoidsSBW" name="AirVoidsSBW" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="MineralAggregateVoidsSBW" title="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): </label>
+                                    <input type="text" id="MineralAggregateVoidsSBW" name="MineralAggregateVoidsSBW" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                
+                                    <label for="VoidsFilledWithBitumenSBA" title="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): </label>
+                                    <input type="text" id="VoidsFilledWithBitumenSBW" name="VoidsFilledWithBitumenSBW" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="field21-4-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend">Rut Depth versus Cycles <span class="semicolon">(semicolon separated)</span></legend>
+                                <div id="RutDepthVersusCyclesGraphSBWdiv" class="graph-form-group">
+                                    <label for="CycleSBWg" title="The number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Cycles: </label>
+                                    <input type="text" id="CycleSBWg" name="CycleSBWg" title="Enter valid positive integers, separated by semicolons.">
+                                    <label for="RutDepthSBWg" title="The average depth of a rut at the corresponding measurement cycle for the specimen, measured in mm (e.g., 2.2).">Rut Depth (mm): </label>
+                                    <input type="text" id="RutDepthSBWg" name="RutDepthSBWg" title="Enter valid positive numbers, separated by semicolons.">
+                                    <button class="graph-form-group-button" type="button" title="Show or hide plot." onclick="PlotGraph('field21-4-3','´Small Size Device Method B in Water - Mean Results` graph','CycleSBWg','Cycles','RutDepthSBWg','Rut Depth')">&#x1F4C8;</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-4-S" class="TwoColumn-fieldset inner-fieldset hidden-fieldset" >
+                        <legend class="specific-legend" title="The results of the rutting test experiment when using small-sized devices, following Method B in water as described by EN 12697-22.">Small Size Device Method B in Water - Replications Results</legend>
+                    </fieldset>
+                   
+                    <button type="button" id="SmallBWaterbutton" class= "special-button TwoColumn hidden-class"  onclick="addSB('field21-4','field21-4-S', 'SBW', 'form-group')">&#10010; Replication</button>
+
+                </div>
+            </fieldset>
+            
+            <fieldset id="field22">
+                <div id="NotesResults" class="form-group">  
+                    <label for="NotesResultsContent" title="The content of the text note concerning the text setup and results.">Test results Notes:</label>
+                    <input type="text" id="NotesResultsContent" name="NotesResultsContent">
+                </div>
+            </fieldset>
+
+        </fieldset>
+
+        <fieldset id="OuterfieldD" class="outer-fieldset">
+            <legend class="outer-legend">Notes</legend>
+            <fieldset id="field23">
+                <div id="NotesGeneral" class="form-group">  
+                    <label for="NotesGeneralContent" title="The content of the text note concerning the experiment in general.">General Notes:</label>
+                    <input type="text" id="NotesGeneralContent" name="NotesGeneralContent">
+                </div>
+            </fieldset>
+        </fieldset>
+
+        <button type="submit" class="main-button" id="GenerateButton">Generate XML</button>
+
+    </form>
+
+    <form id="xmlForm">
+        
+            <div class="wrapper">
+                <div class="file-upload">
+                    <input type="file" id="xmlFile" accept=".xml" onchange="updateFileName()">
+                    <span id="fileName"><b>Choose XML file</b></span>
+                </div>
+            </div>
+
+            <fieldset id="field-U">
+                <legend class="specific-legend">Select elements to upload</legend>
+                <div class="upload-select-group">
+                    <label><input type="checkbox" id="select-source" checked> Data Source</label><br>
+                    <label><input type="checkbox" id="select-mixture" checked> Mixture</label><br>
+                    <label><input type="checkbox" id="select-sample"> Sample Properties</label><br>
+                    <label><input type="checkbox" id="select-results"> Test Results</label><br>
+                    <label><input type="checkbox" id="select-notes"> General Notes</label><br>
+                    <label><input type="checkbox" id="select-all"> All Elements</label><br>
+                </div>
+            </fieldset>
+
+        <button type="button" class="main-button" id="SelectButton" onclick="uploadXML()">Upload XML</button>
+    
+    </form>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Incorrect Entry</h2>
+            <p id="error-message"></p>
+        </div>
+    </div>
