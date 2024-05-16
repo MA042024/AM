@@ -15,6 +15,7 @@ Including another URLconf
 from django.conf.urls import include
 from django.contrib import admin
 from django.urls import re_path
+from . import views
 
 from core_main_app.admin import core_admin_site
 
@@ -29,6 +30,7 @@ urlpatterns = [
     ),
     re_path(r"^", include("core_main_app.urls")),
     re_path(r"^home/", include("mdcs_home.urls")),
+    re_path(r"^", views.gensel_view, name='gensel'),
     re_path(r"^", include("core_website_app.urls")),
     re_path(r"^curate/", include("core_curate_app.urls")),
     re_path(r"^composer/", include("core_composer_app.urls")),
