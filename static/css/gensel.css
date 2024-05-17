@@ -1,6 +1,6 @@
 #GS body {
   font-family:   Arial, sans-serif !important;
-  background: linear-gradient(to right, #c4d1d5, #afd8df);
+  background: linear-gradient(to right, #c4d1d5, #afd8df) !important; 
   /*#a9d5dc*/
   /*background: linear-gradient(to right, #85a3b2, #558899);*/ /* lighter and darker shades of blue */
   margin: 0;
