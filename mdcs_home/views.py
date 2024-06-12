@@ -60,12 +60,13 @@ def tiles(request):
             "logo": "fa-search",
             "link": reverse("core_explore_keyword_app_search"),
             "title": "Search by keyword",
-            "text": "Click here to explore for test data in the repository using keywords.",
+            "text": "Click here to explore for test data in the repository.",
         }
 
         context["tiles"].append(explore_keywords_tile)
-        
-    if "core_explore_example_app" in installed_apps:
+
+    """using keywords.","""
+    """if "core_explore_example_app" in installed_apps:
         explore_example_tile = {
             "logo": "fa-cog",
             "link": reverse("core_explore_example_index"),
@@ -75,7 +76,7 @@ def tiles(request):
 
         context["tiles"].append(explore_example_tile)
 
-    """if "core_composer_app" in installed_apps:
+    if "core_composer_app" in installed_apps:
         compose_tile = {
             "logo": "fa-file-code",
             "link": reverse("core_composer_index"),
