@@ -20,7 +20,7 @@
             {% for item in menus.nodropdown %}
                 <li>
                     <a href="{{ item.url }}">{% if item|get_attribute:'icon' %}
-                        <i class="fas fa-{{ item.icon }}"></i>{% endif %} {{ item.title }}
+                        <i></i>{% endif %} {{ item.title }}
                     </a>
                 </li>
             {% endfor %}
