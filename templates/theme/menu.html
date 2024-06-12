@@ -53,7 +53,7 @@
                     </ul>
                 </div>
             </li>
-            <li class="nested">
+            <!--<li class="nested">
                 <div class="dropdown">
                     <a class="dropdown-toggle"
                        type="button"
@@ -80,6 +80,10 @@
                         {% endfor %}
                     </ul>
                 </div>
+            </li>-->
+        
+            <li>
+                <a href="{% url 'gensel' %}">GV Form</a>
             </li>
         {% endblock %}
         <!-- End float left menu-->
@@ -166,9 +170,6 @@
             </div>
         </li>
         <!-- End float right menu-->
-        <li>
-            <a href="{% url 'gensel' %}">GV Form</a>
-        </li>
     </ul>
 </nav>
 
