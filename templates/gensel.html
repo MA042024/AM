@@ -31,6 +31,7 @@
             fileNameSpan.innerHTML = '<b>' + fileInput.files[0].name + '</b>';
         }
 
+document.addEventListener('DOMContentLoaded', function() {   
         document.getElementById('select-all').addEventListener('change', function() {
             var checkboxes = document.querySelectorAll('#field-U input[type="checkbox"]');
             checkboxes.forEach(function(checkbox) {checkbox.checked = document.getElementById('select-all').checked;});
@@ -47,7 +48,7 @@
                 }
             });
         });
-
+});
     </script>
 
     <script>
@@ -2405,7 +2406,7 @@
     </script>
 
     <script>
-
+document.addEventListener('DOMContentLoaded', function() {
         var modal = document.getElementById("modal");
         var span = document.getElementsByClassName("close")[0];
     
@@ -2424,7 +2425,7 @@
                 setTimeout(function() {errorElement.focus();}, 1000);
             }
         }
-
+});
     </script>
 
     <script>
