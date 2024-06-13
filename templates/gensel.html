@@ -14,6 +14,21 @@
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 
+{% load static %}
+
+
+{% block theme_css %}
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/gensel.css' %}">
+{% endblock %}
+{% block theme_js %}
+    <script src="{% static 'js/gensel.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
+{% block body %}
+
     <div class="sidebar">
         <span class="side-title"> GV Form Beta</span>
         <ul>
@@ -2136,3 +2151,4 @@
         <br><br>Please try accessing it from a device with a larger screen or increase the size of your current screen for optimal viewing.
     </p>
 
+{% endblock %}
