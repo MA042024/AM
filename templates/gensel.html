@@ -1533,6 +1533,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var name=`${document.getElementById('measurementCampaignID').value}_${document.getElementById('organizationName').value}_${document.getElementById('year').value}`;
             sessionStorage.setItem('name', name);
             sessionStorage.setItem('xmlData', FinalXmlString);
+            sessionStorage.setItem('redirectedFromOrigin', 'true');
             window.location.href = "/curate";
 
            
