@@ -1,4 +1,4 @@
-
+document.addEventListener('DOMContentLoaded', function() {
  
         // Functions concerning upload
         function updateFileName() {
@@ -2881,3 +2881,5 @@ function CloseEmptyFields() {
         }
     });
 }
+                          
+});
