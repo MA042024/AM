@@ -1,29 +1,28 @@
-    // Functions concerning upload
-    function updateFileName() {
-        var fileInput = document.getElementById('xmlFile');
-        var fileNameSpan = document.getElementById('fileName');
-        fileNameSpan.innerHTML = '<b>' + fileInput.files[0].name + '</b>';
-    }
 
-    document.getElementById('select-all').addEventListener('change', function() {
-        var checkboxes = document.querySelectorAll('#field-U input[type="checkbox"]');
-        checkboxes.forEach(function(checkbox) {checkbox.checked = document.getElementById('select-all').checked;});
-    });
-    var otherCheckboxes = document.querySelectorAll('#field-U input[type="checkbox"]:not(#select-all)');
-    otherCheckboxes.forEach(function(checkbox) {
-        checkbox.addEventListener('change', function() {
-            if (!this.checked) {
-                document.getElementById('select-all').checked = false;
-            } else {
-                var allChecked = true;
-                otherCheckboxes.forEach(function(cb) {if (!cb.checked) {allChecked = false;}});
-                document.getElementById('select-all').checked = allChecked;
-            }
+ 
+        // Functions concerning upload
+        function updateFileName() {
+            var fileInput = document.getElementById('xmlFile');
+            var fileNameSpan = document.getElementById('fileName');
+            fileNameSpan.innerHTML = '<b>' + fileInput.files[0].name + '</b>';
+        }
+
+        document.getElementById('select-all').addEventListener('change', function() {
+            var checkboxes = document.querySelectorAll('#field-U input[type="checkbox"]');
+            checkboxes.forEach(function(checkbox) {checkbox.checked = document.getElementById('select-all').checked;});
         });
-    });
-
-
-
+        var otherCheckboxes = document.querySelectorAll('#field-U input[type="checkbox"]:not(#select-all)');
+        otherCheckboxes.forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                if (!this.checked) {
+                    document.getElementById('select-all').checked = false;
+                } else {
+                    var allChecked = true;
+                    otherCheckboxes.forEach(function(cb) {if (!cb.checked) {allChecked = false;}});
+                    document.getElementById('select-all').checked = allChecked;
+                }
+            });
+        });
 
     // Fucntion to activate sidebar dropdown
     document.addEventListener('DOMContentLoaded', function () {
