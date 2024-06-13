@@ -2414,7 +2414,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         span.onclick = closeModal;
         window.onclick = function(event) {if (event.target == modal) {closeModal();}}
-
+});
         function EntryError(message, elementId) {
             var errorMessage = document.getElementById("error-message");
             errorMessage.textContent = message;
@@ -2425,7 +2425,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(function() {errorElement.focus();}, 1000);
             }
         }
-});
+
     </script>
 
     <script>
