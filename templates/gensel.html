@@ -1562,6 +1562,9 @@ document.addEventListener('DOMContentLoaded', function() {
             $.ajax({
                 url: '/curate/save-xml-data/', // Relative URL from the root
                 type: 'POST', // HTTP method
+                  headers: {
+                       'X-CSRFToken': csrftoken  // Make sure csrf token is properly set
+                   },
                 data: {
                     xml_data: FinalXmlString, // Send the final XML string as data
                     title: namell, // Send any other data you need
