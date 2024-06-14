@@ -20,6 +20,8 @@
    <link rel="stylesheet" href="{% static 'css/gensel.css' %}">
 {% endblock %}
 {% block theme_js %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         // Get CSRF token
         function getCookie(name) {
@@ -47,8 +49,6 @@
             }
         });
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
  
         // Functions concerning upload
