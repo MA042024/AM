@@ -1533,7 +1533,7 @@ document.addEventListener('DOMContentLoaded', function() {
             CloseEmptyFields();
 
             $.ajax({
-                url: '/core_curate_app/save-xml-data/', // Relative URL from the root
+                url: '/curate/save-xml-data/', // Relative URL from the root
                 type: 'POST', // HTTP method
                 data: {
                     xml_data: FinalXmlString, // Send the final XML string as data
