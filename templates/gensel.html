@@ -1529,21 +1529,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
             //  Close Empty fields 
             CloseEmptyFields();
-           
-            var name=`${document.getElementById('measurementCampaignID').value}_${document.getElementById('organizationName').value}_${document.getElementById('year').value}`;
-            sessionStorage.setItem('name', name);
-            sessionStorage.setItem('xmlData', FinalXmlString);
-            sessionStorage.setItem('redirectedFromOrigin', 'true');
-            window.location.href = "/curate";
+
+           let xhr = new XMLHttpRequest();
+         let url = "/path/to/your/django/view/"; // Specify the URL of your Django view
+         xhr.open("POST", url, true);
+         xhr.setRequestHeader("Content-Type", "application/xml");
+         xhr.onreadystatechange = function () {
+             if (xhr.readyState === 4 && xhr.status === 200) {
+                 console.log("XML data sent successfully");
+             }
+         };
+         xhr.send(FinalXmlString);
 
            
             // Download as XML file
-            let blob = new Blob([FinalXmlString], { type: "text/xml" });
+            /*let blob = new Blob([FinalXmlString], { type: "text/xml" });
             let link = document.createElement("a");
             link.href = URL.createObjectURL(blob);
             link.download = `${document.getElementById('measurementCampaignID').value}_${document.getElementById('organizationName').value}_${document.getElementById('year').value}.xml`;
             link.click();
-
+            */
             //return false; // Prevent default form submission
         }
 
