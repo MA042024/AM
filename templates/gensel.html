@@ -1549,7 +1549,7 @@ document.addEventListener('DOMContentLoaded', function() {
             let xmlString = new XMLSerializer().serializeToString(xmlDoc);
             //console.log(xmlString); 
             let parser = new DOMParser();
-            let XmlDocument = parser.parseFromString(xmlString, 'application/xml');
+            let XmlDocument = parser.parseFromString(xmlString, 'text/xml');
             removeEmptyElements(XmlDocument.documentElement); 
             let FinalXmlString = new XMLSerializer().serializeToString(XmlDocument); // Serialize the final XML document back to string
             console.log(FinalXmlString);
