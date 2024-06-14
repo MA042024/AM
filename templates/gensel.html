@@ -1527,20 +1527,28 @@ document.addEventListener('DOMContentLoaded', function() {
             let FinalXmlString = new XMLSerializer().serializeToString(XmlDocument); // Serialize the final XML document back to string
             console.log(FinalXmlString);
 
+           namell=`${document.getElementById('measurementCampaignID').value}_${document.getElementById('organizationName').value}_${document.getElementById('year').value}`
+            
             //  Close Empty fields 
             CloseEmptyFields();
 
-           let xhr = new XMLHttpRequest();
-         let url = "/path/to/your/django/view/"; // Specify the URL of your Django view
-         xhr.open("POST", url, true);
-         xhr.setRequestHeader("Content-Type", "application/xml");
-         xhr.onreadystatechange = function () {
-             if (xhr.readyState === 4 && xhr.status === 200) {
-                 console.log("XML data sent successfully");
-             }
-         };
-         xhr.send(FinalXmlString);
-
+            $.ajax({
+                url: '/core_curate_app/save-xml-data/', // Relative URL from the root
+                type: 'POST', // HTTP method
+                data: {
+                    xml_data: FinalXmlString, // Send the final XML string as data
+                    title: namell, // Send any other data you need
+                    template_id: 1,
+                },
+                success: function(response) {
+                    // Handle success response
+                    console.log('Data saved successfully:', response);
+                },
+                error: function(xhr, status, error) {
+                    // Handle error response
+                    console.error('Error saving data:', error);
+                }
+            });
            
             // Download as XML file
             /*let blob = new Blob([FinalXmlString], { type: "text/xml" });
