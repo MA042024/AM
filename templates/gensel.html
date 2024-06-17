@@ -1573,6 +1573,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 success: function(response) {
                     // Handle success response
                     console.log('Data saved successfully:', response);
+
+                   window.location.href = "/dashboard/records";
                 },
                 error: function(xhr, status, error) {
                     // Handle error response
