@@ -1560,30 +1560,33 @@ document.addEventListener('DOMContentLoaded', function() {
             CloseEmptyFields();
 
            $.ajax({
-    url: '/curate/save-xml-data/', // Relative URL from the root
-    type: 'POST', // HTTP method
-    data: {
-        xml_data: FinalXmlString, // Send the final XML string as data
-        title: namell, // Send any other data you need
-        template_id: 1,
-    },
-    success: function(response) {
-        // Handle success response
-        console.log('Data saved successfully:', response);
-
-        // First redirect
-        window.location.href = "/explore/keyword/";
-
-        // Set a timeout to redirect to the second page
-        setTimeout(function() {
-            window.location.href = "/dashboard/records";
-        }, 1000); // Adjust the timeout duration as needed
-    },
-    error: function(xhr, status, error) {
-        // Handle error response
-        console.error('Error saving data:', error);
-    }
-});
+                url: '/curate/save-xml-data/', // Relative URL from the root
+                type: 'POST', // HTTP method
+                  headers: {
+                       'X-CSRFToken': csrftoken  // Make sure csrf token is properly set
+                   },
+                data: {
+                    xml_data: FinalXmlString, // Send the final XML string as data
+                    title: namell, // Send any other data you need
+                    template_id: 1,
+                },
+                      success: function(response) {
+                    // Handle success response
+                    console.log('Data saved successfully:', response);
+            
+                    // First redirect
+                    window.location.href = "/explore/keyword/";
+            
+                    // Set a timeout to redirect to the second page
+                    setTimeout(function() {
+                        window.location.href = "/dashboard/records";
+                    }, 1000); // Adjust the timeout duration as needed
+                },
+                     error: function(xhr, status, error) {
+                    // Handle error response
+                    console.error('Error saving data:', error);
+                }
+            });
            
             /*$.ajax({
                 url: '/curate/save-xml-data/', // Relative URL from the root
