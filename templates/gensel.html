@@ -1573,14 +1573,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 success: function(response) {
                     // Handle success response
                     console.log('Data saved successfully:', response);
+                     ShowPopGenMs('S');
                 },
                 error: function(xhr, status, error) {
                     // Handle error response
                     console.error('Error saving data:', error);
                 }
             });
+           
             //window.location.href = "/explore/keyword/";
-
             //window.location.href = "/dashboard/records";
            
             // Download as XML file
@@ -2963,6 +2964,34 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    </script>
+
+    <script>
+
+        //Functionality of Pop Up messages
+        function ShowPopGenMs(choice) {
+            var popupMessage = document.getElementById('GenpopMessage');
+            switch (choice) {
+            case 'G':
+                popupMessage.innerText = "Record Downloaded";
+                break;
+            case 'S':
+                popupMessage.innerText = "Reocord Saved";
+                break;
+            default:
+                popupMessage.innerText = "";
+            }
+            var genpop = document.getElementById('Genpopup');
+            genpop.style.display = 'block';
+            setTimeout(function() {
+                if (genpop.style.display !== 'none') {
+                    ClosePopGenMs();
+                }
+            }, 5000);
+        }
+
+        function ClosePopGenMs() {document.getElementById('Genpopup').style.display = 'none';}
 
     </script>
 
@@ -5091,5 +5120,9 @@ document.addEventListener('DOMContentLoaded', function() {
         <br><br> The form requires a minimum screen width of <b>800 pixels</b> to function properly and <b>1400 pixels</b> to ensure full functionality.
         <br><br>Please try accessing it from a device with a larger screen or increase the size of your current screen for optimal viewing.
     </p>
+
+    <div class="Gen-popup" id="Genpopup">
+        <span id="GenpopMessage"></span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="Gen-popup-close" onclick="ClosePopGenMs()">&#128473;</span>&nbsp;&nbsp;
+    </div>
 
 {% endblock %}
