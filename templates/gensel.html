@@ -1558,30 +1558,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             //  Close Empty fields 
             CloseEmptyFields();
-
-           $.ajax({
-                url: '/curate/save-xml-data/', // Relative URL from the root
-                type: 'POST', // HTTP method
-                  headers: {
-                       'X-CSRFToken': csrftoken  // Make sure csrf token is properly set
-                   },
-                data: {
-                    xml_data: FinalXmlString, // Send the final XML string as data
-                    title: namell, // Send any other data you need
-                    template_id: 1,
-                },
-               }).done(function(response) {
-                   // First redirect
-                   window.location.href = "/explore/keyword/";
-                   // Set a timeout to redirect to the second page
-                   setTimeout(function() {
-                       window.location.href = "/dashboard/records";
-                   }, 2000); // Adjust the timeout duration as needed
-               }).fail(function(xhr, status, error) {
-                   console.error('Error saving data:', error);
-               });
            
-            /*$.ajax({
+            $.ajax({
                 url: '/curate/save-xml-data/', // Relative URL from the root
                 type: 'POST', // HTTP method
                   headers: {
@@ -1600,10 +1578,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Handle error response
                     console.error('Error saving data:', error);
                 }
-            });*/
-            //window.location.href = "/explore/keyword/";
+            });
+            window.location.href = "/explore/keyword/";
 
-             // window.location.href = "/dashboard/records";
+            //window.location.href = "/dashboard/records";
            
             // Download as XML file
             /*let blob = new Blob([FinalXmlString], { type: "text/xml" });
