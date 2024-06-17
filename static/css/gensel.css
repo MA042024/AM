@@ -924,3 +924,23 @@ button:hover {
   color: #bdee09;
 }
 
+
+.Gen-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #def0ef;
+  border: 1px solid #77c9c4;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: none;
+  color: #333;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.Gen-popup-close {
+  cursor: pointer;
+  position: fixed;
+  color: #3CACA8;
+}
+
