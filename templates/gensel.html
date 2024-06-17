@@ -1560,7 +1560,7 @@ document.addEventListener('DOMContentLoaded', function() {
             CloseEmptyFields();
 
            $.ajax({
-    url: '/core_curate_app/save-xml-data/', // Relative URL from the root
+    url: '/curate/save-xml-data/', // Relative URL from the root
     type: 'POST', // HTTP method
     data: {
         xml_data: FinalXmlString, // Send the final XML string as data
@@ -1577,7 +1577,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set a timeout to redirect to the second page
         setTimeout(function() {
             window.location.href = "/dashboard/records";
-        }, 2000); // Adjust the timeout duration as needed
+        }, 1000); // Adjust the timeout duration as needed
     },
     error: function(xhr, status, error) {
         // Handle error response
