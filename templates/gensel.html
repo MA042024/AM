@@ -1575,12 +1575,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log('Data saved successfully:', response);
                      ShowPopGenMs('S');
                 },
-                error: function(xhr, status, error) {
-                    // Handle error response
-                    console.error('Error saving data:', error);
-                }
+               error: function(xhr, status, error) {
+                 // Handle error response
+                 if (xhr.status === 403) {
+                     console.error('Insufficient permissions:', xhr.responseJSON.error);
+                       ShowPopGenMs('Ins');
+                     // Handle insufficient permissions here
+                 } else {
+                     console.error('Error saving data:', error);
+                 }
+               }
             });
-           
+
             //window.location.href = "/explore/keyword/";
             //window.location.href = "/dashboard/records";
            
