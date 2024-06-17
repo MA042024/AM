@@ -1570,23 +1570,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     title: namell, // Send any other data you need
                     template_id: 1,
                 },
-                      success: function(response) {
-                    // Handle success response
-                    console.log('Data saved successfully:', response);
-            
-                    // First redirect
-                    window.location.href = "/explore/keyword/";
-            
-                    // Set a timeout to redirect to the second page
-                    setTimeout(function() {
-                        window.location.href = "/dashboard/records";
-                    }, 1000); // Adjust the timeout duration as needed
-                },
-                     error: function(xhr, status, error) {
-                    // Handle error response
-                    console.error('Error saving data:', error);
-                }
-            });
+               }).done(function(response) {
+                   // First redirect
+                   window.location.href = "/explore/keyword/";
+                   // Set a timeout to redirect to the second page
+                   setTimeout(function() {
+                       window.location.href = "/dashboard/records";
+                   }, 2000); // Adjust the timeout duration as needed
+               }).fail(function(xhr, status, error) {
+                   console.error('Error saving data:', error);
+               });
            
             /*$.ajax({
                 url: '/curate/save-xml-data/', // Relative URL from the root
