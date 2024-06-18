@@ -20,4 +20,4 @@ core_linked_records_app==2.9.*
 -e git+https://github.com/MA042024/core_curate_app.git#egg=core_curate_app
 -e git+https://github.com/MA042024/core_explore_keyword_app.git#egg=core_explore_keyword_app
 -e git+https://github.com/MA042024/core-explore-common-app.git#egg=core-explore-common-app
--e git+https://TOKEN@github.com/MA042024/core-explore-common-app.git#egg=core-explore-common-app
+-e git+https://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@github.com/MA042024/core-explore-common-app.git#egg=core-explore-common-app
