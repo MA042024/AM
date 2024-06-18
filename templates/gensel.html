@@ -1554,29 +1554,27 @@ document.addEventListener('DOMContentLoaded', function() {
             let FinalXmlString = new XMLSerializer().serializeToString(XmlDocument); // Serialize the final XML document back to string
             console.log(FinalXmlString);
 
-           namell=`${document.getElementById('measurementCampaignID').value}_${document.getElementById('organizationName').value}_${document.getElementById('year').value}`
+           namerecord=`${document.getElementById('measurementCampaignID').value}_${document.getElementById('organizationName').value}_${document.getElementById('year').value}`
             
             //  Close Empty fields 
             CloseEmptyFields();
            
             $.ajax({
-                url: '/curate/save-xml-data/', // Relative URL from the root
-                type: 'POST', // HTTP method
+                url: '/curate/save-xml-data/',
+                type: 'POST',
                   headers: {
-                       'X-CSRFToken': csrftoken  // Make sure csrf token is properly set
+                       'X-CSRFToken': csrftoken
                    },
                 data: {
-                    xml_data: FinalXmlString, // Send the final XML string as data
-                    title: namell, // Send any other data you need
+                    xml_data: FinalXmlString,
+                    title: namerecord,
                     template_id: 1,
                 },
                 success: function(response) {
-                    // Handle success response
                     console.log('Data saved successfully:', response);
                      ShowPopMsg('S');
                 },
                error: function(xhr, status, error) {
-                 // Handle error response
                  if (xhr.status === 403) {
                      var errorMessage = 'Insufficient permissions';
                      if (xhr.responseJSON && xhr.responseJSON.error) {
