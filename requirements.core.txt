@@ -3,6 +3,7 @@ core_composer_app==2.9.*
 core_dashboard_common_app==2.9.*
 core_dashboard_app==2.9.*
 core_explore_example_app==2.9.*
+-e git+https://github.com/MA042024/core-explore-common-app.git#egg=core-explore-common-app
 core_explore_keyword_app==2.9.*
 core_explore_federated_search_app==2.9.*
 core_exporters_app==2.9.*
