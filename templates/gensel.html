@@ -1578,8 +1578,12 @@ document.addEventListener('DOMContentLoaded', function() {
                error: function(xhr, status, error) {
                  // Handle error response
                  if (xhr.status === 403) {
-                     console.error('Insufficient permissions:', xhr.responseJSON.error);
-                       ShowPopMsg('Den');
+                     var errorMessage = 'Insufficient permissions';
+                     if (xhr.responseJSON && xhr.responseJSON.error) {
+                         errorMessage = xhr.responseJSON.error;
+                     }
+                     console.error('Error:', errorMessage);
+                     ShowPopMsg('Den');
                  } else {
                      console.error('Error saving data:', error);
                  }
