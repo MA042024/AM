@@ -1573,14 +1573,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 success: function(response) {
                     // Handle success response
                     console.log('Data saved successfully:', response);
-                     ShowPopGenMs('S');
+                     ShowPopMsg('S');
                 },
                error: function(xhr, status, error) {
                  // Handle error response
                  if (xhr.status === 403) {
                      console.error('Insufficient permissions:', xhr.responseJSON.error);
-                       ShowPopGenMs('Ins');
-                     // Handle insufficient permissions here
+                       ShowPopMsg('Den');
                  } else {
                      console.error('Error saving data:', error);
                  }
@@ -2976,28 +2975,33 @@ document.addEventListener('DOMContentLoaded', function() {
     <script>
 
         //Functionality of Pop Up messages
-        function ShowPopGenMs(choice) {
+        function ShowPopMsg(choice) {
             var popupMessage = document.getElementById('GenpopMessage');
+            var genpop = document.getElementById('Genpopup');
+              genpop.classList.remove('error');
             switch (choice) {
             case 'G':
-                popupMessage.innerText = "Record Downloaded";
+                popupMessage.innerText = "Record Downloaded.";
                 break;
             case 'S':
-                popupMessage.innerText = "Reocord Saved";
+                popupMessage.innerText = "Record Saved.";
+                break;
+            case 'Den':
+                popupMessage.innerText = "Insufficient Permission.";
+                genpop.classList.add('error');
                 break;
             default:
                 popupMessage.innerText = "";
             }
-            var genpop = document.getElementById('Genpopup');
             genpop.style.display = 'block';
             setTimeout(function() {
                 if (genpop.style.display !== 'none') {
-                    ClosePopGenMs();
+                    ClosePopMsg();
                 }
             }, 5000);
         }
 
-        function ClosePopGenMs() {document.getElementById('Genpopup').style.display = 'none';}
+        function ClosePopMsg() {document.getElementById('Genpopup').style.display = 'none';}
 
     </script>
 
@@ -5128,7 +5132,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </p>
 
     <div class="Gen-popup" id="Genpopup">
-        <span id="GenpopMessage"></span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="Gen-popup-close" onclick="ClosePopGenMs()">&#128473;</span>&nbsp;&nbsp;
+        <span id="GenpopMessage"></span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="Gen-popup-close" onclick="ClosePopMsg()">&#128473;</span>&nbsp;&nbsp;
     </div>
 
 {% endblock %}
