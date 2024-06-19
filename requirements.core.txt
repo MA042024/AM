@@ -18,4 +18,4 @@ core_linked_records_app==2.9.*
 -e git+https://github.com/MA042024/core_website_app.git#egg=core_website_app
 -e git+https://github.com/MA042024/core_curate_app.git#egg=core_curate_app
 -e git+https://github.com/MA042024/core_explore_keyword_app.git#egg=core_explore_keyword_app
--e git+https://github.com/MA042024/core_main_app[mongodb].git#egg=core_main_app
+-e git+https://github.com/MA042024/core_main_app.git#egg=core_main_app[mongodb]
