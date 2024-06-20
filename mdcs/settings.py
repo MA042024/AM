@@ -26,7 +26,7 @@ SECRET_KEY = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = (
     os.environ["ALLOWED_HOSTS"].split(",")
@@ -126,6 +126,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE = (
+    "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -134,10 +135,8 @@ MIDDLEWARE = (
     "defender.middleware.FailedLoginMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.middleware.security.SecurityMiddleware",
     "core_main_app.middleware.timezone.TimezoneMiddleware",
 )
-
 
 TEMPLATES = [
     {
