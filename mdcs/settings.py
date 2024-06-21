@@ -440,9 +440,9 @@ if SERVER_URI.lower().startswith("https"):  # noqa: F405 (core setting)
     os.environ["HTTPS"] = "on"
 
     # Secure cookies
-    CSRF_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = True
     CSRF_COOKIE_AGE = None
-    SESSION_COOKIE_SECURE = False
+    SESSION_COOKIE_SECURE = True
     SESSION_EXPIRE_AT_BROWSER_CLOSE = True
     SESSION_COOKIE_AGE = 604800
 
