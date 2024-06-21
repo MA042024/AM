@@ -12,6 +12,8 @@ def gensel_recieve(request):
     #print("CSRF token received:", request.META.get("HTTP_X_CSRFTOKEN"))  # Debugging line
     #print("Request method:", request.method)  # Debugging line
 
+     print(f"Entire request object:\n{request.__dict__}")  # Print entire request object for debugging
+    
     data_id = request.POST.get('data_id')
     data_content = request.POST.get('data_content')
 
