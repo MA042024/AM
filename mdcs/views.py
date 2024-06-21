@@ -12,8 +12,8 @@ def gensel_view(request):
 @csrf_protect
 @require_POST
 def gensel_recieve(request):
-    #print("CSRF token received:", request.META.get("HTTP_X_CSRFTOKEN"))  # Debugging line
-    #print("Request method:", request.method)  # Debugging line
+    print("CSRF token received:", request.META.get("HTTP_X_CSRFTOKEN"))  # Debugging line
+    print("Request method:", request.method)  # Debugging line
 
     print(f"Entire request object:\n{request.__dict__}")  # Print entire request object for debugging
     
