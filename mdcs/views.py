@@ -15,6 +15,9 @@ def gensel_recieve(request):
     data_id = request.POST.get('data_id')
     data_content = request.POST.get('data_content')
 
+    print(f"data_id in gensel_recieve:{data_id}")
+    print(f"data_content in gensel_recieve:{data_content}")
+    
     if not data_id or not data_content:
         return JsonResponse({'error': 'Invalid data'}, status=400)
 
