@@ -14,8 +14,10 @@ def gensel_recieve(request):
 
     print(f"Entire request object:\n{request.__dict__}")  # Print entire request object for debugging
     
-    data_id = request.POST.get('data_id')
-    data_content = request.POST.get('data_content')
+    data = json.loads(request.body.decode('utf-8'))
+    
+    data_id = data.get('data_id')
+    data_content = data.get('data_content')
 
     print(f"data_id in gensel_recieve:{data_id}")
     print(f"data_content in gensel_recieve:{data_content}")
