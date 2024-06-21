@@ -9,11 +9,13 @@ def gensel_view(request):
 @csrf_protect
 @require_POST
 def gensel_recieve(request):
+    print("CSRF token received:", request.META.get("HTTP_X_CSRFTOKEN"))  # Debugging line
+    print("Request method:", request.method)  # Debugging line
+
     data_id = request.POST.get('data_id')
     data_content = request.POST.get('data_content')
 
-    # Process the received data as needed
-    # For example, you might save it to the database or perform some action
+    if not data_id or not data_content:
+        return JsonResponse({'error': 'Invalid data'}, status=400)
 
-    # Return a response
     return JsonResponse({'message': 'Data received successfully', 'data_id': data_id, 'data_content': data_content})
