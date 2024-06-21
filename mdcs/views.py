@@ -9,8 +9,8 @@ def gensel_view(request):
 @csrf_exempt
 @require_POST
 def gensel_recieve(request):
-    print("CSRF token received:", request.META.get("HTTP_X_CSRFTOKEN"))  # Debugging line
-    print("Request method:", request.method)  # Debugging line
+    #print("CSRF token received:", request.META.get("HTTP_X_CSRFTOKEN"))  # Debugging line
+    #print("Request method:", request.method)  # Debugging line
 
     data_id = request.POST.get('data_id')
     data_content = request.POST.get('data_content')
