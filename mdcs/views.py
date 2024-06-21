@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_protect
 def gensel_view(request):
     return render(request, 'gensel.html')
 
-@csrf_protect
+@csrf_exempt
 @require_POST
 def gensel_recieve(request):
     print("CSRF token received:", request.META.get("HTTP_X_CSRFTOKEN"))  # Debugging line
