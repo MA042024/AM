@@ -3,12 +3,13 @@ import json
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_protect
 
 def gensel_view(request):
     return render(request, 'gensel.html')
 
-@csrf_exempt
+#@csrf_exempt
+@csrf_protect
 @require_POST
 def gensel_recieve(request):
     #print("CSRF token received:", request.META.get("HTTP_X_CSRFTOKEN"))  # Debugging line
