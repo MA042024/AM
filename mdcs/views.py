@@ -20,7 +20,7 @@ def gensel_recieve(request):
     print(f"CSRF token received: {csrf_token}")
 
     if not csrf_middleware.process_view(request, None, gensel_recieve, (), {}):
-    return JsonResponse({'error': 'CSRF verification failed.'}, status=403)
+        return JsonResponse({'error': 'CSRF verification failed.'}, status=403)
     
     # Verify CSRF token
     if not csrf_middleware.process_view(request, None, gensel_recieve, (), {}):
