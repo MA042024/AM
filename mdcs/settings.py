@@ -136,7 +136,7 @@ MIDDLEWARE = (
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "core_main_app.middleware.timezone.TimezoneMiddleware",
-    "core_main_app.middleware.Debug",
+    "core_main_app.middleware.Debug.CsrfDebugMiddleware",
 )
 
 TEMPLATES = [
