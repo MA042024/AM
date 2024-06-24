@@ -13,7 +13,7 @@ def gensel_recieve(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Method Not Allowed'}, status=405)
     
-    csrf_middleware = CsrfViewMiddleware()
+    #csrf_middleware = CsrfViewMiddleware()
     
     # Print CSRF token received in the request headers
     csrf_token = request.META.get('HTTP_X_CSRFTOKEN')
