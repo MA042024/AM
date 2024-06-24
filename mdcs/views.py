@@ -9,14 +9,18 @@ from django.middleware.csrf import CsrfViewMiddleware
 def gensel_view(request):
     return render(request, 'gensel.html')
 
-@csrf_protect
-@require_POST
 def gensel_recieve(request):
+    if request.method != 'POST':
+        return JsonResponse({'error': 'Method Not Allowed'}, status=405)
+    
     csrf_middleware = CsrfViewMiddleware()
     
     # Print CSRF token received in the request headers
     csrf_token = request.META.get('HTTP_X_CSRFTOKEN')
     print(f"CSRF token received: {csrf_token}")
+
+    if not csrf_middleware.process_view(request, None, gensel_recieve, (), {}):
+    return JsonResponse({'error': 'CSRF verification failed.'}, status=403)
     
     # Verify CSRF token
     if not csrf_middleware.process_view(request, None, gensel_recieve, (), {}):
