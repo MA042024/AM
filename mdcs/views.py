@@ -49,7 +49,7 @@ def gensel_recieve(request):
         }
         
         # Render the template with initial data
-        return render(request, '/gensel', context)
+        return render(request, 'gensel.html', context)
 
 
     except json.JSONDecodeError:
