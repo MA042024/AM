@@ -52,6 +52,19 @@ document.addEventListener('DOMContentLoaded', function() {
 });
     </script>
 
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            var data_id = '{{ data_id }}';
+            var data_content = '{{ data_content }}';
+
+            console.log('Data ID:', data_id);
+            console.log('Data Content:', data_content);
+
+            document.getElementById('xmlFile').value = data_content;
+           
+</script>
+
     <script>
 
         // Fucntion to activate sidebar dropdown
