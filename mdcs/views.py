@@ -3,12 +3,13 @@ import json
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_exempt
 from django.middleware.csrf import CsrfViewMiddleware
 
 def gensel_view(request):
     return render(request, 'gensel.html')
 
+@csrf_exempt
 def gensel_recieve(request):
     if request.method != 'POST':
         return JsonResponse({'error': 'Method Not Allowed'}, status=405)
@@ -16,15 +17,15 @@ def gensel_recieve(request):
     #csrf_middleware = CsrfViewMiddleware()
     
     # Print CSRF token received in the request headers
-    csrf_token = request.META.get('HTTP_X_CSRFTOKEN')
-    print(f"CSRF token received: {csrf_token}")
+    #csrf_token = request.META.get('HTTP_X_CSRFTOKEN')
+    #print(f"CSRF token received: {csrf_token}")
 
-    if not csrf_middleware.process_view(request, None, gensel_recieve, (), {}):
-        return JsonResponse({'error': 'CSRF verification failed.'}, status=403)
+    #if not csrf_middleware.process_view(request, None, gensel_recieve, (), {}):
+    #    return JsonResponse({'error': 'CSRF verification failed.'}, status=403)
     
     # Verify CSRF token
-    if not csrf_middleware.process_view(request, None, gensel_recieve, (), {}):
-        return JsonResponse({'error': 'CSRF verification failed.'}, status=403)
+    #if not csrf_middleware.process_view(request, None, gensel_recieve, (), {}):
+    #    return JsonResponse({'error': 'CSRF verification failed.'}, status=403)
     
     # Proceed with processing the request
     try:
