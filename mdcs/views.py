@@ -41,8 +41,17 @@ def gensel_recieve(request):
         
         # Process the received data
         
-        return JsonResponse({'message': 'Data received successfully', 'data_id': data_id, 'data_content': data_content})
-    
+        #return JsonResponse({'message': 'Data received successfully', 'data_id': data_id, 'data_content': data_content})
+
+        context = {
+            'data_id': data_id,
+            'data_content': data_content,
+        }
+        
+        # Render the template with initial data
+        return render(request, '/gensel', context)
+
+
     except json.JSONDecodeError:
         return JsonResponse({'error': 'Invalid JSON data'}, status=400)
     
