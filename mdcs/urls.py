@@ -31,7 +31,7 @@ urlpatterns = [
     re_path(r"^", include("core_main_app.urls")),
     re_path(r"^home/", include("mdcs_home.urls")),
     re_path(r"^gensel$", views.gensel_view, name='gensel'),
-    re_path(r"^gvload$", views.gensel_recieve, name='gvload'),
+    #re_path(r"^gvload$", views.gensel_recieve, name='gvload'),
     re_path(r"^", include("core_website_app.urls")),
     re_path(r"^curate/", include("core_curate_app.urls")),
     re_path(r"^composer/", include("core_composer_app.urls")),
