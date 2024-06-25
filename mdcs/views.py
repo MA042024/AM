@@ -43,13 +43,12 @@ def gensel_recieve(request):
         
         #return JsonResponse({'message': 'Data received successfully', 'data_id': data_id, 'data_content': data_content})
 
-        context = {
-            'data_id': data_id,
-            'data_content': data_content,
-        }
+        # Store the data in the session
+        request.session['data_id'] = data_id
+        request.session['data_content'] = data_content
         
-        # Render the template with initial data
-        return render(request, 'gensel.html', context)
+        # Redirect to gensel_view
+        return redirect('gensel_show')
 
 
     except json.JSONDecodeError:
@@ -57,3 +56,15 @@ def gensel_recieve(request):
     
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+
+
+def gensel_show(request):
+    data_id = request.session.get('data_id')
+    data_content = request.session.get('data_content')
+    
+    context = {
+        'data_id': data_id,
+        'data_content': data_content,
+    }
+    
+    return render(request, 'gensel.html', context)
