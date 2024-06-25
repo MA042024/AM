@@ -61,6 +61,8 @@ def gensel_recieve(request):
 def gensel_show(request):
     data_id = request.session.get('data_id')
     data_content = request.session.get('data_content')
+
+    print(f"I got: {data_id}")
     
     context = {
         'data_id': data_id,
