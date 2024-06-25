@@ -48,7 +48,7 @@ def gensel_recieve(request):
         request.session['data_content'] = data_content
         
         # Redirect to gensel_view
-        return redirect('gensel_show')
+        return redirect('genshow')
 
 
     except json.JSONDecodeError:
