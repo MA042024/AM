@@ -84,13 +84,16 @@ document.addEventListener('DOMContentLoaded', function() {
             console.warn('Element with ID "fileName" not found.');
         }
 
+        // Trigger a change event on the file input to update its state
+        var event = new Event('change');
+        xmlFileElement.dispatchEvent(event);
+
         // Optionally, clear localStorage items if no longer needed
         localStorage.removeItem('data_content');
     } else {
         console.warn('data_content is not available in localStorage.');
     }
 });
-
 
 </script>
 
