@@ -60,15 +60,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (data_id && data_content) {
         console.log('Data ID:', data_id);
-        console.log('Data Content:', JSON.parse(data_content));
+        console.log('Data Content:', data_content);
 
-        // Optionally, clear localStorage items if no longer needed
-        localStorage.removeItem('data_id');
-        localStorage.removeItem('data_content');
+        // Create a Blob from the data_content
+        var blob = new Blob([data_content], { type: 'text/xml' });
 
-        // Example: Set value of xmlFileElement with data_content
+        // Create a File object
+        var file = new File([blob], 'filename.xml', { type: 'text/xml' });
+
+        // Get the file input element by its ID
         var xmlFileElement = document.getElementById('xmlFile');
-        xmlFileElement.value = JSON.parse(data_content); // Assuming data_content is a string
+
+        // Assign the File object to the file input
+        xmlFileElement.files = [file];
 
         // Update the text content of <span id="fileName"> to "Loaded"
         var fileNameSpan = document.getElementById('fileName');
@@ -77,10 +81,15 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             console.warn('Element with ID "fileName" not found.');
         }
+
+        // Optionally, clear localStorage items if no longer needed
+        localStorage.removeItem('data_id');
+        localStorage.removeItem('data_content');
     } else {
         console.warn('data_id or data_content is not available.');
     }
 });
+
 </script>
 
     <script>
