@@ -53,28 +53,34 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var data_id = '{{ data_id }}';
-        // var data_content = '{{ data_content }}'; // Remove this line
-        
-        console.log('Data ID:', data_id);
-        
-        var xmlFileElement = document.getElementById('xmlFile');
+document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve data_id and data_content from localStorage
+    var data_id = localStorage.getItem('data_id');
+    var data_content = localStorage.getItem('data_content');
 
-        // Check if data_id is available
-        if (data_id !== '') {
-            // Retrieve data_content from localStorage
-            var data_content = localStorage.getItem('data_content');
-            if (data_content) {
-                data_content = JSON.parse(data_content);
-                xmlFileElement.value = data_content;
-            } else {
-                console.warn('Failed to retrieve data_content from localStorage.');
-            }
+    if (data_id && data_content) {
+        console.log('Data ID:', data_id);
+        console.log('Data Content:', JSON.parse(data_content));
+
+        // Optionally, clear localStorage items if no longer needed
+        localStorage.removeItem('data_id');
+        localStorage.removeItem('data_content');
+
+        // Example: Set value of xmlFileElement with data_content
+        var xmlFileElement = document.getElementById('xmlFile');
+        xmlFileElement.value = JSON.parse(data_content); // Assuming data_content is a string
+
+        // Update the text content of <span id="fileName"> to "Loaded"
+        var fileNameSpan = document.getElementById('fileName');
+        if (fileNameSpan) {
+            fileNameSpan.innerHTML = '<b>Loaded</b>';
         } else {
-            console.warn('data_id is not available.');
+            console.warn('Element with ID "fileName" not found.');
         }
-    });
+    } else {
+        console.warn('data_id or data_content is not available.');
+    }
+});
 </script>
 
     <script>
