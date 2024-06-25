@@ -53,21 +53,27 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 
 <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function() {
+        var data_id = '{{ data_id }}';
+        // var data_content = '{{ data_content }}'; // Remove this line
+        
+        console.log('Data ID:', data_id);
+        
+        var xmlFileElement = document.getElementById('xmlFile');
 
-            var data_id = '{{ data_id }}';
-            var data_content = '{{ data_content }}';
-
-            console.log('Data ID:', data_id);
-            //console.log('Data Content:', data_content);
-           
-           var xmlFileElement = document.getElementById('xmlFile');
-   
-          if (data_id !== '' && data_content !== '') {
-              xmlFileElement.value = data_content;
-         } else {
-              console.warn('Neither data_id nor data_content is available.');
-           }
+        // Check if data_id is available
+        if (data_id !== '') {
+            // Retrieve data_content from localStorage
+            var data_content = localStorage.getItem('data_content');
+            if (data_content) {
+                data_content = JSON.parse(data_content);
+                xmlFileElement.value = data_content;
+            } else {
+                console.warn('Failed to retrieve data_content from localStorage.');
+            }
+        } else {
+            console.warn('data_id is not available.');
+        }
     });
 </script>
 
