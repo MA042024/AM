@@ -10,54 +10,6 @@ def gensel_view(request):
     return render(request, 'gensel.html')
 
 @csrf_exempt
-def gensel_recieve(request):
-    if request.method != 'POST':
-        return JsonResponse({'error': 'Method Not Allowed'}, status=405)
-    
-    #csrf_middleware = CsrfViewMiddleware()
-    
-    # Print CSRF token received in the request headers
-    #csrf_token = request.META.get('HTTP_X_CSRFTOKEN')
-    #print(f"CSRF token received: {csrf_token}")
-
-    #if not csrf_middleware.process_view(request, None, gensel_recieve, (), {}):
-    #    return JsonResponse({'error': 'CSRF verification failed.'}, status=403)
-    
-    # Verify CSRF token
-    #if not csrf_middleware.process_view(request, None, gensel_recieve, (), {}):
-    #    return JsonResponse({'error': 'CSRF verification failed.'}, status=403)
-    
-    # Proceed with processing the request
-    try:
-        data = json.loads(request.body.decode('utf-8'))
-        data_id = data.get('data_id')
-        data_content = data.get('data_content')
-        
-        print(f"data_id in gensel_recieve: {data_id}")
-        print(f"data_content in gensel_recieve: {data_content}")
-        
-        if not data_id or not data_content:
-            return JsonResponse({'error': 'Invalid data'}, status=400)
-        
-        # Process the received data
-        
-        #return JsonResponse({'message': 'Data received successfully', 'data_id': data_id, 'data_content': data_content})
-
-        # Store the data in the session
-        request.session['data_id'] = data_id
-        request.session['data_content'] = data_content
-        
-        # Redirect to gensel_view
-        return redirect('genshow')
-
-
-    except json.JSONDecodeError:
-        return JsonResponse({'error': 'Invalid JSON data'}, status=400)
-    
-    except Exception as e:
-        return JsonResponse({'error': str(e)}, status=500)
-
-
 def gensel_show(request):
     data_id = request.session.get('data_id')
     data_content = request.session.get('data_content')
