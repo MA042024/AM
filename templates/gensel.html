@@ -59,11 +59,16 @@ document.addEventListener('DOMContentLoaded', function() {
             var data_content = '{{ data_content }}';
 
             console.log('Data ID:', data_id);
-            console.log('Data Content:', data_content);
-
-            document.getElementById('xmlFile').value = data_content;
-           });
+            //console.log('Data Content:', data_content);
            
+           var xmlFileElement = document.getElementById('xmlFile');
+   
+          if (data_id !== '' && data_content !== '') {
+              xmlFileElement.value = data_content;
+         } else {
+              console.warn('Neither data_id nor data_content is available.');
+           }
+    });
 </script>
 
     <script>
