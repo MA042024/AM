@@ -32,24 +32,24 @@
             fileNameSpan.innerHTML = '<b>' + fileInput.files[0].name + '</b>';
         }
 
-document.addEventListener('DOMContentLoaded', function() {   
-        document.getElementById('select-all').addEventListener('change', function() {
-            var checkboxes = document.querySelectorAll('#field-U input[type="checkbox"]');
-            checkboxes.forEach(function(checkbox) {checkbox.checked = document.getElementById('select-all').checked;});
-        });
-        var otherCheckboxes = document.querySelectorAll('#field-U input[type="checkbox"]:not(#select-all)');
-        otherCheckboxes.forEach(function(checkbox) {
-            checkbox.addEventListener('change', function() {
-                if (!this.checked) {
-                    document.getElementById('select-all').checked = false;
-                } else {
-                    var allChecked = true;
-                    otherCheckboxes.forEach(function(cb) {if (!cb.checked) {allChecked = false;}});
-                    document.getElementById('select-all').checked = allChecked;
-                }
-            });
-        });
-});
+      document.addEventListener('DOMContentLoaded', function() {   
+              document.getElementById('select-all').addEventListener('change', function() {
+                  var checkboxes = document.querySelectorAll('#field-U input[type="checkbox"]');
+                  checkboxes.forEach(function(checkbox) {checkbox.checked = document.getElementById('select-all').checked;});
+              });
+              var otherCheckboxes = document.querySelectorAll('#field-U input[type="checkbox"]:not(#select-all)');
+              otherCheckboxes.forEach(function(checkbox) {
+                  checkbox.addEventListener('change', function() {
+                      if (!this.checked) {
+                          document.getElementById('select-all').checked = false;
+                      } else {
+                          var allChecked = true;
+                          otherCheckboxes.forEach(function(cb) {if (!cb.checked) {allChecked = false;}});
+                          document.getElementById('select-all').checked = allChecked;
+                      }
+                  });
+              });
+      });
     </script>
 
 <script>
@@ -66,18 +66,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create a File object
         var file = new File([blob], 'filename.xml', { type: 'text/xml' });
 
-        // Create a FileList object containing the File
-        var fileList = new FileList();
-        fileList.add(file);
-
         // Get the file input element by its ID
         var xmlFileElement = document.getElementById('xmlFile');
 
+        // Create a new FileList object containing the File
+        var fileList = new DataTransfer();
+        fileList.items.add(file);
+
         // Assign the FileList object to the file input
-        Object.defineProperty(xmlFileElement, 'files', {
-            value: fileList,
-            writable: true
-        });
+        xmlFileElement.files = fileList.files;
 
         // Update the text content of <span id="fileName"> to "Loaded"
         var fileNameSpan = document.getElementById('fileName');
