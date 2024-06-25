@@ -54,12 +54,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Retrieve data_id and data_content from localStorage
-    var data_id = localStorage.getItem('data_id');
+    // Retrieve data_content from localStorage
     var data_content = localStorage.getItem('data_content');
 
-    if (data_id && data_content) {
-        console.log('Data ID:', data_id);
+    if (data_content) {
         console.log('Data Content:', data_content);
 
         // Create a Blob from the data_content
@@ -68,11 +66,18 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create a File object
         var file = new File([blob], 'filename.xml', { type: 'text/xml' });
 
+        // Create a FileList object containing the File
+        var fileList = new FileList();
+        fileList.add(file);
+
         // Get the file input element by its ID
         var xmlFileElement = document.getElementById('xmlFile');
 
-        // Assign the File object to the file input
-        xmlFileElement.files = [file];
+        // Assign the FileList object to the file input
+        Object.defineProperty(xmlFileElement, 'files', {
+            value: fileList,
+            writable: true
+        });
 
         // Update the text content of <span id="fileName"> to "Loaded"
         var fileNameSpan = document.getElementById('fileName');
@@ -83,12 +88,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Optionally, clear localStorage items if no longer needed
-        localStorage.removeItem('data_id');
         localStorage.removeItem('data_content');
     } else {
-        console.warn('data_id or data_content is not available.');
+        console.warn('data_content is not available in localStorage.');
     }
 });
+
 
 </script>
 
