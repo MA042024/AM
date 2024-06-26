@@ -1825,6 +1825,7 @@
                     localStorage.removeItem('data_content');
                     localStorage.removeItem('data_id');
                     localStorage.removeItem('data_title');
+                    document.getElementById('linkfileName').innerHTML = `<b>Choose Record</b>`;
                 } else {
                     console.error('No XML file selected.');
                     EntryError(`Please select a record to upload`,`xmlFile`);
