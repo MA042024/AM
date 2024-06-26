@@ -53,48 +53,22 @@
     </script>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Retrieve data_content from localStorage
-    var data_content = localStorage.getItem('data_content');
+             document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve data_content from localStorage
+            var data_content = localStorage.getItem('data_content');
 
-    if (data_content) {
-        console.log('Data Content:', data_content);
+            if (data_content) {
+                console.log('Data Content:', data_content);
+                
+                var xmlFileElement = document.getElementById('linkfileName');
 
-        // Create a Blob from the data_content
-        var blob = new Blob([data_content], { type: 'text/xml' });
+                // Change the text content to "Loaded"
+                xmlFileElement.innerHTML = "<b>Loaded</b>";
 
-        // Create a File object
-        var file = new File([blob], 'filename.xml', { type: 'text/xml' });
-
-        // Get the file input element by its ID
-        var xmlFileElement = document.getElementById('xmlFile');
-
-        // Create a new FileList object containing the File
-        var fileList = new DataTransfer();
-        fileList.items.add(file);
-
-        // Assign the FileList object to the file input
-        xmlFileElement.files = fileList.files;
-
-        // Update the text content of <span id="fileName"> to "Loaded"
-        var fileNameSpan = document.getElementById('fileName');
-        if (fileNameSpan) {
-            fileNameSpan.innerHTML = '<b>Loaded</b>';
-        } else {
-            console.warn('Element with ID "fileName" not found.');
-        }
-
-        // Trigger a change event on the file input to update its state
-        var event = new Event('change');
-        xmlFileElement.dispatchEvent(event);
-
-        // Optionally, clear localStorage items if no longer needed
-        localStorage.removeItem('data_content');
-    } else {
-        console.warn('data_content is not available in localStorage.');
-    }
-});
-
+                // Optionally, clear localStorage items if no longer needed
+                localStorage.removeItem('data_content');
+            }
+        });
 </script>
 
     <script>
