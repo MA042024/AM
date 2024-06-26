@@ -1817,8 +1817,10 @@
                     return false;}
             } else if (uploadType === 'UL') {
                var dt_content = localStorage.getItem('data_content');
+               console.log(dt_content);
                 if (dt_content) {
                     const xmlDoc = new DOMParser().parseFromString(dt_content, 'text/xml');
+                   console.log(xmlDoc);
                     processXML(xmlDoc);
                      localStorage.removeItem('data_content');
                 } else {
