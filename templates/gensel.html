@@ -841,9 +841,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (behvr === "G"){
                 if (document.getElementById("myForm").reportValidity()) {generateXML();}
-            } else if (behvr === "U"){
-                uploadXML();
-            } else{console.log(`Undefined value for behvr: '${behvr}'. Only 'G' and 'U' are allowed.`)}
+            } else if (behvr === "UL"){
+                uploadXML("UL");
+            } else if (behvr === "UD"){
+                    uploadXML("UD");
+            } else{console.log(`Undefined value for behvr: '${behvr}'. Only 'G', 'UL' and 'UD' are allowed.`)}
         }
 
         function generateXML() {
@@ -1830,20 +1832,39 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <script>
 
-        function uploadXML() {
-            const fileInput = document.getElementById('xmlFile');
-            const file = fileInput.files[0];
+        function uploadXML(uploadType) {
 
-            var CheckedElement= document.querySelectorAll('#field-U input[type="checkbox"]:not(#select-all)')
-            var CheckedElementsID = [];
-            CheckedElement.forEach(function(checkbox) {if (checkbox.checked) {CheckedElementsID.push(checkbox.id);}});
-            //console.log(CheckedElementsID);
+            if (uploadType === 'UD') {
+                // UD option: Use file upload
+                const fileInput = document.getElementById('xmlFile');
+                const file = fileInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const xmlDoc = new DOMParser().parseFromString(e.target.result, 'text/xml');
+                        processXML(xmlDoc); // Example function to process XML
+                    };
+                    reader.readAsText(file);
+                } else {
+                    console.error('No XML file selected.');
+                    EntryError(`Please select a record to upload`,`xmlFile`);
+                    return false;}
+            } else if (uploadType === 'UL') {
+                    const xmlDoc = new DOMParser().parseFromString(data_content, 'text/xml');
+                    processXML(xmlDoc); // Example function to process XML
+                } else {
+                    console.error('No XML file selected.');
+                    EntryError(`Please select a record to upload`,`xmlFile`);
+                    return false;
+                }
 
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                const xmlDoc = new DOMParser().parseFromString(e.target.result, 'text/xml');
+            function processXML(xmlDoc) {
 
+                var CheckedElement= document.querySelectorAll('#field-U input[type="checkbox"]:not(#select-all)')
+                var CheckedElementsID = [];
+                CheckedElement.forEach(function(checkbox) {if (checkbox.checked) {CheckedElementsID.push(checkbox.id);}});
+                //console.log(CheckedElementsID);
+               
                 //////////////////////////
                 ////////////////////////// 
 
@@ -2348,13 +2369,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 console.log('XML file successfully parsed and form fields populated.');
                 };
-                reader.readAsText(file);
-            } else {
-                console.error('No XML file selected.');
-                EntryError(`Please select a record to upload`,`xmlFile`);
-                return false;
-            }
         }
+        
 
         function populateFieldIfExists(xmlDoc, fieldId, xmlElementName) {
             const xmlElement = xmlDoc.querySelector(xmlElementName);
@@ -3027,6 +3043,41 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </script>
 
+ <script>
+
+        document.addEventListener("DOMContentLoaded", function() {
+            function LoadSectionSource() {
+                var databaseRadio = document.getElementById('Upl-database');
+                var externalRadio = document.getElementById('Upl-external');
+                var databaseUpload = document.getElementById('databaseUpload');
+                var externalUpload = document.getElementById('externalUpload');
+                var buttonUL = document.getElementById('ButtonUL');
+                var buttonUD = document.getElementById('ButtonUD');
+
+                databaseRadio.addEventListener('change', function() {
+                    if (databaseRadio.checked) {
+                        databaseUpload.style.display = 'block';
+                        externalUpload.style.display = 'none';
+                        buttonUL.style.display = 'block';
+                        buttonUD.style.display = 'none';
+                    }
+                });
+
+                externalRadio.addEventListener('change', function() {
+                    if (externalRadio.checked) {
+                        databaseUpload.style.display = 'none';
+                        externalUpload.style.display = 'block';
+                        buttonUL.style.display = 'none';
+                        buttonUD.style.display = 'block';
+                    }
+                });
+            }
+
+            LoadSectionSource();
+        });
+
+    </script>
+
 {% endblock %}
 
 {% block body %}
@@ -3077,10 +3128,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <form id="xmlForm">
         
-        <div class="wrapper">
-            <div class="file-upload">
-                <input type="file" id="xmlFile" accept=".xml" onchange="updateFileName()">
-                <span id="fileName"><b>Choose XML file</b></span>
+        <fieldset class="upload-choice">
+            <legend class="specific-legend">Uploading Source</legend>
+            <div class="upload-radio">
+                <label><input type="radio" id="Upl-database" name="uploadselection" checked> Database</label>
+                <label><input type="radio" id="Upl-external" name="uploadselection"> External Device</label>
+            </div>
+        </fieldset>
+
+        <div id="databaseUpload">
+            <div class="wrapper" >
+                <div class="link-upload" >
+                    <a href="/link" id="xmlFileLink" class="link-upload-ref"><span id="linkfileName"><b>Choose Record</b></span></a>
+                </div>
+            </div>
+        </div>
+
+        <div id="externalUpload" style="display:none;">
+            <div class="wrapper" >
+                <div class="file-upload" >
+                    <input type="file" id="xmlFile" accept=".xml" onchange="updateFileName()">
+                    <span id="fileName"><b>Choose Record</b></span>
+                </div>
             </div>
         </div>
 
@@ -3096,7 +3165,8 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </fieldset>
 
-        <button type="button" class="main-button" id="SelectButton" onclick="OpenTabs('U')">Upload XML</button>
+        <button type="button" class="main-button" id="ButtonUL" onclick="OpenTabs('UL')">Load</button>
+        <button type="button" class="main-button" id="ButtonUD" style="display:none;" onclick="OpenTabs('UD')">Load</button>
 
     </form>
 
