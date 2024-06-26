@@ -1818,6 +1818,11 @@
             } else if (uploadType === 'UL') {
                var dt_content = localStorage.getItem('data_content');
                console.log(dt_content);
+               dt_content = dt_content.trim(); // Trim whitespace
+                if (dt_content.startsWith('"') && dt_content.endsWith('"')) {
+                    dt_content = dt_content.slice(1, -1); // Remove leading and trailing quotes
+                }
+               console.log(dt_content);
                 if (dt_content) {
                     const xmlDoc = new DOMParser().parseFromString(dt_content, 'text/xml');
                    console.log(xmlDoc);
