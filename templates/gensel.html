@@ -1801,14 +1801,13 @@
         function uploadXML(uploadType) {
 
             if (uploadType === 'UD') {
-                // UD option: Use file upload
                 const fileInput = document.getElementById('xmlFile');
                 const file = fileInput.files[0];
                 if (file) {
                     const reader = new FileReader();
                     reader.onload = function(e) {
                         const xmlDoc = new DOMParser().parseFromString(e.target.result, 'text/xml');
-                        processXML(xmlDoc); // Example function to process XML
+                        processXML(xmlDoc);
                     };
                     reader.readAsText(file);
                 } else {
@@ -1817,14 +1816,10 @@
                     return false;}
             } else if (uploadType === 'UL') {
                var dt_content = localStorage.getItem('data_content');
-               console.log(dt_content);
                 if (dt_content) {
-                   dt_content = dt_content.trim(); // Trim whitespace
-                   if (dt_content.startsWith('"') && dt_content.endsWith('"')) {
-                       dt_content = dt_content.slice(1, -1);
-                   }
+                   dt_content = dt_content.trim();
+                   if (dt_content.startsWith('"') && dt_content.endsWith('"')) {dt_content = dt_content.slice(1, -1);}
                     const xmlDoc = new DOMParser().parseFromString(dt_content, 'text/xml');
-                   console.log(xmlDoc);
                     processXML(xmlDoc);
                      localStorage.removeItem('data_content');
                      localStorage.removeItem('data_id');
