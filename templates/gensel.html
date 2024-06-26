@@ -53,20 +53,12 @@
     </script>
 
 <script>
-             document.addEventListener('DOMContentLoaded', function() {
-            // Retrieve data_content from localStorage
+         document.addEventListener('DOMContentLoaded', function() {
             var data_content = localStorage.getItem('data_content');
-
             if (data_content) {
                 console.log('Data Content:', data_content);
-                
                 var xmlFileElement = document.getElementById('linkfileName');
-
-                // Change the text content to "Loaded"
                 xmlFileElement.innerHTML = "<b>Loaded</b>";
-
-                // Optionally, clear localStorage items if no longer needed
-                localStorage.removeItem('data_content');
             }
         });
 </script>
@@ -1824,13 +1816,17 @@
                     EntryError(`Please select a record to upload`,`xmlFile`);
                     return false;}
             } else if (uploadType === 'UL') {
-                    const xmlDoc = new DOMParser().parseFromString(data_content, 'text/xml');
-                    processXML(xmlDoc); // Example function to process XML
+               var dt_content = localStorage.getItem('data_content');
+                if (dt_content) {
+                    const xmlDoc = new DOMParser().parseFromString(dt_content, 'text/xml');
+                    processXML(xmlDoc);
+                     localStorage.removeItem('data_content');
                 } else {
                     console.error('No XML file selected.');
                     EntryError(`Please select a record to upload`,`xmlFile`);
                     return false;
                 }
+            }
 
             function processXML(xmlDoc) {
 
