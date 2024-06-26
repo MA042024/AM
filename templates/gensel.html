@@ -1822,8 +1822,9 @@
                    if (dt_content.startsWith('"') && dt_content.endsWith('"')) {dt_content = dt_content.slice(1, -1);}
                     const xmlDoc = new DOMParser().parseFromString(dt_content, 'text/xml');
                     processXML(xmlDoc);
-                     localStorage.removeItem('data_content');
-                     localStorage.removeItem('data_id');
+                    localStorage.removeItem('data_content');
+                    localStorage.removeItem('data_id');
+                    localStorage.removeItem('data_title');
                 } else {
                     console.error('No XML file selected.');
                     EntryError(`Please select a record to upload`,`xmlFile`);
