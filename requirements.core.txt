@@ -1,5 +1,4 @@
 core_composer_app==2.9.*
-core_dashboard_common_app==2.9.*
 core_dashboard_app==2.9.*
 core_explore_example_app==2.9.*
 core_explore_federated_search_app==2.9.*
@@ -19,3 +18,4 @@ core_linked_records_app==2.9.*
 -e git+https://github.com/MA042024/core_curate_app.git#egg=core_curate_app
 -e git+https://github.com/MA042024/core_explore_keyword_app.git#egg=core_explore_keyword_app
 -e git+https://github.com/MA042024/core_main_app.git#egg=core_main_app[mongodb]
+-e git+https://github.com/MA042024/core_dashboard_common_app.git#egg=core_dashboard_common_app
