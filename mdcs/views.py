@@ -8,3 +8,14 @@ from django.middleware.csrf import CsrfViewMiddleware
 
 def gensel_view(request):
     return render(request, 'gensel.html')
+
+def gensel_edit(request):
+    data_id = request.session.get('data_id')
+    data_content = request.session.get('data_content')
+    data_title = request.session.get('data_title')
+
+    return render(request, 'gensel.html', {
+        'data_id': data_id,
+        'data_content': data_content,
+        'data_title': data_title,
+    })
