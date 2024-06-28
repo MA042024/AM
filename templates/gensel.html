@@ -1831,11 +1831,11 @@
                 }
             }  else if (uploadType === 'E') {
                 if (dataContent) {
-                   dataContent = new XMLSerializer().serializeToString(dataContent);
                     dataContent = dataContent.trim();
                     console.log(dataContent);
                     const xmlDoc = new DOMParser().parseFromString(dataContent, 'text/xml');
                     console.log(xmlDoc);
+                   console.log(xmlDoc.firstChild);
                     processXML(xmlDoc); 
                 } else {
                     console.error('No XML file selected.');
@@ -1859,6 +1859,7 @@
                     // Populate DataSource element
                     const dataSource = xmlDoc.querySelector('DataSource');
                     document.getElementById('measurementCampaignID').value = dataSource.querySelector('MeasurementCampaignID').textContent;
+                   console.log(document.getElementById('measurementCampaignID').value);
                     document.getElementById('organizationName').value = dataSource.querySelector('OrganizationName').textContent;
                     document.getElementById('locationCountry').value = dataSource.querySelector('LocationCountry').textContent;
                     document.getElementById('year').value = dataSource.querySelector('Year').textContent;
