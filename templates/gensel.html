@@ -808,11 +808,9 @@
 
             if (behvr === "G"){
                 if (document.getElementById("myForm").reportValidity()) {generateXML();}
-            } else if (behvr === "UL"){
-                uploadXML("UL");
-            } else if (behvr === "UD"){
-                    uploadXML("UD");
-            } else{console.log(`Undefined value for behvr: '${behvr}'. Only 'G', 'UL' and 'UD' are allowed.`)}
+            } else if (behvr === "UL" || behvr === "UD" || behvr === "E"){
+                uploadXML(behvr);
+            } else{console.log(`Undefined value for behvr: '${behvr}'. Only 'G', 'UL', 'UD' and 'E' are allowed.`)}
         }
 
         function generateXML() {
