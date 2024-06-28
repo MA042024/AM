@@ -1831,7 +1831,9 @@
                 }
             }  else if (uploadType === 'E') {
                 if (dataContent) {
+                     dataContent = dataContent.trim();
                     const xmlDoc = new DOMParser().parseFromString(dataContent, 'text/xml');
+                   console.log(xmlDoc);
                     processXML(xmlDoc); 
                 } else {
                     console.error('No XML file selected.');
