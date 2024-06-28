@@ -1834,9 +1834,11 @@
                     dataContent = dataContent.trim();
                     console.log(dataContent);
                     const xmlDoc = new DOMParser().parseFromString(dataContent, 'text/xml');
-                    console.log(xmlDoc);
-                   console.log(xmlDoc.firstChild);
-                    processXML(xmlDoc); 
+                    console.log("First Entire XML Document:",xmlDoc);
+                    console.log("First XMLDoc child:",xmlDoc.firstChild);
+                    processXML(xmlDoc);
+                    console.log("Entire XML Document:", new XMLSerializer().serializeToString(xmlDoc));
+                    console.log("Root Element and its Content:", new XMLSerializer().serializeToString(xmlDoc.firstChild));
                 } else {
                     console.error('No XML file selected.');
                     EntryError(`Please select a record to edit`,`xmlFile`);
