@@ -10,16 +10,22 @@ def gensel_view(request):
     return render(request, 'gensel.html')
 
 def gensel_edit(request):
-    data_id = request.session.get('data_id')
-    data_content = request.session.get('data_content')
-    data_title = request.session.get('data_title')
-
-    print(f"IDDD:{data_id}")
-    print(f"Contt:{data_content}")
-    print(f"Titttt:{data_title}")
     
-    return render(request, 'gensel.html', {
-        'data_id': data_id,
-        'data_content': data_content,
-        'data_title': data_title,
-    })
+    edit_record_data = request.session.get('edit_record_data')
+
+    if not edit_record_data:
+        return HttpResponseBadRequest("No data found in session.")
+    
+    print(f"IDDD:{ edit_record_data.get('data_id')}")
+    print(f"Contt:{edit_record_data.get('data_content')}")
+    print(f"Titttt:{edit_record_data.get('data_title')}")
+    
+
+    context = {
+        'data_id': edit_record_data.get('data_id'),
+        'data_content': edit_record_data.get('data_content'),
+        'data_title': edit_record_data.get('data_title'),
+        'edit': edit_record_data.get('edit'),
+    }
+
+    return render(request, 'gensel.html', context)
