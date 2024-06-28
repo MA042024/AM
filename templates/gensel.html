@@ -1836,7 +1836,8 @@
                     const xmlDoc = new DOMParser().parseFromString(dataContent, 'text/xml');
                     console.log("First Entire XML Document:",xmlDoc);
                     console.log("First XMLDoc child:",xmlDoc.firstChild);
-                    processXML(xmlDoc);
+                     xmlDoc1=xmlDoc.firstChild;
+                    processXML(xmlDoc1);
                     console.log("Entire XML Document:", new XMLSerializer().serializeToString(xmlDoc));
                     console.log("Root Element and its Content:", new XMLSerializer().serializeToString(xmlDoc.firstChild));
                 } else {
