@@ -1829,6 +1829,15 @@
                     EntryError(`Please select a record to upload`,`xmlFile`);
                     return false;
                 }
+            }  else if (uploadType === 'E') {
+                if (dataContent) {
+                    const xmlDoc = new DOMParser().parseFromString(dataContent, 'text/xml');
+                    processXML(xmlDoc); 
+                } else {
+                    console.error('No XML file selected.');
+                    EntryError(`Please select a record to edit`,`xmlFile`);
+                    return false;
+                }
             }
 
             function processXML(xmlDoc) {
@@ -3062,6 +3071,8 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Data ID:', dataId);
             console.log('Data Title:', dataTitle);
             console.log('Content:', dataContent);
+
+           OpenTabs("E");
         }
 
     </script>
