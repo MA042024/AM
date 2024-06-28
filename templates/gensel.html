@@ -52,6 +52,22 @@
       });
     </script>
 
+    <script type="text/javascript">
+    
+        const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
+        if (edit === 'True') {
+          const dataId = "{{ data_id }}";
+          const dataTitle = "{{ data_title }}";
+          const dataContent = "{{ data_content|escapejs }}";
+
+          console.log('Data ID:', dataId);
+          console.log('Data Title:', dataTitle);
+          console.log('Content:', dataContent);
+          OpenTabs("E");
+        }
+
+    </script>
+
    <script>
          document.addEventListener('DOMContentLoaded', function() {
             var data_content = localStorage.getItem('data_content');
@@ -1830,13 +1846,6 @@
                     return false;
                 }
             }  else if (uploadType === 'E') {
-                const dataId = "{{ data_id }}";
-                const dataTitle = "{{ data_title }}";
-                const dataContent = "{{ data_content|escapejs }}";
-
-                console.log('Data ID:', dataId);
-                console.log('Data Title:', dataTitle);
-                console.log('Content:', dataContent);
                 if (dataContent) {
                     const xmlDoc = new DOMParser().parseFromString(dataContent, 'text/xml');
                     processXML(xmlDoc); 
