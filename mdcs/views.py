@@ -14,6 +14,10 @@ def gensel_edit(request):
     data_content = request.session.get('data_content')
     data_title = request.session.get('data_title')
 
+    print(f"IDDD:{data_id}")
+    print(f"Contt:{data_content}")
+    print(f"Titttt:{data_title}")
+    
     return render(request, 'gensel.html', {
         'data_id': data_id,
         'data_content': data_content,
