@@ -1836,10 +1836,10 @@
                     const xmlDoc = new DOMParser().parseFromString(dataContent, 'text/xml');
                     console.log("First Entire XML Document:",xmlDoc);
                     console.log("First XMLDoc child:",xmlDoc.firstChild);
-                    xmlDoc = new XMLSerializer().serializeToString(xmlDoc)
-                      xmlDoc = xmlDoc.trim();
-                   const xmlDoc = new DOMParser().parseFromString(xmlDoc, 'text/xml');
-                    processXML(xmlDoc);
+                  xmlDoc1 = new XMLSerializer().serializeToString(xmlDoc)
+                  xmlDoc1 = xmlDoc1.trim();
+                   xmlDoc1 = new DOMParser().parseFromString(xmlDoc1, 'text/xml');
+                    processXML(xmlDoc1);
                     /*console.log("Entire XML Document:", new XMLSerializer().serializeToString(xmlDoc));
                     console.log("Root Element and its Content:", new XMLSerializer().serializeToString(xmlDoc.firstChild));*/
                 } else {
