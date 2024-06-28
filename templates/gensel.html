@@ -3061,7 +3061,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (editss === 'True') {
             const dataId = "{{ data_id }}";
             const dataTitle = "{{ data_title }}";
-            const dataContent = "{{ data_content }}";
+            const dataContent = "{{ data_content|escapejs }}";
 
             console.log('Data ID:', dataId);
             console.log('Data Title:', dataTitle);
