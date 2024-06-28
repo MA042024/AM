@@ -3053,12 +3053,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </script>
 
-   <script type="text/javascript">
-   
-        // Example of using the parameters
-         const editss = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
-         console.log(editss);
-        if (editss === 'True') {
+    <script type="text/javascript">
+    
+        const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
+        if (edit === 'True') {
             const dataId = "{{ data_id }}";
             const dataTitle = "{{ data_title }}";
             const dataContent = "{{ data_content|escapejs }}";
@@ -3066,10 +3064,9 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Data ID:', dataId);
             console.log('Data Title:', dataTitle);
             console.log('Content:', dataContent);
-            console.log('Edit Mode:', editss);
         }
-   
-   </script>
+
+    </script>
 
 {% endblock %}
 
