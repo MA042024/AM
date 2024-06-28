@@ -1831,6 +1831,7 @@
                 }
             }  else if (uploadType === 'E') {
                 if (dataContent) {
+                   dataContent = new XMLSerializer().serializeToString(dataContent);
                     dataContent = dataContent.trim();
                     console.log(dataContent);
                     const xmlDoc = new DOMParser().parseFromString(dataContent, 'text/xml');
