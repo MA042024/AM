@@ -3065,14 +3065,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
         const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
         if (edit === 'True') {
-          var dataId = "{{ data_id }}";
-          var dataTitle = "{{ data_title }}";
-          var dataContent = "{{ data_content|escapejs }}";
+          var dataId = "{{ data_id_edit }}";
+          var dataTitle = "{{ data_title_edit }}";
+          var dataContent = "{{ data_content_edit|escapejs }}";
 
           console.log('Data ID:', dataId);
           console.log('Data Title:', dataTitle);
           console.log('Content:', dataContent);
-          /*OpenTabs("E");*/
+          OpenTabs("E");
         }
 
     </script>
