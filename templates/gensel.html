@@ -3057,6 +3057,7 @@ document.addEventListener('DOMContentLoaded', function() {
    
         // Example of using the parameters
         const edit = "{{ edit|default_if_none:'false' }}";
+         console.log(edit);
         if (edit === 'True') {
             const dataId = "{{ data_id }}";
             const dataTitle = "{{ data_title }}";
