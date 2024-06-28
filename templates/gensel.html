@@ -1836,10 +1836,12 @@
                     const xmlDoc = new DOMParser().parseFromString(dataContent, 'text/xml');
                     console.log("First Entire XML Document:",xmlDoc);
                     console.log("First XMLDoc child:",xmlDoc.firstChild);
-                     xmlDoc1=xmlDoc.firstChild;
-                    processXML(xmlDoc1);
-                    console.log("Entire XML Document:", new XMLSerializer().serializeToString(xmlDoc));
-                    console.log("Root Element and its Content:", new XMLSerializer().serializeToString(xmlDoc.firstChild));
+                    xmlDoc = new XMLSerializer().serializeToString(xmlDoc)
+                      xmlDoc = xmlDoc.trim();
+                   const xmlDoc = new DOMParser().parseFromString(xmlDoc, 'text/xml');
+                    processXML(xmlDoc);
+                    /*console.log("Entire XML Document:", new XMLSerializer().serializeToString(xmlDoc));
+                    console.log("Root Element and its Content:", new XMLSerializer().serializeToString(xmlDoc.firstChild));*/
                 } else {
                     console.error('No XML file selected.');
                     EntryError(`Please select a record to edit`,`xmlFile`);
@@ -1862,7 +1864,7 @@
                     // Populate DataSource element
                     const dataSource = xmlDoc.querySelector('DataSource');
                     document.getElementById('measurementCampaignID').value = dataSource.querySelector('MeasurementCampaignID').textContent;
-                   console.log(document.getElementById('measurementCampaignID').value);
+                   console.log("Source:",document.getElementById('measurementCampaignID').value);
                     document.getElementById('organizationName').value = dataSource.querySelector('OrganizationName').textContent;
                     document.getElementById('locationCountry').value = dataSource.querySelector('LocationCountry').textContent;
                     document.getElementById('year').value = dataSource.querySelector('Year').textContent;
