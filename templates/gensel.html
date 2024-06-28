@@ -1830,6 +1830,13 @@
                     return false;
                 }
             }  else if (uploadType === 'E') {
+                const dataId = "{{ data_id }}";
+                const dataTitle = "{{ data_title }}";
+                const dataContent = "{{ data_content|escapejs }}";
+
+                console.log('Data ID:', dataId);
+                console.log('Data Title:', dataTitle);
+                console.log('Content:', dataContent);
                 if (dataContent) {
                     const xmlDoc = new DOMParser().parseFromString(dataContent, 'text/xml');
                     processXML(xmlDoc); 
@@ -3064,14 +3071,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
         const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
         if (edit === 'True') {
-            const dataId = "{{ data_id_edit }}";
-            const dataTitle = "{{ data_title_edit }}";
-            const dataContent = "{{ data_content_edit|escapejs }}";
-
-            console.log('Data ID:', dataId);
-            console.log('Data Title:', dataTitle);
-            console.log('Content:', dataContent);
-
            OpenTabs("E");
         }
 
