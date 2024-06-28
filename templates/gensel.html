@@ -52,21 +52,6 @@
       });
     </script>
 
-    <script type="text/javascript">
-    
-        const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
-        if (edit === 'True') {
-          const dataId = "{{ data_id }}";
-          const dataTitle = "{{ data_title }}";
-          const dataContent = "{{ data_content|escapejs }}";
-
-          console.log('Data ID:', dataId);
-          console.log('Data Title:', dataTitle);
-          console.log('Content:', dataContent);
-        }
-
-    </script>
-
    <script>
          document.addEventListener('DOMContentLoaded', function() {
             var data_content = localStorage.getItem('data_content');
@@ -3075,10 +3060,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </script>
 
-    <script >
-       
+           
+    <script type="text/javascript">
+    
+        const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
         if (edit === 'True') {
-           OpenTabs("E");
+          const dataId = "{{ data_id }}";
+          const dataTitle = "{{ data_title }}";
+          const dataContent = "{{ data_content|escapejs }}";
+
+          console.log('Data ID:', dataId);
+          console.log('Data Title:', dataTitle);
+          console.log('Content:', dataContent);
+          OpenTabs("E");
         }
 
     </script>
