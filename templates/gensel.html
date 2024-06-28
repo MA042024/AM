@@ -1831,17 +1831,10 @@
                 }
             }  else if (uploadType === 'E') {
                 if (dataContent) {
-                    dataContent = dataContent.trim();
-                    console.log(dataContent);
                     const xmlDoc = new DOMParser().parseFromString(dataContent, 'text/xml');
                     console.log("First Entire XML Document:",xmlDoc);
                     console.log("First XMLDoc child:",xmlDoc.firstChild);
-                  xmlDoc1 = new XMLSerializer().serializeToString(xmlDoc)
-                  xmlDoc1 = xmlDoc1.trim();
-                   xmlDoc1 = new DOMParser().parseFromString(xmlDoc1, 'text/xml');
-                    processXML(xmlDoc1);
-                    /*console.log("Entire XML Document:", new XMLSerializer().serializeToString(xmlDoc));
-                    console.log("Root Element and its Content:", new XMLSerializer().serializeToString(xmlDoc.firstChild));*/
+                    processXML(xmlDoc);
                 } else {
                     console.error('No XML file selected.');
                     EntryError(`Please select a record to edit`,`xmlFile`);
@@ -3077,7 +3070,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (edit === 'True') {
           var dataId = "{{ data_id_edit }}";
           var dataTitle = "{{ data_title_edit }}";
-          var dataContent = "{{ data_content_edit|escapejs }}";
+          var dataContent = "{{ data_content_edit /*|escapejs*/ }}";
 
           console.log('Data ID:', dataId);
           console.log('Data Title:', dataTitle);
