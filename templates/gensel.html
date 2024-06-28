@@ -3056,9 +3056,9 @@ document.addEventListener('DOMContentLoaded', function() {
    <script type="text/javascript">
    
         // Example of using the parameters
-         const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
+         const editss = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
          console.log(edit);
-        if (edit === 'True') {
+        if (editss === 'True') {
             const dataId = "{{ data_id }}";
             const dataTitle = "{{ data_title }}";
             const dataContent = "{{ data_content }}";
@@ -3066,7 +3066,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Data ID:', dataId);
             console.log('Data Title:', dataTitle);
             console.log('Content:', dataContent);
-            console.log('Edit Mode:', edit);
+            console.log('Edit Mode:', editss);
         }
    
    </script>
