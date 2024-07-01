@@ -3072,9 +3072,17 @@ document.addEventListener('DOMContentLoaded', function() {
             dataTitle = "{{ data_title_edit }}";
             dataContent = "{{ data_content_edit |escapejs }}";
             document.getElementById('xmlForm').style.display = 'none';
+            ShowEditMsg();
             OpenTabs("E");
          }
       });
+
+      function ShowEditMsg() {
+         var EditpopupMessage = document.getElementById('EditpopMessage');
+         var editpop = document.getElementById('Editpopup');
+         EditpopupMessage.innerText = `Editing Record: "${dataTitle}".`;    
+         editpop.style.display = 'block';
+      }
       
     </script>
 
@@ -5224,6 +5232,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <div class="Gen-popup" id="Genpopup">
         <span id="GenpopMessage"></span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="Gen-popup-close" onclick="ClosePopMsg()">&#128473;</span>&nbsp;&nbsp;
+    </div>
+
+    <div class="Edit-popup" id="Editpopup">
+        <span id="EditpopMessage"></span>
     </div>
 
 {% endblock %}
