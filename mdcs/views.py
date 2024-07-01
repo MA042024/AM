@@ -20,17 +20,11 @@ def gensel_edit(request):
     print(f"Contt:{edit_record_data.get('data_content')}")
     print(f"Titttt:{edit_record_data.get('data_title')}")
     
-
-    #context = {
-    #    'data_id_edit': edit_record_data.get('data_id'),
-    #    'data_content_edit': edit_record_data.get('data_content'),
-    #    'data_title_edit': edit_record_data.get('data_title'),
-    #    'edit': edit_record_data.get('edit'),
-    #}
-
     context = {
-        'edit_record_data': edit_record_data
+        'data_id_edit': edit_record_data.get('data_id'),
+        'data_content_edit': edit_record_data.get('data_content'),
+        'data_title_edit': edit_record_data.get('data_title'),
+        'edit': edit_record_data.get('edit'),
     }
     
-
     return render(request, 'gensel.html', context)
