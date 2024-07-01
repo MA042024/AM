@@ -3064,7 +3064,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
            
    <script>
-    
+     document.addEventListener('DOMContentLoaded', (event) => {
         const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
         if (edit === 'True') {
           document.getElementById('ButtonE').style.display = 'block';
@@ -3079,7 +3079,7 @@ document.addEventListener('DOMContentLoaded', function() {
            document.getElementById('ButtonE').click();
            document.getElementById('ButtonE').style.display = 'none';
         }
-      
+     });
     </script>
 
 {% endblock %}
@@ -3171,7 +3171,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         <button type="button" class="main-button" id="ButtonUL" onclick="OpenTabs('UL')">Load</button>
         <button type="button" class="main-button" id="ButtonUD" style="display:none;" onclick="OpenTabs('UD')">Load</button>
-         <button type="button" class="main-button" id="ButtonE" style="display:none;" onclick="OpenTabs('E')">Load</button>
+        <button type="button" class="main-button" id="ButtonE" style="display:none;" onclick="OpenTabs('E')">Load</button>
 
     </form>
 
