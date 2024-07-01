@@ -3065,15 +3065,11 @@ document.addEventListener('DOMContentLoaded', function() {
            
    <script>
     
-        /*const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';*/
-        
-        const editRecordData = {{ edit_record_data|safe }};
-        const edit = editRecordData.edit !== undefined ? editRecordData.edit : false;
-      
+        const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
         if (edit === 'True') {
-          var dataId = "{{ edit_record_data.data_id }}";
-          var dataTitle = "{{ edit_record_data.data_title }}";
-          var dataContent = "{{ edit_record_data.data_content |escapejs }}";
+          var dataId = "{{ data_id_edit }}";
+          var dataTitle = "{{ data_title_edit }}";
+          var dataContent = "{{ data_content_edit |escapejs }}";
 
           console.log('Data ID:', dataId);
           console.log('Data Title:', dataTitle);
