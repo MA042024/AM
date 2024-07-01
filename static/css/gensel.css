@@ -989,3 +989,16 @@ button:hover {
   border-color: #f5c6cb;
   color: #721c24;
 }
+
+.Edit-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #42BD8E;
+  border: 1px solid #359771;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: none;
+  color: #fff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
