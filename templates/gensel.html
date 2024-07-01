@@ -1855,7 +1855,6 @@
                     // Populate DataSource element
                     const dataSource = xmlDoc.querySelector('DataSource');
                     document.getElementById('measurementCampaignID').value = dataSource.querySelector('MeasurementCampaignID').textContent;
-                   console.log("Source:",document.getElementById('measurementCampaignID').value);
                     document.getElementById('organizationName').value = dataSource.querySelector('OrganizationName').textContent;
                     document.getElementById('locationCountry').value = dataSource.querySelector('LocationCountry').textContent;
                     document.getElementById('year').value = dataSource.querySelector('Year').textContent;
