@@ -3064,33 +3064,18 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
            
    <script>
-
-        // Embedding JSON data directly into JavaScript
-        const editRecordData = JSON.parse('{{ edit_record_data|escapejs }}');
-
-        // Check if edit is true
-        if (editRecordData.edit) {
-            const dataId = editRecordData.data_id;
-            const dataTitle = editRecordData.data_title;
-            const dataContent = editRecordData.data_content;
-
-            console.log('Data ID:', dataId);
-            console.log('Data Title:', dataTitle);
-            console.log('Content:', dataContent);
-            OpenTabs("E");
-        }
     
-    /*    const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
+        const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
         if (edit === 'True') {
-          var dataId = "{{ data_id_edit }}";
-          var dataTitle = "{{ data_title_edit }}";
-          var dataContent = "{{ data_content_edit }}"; *//*|escapejs*/
+          var dataId = "{{ edit_record_data.data_id }}";
+          var dataTitle = "{{ edit_record_data.data_title }}";
+          var dataContent = "{{ edit_record_data.data_content |escapejs }}";
 
-        /*  console.log('Data ID:', dataId);
+          console.log('Data ID:', dataId);
           console.log('Data Title:', dataTitle);
           console.log('Content:', dataContent);
           OpenTabs("E");
-        }*/
+        }
     </script>
 
 {% endblock %}
