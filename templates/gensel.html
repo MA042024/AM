@@ -1832,8 +1832,6 @@
             }  else if (uploadType === 'E') {
                 if (dataContent) {
                     const xmlDoc = new DOMParser().parseFromString(dataContent, 'text/xml');
-                    console.log("First Entire XML Document:",xmlDoc);
-                    console.log("First XMLDoc child:",xmlDoc.firstChild);
                     processXML(xmlDoc);
                 } else {
                     console.error('No XML file selected.');
@@ -3064,21 +3062,21 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
            
    <script>
+      
       let dataId;
       let dataTitle;
       let dataContent;
-     document.addEventListener('DOMContentLoaded', (event) => {
-        const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
-        if (edit === 'True') {
-          dataId = "{{ data_id_edit }}";
-          dataTitle = "{{ data_title_edit }}";
-          dataContent = "{{ data_content_edit |escapejs }}";
-          console.log('Data ID:', dataId);
-          console.log('Data Title:', dataTitle);
-          console.log('Content:', dataContent);
-          OpenTabs("E");
-        }
-     });
+      document.addEventListener('DOMContentLoaded', (event) => {
+         const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
+         if (edit === 'True') {
+            dataId = "{{ data_id_edit }}";
+            dataTitle = "{{ data_title_edit }}";
+            dataContent = "{{ data_content_edit |escapejs }}";
+            document.getElementById('xmlForm').style.display = 'none';
+            OpenTabs("E");
+         }
+      });
+      
     </script>
 
 {% endblock %}
