@@ -3067,7 +3067,7 @@ document.addEventListener('DOMContentLoaded', function() {
      document.addEventListener('DOMContentLoaded', (event) => {
         const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
         if (edit === 'True') {
-          document.getElementById('ButtonE').style.display = 'block';
+          /*document.getElementById('ButtonE').style.display = 'block';*/
           var dataId = "{{ data_id_edit }}";
           var dataTitle = "{{ data_title_edit }}";
           /*var dataContent = "{{ data_content_edit |escapejs }}";*/
@@ -3075,9 +3075,9 @@ document.addEventListener('DOMContentLoaded', function() {
           console.log('Data ID:', dataId);
           console.log('Data Title:', dataTitle);
           console.log('Content:', dataContent);
-          /*OpenTabs("E");*/
-           document.getElementById('ButtonE').click();
-           document.getElementById('ButtonE').style.display = 'none';
+          OpenTabs("E");
+          /* document.getElementById('ButtonE').click();*/
+          /* document.getElementById('ButtonE').style.display = 'none';*/
         }
      });
     </script>
