@@ -1546,6 +1546,7 @@
             CloseEmptyFields();
            
             if(gentype==='S'){
+            // Save Record to Database
             $.ajax({
                 url: '/curate/save-xml-data/',
                 type: 'POST',
@@ -1575,14 +1576,41 @@
                }
             });
             console.log(csrftoken);
-            }
-
-           
-            //window.location.href = "/explore/keyword/";
-            //window.location.href = "/dashboard/records";
-
-            // Download as XML file
-            if(gentype==='D'){
+            } else if(gentype==='ES'){
+            // Edit Record in Database
+            $.ajax({
+                url: '/curate/save-xml-data/',
+                type: 'POST',
+                  headers: {
+                       'X-CSRFToken': csrftoken
+                   },
+                data: {
+                    xml_data: FinalXmlString,
+                    title: namerecord,
+                    template_id: 1,
+                    data_id: dataId,
+                },
+                success: function(response) {
+                    console.log('Data updated successfully:', response);
+                     ShowPopMsg('S');
+                },
+               error: function(xhr, status, error) {
+                 if (xhr.status === 403) {
+                     var errorMessage = 'Insufficient permissions';
+                     if (xhr.responseJSON && xhr.responseJSON.error) {
+                         errorMessage = xhr.responseJSON.error;
+                     }
+                     console.error('Error:', errorMessage);
+                     ShowPopMsg('Den');
+                 } else {
+                     console.error('Error saving data:', error);
+                 }
+               }
+            });
+            console.log(csrftoken);
+            window.location.href = "/explore/keyword/";
+            } else if(gentype==='D'){
+            // Download Record as XML
             ShowPopMsg('D');
             let blob = new Blob([FinalXmlString], { type: "text/xml" });
             let link = document.createElement("a");
