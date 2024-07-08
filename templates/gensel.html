@@ -806,11 +806,11 @@
             innerbuttonslvl4.forEach(btns => {btns.style.display = 'none';});
             innerbuttonslvl4adtv.forEach(btns => {btns.style.display = 'none';});
 
-            if (behvr === "G"){
+            if (behvr === "G" || behvr === "ES"){
                 if (document.getElementById("myForm").reportValidity()) {generateXML();}
             } else if (behvr === "UL" || behvr === "UD" || behvr === "E"){
                 uploadXML(behvr);
-            } else{console.log(`Undefined value for behvr: '${behvr}'. Only 'G', 'UL', 'UD' and 'E' are allowed.`)}
+            } else{console.log(`Undefined value for behvr: '${behvr}'. Only 'G', 'UL', 'UD', 'E' and 'ES' are allowed.`)}
         }
 
         function generateXML() {
@@ -3072,6 +3072,8 @@ document.addEventListener('DOMContentLoaded', function() {
             dataTitle = "{{ data_title_edit }}";
             dataContent = "{{ data_content_edit |escapejs }}";
             document.getElementById('xmlForm').style.display = 'none';
+            document.getElementById('EditButton').style.display = 'block';
+            document.getElementById('GenerateButton').style.display = 'none';
             ShowEditMsg();
             OpenTabs("E");
          }
@@ -5211,8 +5213,10 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </fieldset>
 
-        <button type="button" class="main-button" class="fa fa-download" id="GenerateButton" onclick="OpenTabs('G')">Generate XML</button>
+        <button type="button" class="main-button" class="fa fa-download" id="GenerateButton" onclick="OpenTabs('G')">Save</button>
 
+       <button type="button" class="main-button" class="fa fa-download" style="display:none" id="EditButton" onclick="OpenTabs('ES')">Update</button>
+       
     </form>
 
     <div id="modal" class="modal">
