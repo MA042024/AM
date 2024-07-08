@@ -1544,7 +1544,8 @@
             
             //  Close Empty fields 
             CloseEmptyFields();
-           
+
+         
             if(gentype==='S'){
             // Save Record to Database
             $.ajax({
@@ -1592,7 +1593,6 @@
                 },
                 success: function(response) {
                     console.log('Data updated successfully:', response);
-                     ShowPopMsg('S');
                 },
                error: function(xhr, status, error) {
                  if (xhr.status === 403) {
@@ -1601,13 +1601,11 @@
                          errorMessage = xhr.responseJSON.error;
                      }
                      console.error('Error:', errorMessage);
-                     ShowPopMsg('Den');
                  } else {
                      console.error('Error saving data:', error);
                  }
                }
             });
-            console.log(csrftoken);
             window.location.href = "/explore/keyword/";
             } else if(gentype==='D'){
             // Download Record as XML
