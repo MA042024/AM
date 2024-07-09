@@ -16,10 +16,6 @@ def gensel_edit(request):
     if not edit_record_data:
         return HttpResponseBadRequest("No data found in session.")
     
-    print(f"IDDD:{ edit_record_data.get('data_id')}")
-    print(f"Contt:{edit_record_data.get('data_content')}")
-    print(f"Titttt:{edit_record_data.get('data_title')}")
-    
     context = {
         'data_id_edit': edit_record_data.get('data_id'),
         'data_content_edit': edit_record_data.get('data_content'),
