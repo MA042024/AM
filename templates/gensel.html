@@ -55,10 +55,8 @@
    <script>
          document.addEventListener('DOMContentLoaded', function() {
             var data_content = JSON.parse(sessionStorage.getItem('data_content'));
-            var data_title = sessionStorage.getItem('data_title');
-                        
+            var data_title = sessionStorage.getItem('data_title');            
             if (data_content) {
-                console.log('Data Content:', data_content);
                 var xmlFileElement = document.getElementById('linkfileName');
                 xmlFileElement.innerHTML = `<b>${data_title}</b>`;
             }
