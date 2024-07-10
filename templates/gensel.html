@@ -53,9 +53,12 @@
     </script>
 
    <script>
+         let data_content
+         let data_title
          document.addEventListener('DOMContentLoaded', function() {
-            var data_content = JSON.parse(sessionStorage.getItem('data_content'));
-            var data_title = sessionStorage.getItem('data_title');            
+            data_content = JSON.parse(sessionStorage.getItem('data_content'));
+            data_title = sessionStorage.getItem('data_title');
+            sessionStorage.clear();
             if (data_content) {
                 var xmlFileElement = document.getElementById('linkfileName');
                 xmlFileElement.innerHTML = `<b>${data_title}</b>`;
@@ -1844,13 +1847,14 @@
                     EntryError(`Please select a record to upload`,`xmlFile`);
                     return false;}
             } else if (uploadType === 'UL') {
-               var dt_content = JSON.parse(sessionStorage.getItem('data_content'));
+               /*var dt_content = JSON.parse(sessionStorage.getItem('data_content'));*/
+               var dt_content = data_content;
                 if (dt_content) {
                    dt_content = dt_content.trim();
                    if (dt_content.startsWith('"') && dt_content.endsWith('"')) {dt_content = dt_content.slice(1, -1);}
                     const xmlDoc = new DOMParser().parseFromString(dt_content, 'text/xml');
                     processXML(xmlDoc);
-                    sessionStorage.clear();
+                    /*sessionStorage.clear();*/
                     document.getElementById('linkfileName').innerHTML = `<b>Choose Record</b>`;
                 } else {
                     console.error('No XML file selected.');
