@@ -23,6 +23,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'core_main_app/common/js/csrf.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
 <script>
  
         // Functions concerning upload
@@ -50,9 +52,11 @@
                   });
               });
       });
+   
     </script>
 
    <script>
+      
          let dt_content;
          let data_title;
          document.addEventListener('DOMContentLoaded', function() {
@@ -64,6 +68,7 @@
                 xmlFileElement.innerHTML = `<b>${data_title}</b>`;
             }
         });
+      
    </script>
 
     <script>
@@ -140,8 +145,6 @@
                                     innerTablvl2minus.style.visibility ='visible';     
                                 }
                             }
-
-
                             setTimeout(function() {
                                 targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
                             }, 50);
@@ -150,8 +153,6 @@
                 );
             });
         });
-
-
 
     </script>
 
