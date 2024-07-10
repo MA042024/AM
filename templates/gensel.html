@@ -54,11 +54,8 @@
 
    <script>
          document.addEventListener('DOMContentLoaded', function() {
-            /*var data_content = localStorage.getItem('data_content');
-            var data_title = localStorage.getItem('data_title');*/
-            
-            var data_content = JSON.parse(sessionStorage.getItem('data_content'));
-            var data_title = sessionStorage.getItem('data_title');
+            var data_content = localStorage.getItem('data_content');
+            var data_title = localStorage.getItem('data_title');
             
             if (data_content) {
                 console.log('Data Content:', data_content);
@@ -1849,15 +1846,14 @@
                     EntryError(`Please select a record to upload`,`xmlFile`);
                     return false;}
             } else if (uploadType === 'UL') {
-               /*var dt_content = localStorage.getItem('data_content');*/
-               var dt_content = JSON.parse(sessionStorage.getItem('data_content'));
+               var dt_content = localStorage.getItem('data_content');
                 if (dt_content) {
                    dt_content = dt_content.trim();
                    if (dt_content.startsWith('"') && dt_content.endsWith('"')) {dt_content = dt_content.slice(1, -1);}
                     const xmlDoc = new DOMParser().parseFromString(dt_content, 'text/xml');
                     processXML(xmlDoc);
-                    /*localStorage.removeItem('data_content');
-                    localStorage.removeItem('data_title');*/
+                    localStorage.removeItem('data_content');
+                    localStorage.removeItem('data_title');
                     document.getElementById('linkfileName').innerHTML = `<b>Choose Record</b>`;
                 } else {
                     console.error('No XML file selected.');
