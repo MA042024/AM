@@ -1808,7 +1808,7 @@
 /* Basic */
 
 	body {
-		background: #f7f7f7 url("../img/bg01.png");
+		background: linear-gradient(to right, #E7F7F6, #CFEEED); /*#f7f7f7 url("../img/bg01.png");*/
 	}
 
 		body.is-loading * {
