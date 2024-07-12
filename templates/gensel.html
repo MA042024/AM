@@ -39,6 +39,8 @@
         shadowRoot.innerHTML = `
             <style>
                {% load static %}
+                @import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css');
+                @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
                 {% if BOOTSTRAP_VERSION|first == '4' %}
                     @import url('https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css');
                 {% elif BOOTSTRAP_VERSION|first == '5' %}
@@ -56,8 +58,6 @@
                 @import url('{% static 'core_main_app/libs/jquery-ui/1.12.1/jquery-ui.css' %}');
                 @import url('{% static 'core_main_app/libs/jquery-ui/1.12.1/jquery-ui.structure.css' %}');
                 @import url('{% static 'core_main_app/libs/jquery-ui/1.12.1/jquery-ui.theme.css' %}');
-                @import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css');
-                @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
                 @import url('{% static 'core_main_app/common/css/word-wrap.css' %}');
                 @import url('{% static 'core_main_app/common/css/loading-spinner.css' %}');
                 @import url('{% static 'core_main_app/common/css/messages.css' %}');
