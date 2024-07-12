@@ -25,26 +25,28 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-        // Create shadow root
-        const menuContainer = document.getElementById('menu-container');
-        const shadowRoot = menuContainer.attachShadow({mode: 'open'});
+    // Create shadow root
+    const menuContainer = document.getElementById('menu-container');
+    const shadowRoot = menuContainer.attachShadow({mode: 'open'});
 
-        // Add the nav HTML and styles
-        shadowRoot.innerHTML = `
-            <style>
-                @import url('{% static 'css/main.css' %}');
-                @import url('{% static 'css/menu.css' %}');
-                @import url('{% static 'css/extra.css' %}');
-                @import url('{% static 'css/btn_custom.css' %}');
-            </style>
-            <div>
-                {% include 'theme/menu.html' %}
-            </div>
-            <script src="{% static 'js/util.js' %}"></script>
-            <script src="{% static 'js/main.js' %}"></script>
-            <script src="{% static 'js/btn_custom.js' %}"></script>
-            <script src="{% static 'core_main_app/common/js/debounce.js' %}"></script>
-        `;
+    // Add the nav HTML and styles
+    shadowRoot.innerHTML = `
+        <style>
+            @import url('{% static 'css/main.css' %}');
+            @import url('{% static 'css/menu.css' %}');
+            @import url('{% static 'css/extra.css' %}');
+            @import url('{% static 'css/btn_custom.css' %}');
+        </style>
+        <div>
+            {% verbatim %}
+            {% include 'theme/menu.html' %}
+            {% endverbatim %}
+        </div>
+        <script src="{% static 'js/util.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/btn_custom.js' %}"></script>
+        <script src="{% static 'core_main_app/common/js/debounce.js' %}"></script>
+    `;
     </script>
 
 
