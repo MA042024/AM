@@ -52,6 +52,7 @@
                 @import url('{% static 'core_main_app/libs/jquery-ui/1.12.1/jquery-ui.structure.css' %}');
                 @import url('{% static 'core_main_app/libs/jquery-ui/1.12.1/jquery-ui.theme.css' %}');
                 @import url('https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-light.min.css');
+                @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
                 @import url('{% static 'core_main_app/common/css/word-wrap.css' %}');
                 @import url('{% static 'core_main_app/common/css/loading-spinner.css' %}');
                 @import url('{% static 'core_main_app/common/css/messages.css' %}');
@@ -74,7 +75,10 @@
             "{% static 'js/util.js' %}",
             "{% static 'js/main.js' %}",
             "{% static 'js/btn_custom.js' %}",
-            "{% static 'core_main_app/common/js/debounce.js' %}"
+            "{% static 'core_main_app/common/js/debounce.js' %}",
+            "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js",
+           "https://cdn.jsdelivr.net/npm/chart.js",
+           {% static 'core_main_app/common/js/loading_spinner.js' %}"
         ];
        
         scripts.forEach(src => {
