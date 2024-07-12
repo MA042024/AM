@@ -38,6 +38,9 @@
                 @import url('{% static 'css/menu.css' %}');
                 @import url('{% static 'css/extra.css' %}');
                 @import url('{% static 'css/btn_custom.css' %}');
+                @import url('{% static 'core_main_app/common/css/table.css' %}');
+                @import url('{% static 'core_main_app/common/css/buttons.css' %}');
+                @import url('{% static 'core_main_app/common/css/fields.css' %}');
             </style>
             <div>
                 {% include 'theme/menu.html' %}
@@ -51,7 +54,7 @@
             "{% static 'js/btn_custom.js' %}",
             "{% static 'core_main_app/common/js/debounce.js' %}"
         ];
-
+{% include 'core_main_app/_render/common/base_js.html' %}
         scripts.forEach(src => {
             const script = document.createElement('script');
             script.src = src;
