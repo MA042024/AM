@@ -38,6 +38,7 @@
         // Add the nav HTML and styles
         shadowRoot.innerHTML = `
             <style>
+               {% load static %}
                 {% if BOOTSTRAP_VERSION|first == '4' %}
                     @import url('https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css');
                 {% elif BOOTSTRAP_VERSION|first == '5' %}
