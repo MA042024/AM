@@ -26,37 +26,39 @@
 
 
 <script>
-    // Create shadow root
-    const menuContainer = document.getElementById('menu-container');
-    const shadowRoot = menuContainer.attachShadow({mode: 'open'});
+    document.addEventListener("DOMContentLoaded", function() {
+        // Create shadow root
+        const menuContainer = document.getElementById('menu-container');
+        const shadowRoot = menuContainer.attachShadow({mode: 'open'});
 
-    // Add the nav HTML and styles
-    shadowRoot.innerHTML = `
-        <style>
-            @import url('{% static 'css/main.css' %}');
-            @import url('{% static 'css/menu.css' %}');
-            @import url('{% static 'css/extra.css' %}');
-            @import url('{% static 'css/btn_custom.css' %}');
-        </style>
-        <div>
-            {% include 'theme/menu.html' %}
-        </div>
-    `;
+        // Add the nav HTML and styles
+        shadowRoot.innerHTML = `
+            <style>
+                @import url('{% static 'css/main.css' %}');
+                @import url('{% static 'css/menu.css' %}');
+                @import url('{% static 'css/extra.css' %}');
+                @import url('{% static 'css/btn_custom.css' %}');
+            </style>
+            <div>
+                {% include 'theme/menu.html' %}
+            </div>
+        `;
 
-    // Load scripts separately
-    const scripts = [
-        "{% static 'js/util.js' %}",
-        "{% static 'js/main.js' %}",
-        "{% static 'js/btn_custom.js' %}",
-        "{% static 'core_main_app/common/js/debounce.js' %}"
-    ];
+        // Load scripts separately
+        const scripts = [
+            "{% static 'js/util.js' %}",
+            "{% static 'js/main.js' %}",
+            "{% static 'js/btn_custom.js' %}",
+            "{% static 'core_main_app/common/js/debounce.js' %}"
+        ];
 
-    scripts.forEach(src => {
-        const script = document.createElement('script');
-        script.src = src;
-        shadowRoot.appendChild(script);
+        scripts.forEach(src => {
+            const script = document.createElement('script');
+            script.src = src;
+            shadowRoot.appendChild(script);
+        });
     });
-    </script>
+</script>
 
 
 
