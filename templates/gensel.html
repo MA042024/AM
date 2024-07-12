@@ -73,36 +73,40 @@
             {% include 'theme/menu.html' %}
         `;
 
+        // Load jQuery
+        const jqueryScript = document.createElement('script');
+        jqueryScript.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js";
+        jqueryScript.onload = function() {
+            loadScripts();
+        };
+        shadowRoot.appendChild(jqueryScript);
 
-           const jqueryScript = document.createElement('script');
-          jqueryScript.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js";
-          jqueryScript.onload = function() {
-        // Load other scripts once jQuery is loaded
-        const scripts = [
-            "{% static 'js/util.js' %}",
-            "{% static 'js/main.js' %}",
-            "{% static 'js/btn_custom.js' %}",
-            "{% static 'core_main_app/common/js/debounce.js' %}",
-            "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js",
-           "https://cdn.jsdelivr.net/npm/chart.js",
-           "{% static 'core_main_app/common/js/loading_spinner.js' %}"
-        ];
-       
-        scripts.forEach(src => {
-            const script = document.createElement('script');
-            script.src = src;
-            shadowRoot.appendChild(script);
-        });
-    };
-   shadowRoot.appendChild(jqueryScript);
-const observer = new MutationObserver(() => {
-            if (typeof jQuery !== 'undefined') {
-                // Place any jQuery-dependent initialization code here
-                console.log("jQuery is loaded and available in the shadow DOM");
-            }
-        });
+        function loadScripts() {
+            const scripts = [
+                "{% static 'js/util.js' %}",
+                "{% static 'js/main.js' %}",
+                "{% static 'js/btn_custom.js' %}",
+                "{% static 'core_main_app/common/js/debounce.js' %}",
+                "https://cdn.jsdelivr.net/npm/chart.js",
+                "{% static 'core_main_app/common/js/loading_spinner.js' %}"
+            ];
 
-        observer.observe(shadowRoot, { childList: true, subtree: true });
+            let loadedScripts = 0;
+
+            // Load each script
+            scripts.forEach(src => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = function() {
+                    loadedScripts++;
+                    if (loadedScripts === scripts.length) {
+                        // All scripts are loaded
+                        // Now you can interact with your scripts or elements
+                    }
+                };
+                shadowRoot.appendChild(script);
+            });
+        }
     });
 </script>
 
