@@ -28,13 +28,12 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Create shadow root
-        const menuContainer = document.getElementById('menu-container');
+        const menuContainer = document.getElementById('nav');
         const shadowRoot = menuContainer.attachShadow({mode: 'open'});
 
         // Add the nav HTML and styles
         shadowRoot.innerHTML = `
             <style>
-                {% load static %}
                 {% if BOOTSTRAP_VERSION|first == '4' %}
                     @import url('https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css');
                 {% elif BOOTSTRAP_VERSION|first == '5' %}
@@ -3185,10 +3184,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 {% block body %}
 
-    <div id="page-wrapper">
-        <div id="menu-container"></div>
-    </div>
-
+   <nav id="nav"></nav>
     <div class="sidebar">
         <span class="side-title"> GV Form Beta</span>
         <ul>
