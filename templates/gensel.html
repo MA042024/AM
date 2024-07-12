@@ -28,7 +28,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Create shadow root
-        const menuContainer = document.getElementById('nav');
+        const menuContainer = document.getElementById('menu-container');
         const shadowRoot = menuContainer.attachShadow({mode: 'open'});
 
         // Add the nav HTML and styles
@@ -65,9 +65,7 @@
                 @import url('{% static 'core_main_app/common/css/buttons.css' %}');
                 @import url('{% static 'core_main_app/common/css/fields.css' %}');
             </style>
-            <div>
-                {% include 'theme/menu.html' %}
-            </div>
+            {% include 'theme/menu.html' %}
         `;
 
         // Load scripts separately
@@ -3188,7 +3186,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 {% block body %}
 
-   <nav id="nav"></nav>
+   <div id="menu-container"></div>
     <div class="sidebar">
         <span class="side-title"> GV Form Beta</span>
         <ul>
