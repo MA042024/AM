@@ -24,6 +24,7 @@
     <script src="{% static 'core_main_app/common/js/csrf.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+
 <script>
     // Create shadow root
     const menuContainer = document.getElementById('menu-container');
@@ -38,15 +39,23 @@
             @import url('{% static 'css/btn_custom.css' %}');
         </style>
         <div>
-            {% verbatim %}
             {% include 'theme/menu.html' %}
-            {% endverbatim %}
         </div>
-        <script src="{% static 'js/util.js' %}"></script>
-        <script src="{% static 'js/main.js' %}"></script>
-        <script src="{% static 'js/btn_custom.js' %}"></script>
-        <script src="{% static 'core_main_app/common/js/debounce.js' %}"></script>
     `;
+
+    // Load scripts separately
+    const scripts = [
+        "{% static 'js/util.js' %}",
+        "{% static 'js/main.js' %}",
+        "{% static 'js/btn_custom.js' %}",
+        "{% static 'core_main_app/common/js/debounce.js' %}"
+    ];
+
+    scripts.forEach(src => {
+        const script = document.createElement('script');
+        script.src = src;
+        shadowRoot.appendChild(script);
+    });
     </script>
 
 
