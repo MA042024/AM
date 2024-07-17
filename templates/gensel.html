@@ -6,7 +6,7 @@
 <!--                 @ AsphaltMine.org                -->
 <!------------------------------------------------------>
 <!------------------------------------------------------>
-<!--       Created by Mohammad Abbas - June 2024      -->
+<!--       Created by Mohammad Abbas - July 2024      -->
 <!--                   Beta version                   -->
 <!------------------------------------------------------>
 <!------------------------------------------------------>
@@ -3205,11 +3205,92 @@ document.addEventListener('DOMContentLoaded', function() {
       
     </script>
 
+    <script>
+
+        // Navigator dropdown Functionality
+        document.addEventListener("DOMContentLoaded", function() {
+            var dropdownToggle = document.querySelectorAll('.dropdown-toggle');
+
+            dropdownToggle.forEach(function(el) {
+                el.addEventListener('click', function(e) {
+                    var parent = this.parentElement;
+                    var dropdownMenu = parent.querySelector('.dropdown-menu');
+                    if (parent.classList.contains('open')) {
+                        parent.classList.remove('open');
+                        hideDropdownMenu(dropdownMenu);
+                    } else {
+                        closeAllDropdowns();
+                        parent.classList.add('open');
+                        showDropdownMenu(dropdownMenu);
+                    }
+                    e.preventDefault();
+                });
+            });
+            function hideDropdownMenu(menu) {
+                if (menu) {menu.style.display = 'none';}
+            }
+            function showDropdownMenu(menu) {
+                if (menu) {menu.style.display = 'block';}
+            }
+            function closeAllDropdowns() {
+                var dropdowns = document.querySelectorAll('.dropdown-nav');
+                dropdowns.forEach(function(dropdown) {
+                    dropdown.classList.remove('open');
+                    var menu = dropdown.querySelector('.dropdown-menu');
+                    hideDropdownMenu(menu);
+                });
+            }
+            document.addEventListener('click', function(e) {
+                var target = e.target;
+                if (!target.closest('.dropdown-nav')) {closeAllDropdowns();}
+            });
+        });
+
+    </script>
+
 {% endblock %}
 
 {% block body %}
 
    <div id="menu-container"></div>
+
+    <nav id="nav">
+        <ul class="horizontal-menu">
+            <li><a href="https://asphaltmine.org/" title="AsphaltMine"><b>AsphaltMine</b></a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/curate/">Data Curation</a></li>
+            <li class="dropdown-nav">
+                <a href="#" class="dropdown-toggle">Data Exploration</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/explore/keyword/">Search by Keyword</a></li>
+                    <li><a href="/explore/example/">Build a Custom Query</a></li>
+                </ul>
+            </li>
+            <li><a href="/gensel">GV Form</a></li>
+            <li class="dropdown-nav align-right">
+                <a href="#" class="dropdown-toggle"> Help</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/docs/api/"><i class="fas fa-cogs"></i> API Documentation</a></li>
+                    <li><a href="/contact/"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="/help/"><i class="fas fa-question-circle"></i> Help</a></li>
+                </ul>
+            </li>
+            <li class="dropdown-nav">
+                <a href="#" class="dropdown-toggle"><i class="fas fa-user-circle"></i> My Account</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/dashboard/workspaces"><i class="fas fa-folder-open"></i> My Workspaces</a></li>
+                    <li><a href="/dashboard/records"><i class="fas fa-file-alt"></i> My Records</a></li>
+                    <li><a href="/dashboard/forms"><i class="fas fa-file-alt"></i> My Forms</a></li>
+                    <li><a href="/dashboard/files"><i class="fas fa-file"></i> My Files</a></li>
+                    <li><a href="/dashboard/queries"><i class="fas fa-search"></i> My Queries</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/dashboard/my-profile"><i class="fas fa-user"></i> My Profile</a></li>
+                    <li><a href="{% url 'core_main_app_logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
     <div class="sidebar">
         <span class="side-title"> GV Form Beta</span>
         <ul>
@@ -3253,6 +3334,11 @@ document.addEventListener('DOMContentLoaded', function() {
             <li><a href="#OuterfieldD"><b>Notes</b></a></li>
         </ul>
     </div>
+
+    <div class="sidebar-right">
+        <span>----------- - To be Filled  - -----------<span>
+    </div>
+           
 
     <form id="xmlForm">
         
@@ -5337,6 +5423,17 @@ document.addEventListener('DOMContentLoaded', function() {
        
     </form>
 
+   <div id="footer">
+        <div class="footer-flex">
+            <div id="copyright">
+                <span>&copy; 2024 AsphaltMine</span>
+            </div>
+            <div id="footer-right">
+                <span>All rights reserved</span>
+            </div>
+        </div>
+    </div>
+           
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
