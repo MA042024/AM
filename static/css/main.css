@@ -2392,7 +2392,7 @@
 
 				#nav > ul > li > a:hover,
 				#nav > ul > li > div > a:hover {
-					background-color: #2c3e50;
+					background-color: #3CACA8; !important/*#2c3e50;*/
 				}
 
 				#nav > ul > li > ul {
@@ -2832,9 +2832,9 @@
                 }*/
 
 			#navPanel {
-				/*background-color: #1f1f1f;*/
+				background-color: #3f566d;
 				box-shadow: inset -1px 0 3px 0 rgba(0, 0, 0, 0.5);
-				background: linear-gradient(to right, #E7F7F6, #CFEEED);
+				/*background: linear-gradient(to right, #E7F7F6, #CFEEED);*/
 				/*background-image: -moz-linear-gradient(left, rgba(0,0,0,0) 75%, rgba(0,0,0,0.15)), url("../img/bg01.png");
 				background-image: -webkit-linear-gradient(left, rgba(0,0,0,0) 75%, rgba(0,0,0,0.15)), url("../img/bg01.png");
 				background-image: -ms-linear-gradient(left, rgba(0,0,0,0) 75%, rgba(0,0,0,0.15)), url("../img/bg01.png");
