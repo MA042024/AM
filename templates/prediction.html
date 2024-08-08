@@ -1,0 +1,92 @@
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                    ML External                   -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                 @ AsphaltMine.org                -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--       Created by Mohammad Abbas - June 2025      -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+{% load static %}
+
+
+{% block head %}
+    <title>Prediction | AsphaltMine</title>
+{% endblock %}
+{% block theme_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/Prediction.css' %}">
+    <link rel="stylesheet" href="{% static 'css/General/navigator.css' %}">
+    <link rel="stylesheet" href="{% static 'css/General/footer.css' %}">
+{% endblock %}
+{% block theme_js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'core_main_app/common/js/csrf.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
+    <script>
+        window.STATIC_URLS = {
+            MarStandard: "{% static 'Tests/Mar_Standard.png' %}"
+        };
+    </script>
+    <script src="{% static 'js/Prediction/core.js' %}" defer></script>
+    <script src="{% static 'js/Prediction/prediction-engine.js' %}" defer></script>
+    <script src="{% static 'js/Prediction/bc-modal.js' %}" defer></script>
+    <script src="{% static 'js/Prediction/Marshall-config.js' %}" defer></script>
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="background"></div>
+
+    {% include "General/navigator.html" %}
+    
+    <div class="tab-bar">
+        <button class="tab-btn active" data-tab="general">General</button>
+        <button class="tab-btn" data-tab="prediction">Performance Prediction</button>
+        <button class="tab-btn" data-tab="more">Mix Design</button>
+    </div>
+    
+    <main>
+        {% include "Prediction/general.html" %}
+        <section class="tab-content" id="tab-prediction">
+            {% include "Prediction/subbar.html" %}
+            {% include "Prediction/Rutting.html" %}
+            {% include "Prediction/Marshall.html" %}
+            {% include "Prediction/ITS.html" %}
+            {% include "Prediction/TSRST.html" %}
+            {% include "Prediction/Stiffness.html" %}
+        </section>
+        {% include "Prediction/mix_design.html" %}
+    </main>
+
+    {% include "Prediction/overlays.html" %}
+
+    {% include "General/footer.html" %}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
