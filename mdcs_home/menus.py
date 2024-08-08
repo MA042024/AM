@@ -37,23 +37,40 @@ from menu import Menu, MenuItem
 
 from core_main_app.utils.labels import get_form_label, get_data_label
 
+#Menu.add_item(
+#    "nodropdown",
+#    MenuItem("Home", reverse("core_main_app_homepage"), icon="home"),
+#)
+
+#Menu.add_item(
+#    "nodropdown", MenuItem(CURATE_MENU_NAME, reverse("core_curate_index"))
+#)
+
+Menu.add_item(
+    "nodropdown", MenuItem("Data Curation", reverse("gensel"))
+)
+
 Menu.add_item(
     "nodropdown",
-    MenuItem("Home", reverse("core_main_app_homepage"), icon="home"),
+    MenuItem("Database", reverse("core_explore_keyword_app_search")),
 )
 
 Menu.add_item(
-    "nodropdown", MenuItem(CURATE_MENU_NAME, reverse("core_curate_index"))
+    "nodropdown",MenuItem("My Data",reverse("core_dashboard_records")),
 )
 Menu.add_item(
-    "explorer",
-    MenuItem("Search by Keyword", reverse("core_explore_keyword_app_search")),
+    "nodropdown",MenuItem("Shared Workspaces", reverse("core_dashboard_workspaces")),
 )
 
 Menu.add_item(
-    "explorer",
-    MenuItem("Build a Custom Query", reverse("core_explore_example_index")),
+    "nodropdown",
+    MenuItem("Prediction", reverse("machine_learning_prediction")),
 )
+
+#Menu.add_item(
+#    "explorer",
+#    MenuItem("Build a Custom Query", reverse("core_explore_example_index")),
+#)
 
 Menu.add_item(
     "composer", MenuItem("Create New Template", reverse("core_composer_index"))
@@ -78,53 +95,52 @@ Menu.add_item(
 )
 
 Menu.items["dashboard"] = []
-Menu.add_item(
-    "dashboard",
-    MenuItem(
-        "My Workspaces",
-        reverse("core_dashboard_workspaces"),
-        icon="folder-open",
-    ),
-)
+#Menu.add_item(
+#    "dashboard",
+#    MenuItem(
+#        "My Workspaces",
+#        reverse("core_dashboard_workspaces"),
+#        icon="folder-open",
+#    ),
+#)
+
+#Menu.add_item(
+#    "dashboard",
+#    MenuItem(
+#        "My {0}s".format(get_data_label().title()),
+#        reverse("core_dashboard_records"),
+#        icon="file-alt",
+#    ),
+#)
+
+#Menu.add_item(
+#    "dashboard",
+#    MenuItem(
+#        "My {0}s".format(get_form_label().title()),
+#        reverse("core_dashboard_forms"),
+#        icon="file-alt",
+#    ),
+#)
 
 Menu.add_item(
     "dashboard",
-    MenuItem(
-        "My {0}s".format(get_data_label().title()),
-        reverse("core_dashboard_records"),
-        icon="file-alt",
-    ),
+    MenuItem("FileDrop", reverse("core_dashboard_files"), icon="file"),
 )
 
-Menu.add_item(
-    "dashboard",
-    MenuItem(
-        "My {0}s".format(get_form_label().title()),
-        reverse("core_dashboard_forms"),
-        icon="file-alt",
-    ),
-)
+#Menu.add_item(
+#    "dashboard",
+#    MenuItem("My Queries", reverse("core_dashboard_queries"), icon="search"),
+#)
 
-Menu.add_item(
-    "dashboard",
-    MenuItem("My Files", reverse("core_dashboard_files"), icon="file"),
-)
+#Menu.add_item(
+#    "help", MenuItem("API Documentation", reverse("swagger_view"), icon="cogs")
+#)
 
-Menu.add_item(
-    "dashboard",
-    MenuItem("My Queries", reverse("core_dashboard_queries"), icon="search"),
-)
+#Menu.add_item(
+#    "help",
+#    MenuItem("Contact", reverse("core_website_app_contact"), icon="envelope"),
+#)
 
-Menu.add_item(
-    "help", MenuItem("API Documentation", reverse("swagger_view"), icon="cogs")
-)
-
-Menu.add_item(
-    "help",
-    MenuItem("Contact", reverse("core_website_app_contact"), icon="envelope"),
-)
-
-Menu.add_item(
-    "help",
-    MenuItem("Help", reverse("core_website_app_help"), icon="question-circle"),
-)
+#Menu.add_item(
+#    "help",MenuItem("help", reverse("core_website_app_help")),
+#)
