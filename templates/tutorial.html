@@ -1,0 +1,109 @@
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                     Tutorial                     -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                 @ AsphaltMine.org                -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--      Created by Mohammad Abbas - August 2024     -->
+<!--                   Beta version                   -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--              © 2024  Mohammad Abbas              -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+{% load static %}
+
+{% block theme_css %}
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="stylesheet" href="{% static 'css/gensel.css' %}">
+{% endblock %}
+{% block theme_js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'core_main_app/common/js/csrf.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+   <script>
+
+        // Navigator dropdown Functionality
+        document.addEventListener("DOMContentLoaded", function() {
+            var dropdownToggle = document.querySelectorAll('.dropdown-toggle');
+            dropdownToggle.forEach(function(el) {
+                el.addEventListener('click', function(e) {
+                    var parent = this.parentElement;
+                    var dropdownMenu = parent.querySelector('.dropdown-menu');
+                    if (parent.classList.contains('open')) {
+                        parent.classList.remove('open');
+                        hideDropdownMenu(dropdownMenu);
+                    } else {
+                        closeAllDropdowns();
+                        parent.classList.add('open');
+                        showDropdownMenu(dropdownMenu);
+                    }
+                    e.preventDefault();
+                });
+            });
+            function hideDropdownMenu(menu) {
+                if (menu) {menu.style.display = 'none';}
+            }
+            function showDropdownMenu(menu) {
+                if (menu) {menu.style.display = 'block';}
+            }
+            function closeAllDropdowns() {
+                var dropdowns = document.querySelectorAll('.dropdown-nav');
+                dropdowns.forEach(function(dropdown) {
+                    dropdown.classList.remove('open');
+                    var menu = dropdown.querySelector('.dropdown-menu');
+                    hideDropdownMenu(menu);
+                });
+            }
+            document.addEventListener('click', function(e) {
+                var target = e.target;
+                if (!target.closest('.dropdown-nav')) {closeAllDropdowns();}
+            });
+        });
+
+    </script>
+
+
+{% endblock %}
+
+{% block body %}
+
+    <nav id="nav">
+        <ul class="horizontal-menu">
+            <li><a href="https://asphaltmine.org/" title="AsphaltMine"><b>AsphaltMine</b></a></li>
+            <li><a href="/gensel">Data Curation</a></li>
+            <li><a href="/explore/keyword/">Database</a></li>
+            <li><a href="/dashboard/records"> My Data</a></li>
+            <li><a href="/dashboard/workspaces"> Shared Workspaces</a></li>
+            <li><a href="/externalml/">Prediction</a></li>
+            <li class="align-right"><a href="/tutorial/">Tutorial</a></li>
+            <li><a href="/help/"> FAQ</a></li>
+            <li class="dropdown-nav">
+                <a href="#" class="dropdown-toggle"><i class="fas fa-user-circle"></i> My Account</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/dashboard/files"><i class="fas fa-file"></i> FileDrop</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/dashboard/my-profile"><i class="fas fa-user"></i> My Profile</a></li>
+                    <li><a href="{% url 'core_main_app_logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="sidebar"></div>
+
+    <div class="sidebar-right"></div>
+
+   <br><br>
+   <form style="text-align: center;">
+      <div>
+         <br><br><br><br>
+         <h1>Coming Soon..</h1>
+         <br><br><br><br>
+      </div>
+   </form>
+{% endblock %}
