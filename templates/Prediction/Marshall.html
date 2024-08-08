@@ -1,0 +1,118 @@
+            <div class="subbar-content" id="subtab-Marshall">
+                <div class="card">
+                    <header>
+                        <h1>Marshall Test Performance Prediction</h1>
+                        <p>Input your parameters to predict Marshall Stability and Flow.</p>
+                        <p>The parameters below are for materials recovered from the mixtures.</p>
+                        <p>For the model scope, check&nbsp;&nbsp;
+                            <button type="button" class="random-btn bc-trigger" data-bc-open="Marshall"><i class="fa fa-info-circle"></i>Assumptions & Conditions</button>
+                        </p>
+                        <p>You can clear or randomly fill all fields by clicking the buttons below.</p>
+                        <p>
+                            <button type="button" class="random-btn" onclick="RandomFill('Marshall')"><i class="fa fa-magic"></i> Random Fill</button>
+                            <button type="button" class="random-btn" onclick="ClearFields('Marshall')"><i class="fa fa-eraser"></i> Clear</button>
+                         </p>
+
+                    </header>
+                    <form id="MarshallpredictionForm" autocomplete="off">
+                        <div class="section-divider"></div>
+                        <h3 class="section-title">Volumetric Properties</h3>
+                        <div class="input-block">
+                            <label for="MaximumDensityMar" titletip="The value of the maximum density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.48).">Maximum Density: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MaximumDensityMar" name="MaximumDensityMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number." required placeholder="e.g. 2.480">
+                            <span class="unit">Mg/m³</span>
+                        </div>
+                        <div class="input-block">
+                            <label for="BulkDensityValueMar" titletip="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="BulkDensityValueMar" name="BulkDensityValueMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number." required placeholder="e.g. 2.326">
+                            <span class="unit">Mg/m³</span>
+                        </div>
+                        <div class="section-divider"></div>
+                        <h3 class="section-title">Binder Properties</h3>
+                        <div class="input-block">
+                            <label for="PenetrationMar" titletip="The measured penetration of a standard needle at 25 Degrees Celsius according to EN 1426, expressed in tenths of a millimeter (e.g., 55).">Penetration: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                            <input type="text" id="PenetrationMar" name="PenetrationMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number." required placeholder="e.g. 55">
+                            <span class="unit">0.1mm</span>
+                        </div>
+                        <div class="input-block">
+                            <label for="SofteningMar" titletip="The temperature at which the binder begins to soften and lose its rigidity according to EN 1427, measured in Degrees Celsius (e.g., 65).">Softening Point: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="SofteningMar" name="SofteningMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number." required placeholder="e.g. 65">
+                            <span class="unit">°C</span>
+                        </div>
+                        <div class="section-divider"></div>
+                        <h3 class="section-title">Composition</h3>
+                        <div class="input-block">
+                            <label for="BinderContentMar" titletip="The percentage by mass of the binder, including that extracted from the reclaimed asphalt, to the total mass of the bituminous mixture according to EN 12697-1 (e.g., 5.2).">Binder Content:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div> </label>
+                            <input type="text" id="BinderContentMar" name="BinderContentMar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." required placeholder="e.g. 5.2">
+                            <span class="unit">%</span>
+                        </div>
+                        <div class="input-block">
+                            <label for="SizeRecovered" titletip="The percentage distribution by mass for recovered aggregates passing the each sizes (e.g., 80.6).">Gradation:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        </div>
+                        <div class="sieve-grid">
+                            <div class="sieve-input-group">
+                                <label for="sieve_0_063Mar">0.063 mm</label>
+                                <input type="text" id="sieve_0_063Mar" name="sieve_0_063Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_0_125Mar">0.125 mm</label>
+                                <input type="text" id="sieve_0_125Mar" name="sieve_0_125Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_0_25Mar">0.25 mm</label>
+                                <input type="text" id="sieve_0_25Mar" name="sieve_0_25Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_0_5Mar">0.5 mm</label>
+                                <input type="text" id="sieve_0_5Mar" name="sieve_0_5Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_1Mar">1 mm</label>
+                                <input type="text" id="sieve_1Mar" name="sieve_1Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_2Mar">2 mm</label>
+                                <input type="text" id="sieve_2Mar" name="sieve_2Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_4Mar">4 mm</label>
+                                <input type="text" id="sieve_4Mar" name="sieve_4Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_5_6Mar">5.6 mm</label>
+                                <input type="text" id="sieve_5_6Mar" name="sieve_5_6Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_8Mar">8 mm</label>
+                                <input type="text" id="sieve_8Mar" name="sieve_8Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_11_2Mar">11.2 mm</label>
+                                <input type="text" id="sieve_11_2Mar" name="sieve_11_2Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_16Mar">16 mm</label>
+                                <input type="text" id="sieve_16Mar" name="sieve_16Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_22_4Mar">22.4 mm</label>
+                                <input type="text" id="sieve_22_4Mar" name="sieve_22_4Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_31_5Mar">31.5 mm</label>
+                                <input type="text" id="sieve_31_5Mar" name="sieve_31_5Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_45Mar">45 mm</label>
+                                <input type="text" id="sieve_45Mar" name="sieve_45Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                        </div>
+                        <div class="section-divider"></div>
+                        <button type="submit" class="predict-btn">Predict</button>
+                    </form>
+                    <section class="results" id="results-Marshall">
+                        <div class="results-card" id="resultsContent-Marshall">
+                        </div>
+                    </section>
+                </div>
+            </div>

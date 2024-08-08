@@ -1,0 +1,81 @@
+            <div class="subbar-content" id="subtab-Volumetric">
+                <div class="card">
+                    <header>
+                        <h1>Volumetric Properties Prediction</h1>
+                        <p>Input your parameters to predict Bulk Density and Air Voids for AC mixtures.</p>
+                        <p>For the model scope, check&nbsp;&nbsp;
+                            <button type="button" class="random-btn bc-trigger" data-bc-open="Volumetric"><i class="fa fa-info-circle"></i>Assumptions & Conditions</button>
+                        </p>
+                        <p>You can clear or randomly fill all fields by clicking the buttons below.</p>
+                        <p>
+                            <button type="button" class="random-btn" onclick="RandomFill('Volumetric')"><i class="fa fa-magic"></i> Random Fill</button>
+                            <button type="button" class="random-btn" onclick="ClearFields('Volumetric')"><i class="fa fa-eraser"></i> Clear</button>
+                         </p>
+
+                    </header>
+                    <form id="VolumetricpredictionForm" autocomplete="off">
+                        <div class="section-divider"></div>
+                        <h3 class="section-title">Mixture Properties</h3>
+                        <div class="input-block">
+                            <label for="RAPContentVol" titletip="The percentage by mass of Reclaimed Asphalt Pavement (RAP) in the mixture (e.g., 60).">RAP Content: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                            <input type="text" id="RAPContentVol" name="RAPContentVol" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." required placeholder="e.g. 60">
+                            <span class="unit">%</span>
+                        </div>
+                        <div class="input-block">
+                            <label for="MaximumDensityVol" titletip="The value of the maximum density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.500).">Maximum Density: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MaximumDensityVol" name="MaximumDensityVol" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number." required placeholder="e.g. 2.500">
+                            <span class="unit">Mg/m³</span>
+                        </div>
+                        <div class="section-divider"></div>
+                        <h3 class="section-title">Composition</h3>
+                        <div class="input-block">
+                            <label for="BinderContentVol" titletip="The percentage by mass of the binder, including that extracted from the reclaimed asphalt, to the total mass of the bituminous mixture according to EN 12697-1 (e.g., 4.28).">Binder Content:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div> </label>
+                            <input type="text" id="BinderContentVol" name="BinderContentVol" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." required placeholder="e.g. 4.28">
+                            <span class="unit">%</span>
+                        </div>
+                        <div class="input-block">
+                            <label for="SizeRecoveredVol" titletip="The percentage distribution by mass for recovered aggregates passing the each sizes (e.g., 80.6).">Gradation:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        </div>
+                        <div class="sieve-grid sieve-grid-narrow">
+                            <div class="sieve-input-group">
+                                <label for="sieve_0_063Vol">0.063 mm</label>
+                                <input type="text" id="sieve_0_063Vol" name="sieve_0_063Vol" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_0_5Vol">0.5 mm</label>
+                                <input type="text" id="sieve_0_5Vol" name="sieve_0_5Vol" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_1Vol">1 mm</label>
+                                <input type="text" id="sieve_1Vol" name="sieve_1Vol" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_2Vol">2 mm</label>
+                                <input type="text" id="sieve_2Vol" name="sieve_2Vol" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_4Vol">4 mm</label>
+                                <input type="text" id="sieve_4Vol" name="sieve_4Vol" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_8Vol">8 mm</label>
+                                <input type="text" id="sieve_8Vol" name="sieve_8Vol" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_11_2Vol">11.2 mm</label>
+                                <input type="text" id="sieve_11_2Vol" name="sieve_11_2Vol" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_22_4Vol">22.4 mm</label>
+                                <input type="text" id="sieve_22_4Vol" name="sieve_22_4Vol" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                        </div>
+                        <div class="section-divider"></div>
+                        <button type="submit" class="predict-btn">Predict</button>
+                    </form>
+                    <section class="results" id="results-Volumetric">
+                        <div class="results-card" id="resultsContent-Volumetric">
+                        </div>
+                    </section>
+                </div>
+            </div>
