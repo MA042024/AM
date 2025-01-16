@@ -1,0 +1,134 @@
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                    GV Web Form                   -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                 @ AsphaltMine.org                -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--      Created by Mohammad Abbas - January 2025    -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+{% load static %}
+
+{% block head %}
+    <title>GV Web Form | AsphaltMine</title>
+{% endblock %}
+{% block theme_css %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/gvform.css' %}">
+    <link rel="stylesheet" href="{% static 'css/General/navigator.css' %}">
+    <link rel="stylesheet" href="{% static 'css/General/footer.css' %}">
+{% endblock %}
+{% block theme_js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'core_main_app/common/js/csrf.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'js/GVForm/xml-import.js' %}" defer></script>
+    <script src="{% static 'js/GVForm/xml-export.js' %}" defer></script>
+    <script src="{% static 'js/GVForm/sidebars.js' %}" defer></script>
+    <script src="{% static 'js/GVForm/dynamic-sections.js' %}" defer></script>
+    <script src="{% static 'js/GVForm/core.js' %}" defer></script>
+    <script src="{% static 'js/GVForm/tooltips.js' %}" defer></script>
+    <script src="{% static 'js/GVForm/plotgraph.js' %}" defer></script>
+    <script src="{% static 'js/GVForm/ui-overlays.js' %}" defer></script>
+    <script src="{% static 'js/GVForm/workspaces.js' %}" defer></script>
+    <script src="{% static 'js/GVForm/form-rules.js' %}" defer></script>
+    <script src="{% static 'js/GVForm/test-selection.js' %}" defer></script>
+    <script src="{% static 'js/GVForm/responsive.js' %}" defer></script>
+    <script src="{% static 'js/General/sidebar-footer-clamp.js' %}" defer></script>
+
+    <script>
+        // Upload Functionality in the Web App
+        let dt_content;
+        let data_title;
+        document.addEventListener('DOMContentLoaded', function() {
+            dt_content = JSON.parse(sessionStorage.getItem('data_content'));
+            data_title = sessionStorage.getItem('data_title');
+            let test_id = sessionStorage.getItem('test_id');
+            sessionStorage.clear();
+            TestSelectionFromId(test_id);
+            if (dt_content) {
+                var xmlFileElement = document.getElementById('FileDbName');
+                xmlFileElement.innerHTML = `<b>${data_title}</b>`;
+                selectedSource = 'D';
+            }
+        });
+    </script>
+    <script>
+        // Edit Functionality
+        let dataId;
+        let dataTitle;
+        let dataContent;
+        let dataTemplate;
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const edit = '{% if edit is not None %}{{ edit }}{% else %}false{% endif %}';
+            if (edit === 'True') {
+                dataId = "{{ data_id_edit }}";
+                dataTitle = "{{ data_title_edit }}";
+                dataContent = "{{ data_content_edit |escapejs }}";
+                dataTemplate = "{{ test_id_edit }}";
+                document.getElementById('xmlForm').style.display = 'none';
+                document.getElementById('EditButton').style.display = 'block';
+                document.getElementById('GenerateButton').style.display = 'none';
+                document.getElementById('DownloadButton').style.display = 'none';
+                TestSelectionFromId(dataTemplate);
+                document.getElementById('selected-test-case').classList.add('test-case-locked');
+                ShowEditMsg();
+                OpenTabs("E");
+            }
+        });
+        
+        function ShowEditMsg() {
+            var EditpopupMessage = document.getElementById('EditpopMessage');
+            var EditpopupMessagetest = document.getElementById('EditpopMessageTest');
+            var editpop = document.getElementById('Editpopup');
+            var exiteditpop = document.getElementById('EditpopMessageExit');
+            EditpopupMessage.innerText = `Editing Record: "${dataTitle}"`;
+            EditpopupMessagetest.innerText = `"${document.getElementById('selected-test-case').innerHTML}"`;
+            editpop.style.display = 'flex';
+            exiteditpop.style.display = 'inline';
+        }
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="page-flex">
+    {% include "General/navigator.html" %}
+    <div class="Edit-popup" id="Editpopup">
+        <i class="fas fa-pencil-alt"></i>
+        <span id="EditpopMessage"></span>
+        <span id="EditpopMessageTest"></span>
+        <a href="/explore/keyword/" id="EditpopMessageExit" title="Exit edit mode without saving">Cancel</a>
+    </div>
+    <div class="page-flex-main">
+    {% include "GVForm/left_sidebar.html" %}
+    {% include "GVForm/right_sidebar.html" %}
+    <br>
+    {% include "GVForm/upload_form.html" %}
+
+    <form id="myForm" onsubmit="return false;">
+        {% include "GVForm/data_source.html" %}
+        {% include "GVForm/mixture.html" %}
+        {% include "GVForm/results.html" %}
+        {% include "GVForm/notes.html" %}
+        {% include "GVForm/form_submission.html" %}
+    </form>
+
+    <br>
+    </div>
+    {% include "General/footer.html" %}
+    </div>
+    {% include "GVForm/popups.html" %}
+
+{% endblock %}
+
+
+
+
