@@ -1,0 +1,93 @@
+<div id="RightSidebar" class="sidebar-right">
+    <div id="Test-Selection-div">
+        <span>Performance Tests</span>
+        <div id="selected-test-case" onclick="ShowTestSelectionPopup()">Rutting Test</div>
+    </div>
+    <div class="satellite-group">
+    <div class="bounded-div">
+        <span class="side-card-title">Functionalities</span>
+        <ul class="side-info-list">
+            <li>Save new records &nbsp;<i class="fa fa-question-circle moreinfo" data-target="savefunc-info"></i></li>
+            <li>Load and View records &nbsp;<i class="fa fa-question-circle moreinfo" data-target="loadfunc-info"></i></li>
+            <li>Update existing records &nbsp;<i class="fa fa-question-circle moreinfo" data-target="updatefunc-info"></i></li>
+            <li>Download records &nbsp;<i class="fa fa-question-circle moreinfo" data-target="downloadfunc-info"></i></li>
+        </ul>
+    </div>
+    <div class="bounded-div">
+        <span>Fields marked with an asterisk (<span class="red-text">*</span>) are <b>required</b>. &nbsp;<i class="fa fa-question-circle moreinfo" data-target="mand-info"></i></span><br><br>
+        <span>The following fields are semi-mandatory: Grain Size Distribution, Binder Content, Penetration and Voids. &nbsp;<i class="fa fa-question-circle moreinfo" data-target="semi-mand-info"></i></span>
+    </div>
+    </div>
+    <button id="quick-start-btn">Quick Start</button>
+    <div id="savefunc-info" style="display: none;">
+        <b>Save Records:</b>
+        You can save new records to the database using this form. Follow these steps:
+        <ol>
+            <li>On the right sidebar, click on the performance tests tab.</li>
+            <li>Select the test or tests you desire. You can select multiple tests to fill out at the same time.</li>
+            <li>Click Apply. The form is now ready to be filled out</li>
+            <li>Fill in all the fields with the data you have, especially the required fields.</li>
+            <li>Click the Save button, then click Confirm.</li>
+        </ol>
+        The saved records are stored in the database in an XML document format. If multiple tests were selected, multiple records will be saved. Make sure to
+        save the records to the database before exiting the page to avoid losing any data.<br><br>
+        For more information, please check the <a class="refer-link" href="/tutorial/"><i>Tutorial</i></a> page.
+    </div>
+    <div id="loadfunc-info" style="display: none;">
+        <b>Load and View Records:</b>
+        You can load records either from the database or from your own device, depending on your preference. To do this, use the Upload form located at the top
+        of the page. Follow these steps:<br>
+        <ol>
+            <li>Select a source: AsphaltMine Database or your own device.</li>
+            <li>Choose a record from the source.</li>
+            <li>Specify the elements to upload from the list: Data Source, Mixture, Sample Properties, Results or General Notes.</li>
+            <li>Click the Load button.</li>
+        </ol>
+        Once the records are successfully loaded, you will be able to view the details in a user-friendly format. Where applicable, you can visualize the data
+        through graphs by clicking &#x1F4C8;.<br><br>
+        For more information, please check the <a class="refer-link" href="/tutorial/"><i>Tutorial</i></a> page.
+    </div>
+    <div id="updatefunc-info" style="display: none;">
+        <b>Update Records:</b>
+        You have the ability to update existing records directly within the database. This feature allows you to modify or correct data as necessary,
+        ensuring the database remains current with the latest information. To update a record, follow these steps:
+        <ol>
+            <li>Go to Database Page.</li>
+            <li>
+                Find the record that you want to edit. Note that you must be the owner of the record,  which is indicated by the
+                <i class="fa fa-pencil" style="color:#007aa7;" aria-hidden="true"></i> icon next to it on the Database page.
+            </li>
+            <li>Click on the <i class="fa fa-pencil" style="color:#007aa7;" aria-hidden="true"></i> icon. This will open this form in edit mode.</li>
+            <li>Modify entries, detele data and add new information as needed.</li>
+            <li>Click the Update button, then click Confirm.</li>
+        </ol>
+        Note that you cannot change the type of test. If you need to change the type of test, you will need to upload the record and save it as a
+        new record with the different test type<br><br>
+        For more information, please check the <a class="refer-link" href="/tutorial/"><i>Tutorial</i></a> page.
+    </div>
+    <div id="downloadfunc-info" style="display: none;">
+        <b>Download Records:</b>
+        You can download selected records in XML format using this form. Follow these steps:
+        <ol>
+            <li>Either Load an existing record or fill out a new one</li>
+            <li>Click the Download button, then click Confirm.</li>
+        </ol>
+        If all required fields are filled, the record will download immediately. If multiple tests were selected and completed, multiple records will be
+        downloaded simultaneously. You can also download multiple records from the Database page in both XML and JSON formats.<br><br>
+        For more information, please check the <a class="refer-link" href="/tutorial/"><i>Tutorial</i></a> page.
+    </div>
+    <p id="mand-info" style="display: none;">
+        Fields marked with an asterisk (<span class="red-text">*</span>) are <b>required</b>. If any required field is incomplete, the form will not be saved,
+        downloaded, or updated. Please ensure all required fields are filled out. The form will indicate any missing fields and provide a clear message regarding
+        the necessary information.
+    </p>
+    <div id="semi-mand-info" style="display: none;">
+        Semi-mandatory fields are those where at least one must be completed. The following fields are semi-mandatory:
+        <ul>
+            <li><span> For <strong>Grain Size Distribution</strong>, fill at least one of the following: <b><i>Virgin Aggregates</i></b> or <b><i>Recovered Aggregates</i></b>. </span></li>
+            <li><span> For <strong>Binder Content</strong>, fill at least one of the following: <b><i>Binder Content in Mixture Recipe</i></b> or <b><i>Percentage Content of Recovered Binde</i>r</b>. </span></li>
+            <li><span> For <strong>Penetration</strong>, fill at least one of the following: <b><i>Virgin Binder Penetration</i></b> or <b><i>Recovered Binder Penetration</i></b>. </span></li>
+            <li><span> For <strong>Voids</strong>, fill at least one of the following: <b><i>Bulk density with Maximum density</i></b> or <b><i>Air voids</i></b>. </span></li>
+        </ul>
+    </div>
+</div>

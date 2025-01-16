@@ -1,0 +1,72 @@
+{% load static %}
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Incorrect Entry</h2>
+        <p id="error-message"></p>
+    </div>
+</div>
+
+<p class="screen-message">
+    <b style="font-size: 200%;">ALERT</b>
+    <br><br>Your screen size is too small to display the form properly.
+    <br><br>The form requires a minimum screen width of <b>800 pixels</b> to function properly and <b>1400 pixels</b> to ensure full functionality.
+    <br><br>Please try accessing it from a device with a larger screen or increase the size of your current screen for optimal viewing.
+</p>
+
+<div class="Gen-popup" id="Genpopup">
+    <span id="GenpopMessage"></span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="Gen-popup-close" onclick="ClosePopMsg()">&#128473;</span>&nbsp;&nbsp;
+</div>
+
+<div class="Test-popup" id="Testpopup">
+    <div class="Test-popup-container">
+        <button type="button" class="Test-popup-close" onclick="CloseTestSelectionPopup()">&times;</button>
+        <h3>Select Performance Tests</h3>
+        <div id="Test-selection">
+            <label class="test-option"><input type="checkbox" id="select-rut" checked><span>Rutting Test</span></label>
+            <label class="test-option"><input type="checkbox" id="select-mar"><span>Marshall Test</span></label>
+            <label class="test-option"><input type="checkbox" id="select-its"><span>Indirect Tensile Strength Test (ITS)</span></label>
+            <label class="test-option"><input type="checkbox" id="select-tsr"><span>Thermal Stress Restrained Specimen Test (TSRST)</span></label>
+            <label class="test-option"><input type="checkbox" id="select-uts"><span>Uniaxial Tension Stress Test (UTST)</span></label>
+            <label class="test-option"><input type="checkbox" id="select-stf"><span>Stiffness Test</span></label>
+        </div>
+        <button type="button" id="apply-selection-button" onclick="ApplyTestSelection()">Apply</button>
+    </div>
+</div>
+
+<div id="explpopup" class="Expl-popup">
+    <div class="Expl-popup-container">
+        <span class="Expl-popup-close">&times;</span>
+        <p id="main-message" style="margin-top:23px;"></p>
+    </div>
+</div>
+
+<div id="quickstartpopup" class="Expl-popup">
+    <div class="quickstart-popup-container" style="max-width: 1500px;">
+        <span class="quickstart-popup-close">&times;</span>
+        <p style="margin-top:2px;">
+            <span id="quick-start" style="display: none;">
+                <object 
+                    data="{% static 'AsphaltMineQuickStart.pdf' %}" 
+                    type="application/pdf" 
+                    style="width: 99.745%; height: 85vh; border: 3px solid #dddddd;">
+                    <span style="color: black; font-size:26px; text-align:center">
+                        It appears your browser does not support PDFs. You can 
+                        <a href="{% static 'AsphaltMineQuickStart.pdf' %}">download the PDF</a> instead.
+                    </span>
+                </object>           
+            </span>
+        </p>
+    </div>
+</div>
+
+<div id="Confirmationpopup">
+    <div id="Confirmation-popup-container">
+        <h3 id="ConfirmationMessage"></h3>
+        <div class="buttons-grp">
+            <button type="button" id="Cancel-ConfirmationMessage">Cancel</button>
+            <button type="button" id="Confirm-ConfirmationMessage">Confirm</button>  
+        </div>
+    </div>
+</div>

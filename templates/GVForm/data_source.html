@@ -1,0 +1,339 @@
+ <fieldset  id="OuterfieldA" class="outer-fieldset outertab">
+    <legend class="outer-legend outertab-title">Data Source<span class="hideouter-content">&minus;</span></legend>
+    <div class="outertab-t">Show</div>
+    <div class="outertab-content">
+        <fieldset  id="field1">
+            <div class="form-group">
+                <label for="measurementCampaignID" titletip="Denotes a unique alpha-numeric identifier (key) for a measurement campaign within the organization reporting the data. It is formatted as an alpha-numeric string (e.g., A3-021).">Measurement Campaign ID:  <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="measurementCampaignID" name="measurementCampaignID" required>
+
+                <label for="organizationName" titletip="Name of the organization where the data were reported (Company, Institute, Laboratory, etc). Use a string value (e.g., XYZ Corporation).">Organization Name:  <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="organizationName" name="organizationName" required>
+
+                <label for="locationCountry" titletip="Indicates the country where the work was performed and/or the location of the corresponding organization. Use a string value (e.g., Germany).">Location Country:  <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="locationCountry" name="locationCountry" required>
+
+                <label for="year" titletip="Year when the work referenced by the data was completed. Use a four-digit integer (e.g., 2010)." >Year: <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="number" id="year" name="year" min="1900" max="2100" required>
+            </div>
+            <div class="form-group">
+                <label for="RecordType" titletip="The catgeory or type of the data source." >Data Record Type:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <select id="RecordType" onchange="RecordFunction()">
+                    <option value="none">Select</option>
+                    <option value="completeForm">Complete Data Record</option>
+                    <option value="doiOnly">DOI Identifier Only</option>
+                </select>
+            </div>
+            <div id="Complete" class="form-group hidden">
+                <label for="completerecordType" titletip="The specific type of the complete data source.">Complete Record Type:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <select id="completerecordType" onchange="showRecordForm()">
+                    <option value="">Select </option>
+                    <option value="ArticleInJournal">Journal Article</option>
+                    <option value="ArticleInConferenceProceedings">Article in Conference Proceedings</option>
+                    <option value="BookPublication">Book Publication</option>
+                    <option value="PublishedReport">Published Report</option>
+                    <option value="UnpublishedReport">Unpublished Report</option>
+                    <option value="OtherBibliographic">Other Bibliographic</option>
+                </select>
+            </div>
+        </fieldset>
+
+        <fieldset  id="field2" class="hidden">
+            <legend>Complete Record</legend>
+            <div id="ArticleInJournal" class="specific-form form-group hidden">   
+                <label for="firstAuthor" titletip="The full name of the first author of the journal article in which the data are reported (e.g., Huang, Y.).">
+                    First Author:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="firstAuthor" name="firstAuthor">
+            
+                <label for="coAuthors" titletip="The full name of a co-author of the journal article in which the data are reported. Multiple instances can be generated to include more than one co-author (e.g., Huang, Y.).">
+                    Co-Authors <span class="semicolon">(semicolon separated)</span> :
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="coAuthors" name="coAuthors">
+            
+                <label for="articleTitle" titletip="The title of the journal article in which the data are reported (e.g., A review of the use of recycled solid waste materials in asphalt pavements).">
+                    Article Title: 
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="articleTitle" name="articleTitle" >
+            
+                <label for="journalTitle" titletip="The title of the journal in which the article reporting the data was published (e.g., Resources, Conservation and Recycling).">
+                    Journal Title: 
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="journalTitle" name="journalTitle" >
+
+                <label for="journalVolumeNumber" titletip="The volume number of the journal where the article reporting the data was published (e.g., 52).">
+                    Journal Volume Number:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="number" id="journalVolumeNumber" name="journalVolumeNumber">
+
+                <label for="journalIssueNumber" titletip="The issue number of the journal where the article reporting the data was published (e.g., 1).">
+                    Journal Issue Number:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="number" id="journalIssueNumber" name="journalIssueNumber">
+
+                <label for="articleStartingPage" titletip="The starting page of the article in which the data are reported (e.g., 58).">
+                    Article Starting Page:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="number" id="articleStartingPage" name="articleStartingPage">
+
+                <label for="articleEndingPage" titletip="The ending page of the article in which the data are reported (e.g., 73).">
+                    Article Ending Page:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="number" id="articleEndingPage" name="articleEndingPage">
+
+                <label for="articleNumber" titletip="The article number in the journal in which the data are reported, applicable if the corresponding journal uses article numbers instead of pages (013202).">
+                    Article Number:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="articleNumber" name="articleNumber">
+
+                <label for="Artyear" titletip="The year when the article was published in printed form (e.g., 2007).">
+                    Year: 
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="number" id="Artyear" name="Artyear" min="1900" max="2100" >
+
+                <label for="publisher" titletip="The name of the publisher of the journal in which the article reporting the data was published (e.g., Elsevier).">
+                    Publisher:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="publisher" name="publisher">
+
+                <label for="doi" titletip="The DOI code assigned to the journal article in which the data are reported (e.g., 10.1016/j.resconrec.2007.02.002).">
+                    DOI:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="doi" name="doi">
+
+                <label for="issn" titletip="The International Standard Serial Number (ISSN) of the journal in which the data-reporting article was published. The print ISSN precedes a forward slash, followed by the online ISSN (e.g., 0921-3449/1879-0658).">
+                    ISSN:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="issn" name="issn">
+            </div>
+
+            <div id="ArticleInConferenceProceedings" class="specific-form form-group hidden">
+                <label for="confFirstAuthor" titletip="The full name of the first author of the proceedings article in which the data are reported (e.g., Huang, Y.).">
+                    First Author:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="confFirstAuthor" name="confFirstAuthor">
+                
+                <label for="confCoAuthors" titletip="The full name of a co-author of the conference proceedings article in which the data are reported. Multiple instances can be generated to include more than one co-author (e.g., Huang, Y.).">
+                    Co-Authors <span class="semicolon">(semicolon separated)</span> :
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="confCoAuthors" name="confCoAuthors">
+                
+                <label for="confArticleTitle" titletip="The title of the conference proceedings article in which the data is reported (e.g., Micromechanical Surface Investigation of Bio-modified RAP Binder).">
+                    Article Title: 
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="confArticleTitle" name="confArticleTitle" >
+                
+                <label for="confConferenceTitle" titletip="The title of the conference in which the article reporting the data was presented (e.g., 5th International Symposium on Asphalt Pavements & Environment (APE)).">
+                    Conference Title: 
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="confConferenceTitle" name="confConferenceTitle" >
+                
+                <label for="confConferenceCity" titletip="The name of the city where the conference was held (e.g., Padova).">
+                    Conference City:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="confConferenceCity" name="confConferenceCity">
+                
+                <label for="confConferenceCountry" titletip="The name of the country where the conference was held (e.g., Italy).">
+                    Conference Country:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="confConferenceCountry" name="confConferenceCountry">
+                
+                <label for="confProceedingsTitle" titletip="The title of the conference proceedings in which the article reporting the data was published.">
+                    Conference Proceedings Title:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="confProceedingsTitle" name="confProceedingsTitle">
+                
+                <label for="confProceedingsVolumeNumber" titletip="The number of the volume of the conference proceedings if available (e.g., 48).">
+                    Conference Proceedings Volume Number:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="confProceedingsVolumeNumber" name="confProceedingsVolumeNumber">
+                
+                <label for="confProceedingsStartingPage" titletip="The starting page of the conference proceedings article in which the data are reported.">
+                    Conference Proceedings Starting Page:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="confProceedingsStartingPage" name="confProceedingsStartingPage">
+                
+                <label for="confProceedingsEndingPage" titletip="The ending page of the conference proceedings article in which the data are reported.">
+                    Conference Proceedings Ending Page:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="confProceedingsEndingPage" name="confProceedingsEndingPage">
+                
+                <label for="confYear" titletip="The year when the conference proceedings article was published in print form (e.g., 2020).">
+                    Year: 
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="number" id="confYear" name="confYear" min="1900" max="2100" >
+                
+                <label for="confPublisher" titletip="The name of the publisher of the conference proceedings in which the article reporting the data was published (e.g., Springer Cham).">
+                    Publisher:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="confPublisher" name="confPublisher">
+                
+                <label for="confDOI" titletip="The DOI code assigned to the conference proceedings article in which the data are reported (e.g., 10.1007/978-3-030-29779-4_2)">
+                    DOI:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="confDOI" name="confDOI">  
+            </div>
+
+            <div id="BookPublication" class="specific-form form-group hidden">
+                <label for="bookFirstAuthor" titletip="The full name of the first author of the book (or book chapter) in which the data are reported (e.g., G.Speight, J.).">
+                    First Author:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="bookFirstAuthor" name="bookFirstAuthor">
+                
+                <label for="bookCoAuthors" titletip="The full name of a co-author of the book (or book chapter) in which the data are reported. Multiple instances can be generated to include more than one co-author (e.g., G.Speight, J.).">
+                    Co-Authors <span class="semicolon">(semicolon separated)</span> :
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="bookCoAuthors" name="bookCoAuthors">
+                
+                <label for="bookTitle" titletip="The title of the book in which the data are reported (e.g., Asphalt Materials Science and Technology).">
+                    Book Title: 
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="bookTitle" name="bookTitle" >
+                
+                <label for="bookChapterTitle" titletip="The title of the chapter of the book in which the data are reported (e.g., Rubber modified bitumen).">
+                    Book Chapter Title:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="bookChapterTitle" name="bookChapterTitle">
+                
+                <label for="bookChapterNumber" titletip="The number of the chapter of the book in which the data are reported (e.g., 4).">
+                    Chapter Number:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="bookChapterNumber" name="bookChapterNumber">
+                
+                <label for="bookEditors" titletip="The name of the Editors of the book if the case applies (e.g., Tony McNally).">
+                    Editors:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="bookEditors" name="bookEditors">
+                
+                <label for="bookEditionNumber" titletip="The edition number of the book in which the chapter reporting the data was published (e.g., 1).">
+                    Edition Number:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="bookEditionNumber" name="bookEditionNumber">
+                
+                <label for="bookChapterStartingPage" titletip="The starting page of the book chapter in which the data are reported (e.g., 72).">
+                    Chapter Starting Page:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="bookChapterStartingPage" name="bookChapterStartingPage">
+                
+                <label for="bookChapterEndingPage" titletip="The ending page of the book chapter in which the data are reported (e.g., 97).">
+                    Chapter Ending Page:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="bookChapterEndingPage" name="bookChapterEndingPage">
+                
+                <label for="bookYear" titletip="The year when the book chapter was published in print form (e.g., 2011).">
+                    Year: 
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="number" id="bookYear" name="bookYear" min="1900" max="2100" >
+                
+                <label for="bookPublisher" titletip="The name of the publisher of the book in which the chapter reporting the data was published (e.g., Woodhead).">
+                    Publisher:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="bookPublisher" name="bookPublisher">
+                
+                <label for="bookDOI" titletip="The DOI code assigned to the book chapter in which the data are reported (e.g., 10.1533/9780857093721.1.72).">
+                    DOI:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="bookDOI" name="bookDOI">
+                
+                <label for="bookISBN" titletip="The International Standard Book Number of the book in which the data are reported (e.g., 978-0-85709-048-5).">
+                    ISBN:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="bookISBN" name="bookISBN">   
+            </div>
+
+            <div id="PublishedReport" class="specific-form form-group hidden">
+                <label for="reportFirstAuthor" titletip="The full name of the first author of the published report in which the data are reported (e.g., Poulikakos, L.).">
+                    First Author:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="reportFirstAuthor" name="reportFirstAuthor">
+                
+                <label for="reportCoAuthors" titletip="The full name of a co-author of the published report in which the data are reported. Multiple instances can be generated to include more than one co-author (e.g., Poulikakos, L. ).">
+                    Co-Authors <span class="semicolon">(semicolon separated)</span> :
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="reportCoAuthors" name="reportCoAuthors">
+                
+                <label for="reportTitle" titletip="The title of the published report in which the data are reported.">
+                    Report Title: 
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="reportTitle" name="reportTitle" >
+                
+                <label for="reportNumber" titletip="The alphanumeric identifier of the published report in which the data are reported (e.g., R2024_043).">
+                    Report Number:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="reportNumber" name="reportNumber">
+                
+                <label for="reportYear" titletip="The year when the published report reporting the data was published in print or digital form, depending on the case (e.g., 2017).">
+                    Year: 
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="number" id="reportYear" name="reportYear" min="1900" max="2100" >
+                
+                <label for="reportPublisher" titletip="The name of the publisher or Organization that published the report in which the data are reported (e.g., Asphalt Institute).">
+                    Publisher:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="reportPublisher" name="reportPublisher">
+                
+                <label for="reportDOI" titletip="The DOI code assigned to the published report in which the data are reported (e.g., 10.1533/9780857093721.1.72).">
+                    DOI:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="reportDOI" name="reportDOI">
+                
+                <label for="reportURL" titletip="The Uniform Resource Locator of the published report (e.g., https://www.wsdot.wa.gov/research/reports/fullreports/116.1.pdf).">
+                    URL:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext" style="width:500px"></span></div></label>
+                <input type="text" id="reportURL" name="reportURL">  
+            </div>
+                
+            <div id="UnpublishedReport" class="specific-form form-group hidden">
+                <label for="unreportFirstAuthor" titletip="The full name of the first author of the unpublished report in which the data are reported (e.g., Poulikakos, L.).">
+                    First Author:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="unreportFirstAuthor" name="unreportFirstAuthor">
+                
+                <label for="unreportCoAuthors" titletip="The full name of a co-author of the unpublished report in which the data are reported. Multiple instances can be generated to include more than one co-author (e.g., Poulikakos, L. ).">
+                    Co-Authors <span class="semicolon">(semicolon separated)</span> :
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="unreportCoAuthors" name="unreportCoAuthors">
+                
+                <label for="unreportTitle" titletip="The title of the unpublished report in which the data are reported.">
+                    Report Title: 
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="unreportTitle" name="unreportTitle" >
+                
+                <label for="unreportYear" titletip="The year when the unpublished report reporting the data was first available in print or digital form, depending on the case (e.g., 2015).">
+                    Year: 
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="number" id="unreportYear" name="unreportYear" min="1900" max="2100" >
+
+                <label for="unreportURL" titletip="The Uniform Resource Locator of the unpublished report (e.g., https://www.wsdot.wa.gov/research/reports/fullreports/116.1.pdf).">
+                    URL:
+                    &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext" style="width:500px"></span></div></label>
+                <input type="text" id="unreportURL" name="unreportURL">  
+            </div>
+                
+            <div id="OtherBibliographic" class="specific-form form-group hidden">
+                <label for="otherBibInformation" titletip="Information describing the data source in text format (e.g., Data in the laboratory).">Information: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="otherBibInformation" name="otherBibInformation" >
+            </div>
+
+        </fieldset>
+
+        <fieldset id="field3" class="hidden">
+            <legend>DOI Identifier</legend>
+            <div id="doiOnlySection" class="form-group">
+                <label for="doiOnly" titletip="The DOI code assigned to the document in which the data are reported, serving as the sole bibliographic information (e.g., 10.1016/j.resconrec.2007.02.002).">DOI: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="text" id="doiOnly" name="doiOnly" >
+            </div>
+        </fieldset>
+
+        <div class="innertab-t">Data Source Notes</div>
+        <div class="innertab-content">
+            <fieldset id="field4">
+                <legend class="innertab-title">Notes<span class="hideinner-content">&minus;</span></legend>
+                <div id="NotesSource" class="form-group">  
+                    <label for="NotesSourceContent" titletip="The content of the text note concerning the data source.">Data Source Notes:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="NotesSourceContent" name="NotesSourceContent">
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</fieldset>

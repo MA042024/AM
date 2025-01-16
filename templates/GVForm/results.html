@@ -1,0 +1,1460 @@
+<fieldset  id="OuterfieldC" class="outer-fieldset outertab">
+    <legend class="outer-legend outertab-title">Results<span class="hideouter-content">&minus;</span></legend>
+    <div class="outertab-t">Show</div>
+    <div class="outertab-content">
+
+        <div class="innertab-t">Sample Properties</div>
+        <div class="innertab-content">
+            <fieldset id="field20">
+                <legend class="innertab-title">Sample Properties<span class="hideinner-content">&minus;</span></legend>
+
+                <!-- SAMPLE PROPERTIES:  Rutting Test -->
+                <div id="rutsmplproptab" class="TwoColumn innertab-test hidden">Rutting Test</div>
+                <div id="SamplePropertiesdiv" class="form-group rutcls rutsmplpropgrp">
+
+                    <span id="rutsamplepropsec" class="testslabel"> &nbsp; Rutting Test &nbsp;<span id="rutsmplproptabhide" class="hidetesttabs">&minus;</span></span>
+
+                    <label for="Sampling" titletip="The type of sampling (e.g., Pavement Coring).">Sample Preparation: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <select id="Sampling" name="Sampling" onchange="SamplePrepFunction('Sampling','field20-2','field20-3')">
+                        <option value=""> Select</option>
+                        <option value="PavementCoring">Pavement Coring</option>
+                        <option value="LooseMixture">Loose Mixture</option>
+                    </select>
+
+                    <fieldset id="field20-2" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The coring properties of of the specimen.">Coring</legend>
+                        <div id="Coringdiv" class="form-group">
+                            <label for="PavingDate" titletip="The date the pavement from which the sample was cored was paved (e.g., 2011-06-12).">Paving Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="PavingDate" name="PavingDate" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringDate" titletip="The date when the specimen was cored from the pavement (e.g., 2021-08-31).">Coring Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="CoringDate" name="CoringDate" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringLocation" titletip="The location where the specimen was cored from the pavement (e.g., Berlin).">Coring Location:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="CoringLocation" name="CoringLocation">
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field20-3" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The compaction properties of of the specimen.">Sample Compaction &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-33</span>&nbsp;</legend>
+                        <div id="SampleCompactiondiv" class="form-group">
+                            <label for="CompactionDate" titletip="The date of the compaction of the specimen (e.g., 2020-07-18).">Compaction Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="CompactionDate" name="CompactionDate" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="RollerType" titletip="The type of roller used during the compaction process (e.g., Steel Roller Sector).">Roller Type:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="RollerType" name="RollerType">
+                                <option value="">Select </option>
+                                <option value="Pneumatic Tires">Pneumatic Tires</option>
+                                <option value="Steel Roller">Steel Roller</option>
+                                <option value="Steel Roller on Pneumatic Tire">Steel Roller on Pneumatic Tire</option>
+                                <option value="Steel Roller Sector">Steel Roller Sector</option>
+                                <option value="Vertical Sliding Plates">Vertical Sliding Plates</option>
+                            </select>
+                            
+                            <label for="CompactionTarget" titletip="The target of compaction followed, either by specified energy or volume (e.g., Compaction by a specified energy).">Compaction Target:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="CompactionTarget" name="CompactionTarget">
+                                <option value=""> Select</option>
+                                <option value="Compaction by a specified energy">Compaction by a specified energy</option>
+                                <option value="Compaction by a specified volume or air void">Compaction by a specified volume or air void</option>
+                            </select>
+                            
+                            <label for="CompactionTemperature" titletip="The temperature at which the specimen is compacted, measured in Degrees Celsius (e.g., 180).">Compaction Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="CompactionTemperature" name="CompactionTemperature" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        </div>
+                    </fieldset>
+
+                    <label for="StorageConditions" titletip="The storage conditions under which the mixture and compacted sample were kept (e.g., Stored at 25 degrees Celsius).">Storage Conditions:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="StorageConditions" name="StorageConditions">    
+                </div>
+
+                <div class="innertab-lvl4-t rutcls rutsmplpropgrp"> Mixture Aging<span class="standard-lvls">EN 12697-52</span></div>
+                <div class="innertab-lvl4-content rutcls rutsmplpropgrp">
+                    <div id="SamplePropertiesdiv-2" class="form-group">
+                        <fieldset id="field20-6" class="TwoColumn-fieldset inner-fieldset">
+                            <legend class="specific-legend" >Mixture Aging &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-52</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                            <div id="MixtureAgingdiv" class="form-group">
+                                <fieldset id="field20-6-1" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" title="The aging of loose mixture according to Method A in EN 12697-52.">Loose Mixture</legend>
+                                    <div id="LooseMixturediv" class="form-group">
+                                        <label for="MixtureAgingDurationShort" titletip="The period the mixture was aged before compaction according to Procedure A.1, expressed in hours (e.g., 4).">Short-Term Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationShort" name="MixtureAgingDurationShort" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingTemperatureShort" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.1, measured in Degrees Celsius (e.g., 140).">Short-Term Aging Temperature (°C):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureShort" name="MixtureAgingTemperatureShort" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingDurationLong" titletip="The period the mixture was aged before compaction according to Procedure A.2, expressed in hours (e.g., 120).">Long-Term Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationLong" name="MixtureAgingDurationLong" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                        <label for="MixtureAgingTemperatureLong" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.2, measured in Degrees Celsius (e.g., 150).">Long-Term Aging Temperature (°C):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureLong" name="MixtureAgingTemperatureLong" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                    </div>
+                                </fieldset>
+                                <fieldset id="field20-6-2" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" title="The aging of compacted specimens from bituminous mixtures according to Method B EN 12697-52.">Compacted Mixture</legend>
+                                    <div id="CompactedMixturediv" class="form-group">
+                                        <label for="MixtureAgingDurationB1" titletip="The period the mixture was aged according to Procedure B.1, expressed in hours (e.g., 80).">Proced. B.1 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationB1" name="MixtureAgingDurationB1" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingTemperatureB1" titletip="The temperature at which the mixture was aged according to Procedure B.1, measured in Degrees Celsius (e.g., 140).">Proced. B.1 Aging Temperature (°C):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureB1" name="MixtureAgingTemperatureB1" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingDurationB2" titletip="The period the mixture was aged according to Procedure B.2, expressed in hours (e.g., 160).">Proced. B.2 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationB2" name="MixtureAgingDurationB2" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                        <label for="MixtureAgingTemperatureB2" titletip="The temperature at which the mixture was aged according to Procedure B.2, measured in Degrees Celsius (e.g., 140).">Proced. B.2 Aging Temperature (°C):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureB2" name="MixtureAgingTemperatureB2" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </fieldset> 
+                    </div>    
+                </div>       
+                
+                <!-- SAMPLE PROPERTIES:  Marshall Test -->
+                <div id="marsmplproptab" class="TwoColumn innertab-test hidden">Marshall Test</div>
+                <div class="form-group hidden marcls marsmplpropgrp">
+                    <span id="marsamplepropsec" class="testslabel"> &nbsp; Marshall Test &nbsp;<span id="marsmplproptabhide" class="hidetesttabs">&minus;</span> </span>
+                    <label for="SamplingMar" titletip="The type of sampling (e.g., Pavement Coring).">Sample Preparation: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <select id="SamplingMar" name="SamplingMar" onchange="SamplePrepFunction('SamplingMar', 'field20-7', 'field20-8')">
+                        <option value=""> Select</option>
+                        <option value="PavementCoring">Pavement Coring</option>
+                        <option value="LooseMixture">Loose Mixture</option>
+                    </select>
+
+                    <fieldset id="field20-7" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The coring properties of of the specimen.">Coring</legend>
+                        <div id="Coringdiv-Mar" class="form-group">
+                            <label for="PavingDateMar" titletip="The date the pavement from which the sample was cored was paved (e.g., 2011-06-12).">Paving Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="PavingDateMar" name="PavingDateMar" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringDateMar" titletip="The date when the specimen was cored from the pavement (e.g., 2021-08-31).">Coring Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="CoringDateMar" name="CoringDateMar" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringLocationMar" titletip="The location where the specimen was cored from the pavement (e.g., Berlin).">Coring Location:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="CoringLocationMar" name="CoringLocationMar">
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field20-8" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The compaction properties of of the specimen.">Sample Compaction &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-30</span>&nbsp;</legend>
+                        <div id="SampleCompactiondiv-Mar" class="form-group">
+                            <label for="CompactionTemperatureMar" titletip="The temperature at which the specimen is compacted, measured in Degrees Celsius (e.g., 180).">Compaction Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="CompactionTemperatureMar" name="CompactionTemperatureMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="BlowsNumberMar" titletip="The number of blows per side (e.g., 50).">Blows Number:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="number" id="BlowsNumberMar" name="BlowsNumberMar" min="0" title="Enter a valid positive integer.">
+                        </div>
+                    </fieldset>
+
+                    <label for="StorageConditionsMar" titletip="The storage conditions under which the mixture and compacted sample were kept (e.g., Stored at 25 degrees Celsius).">Storage Conditions:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="StorageConditionsMar" name="StorageConditionsMar">
+                </div>
+
+                <div class="innertab-lvl4-t hidden marcls marsmplpropgrp"> Mixture Aging<span class="standard-lvls">EN 12697-52</span></div>
+                <div class="innertab-lvl4-content hidden marcls marsmplpropgrp">
+                    <div id="SamplePropertiesdivMar" class="form-group">
+                        <fieldset id="field20-9" class="TwoColumn-fieldset inner-fieldset">
+                            <legend class="specific-legend" >Mixture Aging &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-52</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                            <div id="MixtureAgingdivMar" class="form-group">
+                                <fieldset id="field20-9-1" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" title="The aging of loose mixture according to Method A in EN 12697-52.">Loose Mixture</legend>
+                                    <div id="LooseMixturedivMar" class="form-group">
+                                        <label for="MixtureAgingDurationShortMar" titletip="The period the mixture was aged before compaction according to Procedure A.1, expressed in hours (e.g., 4).">Short-Term Aging Durtaion (hours):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationShortMar" name="MixtureAgingDurationShortMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingTemperatureShortMar" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.1, measured in Degrees Celsius (e.g., 140).">Short-Term Aging Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureShortMar" name="MixtureAgingTemperatureShortMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingDurationLongMar" titletip="The period the mixture was aged before compaction according to Procedure A.2, expressed in hours (e.g., 120).">Long-Term Aging Durtaion (hours):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationLongMar" name="MixtureAgingDurationLongMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                        <label for="MixtureAgingTemperatureLongMar" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.2, measured in Degrees Celsius (e.g., 150).">Long-Term Aging Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureLongMar" name="MixtureAgingTemperatureLongMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                    </div>
+                                </fieldset>
+                                <fieldset id="field20-9-2" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" title="The aging of compacted specimens from bituminous mixtures according to Method B EN 12697-52.">Compacted Mixture</legend>
+                                    <div id="CompactedMixturedivMar" class="form-group">
+                                        <label for="MixtureAgingDurationB1Mar" titletip="The period the mixture was aged according to Procedure B.1, expressed in hours (e.g., 80).">Procedure B.1 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationB1Mar" name="MixtureAgingDurationB1Mar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingTemperatureB1Mar" titletip="The temperature at which the mixture was aged according to Procedure B.1, measured in Degrees Celsius (e.g., 140).">Procedure B.1 Aging Temperature (°C):<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureB1Mar" name="MixtureAgingTemperatureB1Mar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingDurationB2Mar" titletip="The period the mixture was aged according to Procedure B.2, expressed in hours (e.g., 160).">Procedure B.2 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationB2Mar" name="MixtureAgingDurationB2Mar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                        <label for="MixtureAgingTemperatureB2Mar" titletip="The temperature at which the mixture was aged according to Procedure B.2, measured in Degrees Celsius (e.g., 140).">Procedure B.2 Aging Temperature (°C):<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureB2Mar" name="MixtureAgingTemperatureB2Mar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </fieldset> 
+                    </div>               
+                </div>
+
+                <!-- SAMPLE PROPERTIES:  ITS Test -->
+                <div id="itssmplproptab" class="TwoColumn innertab-test hidden">Indirect Tensile Strength Test</div>
+                <div class="form-group hidden itscls itssmplpropgrp">
+                    <span id="itssamplepropsec" class="testslabel"> &nbsp; Indirect Tensile Strength Test &nbsp;<span id="itssmplproptabhide" class="hidetesttabs">&minus;</span> </span>
+                    <label for="SamplingITS" titletip="The type of sampling (e.g., Pavement Coring).">Sample Preparation: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <select id="SamplingITS" name="SamplingITS" onchange="SamplePrepFunction('SamplingITS','field20-10','field20-11')">
+                        <option value=""> Select</option>
+                        <option value="PavementCoring">Pavement Coring</option>
+                        <option value="LooseMixture">Loose Mixture</option>
+                    </select>
+
+                    <fieldset id="field20-10" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The coring properties of of the specimen.">Coring</legend>
+                        <div id="Coringdiv-ITS" class="form-group">
+                            <label for="PavingDateITS" titletip="The date the pavement from which the sample was cored was paved (e.g., 2011-06-12).">Paving Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="PavingDateITS" name="PavingDateITS" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringDateITS" titletip="The date when the specimen was cored from the pavement (e.g., 2021-08-31).">Coring Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="CoringDateITS" name="CoringDateITS" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringLocationITS" titletip="The location where the specimen was cored from the pavement (e.g., Berlin).">Coring Location:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="CoringLocationITS" name="CoringLocationITS">
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field20-11" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The compaction properties of of the specimen.">Sample Compaction &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-30</span>&nbsp;</legend>
+                        <div id="SampleCompactiondiv-ITS" class="form-group">
+                            <label for="CompactionTemperatureITS" titletip="The temperature at which the specimen is compacted, measured in Degrees Celsius (e.g., 180).">Compaction Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="CompactionTemperatureITS" name="CompactionTemperatureITS" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="BlowsNumberITS" titletip="The number of blows per side (e.g., 50).">Blows Number:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="number" id="BlowsNumberITS" name="BlowsNumberITS" min="0" title="Enter a valid positive integer.">
+                        </div>
+                    </fieldset>
+
+                    <label for="StorageConditionsITS" titletip="The storage conditions under which the mixture and compacted sample were kept (e.g., Stored at 25 degrees Celsius).">Storage Conditions:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="StorageConditionsITS" name="StorageConditionsITS">
+                </div>
+
+                <div class="innertab-lvl4-t hidden itscls itssmplpropgrp"> Mixture Aging<span class="standard-lvls">EN 12697-52</span></div>
+                <div class="innertab-lvl4-content hidden itscls itssmplpropgrp">
+                    <div id="SamplePropertiesdivITS" class="form-group">
+                        <fieldset id="field20-12" class="TwoColumn-fieldset inner-fieldset">
+                            <legend class="specific-legend" >Mixture Aging &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-52</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                            <div id="MixtureAgingdivITS" class="form-group">
+                                <fieldset id="field20-12-1" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" title="The aging of loose mixture according to Method A in EN 12697-52.">Loose Mixture</legend>
+                                    <div id="LooseMixturedivITS" class="form-group">
+                                        <label for="MixtureAgingDurationShortITS" titletip="The period the mixture was aged before compaction according to Procedure A.1, expressed in hours (e.g., 4).">Short-Term Aging Durtaion (hours):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationShortITS" name="MixtureAgingDurationShortITS" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingTemperatureShortITS" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.1, measured in Degrees Celsius (e.g., 140).">Short-Term Aging Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureShortITS" name="MixtureAgingTemperatureShortITS" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingDurationLongITS" titletip="The period the mixture was aged before compaction according to Procedure A.2, expressed in hours (e.g., 120).">Long-Term Aging Durtaion (hours):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationLongITS" name="MixtureAgingDurationLongITS" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                        <label for="MixtureAgingTemperatureLongITS" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.2, measured in Degrees Celsius (e.g., 150).">Long-Term Aging Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureLongITS" name="MixtureAgingTemperatureLongITS" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                    </div>
+                                </fieldset>
+                                <fieldset id="field20-12-2" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" title="The aging of compacted specimens from bituminous mixtures according to Method B EN 12697-52.">Compacted Mixture</legend>
+                                    <div id="CompactedMixturedivITS" class="form-group">
+                                        <label for="MixtureAgingDurationB1ITS" titletip="The period the mixture was aged according to Procedure B.1, expressed in hours (e.g., 80).">Procedure B.1 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationB1ITS" name="MixtureAgingDurationB1ITS" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingTemperatureB1ITS" titletip="The temperature at which the mixture was aged according to Procedure B.1, measured in Degrees Celsius (e.g., 140).">Procedure B.1 Aging Temperature (°C):<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureB1ITS" name="MixtureAgingTemperatureB1ITS" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingDurationB2ITS" titletip="The period the mixture was aged according to Procedure B.2, expressed in hours (e.g., 160).">Procedure B.2 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationB2ITS" name="MixtureAgingDurationB2ITS" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                        <label for="MixtureAgingTemperatureB2ITS" titletip="The temperature at which the mixture was aged according to Procedure B.2, measured in Degrees Celsius (e.g., 140).">Procedure B.2 Aging Temperature (°C):<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureB2ITS" name="MixtureAgingTemperatureB2ITS" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </fieldset> 
+                    </div>               
+                </div>
+
+                <!-- SAMPLE PROPERTIES:  TSRST -->
+                <div id="tsrsmplproptab" class="TwoColumn innertab-test hidden">Thermal Stress Restrained Specimen Test</div>
+                <div id="SamplePropertiesdivTSRST" class="form-group hidden tsrcls tsrsmplpropgrp">
+
+                    <span id="tsrsamplepropsec" class="testslabel"> &nbsp; Thermal Stress Restrained Specimen Test &nbsp;<span id="tsrsmplproptabhide" class="hidetesttabs">&minus;</span></span>
+
+                    <label for="SamplingTSRST" titletip="The type of sampling (e.g., Pavement Coring).">Sample Preparation: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <select id="SamplingTSRST" name="SamplingTSRST" onchange="SamplePrepFunction('SamplingTSRST','field20-13','field20-14')">
+                        <option value=""> Select</option>
+                        <option value="PavementCoring">Pavement Coring</option>
+                        <option value="LooseMixture">Loose Mixture</option>
+                    </select>
+
+                    <fieldset id="field20-13" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The coring properties of of the specimen.">Coring</legend>
+                        <div id="Coringdiv-TSRST" class="form-group">
+                            <label for="PavingDateTSRST" titletip="The date the pavement from which the sample was cored was paved (e.g., 2011-06-12).">Paving Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="PavingDateTSRST" name="PavingDateTSRST" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringDateTSRST" titletip="The date when the specimen was cored from the pavement (e.g., 2021-08-31).">Coring Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="CoringDateTSRST" name="CoringDateTSRST" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringLocationTSRST" titletip="The location where the specimen was cored from the pavement (e.g., Berlin).">Coring Location:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="CoringLocationTSRST" name="CoringLocationTSRST">
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field20-14" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The compaction properties of of the specimen.">Sample Compaction &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-33</span>&nbsp;</legend>
+                        <div id="SampleCompactiondiv-TSRST" class="form-group">
+                            <label for="CompactionDateTSRST" titletip="The date of the compaction of the specimen (e.g., 2020-07-18).">Compaction Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="CompactionDateTSRST" name="CompactionDateTSRST" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="RollerTypeTSRST" titletip="The type of roller used during the compaction process (e.g., Steel Roller Sector).">Roller Type:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="RollerTypeTSRST" name="RollerTypeTSRST">
+                                <option value="">Select </option>
+                                <option value="Pneumatic Tires">Pneumatic Tires</option>
+                                <option value="Steel Roller">Steel Roller</option>
+                                <option value="Steel Roller on Pneumatic Tire">Steel Roller on Pneumatic Tire</option>
+                                <option value="Steel Roller Sector">Steel Roller Sector</option>
+                                <option value="Vertical Sliding Plates">Vertical Sliding Plates</option>
+                            </select>
+                            
+                            <label for="CompactionTargetTSRST" titletip="The target of compaction followed, either by specified energy or volume (e.g., Compaction by a specified energy).">Compaction Target:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="CompactionTargetTSRST" name="CompactionTargetTSRST">
+                                <option value=""> Select</option>
+                                <option value="Compaction by a specified energy">Compaction by a specified energy</option>
+                                <option value="Compaction by a specified volume or air void">Compaction by a specified volume or air void</option>
+                            </select>
+                            
+                            <label for="CompactionTemperatureTSRST" titletip="The temperature at which the specimen is compacted, measured in Degrees Celsius (e.g., 180).">Compaction Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="CompactionTemperatureTSRST" name="CompactionTemperatureTSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        </div>
+                    </fieldset>
+
+                    <label for="StorageConditionsTSRST" titletip="The storage conditions under which the mixture and compacted sample were kept (e.g., Stored at 25 degrees Celsius).">Storage Conditions:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="StorageConditionsTSRST" name="StorageConditionsTSRST">    
+                </div>
+
+                <div class="innertab-lvl4-t tsrcls tsrsmplpropgrp hidden"> Mixture Aging<span class="standard-lvls">EN 12697-52</span></div>
+                <div class="innertab-lvl4-content hidden tsrcls tsrsmplpropgrp">
+                    <div id="SamplePropertiesdivTSRST-2" class="form-group">
+                        <fieldset id="field20-15" class="TwoColumn-fieldset inner-fieldset">
+                            <legend class="specific-legend" >Mixture Aging &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-52</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                            <div id="MixtureAgingdivTSRST" class="form-group">
+                                <fieldset id="field20-15-1" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" title="The aging of loose mixture according to Method A in EN 12697-52.">Loose Mixture</legend>
+                                    <div id="LooseMixturedivTSRST" class="form-group">
+                                        <label for="MixtureAgingDurationShortTSRST" titletip="The period the mixture was aged before compaction according to Procedure A.1, expressed in hours (e.g., 4).">Short-Term Aging Durtaion (hours):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationShortTSRST" name="MixtureAgingDurationShortTSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingTemperatureShortTSRST" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.1, measured in Degrees Celsius (e.g., 140).">Short-Term Aging Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureShortTSRST" name="MixtureAgingTemperatureShortTSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingDurationLongTSRST" titletip="The period the mixture was aged before compaction according to Procedure A.2, expressed in hours (e.g., 120).">Long-Term Aging Durtaion (hours):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationLongTSRST" name="MixtureAgingDurationLongTSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                        <label for="MixtureAgingTemperatureLongTSRST" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.2, measured in Degrees Celsius (e.g., 150).">Long-Term Aging Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureLongTSRST" name="MixtureAgingTemperatureLongTSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                    </div>
+                                </fieldset>
+                                <fieldset id="field20-15-2" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" title="The aging of compacted specimens from bituminous mixtures according to Method B EN 12697-52.">Compacted Mixture</legend>
+                                    <div id="CompactedMixturedivTSRST" class="form-group">
+                                        <label for="MixtureAgingDurationB1TSRST" titletip="The period the mixture was aged according to Procedure B.1, expressed in hours (e.g., 80).">Procedure B.1 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationB1TSRST" name="MixtureAgingDurationB1TSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingTemperatureB1TSRST" titletip="The temperature at which the mixture was aged according to Procedure B.1, measured in Degrees Celsius (e.g., 140).">Procedure B.1 Aging Temperature (°C):<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureB1TSRST" name="MixtureAgingTemperatureB1TSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingDurationB2TSRST" titletip="The period the mixture was aged according to Procedure B.2, expressed in hours (e.g., 160).">Procedure B.2 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationB2TSRST" name="MixtureAgingDurationB2TSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                        <label for="MixtureAgingTemperatureB2TSRST" titletip="The temperature at which the mixture was aged according to Procedure B.2, measured in Degrees Celsius (e.g., 140).">Procedure B.2 Aging Temperature (°C):<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureB2TSRST" name="MixtureAgingTemperatureB2TSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </fieldset> 
+                    </div>    
+                </div>         
+
+                <!-- SAMPLE PROPERTIES:  UTST -->
+                <div id="utssmplproptab" class="TwoColumn innertab-test hidden">Uniaxial Tension Stress Test</div>
+                <div id="SamplePropertiesdivUTST" class="form-group hidden utscls utssmplpropgrp">
+
+                    <span id="utssamplepropsec" class="testslabel"> &nbsp; Uniaxial Tension Stress Test &nbsp;<span id="utssmplproptabhide" class="hidetesttabs">&minus;</span></span>
+
+                    <label for="SamplingUTST" titletip="The type of sampling (e.g., Pavement Coring).">Sample Preparation: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <select id="SamplingUTST" name="SamplingUTST" onchange="SamplePrepFunction('SamplingUTST','field20-16','field20-17')">
+                        <option value=""> Select</option>
+                        <option value="PavementCoring">Pavement Coring</option>
+                        <option value="LooseMixture">Loose Mixture</option>
+                    </select>
+
+                    <fieldset id="field20-16" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The coring properties of of the specimen.">Coring</legend>
+                        <div id="Coringdiv-UTST" class="form-group">
+                            <label for="PavingDateUTST" titletip="The date the pavement from which the sample was cored was paved (e.g., 2011-06-12).">Paving Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="PavingDateUTST" name="PavingDateUTST" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringDateUTST" titletip="The date when the specimen was cored from the pavement (e.g., 2021-08-31).">Coring Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="CoringDateUTST" name="CoringDateUTST" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringLocationUTST" titletip="The location where the specimen was cored from the pavement (e.g., Berlin).">Coring Location:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="CoringLocationUTST" name="CoringLocationUTST">
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field20-17" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The compaction properties of of the specimen.">Sample Compaction &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-33</span>&nbsp;</legend>
+                        <div id="SampleCompactiondiv-UTST" class="form-group">
+                            <label for="CompactionDateUTST" titletip="The date of the compaction of the specimen (e.g., 2020-07-18).">Compaction Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="CompactionDateUTST" name="CompactionDateUTST" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="RollerTypeUTST" titletip="The type of roller used during the compaction process (e.g., Steel Roller Sector).">Roller Type:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="RollerTypeUTST" name="RollerTypeUTST">
+                                <option value="">Select </option>
+                                <option value="Pneumatic Tires">Pneumatic Tires</option>
+                                <option value="Steel Roller">Steel Roller</option>
+                                <option value="Steel Roller on Pneumatic Tire">Steel Roller on Pneumatic Tire</option>
+                                <option value="Steel Roller Sector">Steel Roller Sector</option>
+                                <option value="Vertical Sliding Plates">Vertical Sliding Plates</option>
+                            </select>
+                            
+                            <label for="CompactionTargetUTST" titletip="The target of compaction followed, either by specified energy or volume (e.g., Compaction by a specified energy).">Compaction Target:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="CompactionTargetUTST" name="CompactionTargetUTST">
+                                <option value=""> Select</option>
+                                <option value="Compaction by a specified energy">Compaction by a specified energy</option>
+                                <option value="Compaction by a specified volume or air void">Compaction by a specified volume or air void</option>
+                            </select>
+                            
+                            <label for="CompactionTemperatureUTST" titletip="The temperature at which the specimen is compacted, measured in Degrees Celsius (e.g., 180).">Compaction Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="CompactionTemperatureUTST" name="CompactionTemperatureUTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        </div>
+                    </fieldset>
+
+                    <label for="StorageConditionsUTST" titletip="The storage conditions under which the mixture and compacted sample were kept (e.g., Stored at 25 degrees Celsius).">Storage Conditions:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="StorageConditionsUTST" name="StorageConditionsUTST">    
+                </div>
+
+                <div class="innertab-lvl4-t utscls utssmplpropgrp hidden"> Mixture Aging<span class="standard-lvls">EN 12697-52</span></div>
+                <div class="innertab-lvl4-content hidden utscls utssmplpropgrp">
+                    <div id="SamplePropertiesdivUTST-2" class="form-group">
+                        <fieldset id="field20-18" class="TwoColumn-fieldset inner-fieldset">
+                            <legend class="specific-legend" >Mixture Aging &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-52</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                            <div id="MixtureAgingdivUTST" class="form-group">
+                                <fieldset id="field20-18-1" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" title="The aging of loose mixture according to Method A in EN 12697-52.">Loose Mixture</legend>
+                                    <div id="LooseMixturedivUTST" class="form-group">
+                                        <label for="MixtureAgingDurationShortUTST" titletip="The period the mixture was aged before compaction according to Procedure A.1, expressed in hours (e.g., 4).">Short-Term Aging Durtaion (hours):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationShortUTST" name="MixtureAgingDurationShortUTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingTemperatureShortUTST" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.1, measured in Degrees Celsius (e.g., 140).">Short-Term Aging Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureShortUTST" name="MixtureAgingTemperatureShortUTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingDurationLongUTST" titletip="The period the mixture was aged before compaction according to Procedure A.2, expressed in hours (e.g., 120).">Long-Term Aging Durtaion (hours):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationLongUTST" name="MixtureAgingDurationLongUTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                        <label for="MixtureAgingTemperatureLongUTST" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.2, measured in Degrees Celsius (e.g., 150).">Long-Term Aging Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureLongUTST" name="MixtureAgingTemperatureLongUTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                    </div>
+                                </fieldset>
+                                <fieldset id="field20-18-2" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" title="The aging of compacted specimens from bituminous mixtures according to Method B EN 12697-52.">Compacted Mixture</legend>
+                                    <div id="CompactedMixturedivUTST" class="form-group">
+                                        <label for="MixtureAgingDurationB1UTST" titletip="The period the mixture was aged according to Procedure B.1, expressed in hours (e.g., 80).">Procedure B.1 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationB1UTST" name="MixtureAgingDurationB1UTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingTemperatureB1UTST" titletip="The temperature at which the mixture was aged according to Procedure B.1, measured in Degrees Celsius (e.g., 140).">Procedure B.1 Aging Temperature (°C):<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureB1UTST" name="MixtureAgingTemperatureB1UTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingDurationB2UTST" titletip="The period the mixture was aged according to Procedure B.2, expressed in hours (e.g., 160).">Procedure B.2 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationB2UTST" name="MixtureAgingDurationB2UTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                        <label for="MixtureAgingTemperatureB2UTST" titletip="The temperature at which the mixture was aged according to Procedure B.2, measured in Degrees Celsius (e.g., 140).">Procedure B.2 Aging Temperature (°C):<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureB2UTST" name="MixtureAgingTemperatureB2UTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </fieldset> 
+                    </div>    
+                </div>
+                
+                <!-- SAMPLE PROPERTIES:  Stiffness Test -->
+                <div id="stfsmplproptab" class="TwoColumn innertab-test hidden">Stiffness Test</div>
+                <div id="SamplePropertiesdivStiff" class="form-group hidden stfcls stfsmplpropgrp">
+
+                    <span id="stfsamplepropsec" class="testslabel"> &nbsp; Stiffness Test &nbsp;<span id="stfsmplproptabhide" class="hidetesttabs">&minus;</span></span>
+
+                    <label for="SamplingStiff" titletip="The type of sampling (e.g., Pavement Coring).">Sample Preparation: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <select id="SamplingStiff" name="SamplingStiff" onchange="SamplePrepFunction('SamplingStiff','field20-19','field20-20')">
+                        <option value=""> Select</option>
+                        <option value="PavementCoring">Pavement Coring</option>
+                        <option value="LooseMixture">Loose Mixture</option>
+                    </select>
+
+                    <fieldset id="field20-19" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The coring properties of of the specimen.">Coring</legend>
+                        <div id="Coringdiv-Stiff" class="form-group">
+                            <label for="PavingDateStiff" titletip="The date the pavement from which the sample was cored was paved (e.g., 2011-06-12).">Paving Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="PavingDateStiff" name="PavingDateStiff" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringDateStiff" titletip="The date when the specimen was cored from the pavement (e.g., 2021-08-31).">Coring Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="CoringDateStiff" name="CoringDateStiff" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CoringLocationStiff" titletip="The location where the specimen was cored from the pavement (e.g., Berlin).">Coring Location:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="CoringLocationStiff" name="CoringLocationStiff">
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field20-20" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The compaction properties of of the specimen.">Sample Compaction</legend>
+                        <div id="SampleCompactiondiv-Stiff" class="form-group">
+                            <label for="CompactionDateStiff" titletip="The date of the compaction of the specimen (e.g., 2020-07-18).">Compaction Date: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="date" id="CompactionDateStiff" name="CompactionDateStiff" placeholder="YYYY-MM-DD" value="" min="1900-01-01" max="2100-12-31">
+                            
+                            <label for="CompactorTypeStiff" titletip="The type of compactor used during the compaction process (e.g., Steel Roller Sector).">Compactor Type: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="CompactorTypeStiff" name="CompactorTypeStiff" onchange="StiffnessCompaction('CompactorTypeStiff','rollerstiff')">
+                                <option value="">Select </option>
+                                <option value="Pneumatic Tires">Pneumatic Tires</option>
+                                <option value="Steel Roller">Steel Roller</option>
+                                <option value="Steel Roller on Pneumatic Tire">Steel Roller on Pneumatic Tire</option>
+                                <option value="Steel Roller Sector">Steel Roller Sector</option>
+                                <option value="Vertical Sliding Plates">Vertical Sliding Plates</option>
+                                <option value="GyratoryCompactor">Gyratory Compactor</option>
+                                <option value="MarshallCompactor">Marshall Compactor</option>
+                            </select>
+                                         
+                            <label for="CompactionTemperatureStiff" titletip="The temperature at which the specimen is compacted, measured in Degrees Celsius (e.g., 180).">Compaction Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="CompactionTemperatureStiff" name="CompactionTemperatureStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">        
+                   
+                            <label for="CompactionTargetStiff" class="rollerstiff" titletip="The target of compaction followed, either by specified energy or volume (e.g., Compaction by a specified energy).">Compaction Target:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="CompactionTargetStiff" class="rollerstiff" name="CompactionTargetStiff">
+                                <option value=""> Select</option>
+                                <option value="Compaction by a specified energy">Compaction by a specified energy</option>
+                                <option value="Compaction by a specified volume or air void">Compaction by a specified volume or air void</option>
+                            </select>
+                    
+                        </div>
+                    </fieldset>
+
+                    <label for="StorageConditionsStiff" titletip="The storage conditions under which the mixture and compacted sample were kept (e.g., Stored at 25 degrees Celsius).">Storage Conditions:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="StorageConditionsStiff" name="StorageConditionsStiff">    
+                </div>
+
+                <div class="innertab-lvl4-t stfcls stfsmplpropgrp hidden"> Mixture Aging<span class="standard-lvls">EN 12697-52</span></div>
+                <div class="innertab-lvl4-content hidden stfcls stfsmplpropgrp">
+                    <div id="SamplePropertiesdivStiff-2" class="form-group">
+                        <fieldset id="field20-21" class="TwoColumn-fieldset inner-fieldset">
+                            <legend class="specific-legend" >Mixture Aging &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-52</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                            <div id="MixtureAgingdivStiff" class="form-group">
+                                <fieldset id="field20-21-1" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" title="The aging of loose mixture according to Method A in EN 12697-52.">Loose Mixture</legend>
+                                    <div id="LooseMixturedivStiff" class="form-group">
+                                        <label for="MixtureAgingDurationShortStiff" titletip="The period the mixture was aged before compaction according to Procedure A.1, expressed in hours (e.g., 4).">Short-Term Aging Durtaion (hours):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationShortStiff" name="MixtureAgingDurationShortStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingTemperatureShortStiff" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.1, measured in Degrees Celsius (e.g., 140).">Short-Term Aging Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureShortStiff" name="MixtureAgingTemperatureShortStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingDurationLongStiff" titletip="The period the mixture was aged before compaction according to Procedure A.2, expressed in hours (e.g., 120).">Long-Term Aging Durtaion (hours):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationLongStiff" name="MixtureAgingDurationLongStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                        <label for="MixtureAgingTemperatureLongStiff" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.2, measured in Degrees Celsius (e.g., 150).">Long-Term Aging Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureLongStiff" name="MixtureAgingTemperatureLongStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                    </div>
+                                </fieldset>
+                                <fieldset id="field20-21-2" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" title="The aging of compacted specimens from bituminous mixtures according to Method B EN 12697-52.">Compacted Mixture</legend>
+                                    <div id="CompactedMixturedivStiff" class="form-group">
+                                        <label for="MixtureAgingDurationB1Stiff" titletip="The period the mixture was aged according to Procedure B.1, expressed in hours (e.g., 80).">Procedure B.1 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationB1Stiff" name="MixtureAgingDurationB1Stiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingTemperatureB1Stiff" titletip="The temperature at which the mixture was aged according to Procedure B.1, measured in Degrees Celsius (e.g., 140).">Procedure B.1 Aging Temperature (°C):<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureB1Stiff" name="MixtureAgingTemperatureB1Stiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        
+                                        <label for="MixtureAgingDurationB2Stiff" titletip="The period the mixture was aged according to Procedure B.2, expressed in hours (e.g., 160).">Procedure B.2 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingDurationB2Stiff" name="MixtureAgingDurationB2Stiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                        <label for="MixtureAgingTemperatureB2Stiff" titletip="The temperature at which the mixture was aged according to Procedure B.2, measured in Degrees Celsius (e.g., 140).">Procedure B.2 Aging Temperature (°C):<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MixtureAgingTemperatureB2Stiff" name="MixtureAgingTemperatureB2Stiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </fieldset> 
+                    </div>    
+                </div>
+            </fieldset>
+        </div>
+    
+        <div class="innertab-t">Test Results</div>
+        <div class="innertab-content">
+            <fieldset id="field21">
+                <legend class="innertab-title">Test Results<span class="hideinner-content">&minus;</span></legend>
+
+                <!-- TEST RESULTS:  Rutting Test -->
+                <div id="rutresultstab" class="TwoColumn innertab-test hidden">Rutting Test</div>
+                <div id="Resultsdiv-0" class="form-group rutcls rutresultsgrp">
+                    <span id="rutresultssec" class="testslabel-3c"> &nbsp; Rutting Test &nbsp;<span id="rutresultstabhide" class="hidetesttabs">&minus;</span> </span>
+                    
+                    <label for="TestTemperature" titletip="The temperature at which the rutting test was conducted, measured in Degrees Celsius (e.g., 130).">Test Temperature (°C): <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="TestTemperature" name="TestTemperature" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number." required>
+                    <span></span>
+
+                    <label for="ResultsSelection" titletip="The results of the rutting test experiment when using large-size, extra-large size or small-size devices, based on EN 12697-22.">Method of Measurement: <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <select id="ResultsSelection" name="ResultsSelection" onchange="showResultsForm()" required>
+                        <option value="" disabled selected>Select </option>
+                        <option value="LargeOrExtraLargeDevices">Large or Extra-Large Devices</option>
+                        <option value="SmallSizeDeviceMethod_A_Air">Small Size Device in Air - Method A </option>
+                        <option value="SmallSizeDeviceMethod_B_Air">Small Size Device in Air - Method B</option>
+                        <option value="SmallSizeDeviceMethod_B_Water">Small Size Device in Water - Method B</option>
+                    </select>
+                    <span class="standard">EN 12697-22</span>
+                </div>
+
+                <div id="Resultsdiv" class="form-group rutcls rutresultsgrp">
+                    <fieldset id="field21-1" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend focused-title" title="The results of the rutting test experiment when using large or extra large devices as described by EN 12697-22.">Large or Extra-large Devices - Mean Results</legend>
+                        <div id="LargeOrExtraLargeDevicesdiv" class="form-group">
+                            <label for="MeanThicknessL" titletip="The value of the mean thickness of the samples in mm (e.g., 50).">Mean Thickness (mm): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MeanThicknessL" name="MeanThicknessL" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="CyclesNumberL" titletip="The required number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Number of Cycles: <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="number" id="CyclesNumberL" min="0" title="Enter a valid positive integer.">
+                        
+                            <label for="MeanProportionalRutDepthL" titletip="The average depth of a rut at the corresponding measurement cycle for a group of samples, expressed as a percentage (e.g., 7.0).">Mean Proportional Rut Depth (%): <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MeanProportionalRutDepthL" name="MeanProportionalRutDepthL" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        
+                            <fieldset id="field21-1-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The value, unit of measurement, and method of measurement for the bulk density of the specimen according to EN 12697-6.">Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                                <div id="BulkDensitydivL" class="form-group">
+                                    <label for="BulkDensityValueL" titletip="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density (Mg/m&sup3;): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="BulkDensityValueL" name="BulkDensityValueL" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+        
+                                    <label for="BulkDensityMethodL" titletip="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement: <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <select id="BulkDensityMethodL" name="BulkDensityMethodL">
+                                        <option value="" disabled selected>Select </option>
+                                        <option value="Bulk density - dry">Bulk density - dry</option>
+                                        <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                        <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                        <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                        <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+        
+                            <fieldset id="field21-1-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The percentage of voids in the bituminous sample, according to EN 12697-8.">Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp; </legend>
+                                <div id="VoidsdivL" class="form-group">
+                                    <label for="AirVoidsL" titletip="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="AirVoidsL" name="AirVoidsL" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="MineralAggregateVoidsL" titletip="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="MineralAggregateVoidsL" name="MineralAggregateVoidsL" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                
+                                    <label for="VoidsFilledWithBitumenL" titletip="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="VoidsFilledWithBitumenL" name="VoidsFilledWithBitumenL" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="field21-1-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend">Proportional Rut Depth versus Cycles <span class="semicolon">(semicolon separated)</span></legend>
+                                <div id="ProportionalRutDepthVersusCyclesGraphdiv" class="graph-form-group">
+                                    <label for="CycleLg" titletip="The number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Cycles: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="CycleLg" name="CycleLg" title="Enter valid positive integers, separated by semicolons.">
+                                    <label for="ProportionalRutDepthLg" titletip="The average depth of a rut at the corresponding measurement cycle for the specimen, expressed as a percentage (e.g., 3.2).">Proportional Rut Depths (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="ProportionalRutDepthLg" name="ProportionalRutDepthLg" title="Enter valid numbers between 0 and 100, separated by semicolons.">
+                                    <button class="graph-form-group-button" type="button" title="Show or hide plot." onclick="PlotGraph('field21-1-3','Large or Extra-large Devices - Mean Results graph','CycleLg','Cycles','pi','ProportionalRutDepthLg','Proportional Rut Depth','pn')">&#x1F4C8;</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+                    
+                    <fieldset id="field21-1-S" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend focused-title" title="The results of the rutting test experiment when using large or extra large devices as described by EN 12697-22.">Large or Extra-large Devices - Replications Results</legend>
+                    </fieldset> 
+                    
+                    <button type="button" id="Largebutton" class= "replication-button TwoColumn hidden-class"  onclick="addLarge('field21-1-S', 'form-group')">&#10010; Replication</button>
+
+                    <fieldset id="field21-2" class="TwoColumn-fieldset inner-fieldset hidden-fieldset" >
+                        <legend class="specific-legend focused-title" title="The results of the rutting test experiment when using small-sized devices, following Method A in air as described by EN 12697-22.">Small Size Device Method A in Air - Mean Results</legend>
+                        <div id="SmallSizeDeviceAairdiv" class="form-group">
+                            <label for="MeanThicknessSA" titletip="The value of the mean thickness of the samples in mm (e.g., 50).">Mean Thickness (mm): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MeanThicknessSA" name="MeanThicknessSA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="MeanWheelTrackingRateSA" titletip="The mean rate at which the rut depth increases with time under repeated passes of a loaded wheel of a small size device Method A in air for the entire considered group of specimens, measured in micrometers per cycle (e.g., 30).">Mean Wheel Tracking Rate (&micro;m/cycle): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MeanWheelTrackingRateSA" name="MeanWheelTrackingRateSA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <label for="CyclesNumberSA" titletip="The required number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Number of Cycles: <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="number" id="CyclesNumberSA" min="0" title="Enter a valid positive integer.">
+                            
+                            <label for="MeanRutDepthSA" titletip="The average depth of a rut for the considered group of samples, measured in mm (e.g., 1.3).">Mean Rut Depth (mm): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MeanRutDepthSA" name="MeanRutDepthSA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <fieldset id="field21-2-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The value, unit of measurement, and method of measurement for the bulk density of the specimen according to EN 12697-6.">Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                                <div id="BulkDensitydivSA" class="form-group">
+                                    <label for="BulkDensityValueSA" titletip="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density (Mg/m&sup3;): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="BulkDensityValueSA" name="BulkDensityValueSA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+        
+                                    <label for="BulkDensityMethodSA" titletip="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement: <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <select id="BulkDensityMethodSA" name="BulkDensityMethodSA">
+                                        <option value="" disabled selected>Select </option>
+                                        <option value="Bulk density - dry">Bulk density - dry</option>
+                                        <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                        <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                        <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                        <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+        
+                            <fieldset id="field21-2-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The percentage of voids in the bituminous sample, according to EN 12697-8.">Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp; </legend>
+                                <div id="VoidsdivSA" class="form-group">
+                                    <label for="AirVoidsSA" titletip="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="AirVoidsSA" name="AirVoidsSA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="MineralAggregateVoidsSA" titletip="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="MineralAggregateVoidsSA" name="MineralAggregateVoidsSA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                
+                                    <label for="VoidsFilledWithBitumenSA" titletip="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="VoidsFilledWithBitumenSA" name="VoidsFilledWithBitumenSA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="field21-2-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend">Rut Depth versus Cycles <span class="semicolon">(semicolon separated)</span></legend>
+                                <div id="RutDepthVersusCyclesGraphSAdiv" class="graph-form-group">
+                                    <label for="CycleSAg" titletip="The number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Cycles: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="CycleSAg" name="CycleSAg" title="Enter valid positive integers, separated by semicolons.">
+                                    <label for="RutDepthSAg" titletip="The average depth of a rut at the corresponding measurement cycle for the specimen, measured in mm (e.g., 1.3).">Rut Depth (mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="RutDepthSAg" name="RutDepthSAg" title="Enter valid positive numbers, separated by semicolons.">
+                                    <button class="graph-form-group-button" type="button" title="Show or hide plot." onclick="PlotGraph('field21-2-3','Small Size Device Method A in Air - Mean Results graph','CycleSAg','Cycles','pi','RutDepthSAg','Rut Depth','pn')">&#x1F4C8;</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-2-S" class="TwoColumn-fieldset inner-fieldset hidden-fieldset" >
+                        <legend class="specific-legend focused-title" title="The results of the rutting test experiment when using small-sized devices, following Method A in air as described by EN 12697-22.">Small Size Device Method A in Air - Replications Results</legend>
+                    </fieldset>
+
+                    <button type="button" id="SmallAAirbutton" class= "replication-button TwoColumn hidden-class"  onclick="addSAAir('field21-2-S', 'form-group')">&#10010; Replication</button>
+
+                    <fieldset id="field21-3" class="TwoColumn-fieldset inner-fieldset hidden-fieldset" >
+                        <legend class="specific-legend focused-title" title="The results of the rutting test experiment when using small-sized devices, following Method B in air as described by EN 12697-22.">Small Size Device Method B in Air - Mean Results</legend>
+                        <div id="SmallSizeDeviceBairdiv" class="form-group">
+                            <label for="MeanThicknessSBA" titletip="The value of the mean thickness of the samples in mm (e.g., 50).">Mean Thickness (mm): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MeanThicknessSBA" name="MeanThicknessSBA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="MeanWheelTrackingSlopeSBA" titletip="The mean rate at which the rut depth increases with time under repeated passes of a loaded wheel of a small size device Method B in air for the entire considered group of specimens, measured in millimeters per 1000 cycles (e.g., 30).">Wheel Tracking Slope (mm/10<sup>3</sup>cycle): <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MeanWheelTrackingSlopeSBA" name="MeanWheelTrackingSlopeSBA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="CyclesNumberSBA" titletip="The required number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Number of Cycles: <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="number" id="CyclesNumberSBA" min="0" title="Enter a valid positive integer.">
+                            
+                            <label for="MeanProportionalRutDepthSBA" titletip="The average depth of a rut at 10000 cycles or at the number of cycles reached by all samples in the group, expressed as a percentage (e.g., 7.0)">Mean Proportional Rut Depth (%): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MeanProportionalRutDepthSBA" name="MeanProportionalRutDepthSBA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                  
+
+                            <label for="MeanRutDepthSBA" titletip="The average depth of a rut at 10000 cycles or at the number of cycles reached by all samples in the group, measured in mm (e.g., 1.7).">Mean Rut Depth (mm): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MeanRutDepthSBA" name="MeanRutDepthSBA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <fieldset id="field21-3-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The value, unit of measurement, and method of measurement for the bulk density of the specimen according to EN 12697-6.">Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                                <div id="BulkDensitydivSBA" class="form-group">
+                                    <label for="BulkDensityValueSBA" titletip="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density (Mg/m&sup3;): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="BulkDensityValueSBA" name="BulkDensityValueSBA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+        
+                                    <label for="BulkDensityMethodSBA" titletip="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement: <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <select id="BulkDensityMethodSBA" name="BulkDensityMethodSBA">
+                                        <option value="" disabled selected>Select </option>
+                                        <option value="Bulk density - dry">Bulk density - dry</option>
+                                        <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                        <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                        <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                        <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="field21-3-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The percentage of voids in the bituminous sample, according to EN 12697-8.">Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp; </legend>
+                                <div id="VoidsdivSBA" class="form-group">
+                                    <label for="AirVoidsSBA" titletip="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="AirVoidsSBA" name="AirVoidsSBA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="MineralAggregateVoidsSBA" titletip="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="MineralAggregateVoidsSBA" name="MineralAggregateVoidsSBA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                
+                                    <label for="VoidsFilledWithBitumenSBA" titletip="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="VoidsFilledWithBitumenSBA" name="VoidsFilledWithBitumenSBA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="field21-3-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend">Rut Depth versus Cycles <span class="semicolon">(semicolon separated)</span></legend>
+                                <div id="RutDepthVersusCyclesGraphSBAdiv" class="graph-form-group">
+                                    <label for="CycleSBAg" titletip="The number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Cycles: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="CycleSBAg" name="CycleSBAg" title="Enter valid positive integers, separated by semicolons.">
+                                    <label for="RutDepthSBAg" titletip="The average depth of a rut at the corresponding measurement cycle for the specimen, measured in mm (e.g., 2.2).">Rut Depth (mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="RutDepthSBAg" name="RutDepthSBAg" title="Enter valid positive numbers, separated by semicolons.">
+                                    <button class="graph-form-group-button" type="button" title="Show or hide plot." onclick="PlotGraph('field21-3-3','Small Size Device Method B in Air - Mean Results graph','CycleSBAg','Cycles','pi','RutDepthSBAg','Rut Depth','pn')">&#x1F4C8;</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-3-S" class="TwoColumn-fieldset inner-fieldset hidden-fieldset" >
+                        <legend class="specific-legend focused-title" title="The results of the rutting test experiment when using small-sized devices, following Method B in air as described by EN 12697-22.">Small Size Device Method B in Air - Replications Results</legend>
+                    </fieldset>
+                    
+                    <button type="button" id="SmallBAirbutton" class= "replication-button TwoColumn hidden-class"  onclick="addSB('field21-3','field21-3-S', 'SBA', 'form-group')">&#10010; Replication</button>
+
+                    <fieldset id="field21-4" class="TwoColumn-fieldset inner-fieldset hidden-fieldset" >
+                        <legend class="specific-legend focused-title" title="The results of the rutting test experiment when using small-sized devices, following Method B in water as described by EN 12697-22:2020.">Small Size Device Method B in Water - Mean Results</legend>
+                        <div id="SmallSizeDeviceBwaterdiv" class="form-group">
+                            <label for="MeanThicknessSBW" titletip="The value of the mean thickness of the samples in mm (e.g., 50).">Mean Thickness (mm): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MeanThicknessSBW" name="MeanThicknessSBW" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="MeanWheelTrackingSlopeSBW" titletip="The mean rate at which the rut depth increases with time under repeated passes of a loaded wheel of a small size device Method B in water for the entire considered group of specimens, measured in millimeters per 1000 cycles (e.g., 30).">Wheel Tracking Slope (mm/10<sup>3</sup>cycle): <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MeanWheelTrackingSlopeSBW" name="MeanWheelTrackingSlopeSBW" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="CyclesNumberSBW" titletip="The required number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Number of Cycles: <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="number" id="CyclesNumberSBW" min="0" title="Enter a valid positive integer.">
+                            
+                            <label for="MeanProportionalRutDepthSBW" titletip="The average depth of a rut at 10000 cycles or at the number of cycles reached by all samples in the group, expressed as a percentage (e.g., 7.0)">Mean Proportional Rut Depth (%): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MeanProportionalRutDepthSBW" name="MeanProportionalRutDepthSBW" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                  
+
+                            <label for="MeanRutDepthSBW" titletip="The average depth of a rut at 10000 cycles or at the number of cycles reached by all samples in the group, measured in mm (e.g., 2.8).">Mean Rut Depth (mm): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MeanRutDepthSBW" name="MeanRutDepthSBW" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <fieldset id="field21-4-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The value, unit of measurement, and method of measurement for the bulk density of the specimen according to EN 12697-6.">Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                                <div id="BulkDensitydivSBW" class="form-group">
+                                    <label for="BulkDensityValueSBW" titletip="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density (Mg/m&sup3;): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="BulkDensityValueSBW" name="BulkDensityValueSBW" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+        
+                                    <label for="BulkDensityMethodSBW" titletip="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement: <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <select id="BulkDensityMethodSBW" name="BulkDensityMethodSBW">
+                                        <option value="" disabled selected> Select</option>
+                                        <option value="Bulk density - dry">Bulk density - dry</option>
+                                        <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                        <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                        <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                        <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+        
+                            <fieldset id="field21-4-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The percentage of voids in the bituminous sample, according to EN 12697-8.">Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp; </legend>
+                                <div id="VoidsdivSBW" class="form-group">
+                                    <label for="AirVoidsSBW" titletip="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="AirVoidsSBW" name="AirVoidsSBW" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="MineralAggregateVoidsSBW" titletip="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="MineralAggregateVoidsSBW" name="MineralAggregateVoidsSBW" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                
+                                    <label for="VoidsFilledWithBitumenSBA" titletip="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="VoidsFilledWithBitumenSBW" name="VoidsFilledWithBitumenSBW" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="field21-4-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend">Rut Depth versus Cycles <span class="semicolon">(semicolon separated)</span></legend>
+                                <div id="RutDepthVersusCyclesGraphSBWdiv" class="graph-form-group">
+                                    <label for="CycleSBWg" titletip="The number of cycles. Note that two wheel passes count as one cycle (e.g., 2500).">Cycles: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="CycleSBWg" name="CycleSBWg" title="Enter valid positive integers, separated by semicolons.">
+                                    <label for="RutDepthSBWg" titletip="The average depth of a rut at the corresponding measurement cycle for the specimen, measured in mm (e.g., 2.2).">Rut Depth (mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="RutDepthSBWg" name="RutDepthSBWg" title="Enter valid positive numbers, separated by semicolons.">
+                                    <button class="graph-form-group-button" type="button" title="Show or hide plot." onclick="PlotGraph('field21-4-3','´Small Size Device Method B in Water - Mean Results` graph','CycleSBWg','Cycles','pi','RutDepthSBWg','Rut Depth','pn')">&#x1F4C8;</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-4-S" class="TwoColumn-fieldset inner-fieldset hidden-fieldset" >
+                        <legend class="specific-legend focused-title" title="The results of the rutting test experiment when using small-sized devices, following Method B in water as described by EN 12697-22.">Small Size Device Method B in Water - Replications Results</legend>
+                    </fieldset>
+           
+                    <button type="button" id="SmallBWaterbutton" class= "replication-button TwoColumn hidden-class"  onclick="addSB('field21-4','field21-4-S', 'SBW', 'form-group')">&#10010; Replication</button>
+                </div>
+
+                <!-- TEST RESULTS:  Marshall Test -->
+                <div id="marresultstab" class="TwoColumn innertab-test hidden">Marshall Test</div>
+                <div id="Resultsdiv-Mar" class="form-group hidden marcls marresultsgrp">
+                    <span id="marresultssec" class="testslabel"> &nbsp; Marshall Test &nbsp;<span id="marresultstabhide" class="hidetesttabs">&minus;</span> </span>
+
+                    <fieldset id="field21-5" class="TwoColumn-fieldset inner-fieldset" >
+                        <legend class="specific-legend" title="The results of the Marshall test as described by EN 12697-34.">Stability and Flow &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-34</span>&nbsp; </legend>
+                        <div id="MarResults-div" class="form-group">
+                            <label for="StabilityMar" titletip="The corrected maximum load, expressed in kilonewtons kN (e.g., 9.1).">Corrected Stability (kN): <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="StabilityMar" name="StabilityMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+            
+                            <label for="FlowMar" titletip="The deformation in millimetres (mm), at maximum load minus the nominal deformation obtained by extrapolation of the tangent of the graph of load against deformation back to zero load, according to EN 12697-34 (e.g., 3.2).">Flow (mm): <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="FlowMar" name="FlowMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        
+                            <label for="TangentialFlowMar" titletip="The nominal deformation, expressed in mm. It is obtained by extrapolation of the tangent of the graph of the load as a function of the deformation in continuation up to the stability load, minus the nominal deformation obtained by extrapolating the tangent back to the zero load, according to EN 12697-34 (e.g., 1.9).">Tangential Flow (mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="TangentialFlowMar" name="TangentialFlowMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        
+                            <label for="TotalFlowMar" titletip="The deformation at maximum load, expressed in mm (e.g., 2.8).">Total Flow (mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="TotalFlowMar" name="TotalFlowMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        
+                            <label for="MarshallQuotientMar" titletip="The ratio of the stability to the flow, expressed in kilonewtons kN per millimetres mm (e.g., 2.691).">Marshall Quotient (kN/mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MarshallQuotientMar" name="MarshallQuotientMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-10-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" >Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                        <div id="BulkDensitydivMar" class="form-group">
+                            <label for="BulkDensityValueMar" titletip="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density (Mg/m&sup3;): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="BulkDensityValueMar" name="BulkDensityValueMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="BulkDensityMethodMar" titletip="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement: <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="BulkDensityMethodMar" name="BulkDensityMethodMar">
+                                <option value="" disabled selected> Select</option>
+                                <option value="Bulk density - dry">Bulk density - dry</option>
+                                <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-10-2" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" >Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp;</legend>
+                        <div id="VoidsdivMar" class="form-group">
+                            <label for="AirVoidsMar" titletip="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="AirVoidsMar" name="AirVoidsMar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="MineralAggregateVoidsMar" titletip="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MineralAggregateVoidsMar" name="MineralAggregateVoidsMar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        
+                            <label for="VoidsFilledWithBitumenMar" titletip="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="VoidsFilledWithBitumenMar" name="VoidsFilledWithBitumenMar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- TEST RESULTS:  ITS Test -->
+                <div id="itsresultstab" class="TwoColumn innertab-test hidden">Indirect Tensile Strength Test</div>
+                <div id="Resultsdiv-ITS1" class="form-group hidden itscls itsresultsgrp">
+                    <span id="itsresultssec" class="testslabel-3c"> &nbsp; Indirect Tensile Strength Test &nbsp;<span id="itsresultstabhide" class="hidetesttabs">&minus;</span> </span>
+
+                    <label for="TestTemperatureITS" titletip="The temperature at which the Indirect Tensile Strength test was conducted, measured in Degrees Celsius (e.g., 10).">Test Temperature (°C): <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="TestTemperatureITS" name="TestTemperatureITS" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    <span></span>
+                </div>
+                
+                <div id="Resultsdiv-ITS2" class="form-group hidden itscls itsresultsgrp">
+                    <fieldset id="field21-11" class="TwoColumn-fieldset inner-fieldset" >
+                        <legend class="specific-legend focused-title" title="The results of the Indirect Tensile Strength test dry samples as described by EN 12697-23.">Dry - Mean Results&nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-23</span>&nbsp;</legend>
+                        <div id="ITSDryResults-div" class="form-group">
+                            <label for="IndirectTensileStrengthITSDry" titletip="The value of the maximum tensile stress calculated from the peak load, expressed in kilo-Pascals kPa (e.g., 1452).">Indirect Tensile Strength (kPa): <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="IndirectTensileStrengthITSDry" name="IndirectTensileStrengthITSDry" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                            
+                            <fieldset id="field21-11-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend">Sample Dimensions</legend> 
+                                <div class="form-group">
+                                    <label for="HeightITSDry" titletip="The value of the height of the sample in mm (e.g., 63.5).">Height (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="HeightITSDry" name="HeightITSDry" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                    <label for="DiameterITSDry" titletip="The value of the diameter of the sample in mm (e.g., 100).">Diameter (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="DiameterITSDry" name="DiameterITSDry" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                </div>
+                            </fieldset> 
+
+                            <fieldset id="field21-11-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" >Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                                <div id="BulkDensitydivITSDry" class="form-group">
+                                    <label for="BulkDensityValueITSDry" titletip="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density (Mg/m&sup3;): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="BulkDensityValueITSDry" name="BulkDensityValueITSDry" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                    <label for="BulkDensityMethodITSDry" titletip="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement: <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <select id="BulkDensityMethodITSDry" name="BulkDensityMethodITSDry">
+                                        <option value="" disabled selected> Select</option>
+                                        <option value="Bulk density - dry">Bulk density - dry</option>
+                                        <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                        <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                        <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                        <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="field21-11-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" >Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp;</legend>
+                                <div id="VoidsdivITSDry" class="form-group">
+                                    <label for="AirVoidsITSDry" titletip="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="AirVoidsITSDry" name="AirVoidsITSDry" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="MineralAggregateVoidsITSDry" titletip="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="MineralAggregateVoidsITSDry" name="MineralAggregateVoidsITSDry" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                
+                                    <label for="VoidsFilledWithBitumenITSDry" titletip="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="VoidsFilledWithBitumenITSDry" name="VoidsFilledWithBitumenITSDry" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+                
+                    <fieldset id="field21-12" class="TwoColumn-fieldset inner-fieldset hidden-fieldset itscls itsresultsgrp">
+                        <legend class="specific-legend focused-title" title="The results of the Indirect Tensile Strength test as described by EN 12697-23.">Dry - Replications Results&nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-23</span>&nbsp;</legend>
+                    </fieldset> 
+                    
+                    <button type="button" id="ITSDrybutton" class= "replication-button TwoColumn hidden itscls itsresultsgrp"  onclick="addITSReplication('field21-12', 'field21-12', 'ITSDry', 'form-group')">&#10010; Replication</button>
+                </div>
+
+                <div>
+                    <div class="innertab-lvl3-t hidden itscls itsresultsgrp"> Wet</div>
+                    <div class="innertab-lvl3-content hidden itscls itsresultsgrp">                 
+                        <fieldset id="field21-13" class="TwoColumn-fieldset inner-fieldset" >
+                            <legend class="specific-legend focused-title" title="The results of the Indirect Tensile Strength test wet samples as described by EN 12697-23.">Wet - Mean Results&nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-23</span>&nbsp; <span class="hideinner-lvl3-content">&minus;</span></legend>
+                            
+                            <div class="form-group-3c">
+                                <label for="IndirectTensileStrengthITSWet" titletip="The value of the maximum tensile stress calculated from the peak load, expressed in kilo-Pascals kPa (e.g., 3.034).">Indirect Tensile Strength (kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                <input type="text" id="IndirectTensileStrengthITSWet" name="IndirectTensileStrengthITSWet" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                <span></span>
+                                
+                                <label for="IndirectTensileStrengthRatioITS" titletip="The ratio of the indirect tensile strength of the wet specimens to that of dry specimens using Method A in EN 12697-12, expressed in percent (e.g., 85).">Indirect Tensile Strength ratio (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                <input type="text" id="IndirectTensileStrengthRatioITS" name="IndirectTensileStrengthRatioITS" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                <span class="standard">EN 12697-12</span>
+                            </div>
+
+                            <div id="ITSWetResults-div" class="form-group">
+                                <fieldset id="field21-13-1" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend">Sample Dimensions</legend> 
+                                    <div class="form-group">
+                                        <label for="HeightITSWet" titletip="The value of the height of the sample in mm (e.g., 63.5).">Height (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="HeightITSWet" name="HeightITSWet" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+    
+                                        <label for="DiameterITSWet" titletip="The value of the diameter of the sample in mm (e.g., 100).">Diameter (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="DiameterITSWet" name="DiameterITSWet" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                    </div>
+                                </fieldset> 
+    
+                                <fieldset id="field21-13-2" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" >Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                                    <div id="BulkDensitydivITSWet" class="form-group">
+                                        <label for="BulkDensityValueITSWet" titletip="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 1852).">Bulk Density (Mg/m&sup3;): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="BulkDensityValueITSWet" name="BulkDensityValueITSWet" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+    
+                                        <label for="BulkDensityMethodITSWet" titletip="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <select id="BulkDensityMethodITSWet" name="BulkDensityMethodITSWet">
+                                            <option value=""> Select</option>
+                                            <option value="Bulk density - dry">Bulk density - dry</option>
+                                            <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                            <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                            <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                            <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                                        </select>
+                                    </div>
+                                </fieldset>
+    
+                                <fieldset id="field21-13-3" class="TwoColumn-fieldset inner-fieldset">
+                                    <legend class="specific-legend" >Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp;</legend>
+                                    <div id="VoidsdivITSWet" class="form-group">
+                                        <label for="AirVoidsITSWet" titletip="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="t
+                                        3ext" id="AirVoidsITSWet" name="AirVoidsITSWet" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                        
+                                        <label for="MineralAggregateVoidsITSWet" titletip="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="MineralAggregateVoidsITSWet" name="MineralAggregateVoidsITSWet" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                        <label for="VoidsFilledWithBitumenITSWet" titletip="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="VoidsFilledWithBitumenITSWet" name="VoidsFilledWithBitumenITSWet" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </fieldset>
+                        <br>
+                        <fieldset id="field21-14" class="TwoColumn-fieldset inner-fieldset hidden-fieldset itscls itsresultsgrp">
+                            <legend class="specific-legend focused-title" title="The results of the Indirect Tensile Strength test as described by EN 12697-23.">Wet - Replications Results&nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-23</span>&nbsp;</legend>
+                        </fieldset> 
+                        
+                        <button type="button" id="ITSWetbutton" class= "replication-button TwoColumn hidden itscls itsresultsgrp"  onclick="addITSReplication('field21-14', 'field21-14', 'ITSWet', 'form-group')">&#10010; Replication</button>
+                    </div>
+                </div>
+
+                <!-- TEST RESULTS:  TSRST -->
+                <div id="tsrresultstab" class="TwoColumn innertab-test hidden">Thermal Stress Restrained Specimen Test</div>
+                <div id="Resultsdiv-TSRST" class="form-group hidden tsrcls tsrresultsgrp">
+                    <span id="tsrresultssec" class="testslabel"> &nbsp; Thermal Stress Restrained Specimen Test &nbsp;<span id="tsrresultstabhide" class="hidetesttabs">&minus;</span> </span>
+
+                    <fieldset id="field21-15" class="TwoColumn-fieldset inner-fieldset" >
+                        <legend class="specific-legend" title="The results of the Thermal Stress Restrained Specimen test as described by EN 12697-46.">TSRST Results &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-46</span>&nbsp; </legend>
+                        <div id="TSRSTResults-div" class="form-group">
+                            <label for="StartTemperatureTSRST" titletip="The starting temperature of the test, measured in Degrees Celsius (e.g., 20).">Start Temperature (°C): <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="StartTemperatureTSRST" name="StartTemperatureTSRST" pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+            
+                            <label for="TemperatureRateTSRST" titletip="The rate of change of the temperature throughtout the test, measured in Degrees Celsius per hour (e.g., -10).">Temprature Rate (°C/hour): <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="TemperatureRateTSRST" name="TemperatureRateTSRST"  pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+                        
+                            <label for="FailureStressTSRST" titletip="The cryogenic stress that causes a failure of the specimen in the TSRST according to EN 12697-46, measured in Megapascal (e.g., 2.5).">Failure Stress (MPa): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="FailureStressTSRST" name="FailureStressTSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        
+                            <label for="FailureTemperatureTSRST" titletip="The temperature at which the cryogenic stress causes a failure of the specimen in the TSRST according to EN 12697-46, measured in Degrees Celsius (e.g., -25).">Failure Temperature (°C): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="FailureTemperatureTSRST" name="FailureTemperatureTSRST"  pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">     
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-15-0" class="TwoColumn-fieldset inner-fieldset" >
+                        <legend class="specific-legend">Specimen Dimensions</legend>
+                        <div id="TSRSTResults-div-1" class="form-group">
+                            <label for="SampleDimensionsTSRST" titletip="The shape of the specimen (e.g., Prismatic Specimen).">Sample Shape: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="SampleDimensionsTSRST" name="SampleDimensionsTSRST" onchange="SampleDimPrisCylFunction('SampleDimensionsTSRST','field21-15-1', 'field21-15-2')">
+                                <option value=""> Select</option>
+                                <option value="Prismatic">Prismatic Specimen</option>
+                                <option value="Cylindrical">Cylindrical Specimen</option>
+                            </select>
+
+                            <fieldset id="field21-15-1" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                                <legend class="specific-legend" title="The dimensions of the prismatic specimen.">Prismatic Sample Dimensions</legend>
+                                <div id="SampleDimensionsPrismaticTSRST" class="form-group">
+                                    <label for="LengthpTSRST" titletip="The length of the prismatic sample in mm (e.g., 160).">Length (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="LengthpTSRST" name="LengthpTSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                    <label for="HeightpTSRST" titletip="The height of the prismatic sample in mm (e.g., 50).">Height (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="HeightpTSRST" name="HeightpTSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                
+                                    <label for="WidthpTSRST" titletip="The width of the prismatic sample in mm (e.g., 50).">Width (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="WidthpTSRST" name="WidthpTSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="field21-15-2" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                                <legend class="specific-legend" title="The dimensions of the cylindrical specimen.">Cylindrical Sample Dimensions</legend>
+                                <div id="SampleDimensionsCylindricalTSRST" class="form-group">
+                                    <label for="LengthcTSRST" titletip="The length of the cylindrical sample in mm (e.g., 160).">Length (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="LengthcTSRST" name="LengthcTSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                    <label for="DiametercTSRST" titletip="The diameter of the cylindrical sample in mm (e.g., 50).">Diameter (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="DiametercTSRST" name="DiametercTSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number."> 
+                                </div>
+                            </fieldset>
+
+                        </div>
+                    </fieldset>
+                
+                    <fieldset id="field21-16-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" >Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                        <div id="BulkDensitydivTSRST" class="form-group">
+                            <label for="BulkDensityValueTSRST" titletip="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density (Mg/m&sup3;): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="BulkDensityValueTSRST" name="BulkDensityValueTSRST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="BulkDensityMethodTSRST" titletip="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement: <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="BulkDensityMethodTSRST" name="BulkDensityMethodTSRST">
+                                <option value="" disabled selected> Select</option>
+                                <option value="Bulk density - dry">Bulk density - dry</option>
+                                <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-16-2" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" >Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp;</legend>
+                        <div id="VoidsdivTSRST" class="form-group">
+                            <label for="AirVoidsTSRST" titletip="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="AirVoidsTSRST" name="AirVoidsTSRST" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="MineralAggregateVoidsTSRST" titletip="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MineralAggregateVoidsTSRST" name="MineralAggregateVoidsTSRST" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        
+                            <label for="VoidsFilledWithBitumenTSRST" titletip="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="VoidsFilledWithBitumenTSRST" name="VoidsFilledWithBitumenTSRST" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-16-3" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend">Cryogenic Stress Versus Temperature<span class="semicolon">(semicolon separated)</span></legend>
+                        <div id="CryogenicStressVersusTemperatureGraphTSRST" class="graph-form-group">
+                            <label for="TemperatureTSRSTg" titletip="The value of the tempertaure, measured in Degrees Celsius (e.g., 5).">Temperatures (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="TemperatureTSRSTg" name="TemperatureTSRSTg" title="Enter valid positive numbers, separated by semicolons.">
+                            <label for="StressTSRSTg" titletip="The cryogenic stress at the corresponding measured temperature, measured in Megapascal (e.g., 1.6).">Stresses (MPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="StressTSRSTg" name="StressTSRSTg" title="Enter valid positive numbers, separated by semicolons.">
+                            <button class="graph-form-group-button" type="button" title="Show or hide plot." onclick="PlotGraph('field21-16-3','´Cryogenic Stress Versus Temperature` graph','TemperatureTSRSTg','Temperature','any','StressTSRSTg','Stress','pn')">&#x1F4C8;</button>
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- TEST RESULTS:  UTST -->
+                <div id="utsresultstab" class="TwoColumn innertab-test hidden">Uniaxial Tension Stress Test</div>
+                <div id="Resultsdiv-UTST" class="form-group hidden utscls utsresultsgrp">
+                    <span id="utsresultssec" class="testslabel"> &nbsp; Uniaxial Tension Stress Test &nbsp;<span id="utsresultstabhide" class="hidetesttabs">&minus;</span> </span>
+
+                    <fieldset id="field21-17" class="TwoColumn-fieldset inner-fieldset" >
+                        <legend class="specific-legend" title="The results of the Uniaxial Tension Stress test as described by EN 12697-46.">UTST Results &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-46</span>&nbsp; </legend>
+                        <div id="UTSTResults-div" class="form-group">
+                            <label for="TestTemperatureUTST" titletip="The temperature at which the test was conducted, measured in Degrees Celsius (e.g., -10).">Test Temperature (°C): <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="TestTemperatureUTST" name="TestTemperatureUTST" pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+            
+                            <label for="AppliedDeformationRateUTST" titletip="The applied deformation rate throughtout the test, expressed in percentage per minutes (e.g., 0.625).">Applied Deformation Rate (%/min): <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="AppliedDeformationRateUTST" name="AppliedDeformationRateUTST"  pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        
+                            <label for="TensileStrengthUTST" titletip="The maximum tensile stress measured in the UTST according to EN 12697-46, expressed in Megapascal (e.g., 3.5).">Tensile Strength (MPa): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="TensileStrengthUTST" name="TensileStrengthUTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        
+                            <label for="FailureStrainUTST" titletip="The tensile strain measured when the tensile strength has been reached according to EN 12697-46, expressed in percentage (e.g., 0.5).">Failure Strain (%): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="FailureStrainUTST" name="FailureStrainUTST"   pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-17-0" class="TwoColumn-fieldset inner-fieldset" >
+                        <legend class="specific-legend">Specimen Dimensions</legend>
+                        <div id="UTSTResults-div-1" class="form-group">
+                            <label for="SampleDimensionsUTST" titletip="The shape of the specimen (e.g., Prismatic Specimen).">Sample Shape: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="SampleDimensionsUTST" name="SampleDimensionsUTST" onchange="SampleDimPrisCylFunction('SampleDimensionsUTST','field21-17-1', 'field21-17-2')">
+                                <option value=""> Select</option>
+                                <option value="Prismatic">Prismatic Specimen</option>
+                                <option value="Cylindrical">Cylindrical Specimen</option>
+                            </select>
+
+                            <fieldset id="field21-17-1" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                                <legend class="specific-legend" title="The dimensions of the prismatic specimen.">Prismatic Sample Dimensions</legend>
+                                <div id="SampleDimensionsPrismaticUTST" class="form-group">
+                                    <label for="LengthpUTST" titletip="The length of the prismatic sample in mm (e.g., 160).">Length (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="LengthpUTST" name="LengthpUTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                    <label for="HeightpUTST" titletip="The height of the prismatic sample in mm (e.g., 50).">Height (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="HeightpUTST" name="HeightpUTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                
+                                    <label for="WidthpUTST" titletip="The width of the prismatic sample in mm (e.g., 50).">Width (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="WidthpUTST" name="WidthpUTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                                </div>
+                            </fieldset>
+
+                            <fieldset id="field21-17-2" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                                <legend class="specific-legend" title="The dimensions of the cylindrical specimen.">Cylindrical Sample Dimensions</legend>
+                                <div id="SampleDimensionsCylindricalUTST" class="form-group">
+                                    <label for="LengthcUTST" titletip="The length of the cylindrical sample in mm (e.g., 160).">Length (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="LengthcUTST" name="LengthcUTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                                    <label for="DiametercUTST" titletip="The diameter of the cylindrical sample in mm (e.g., 50).">Diameter (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="DiametercUTST" name="DiametercUTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number."> 
+                                </div>
+                            </fieldset>
+
+                        </div>
+                    </fieldset>
+                
+                    <fieldset id="field21-18-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" >Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                        <div id="BulkDensitydivUTST" class="form-group">
+                            <label for="BulkDensityValueUTST" titletip="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density (Mg/m&sup3;): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="BulkDensityValueUTST" name="BulkDensityValueUTST" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="BulkDensityMethodUTST" titletip="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement: <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="BulkDensityMethodUTST" name="BulkDensityMethodUTST">
+                                <option value="" disabled selected> Select</option>
+                                <option value="Bulk density - dry">Bulk density - dry</option>
+                                <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-18-2" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" >Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp;</legend>
+                        <div id="VoidsdivUTST" class="form-group">
+                            <label for="AirVoidsUTST" titletip="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="AirVoidsUTST" name="AirVoidsUTST" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="MineralAggregateVoidsUTST" titletip="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MineralAggregateVoidsUTST" name="MineralAggregateVoidsUTST" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        
+                            <label for="VoidsFilledWithBitumenUTST" titletip="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="VoidsFilledWithBitumenUTST" name="VoidsFilledWithBitumenUTST" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        </div>
+                    </fieldset>
+                </div>
+
+                <!-- TEST RESULTS:  Stiffness Test -->
+                <div id="stfresultstab" class="TwoColumn innertab-test hidden">Stiffness Test</div>
+                <div id="Resultsdiv-Stiff" class="form-group hidden stfcls stfresultsgrp">
+                    <span id="stfresultssec" class="testslabel"> &nbsp; Stiffness Test &nbsp;<span id="stfresultstabhide" class="hidetesttabs">&minus;</span> </span>
+
+                    <fieldset id="field21-19" class="TwoColumn-fieldset inner-fieldset" >
+                        <legend class="specific-legend" title="The results of the Stiffness test as described by EN 12697-26.">Stiffness Test Results &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-26</span>&nbsp; </legend>
+                        <div id="StiffResults-div" class="form-group">                                    
+                            <label for="TestTypeStiff" titletip="The test applied to determine the stiffness according to EN 12697-26 (e.g., 4PB-PR).">Test Type: <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="TestTypeStiff" name="TestTypeStiff" onchange="StiffTestTypeSelection('field21-19-1','field21-19-2','field21-19-3')">
+                                <option value="" disabled selected> Select</option>
+                                <option value="2PB-TR">Two point bending test on trapezoidal specimen (2PB-TR)</option>
+                                <option value="2PB-PR">Two point bending test on prismatic specimen (2PB-PR)</option>
+                                <option value="3PB-PR">Three point bending test on prismatic specimen (3PB-PR)</option>
+                                <option value="4PB-PR">Four point bending test on prismatic specimen (4PB-PR)</option>
+                                <option value="IT-CY">Indirect tension to cylindrical specimen (IT-CY)</option>
+                                <option value="CIT-CY">Cyclic indirect tension to cylindrical specimen (CIT-CY)</option>
+                                <option value="DTC-CY">Direct tension-compression test on cylindrical specimen (DTC-CY)</option>
+                                <option value="DT-CY">Direct tension to cylindrical specimen (DT-CY)</option>
+                                <option value="DT-PR">Direct tension to prismatic specimen (DT-PR)</option>
+                            </select>
+
+                            <fieldset id="field21-19-0" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The results of the Stiffness test as described by EN 12697-26.">Results &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-26</span>&nbsp; </legend>
+                                <div id="StiffResults" class="form-group">
+                                    <span class="repli-label">&nbsp; Temperature 1 &nbsp;</span>
+                                    <label for="TestTemperatureStiff1" titletip="The temperature at which the test was conducted, measured in Degrees Celsius (e.g., 15).">Test Temperature (°C): <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="TestTemperatureStiff1" name="TestTemperatureStiff1" pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+
+                                    <div>
+                                        <select id="SelectFrequencyTimeStiff1">
+                                          <option value="Frequency" selected>Frequency (Hz)</option>
+                                          <option value="LoadingTime">Loading time (ms)</option>
+                                        </select>
+                                        <label id="frequencyStiff1" for="FrequencyTimeStiff1_1" style="display: none;" titletip="The number of loading cycles applied to the specimen according to EN 12697-26, expressed in Hertz (e.g., 10).">Frequency (Hz): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <label id="loadtimeStiff1" for="FrequencyTimeStiff1_1" style="display: none;" titletip="The load time according to EN 12697-26, expressed in milliseconds (e.g., 100).">Loading time (ms): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button id="changefrequencytimeStiff1" class="change-btn" style="display: none; padding: 5px 10px; font-size: 10px;" type="button">Change</button>
+                                    </div>
+                                    <div class="fourinputs">
+                                        <input type="text" id="FrequencyTimeStiff1_1" name="FrequencyTimeStiff1_1" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        <input type="text" id="FrequencyTimeStiff1_2" name="FrequencyTimeStiff1_2" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        <input type="text" id="FrequencyTimeStiff1_3" name="FrequencyTimeStiff1_3" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        <input type="text" id="FrequencyTimeStiff1_4" name="FrequencyTimeStiff1_4" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    </div>
+
+                                    <label for="StiffnessModulusStiff1_1" titletip="The stiffness modulus measured according to EN 12697-26, expressed in Megapascal (e.g., 3524).">Stiffness Modulus (MPa): <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <div class="fourinputs">
+                                        <input type="text" id="StiffnessModulusStiff1_1" name="StiffnessModulusStiff1_1"  pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        <input type="text" id="StiffnessModulusStiff1_2" name="StiffnessModulusStiff1_2"  pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        <input type="text" id="StiffnessModulusStiff1_3" name="StiffnessModulusStiff1_3"  pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        <input type="text" id="StiffnessModulusStiff1_4" name="StiffnessModulusStiff1_3"  pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    </div>
+
+                                    <div>
+                                        <select id="SelectStrainDisplacementStiff1">
+                                          <option value="Strain" selected>Strain (&micro;m/m)</option>
+                                          <option value="Displacement">Displacement (mm)</option>
+                                        </select>
+                                        <label id="strainStiff1" for="StrainDisplacementStiff1_1" style="display: none;" titletip="The applied strain according to EN 12697-26, expressed in micrometers per meter (e.g., 400).">Strain (&micro;m/m): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>                                     
+                                        <label id="displacementStiff1" for="StrainDisplacementStiff1_1" style="display: none;" titletip="The applied displacement in the Stiffness Test according to EN 12697-26, expressed in millimeters (e.g., 0.05).">Displacement (mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button id="changestraindisplacementStiff1" class="change-btn" style="display: none; padding: 5px 10px; font-size: 10px;" type="button">Change</button>
+                                    </div>
+                                    <div class="fourinputs">
+                                        <input type="text" id="StrainDisplacementStiff1_1" name="StrainDisplacementStiff1_1"  pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        <input type="text" id="StrainDisplacementStiff1_2" name="StrainDisplacementStiff1_2"  pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        <input type="text" id="StrainDisplacementStiff1_3" name="StrainDisplacementStiff1_3"  pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                        <input type="text" id="StrainDisplacementStiff1_4" name="StrainDisplacementStiff1_4"  pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button type="button" id="Stiffbutton" class= "replication-button TwoColumn"  onclick="addStiffReplication('field21-19-0', 'form-group')">Add New Temperature</button>
+
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-19-1" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The dimensions of the prismatic specimen.">Prismatic Sample Dimensions</legend>
+                        <div id="SampleDimensionsPrismaticStiff" class="form-group">
+                            <label for="LengthpStiff" titletip="The length of the prismatic sample in mm (e.g., 160).">Length (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="LengthpStiff" name="LengthpStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="HeightpStiff" titletip="The height of the prismatic sample in mm (e.g., 50).">Height (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="HeightpStiff" name="HeightpStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                        
+                            <label for="WidthpStiff" titletip="The width of the prismatic sample in mm (e.g., 50).">Width (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="WidthpStiff" name="WidthpStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-19-2" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The dimensions of the cylindrical specimen.">Cylindrical Sample Dimensions</legend>
+                        <div id="SampleDimensionsCylindricalStiff" class="form-group">
+                            <label for="LengthcStiff" titletip="The length of the cylindrical sample in mm (e.g., 160).">Length (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="LengthcStiff" name="LengthcStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="DiametercStiff" titletip="The diameter of the cylindrical sample in mm (e.g., 50).">Diameter (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="DiametercStiff" name="DiametercStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number."> 
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-19-3" class="TwoColumn-fieldset inner-fieldset hidden-fieldset">
+                        <legend class="specific-legend" title="The dimensions of the prismatic specimen.">Trapezoidal Sample Dimensions</legend>
+                        <div id="SampleDimensionsTrapezoidalStiff" class="form-group">
+                            <label for="LengthtStiff" titletip="The length of the trapezoidal sample in mm (e.g., 250).">Length (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="LengthtStiff" name="LengthtStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="BigbasetStiff" titletip="The big or long base of the trapezoidal sample in mm (e.g., 70).">Big base (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="BigbasetStiff" name="BigbasetStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                        
+                            <label for="SmallbasetStiff" titletip="The small or short base of the trapezoidal sample in mm (e.g., 25).">Short base (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="SmallbasetStiff" name="SmallbasetStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                        
+                            <label for="WidthtStiff" titletip="The width of the trapezoidal sample in mm (e.g., 25).">Width (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="WidthtStiff" name="WidthtStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
+                        </div>
+                    </fieldset>
+                
+                    <fieldset id="field21-20-1" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" >Bulk Density &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-6</span>&nbsp;</legend>
+                        <div id="BulkDensitydivStiff" class="form-group">
+                            <label for="BulkDensityValueStiff" titletip="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density (Mg/m&sup3;): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="BulkDensityValueStiff" name="BulkDensityValueStiff" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                            <label for="BulkDensityMethodStiff" titletip="The method of measurement of the bulk density of the bituminous specimen according to EN 12697-6 (e.g., Bulk density - sealed specimen).">Method of Measurement: <span class="red-text">*</span> &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <select id="BulkDensityMethodStiff" name="BulkDensityMethodStiff">
+                                <option value="" disabled selected> Select</option>
+                                <option value="Bulk density - dry">Bulk density - dry</option>
+                                <option value="Bulk density - saturated surface dry (SSD)">Bulk density - saturated surface dry (SSD)</option>
+                                <option value="Bulk density - sealed specimen">Bulk density - sealed specimen</option>
+                                <option value="Bulk density by dimensions">Bulk density by dimensions</option>
+                                <option value="Bulk density by Gamma-rays">Bulk density by Gamma-rays</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="field21-20-2" class="TwoColumn-fieldset inner-fieldset">
+                        <legend class="specific-legend" >Voids &nbsp;&nbsp;&nbsp;<span class="standard">EN 12697-8</span>&nbsp;</legend>
+                        <div id="VoidsdivStiff" class="form-group">
+                            <label for="AirVoidsStiff" titletip="The percentage of air voids in the bituminous sample (e.g., 4.6).">Air Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="AirVoidsStiff" name="AirVoidsStiff" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                            
+                            <label for="MineralAggregateVoidsStiff" titletip="The percentage of voids in the mineral aggregate (VMA) in the bituminous sample (e.g., 16.2).">Mineral Aggregate Voids (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MineralAggregateVoidsStiff" name="MineralAggregateVoidsStiff" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        
+                            <label for="VoidsFilledWithBitumenStiff" titletip="The percentage of voids filled with bitumen in the bituminous sample (e.g., 71.6).">Voids Filled With Bitumen (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="VoidsFilledWithBitumenStiff" name="VoidsFilledWithBitumenStiff" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        </div>
+                    </fieldset>
+                </div>
+
+            </fieldset>
+        </div>
+
+        <div class="innertab-t">Results Notes</div>
+        <div class="innertab-content">
+            <fieldset id="field22">
+                <legend class="innertab-title">Notes<span class="hideinner-content">&minus;</span></legend>
+                <div id="NotesResults" class="form-group">  
+                    <label for="NotesResultsContent" class="rutcls rutnote" titletip="The content of the text note concerning the Rutting test setup and results.">Rutting Test Results Notes:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" class="rutcls rutnote" id="NotesResultsContent" name="NotesResultsContent">
+
+                    <label for="NotesResultsContentMar" class="hidden marcls marnote" titletip="The content of the text note concerning the Marshall test setup and results.">Marshall Test Results Notes:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" class="hidden marcls marnote" id="NotesResultsContentMar" name="NotesResultsContentMar">
+
+                    <label for="NotesResultsContentITS" class="hidden itscls itsnote" titletip="The content of the text note concerning the Indirect Tensile Strength test setup and results.">ITS Test Results Notes:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" class="hidden itscls itsnote" id="NotesResultsContentITS" name="NotesResultsContentITS">
+
+                    <label for="NotesResultsContentTSRST" class="hidden tsrcls tsrnote" titletip="The content of the text note concerning the Thermal Stress Restrained Specimen test setup and results.">TSRST Results Notes:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" class="hidden tsrcls tsrnote" id="NotesResultsContentTSRST" name="NotesResultsContentTSRST">
+
+                    <label for="NotesResultsContentUTST" class="hidden utscls utsnote" titletip="The content of the text note concerning the Uniaxial Tension Stress Test setup and results.">UTST Results Notes:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" class="hidden utscls utsnote" id="NotesResultsContentUTST" name="NotesResultsContentUTST">
+
+                    <label for="NotesResultsContentStiff" class="hidden stfcls stfnote" titletip="The content of the text note concerning the Stiffness Test setup and results.">Stiffness Test Results Notes:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" class="hidden stfcls stfnote" id="NotesResultsContentStiff" name="NotesResultsContentStiff">
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</fieldset>
