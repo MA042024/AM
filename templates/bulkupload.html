@@ -1,0 +1,567 @@
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                    Bulk Upload                   -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                 @ AsphaltMine.org                -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--      Created by Mohammad Abbas - March 2025      -->
+<!--                      v1.0.0                      -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--              © 2025  Mohammad Abbas              -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+{% load static %}
+
+{% block head %}
+    <title>Bulk Record Upload | AsphaltMine</title>
+{% endblock %}
+{% block theme_css %}
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="stylesheet" href="{% static 'css/bulkupload.css' %}">
+{% endblock %}
+{% block theme_js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'core_main_app/common/js/csrf.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+
+      <script>
+
+        // Tooltips opening and closing
+        document.addEventListener("DOMContentLoaded", function() {
+            var tooltips = document.querySelectorAll('.tooltip');
+            var skipNextDocumentClick = false;
+            var closeTimeout;
+
+            function closeVisibleTooltip() {
+                var visibleTooltip = document.querySelector('.tooltiptext.visible');
+                if (visibleTooltip) {
+                    visibleTooltip.classList.remove('visible');
+                }
+            }
+
+            tooltips.forEach(function(tooltip) {
+                var title = tooltip.parentElement.getAttribute('titletip');
+                var tooltipText = tooltip.querySelector('.tooltiptext');
+                var icon = tooltip.querySelector('.fa-info-circle');
+
+                if (tooltipText && icon) {
+                    icon.addEventListener('click', function(event) {
+                        closeVisibleTooltip();
+
+                        if (!tooltipText.classList.contains('visible')) {
+                            tooltipText.textContent = title;
+                            tooltipText.classList.add('visible');
+                            skipNextDocumentClick = true;
+                            clearTimeout(closeTimeout);
+                            closeTimeout = setTimeout(closeVisibleTooltip, 5000);
+                        }
+                        event.stopPropagation();
+                    });
+
+                    var labelRect = tooltip.getBoundingClientRect();
+                    var tooltipHeight = tooltip.offsetHeight;
+
+                    tooltip.style.left = (labelRect.left + labelRect.width / 2) + 'px';
+                    tooltip.style.top = (labelRect.top - tooltipHeight) + 'px';
+                }
+            });
+
+            document.addEventListener('click', function(event) {
+                if (skipNextDocumentClick) {
+                    skipNextDocumentClick = false;
+                    return;
+                }
+
+                var visibleTooltip = document.querySelector('.tooltiptext.visible');
+                var infoCircle = document.querySelector('.fa-info-circle');
+
+                if (visibleTooltip && !visibleTooltip.contains(event.target) && 
+                    (!infoCircle || !infoCircle.contains(event.target))) {
+                    closeVisibleTooltip();
+                }
+            });
+        });
+
+    </script>
+
+    <script>
+
+        //Functionality of Pop Up messages
+        function ShowPopMsg(choice) {
+            var popupMessage = document.getElementById('GenpopMessage');
+            var genpop = document.getElementById('Genpopup');
+            genpop.classList.remove('error');
+            switch (choice) {
+            case 'D':
+                popupMessage.innerText = "Record Downloaded.";
+                break;
+            case 'S':
+                popupMessage.innerText = "Record Saved.";
+                break;
+            case 'Den':
+                popupMessage.innerText = "Insufficient Permission.";
+                genpop.classList.add('error');
+                break;
+            default:
+                popupMessage.innerText = "";
+            }
+            genpop.style.display = 'block';
+            setTimeout(function() {
+                if (genpop.style.display !== 'none') {
+                    ClosePopMsg();
+                }
+            }, 5000);
+        }
+
+        function ClosePopMsg() {document.getElementById('Genpopup').style.display = 'none';}
+
+    </script>
+
+    <script>
+
+        // Navigator dropdown Functionality
+        document.addEventListener("DOMContentLoaded", function() {
+            var dropdownToggle = document.querySelectorAll('.dropdown-toggle');
+            dropdownToggle.forEach(function(el) {
+                el.addEventListener('click', function(e) {
+                    var parent = this.parentElement;
+                    var dropdownMenu = parent.querySelector('.dropdown-menu');
+                    if (parent.classList.contains('open')) {
+                        parent.classList.remove('open');
+                        hideDropdownMenu(dropdownMenu);
+                    } else {
+                        closeAllDropdowns();
+                        parent.classList.add('open');
+                        showDropdownMenu(dropdownMenu);
+                    }
+                    e.preventDefault();
+                });
+            });
+            function hideDropdownMenu(menu) {
+                if (menu) {menu.style.display = 'none';}
+            }
+            function showDropdownMenu(menu) {
+                if (menu) {menu.style.display = 'block';}
+            }
+            function closeAllDropdowns() {
+                var dropdowns = document.querySelectorAll('.dropdown-nav');
+                dropdowns.forEach(function(dropdown) {
+                    dropdown.classList.remove('open');
+                    var menu = dropdown.querySelector('.dropdown-menu');
+                    hideDropdownMenu(menu);
+                });
+            }
+            document.addEventListener('click', function(e) {
+                var target = e.target;
+                if (!target.closest('.dropdown-nav')) {closeAllDropdowns();}
+            });
+        });
+
+    </script>
+
+    <script>
+
+        // Confirmation Message Functionality
+        function Confirmation(behvr) {
+            let message = "";
+            let actionFunction = null;
+            if (behvr === "V") {
+                message = "This action will check the validity of all records. Confirm?";
+                actionFunction = Validate;
+            } else if (behvr === "S") {
+                message = "This action will save all records to the database. Confirm save?";
+                actionFunction = saveAllRecords;
+            }
+            document.getElementById("ConfirmationMessage").textContent = message;
+            document.getElementById("Confirmationpopup").style.display = "block";
+            document.getElementById("Cancel-ConfirmationMessage").onclick = () => {
+                document.getElementById("Confirmationpopup").style.display = "none";
+            };
+            document.getElementById("Confirm-ConfirmationMessage").onclick = () => {
+                document.getElementById("Confirmationpopup").style.display = "none";
+                if (actionFunction) actionFunction();
+            };
+        }
+
+       
+    </script>
+
+    <script>
+
+        // Identify Test ID in AsphaltMine from Root nodes
+        function Testid(testname) {
+            const ExpNames = {
+                "RuttingExp": 19,
+                "MarshallExp": 11,
+                "ITSExp": 12,
+                "TSRSTExp": 13,
+                "UTSTExp": 14,
+                "StiffnessExp": 20,
+            };
+            const testnumber = ExpNames[testname];
+            return testnumber !== undefined ? testnumber : `Test name '${testname}' is not found.`;
+        }
+                
+    </script>
+
+    <script>
+
+        // Open and close information tabs from the right sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            var explpop = document.getElementById("explpopup");
+            function closeExplPopup() {explpop.style.display = "none";}
+            document.getElementsByClassName("Expl-popup-close")[0].onclick = closeExplPopup;
+            window.onclick = function(event) {if (event.target == explpop) {closeExplPopup();}}
+        });
+        function PopupMoreInfo(message) {
+            document.getElementById("main-message").innerHTML  = message;
+            document.getElementById("explpopup").style.display = "block";
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var questionMarks = document.querySelectorAll('.moreinfo');
+            questionMarks.forEach(function(mark) {
+                mark.addEventListener('click', function() {
+                    var targetId = mark.getAttribute('data-target');
+                    var targetDiv = document.getElementById(targetId);
+                    
+                    if (targetDiv) {
+                        var htmlContent = targetDiv.innerHTML;
+                        PopupMoreInfo(htmlContent);
+                    }
+                });
+            });
+        });
+
+    </script>
+
+    <script>
+
+        let pyodide = null;
+        async function loadPython() {
+            console.log("Loading Pyodide...");
+            pyodide = await loadPyodide();
+            console.log("Pyodide loaded!");
+            pyodide.runPython(`
+                import sys
+                from io import StringIO
+                sys.stdout = StringIO()  # Redirect stdout
+            `);
+        }
+
+        loadPython();
+
+        async function runPython() {
+            if (!pyodide) {
+                document.getElementById("output").textContent = "Pyodide is still loading. Please wait...";
+                return;
+            }  
+            let code = document.getElementById("pythonCode").value.trim();
+            console.log("Executing:", code);
+            try {
+                await pyodide.runPythonAsync(code);
+                let output = pyodide.runPython("sys.stdout.getvalue()");
+                document.getElementById("output").textContent = output;
+            } catch (err) {
+                console.error("Python Error:", err);
+                document.getElementById("output").textContent = "Error: " + err;
+            }
+        }
+
+    </script>
+
+    <script>
+
+        function getRootNodeName(xmlContent) {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlContent, "application/xml");
+            const rootNode = xmlDoc.documentElement;
+            return rootNode ? rootNode.nodeName : null;
+        }
+        
+        let Records = [];
+        function updateFileName() {
+            const fileInput = document.getElementById("xmlFileExt");
+            Records = Array.from(fileInput.files);
+            document.getElementById("FileExtName").textContent = `${Records.length} File(s) Selected`;
+            document.getElementById("ValidationSection").innerHTML = "";
+            document.getElementById("ValidationSection").style.display = "none";
+            document.getElementById("ButtonS").style.display = "none";
+            document.getElementById("SaveSection").style.display = "none";
+        }
+
+        // Validation Function
+        function Validate() {
+            let valcont = document.getElementById("ValidationSection");
+            valcont.style.display="block";
+            valcont.innerHTML = "";
+            if (Records.length === 0) {
+                alert("No files selected. Please upload XML files.");
+                valcont.style.display="none";
+                return;
+            }
+            let validFilesCount = 0;
+            let completedRequests = 0;
+            Records.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const xmlContent = event.target.result;
+                    const rootNodeName = getRootNodeName(xmlContent);
+                    const templateId = Testid(rootNodeName);
+                    if (!templateId) {
+                        valcont.innerHTML += `<div id="result-${index}" class="result"><b>${file.name}</b>: Template ID not found for root node '${rootNodeName}'</div>`;
+                        return;
+                    }
+                    const formData = new FormData();
+                    formData.append("xml_dt", xmlContent);
+                    formData.append("template_id", templateId);
+                    valcont.innerHTML += `<div id="result-${index}" class="result"><b>Validating ${file.name}...</b></div>`;
+                    $.ajax({
+                        url: '/curate/validate-record/',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': csrftoken
+                        },
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType: 'json',
+                        success: function(response) {
+                            const result = response.errors ? "INVALID&nbsp;&nbsp;&nbsp;" + response.errors.join("<br>") : "VALID";
+                            document.getElementById(`result-${index}`).innerHTML = `<b>${file.name}</b>: ${result}`;
+                            if(result==="VALID"){validFilesCount++;}
+                            completedRequests++;
+                            checkCompletion();
+                        },
+                        error: function(xhr) {
+                            let errorMessage = "An error occurred during validation.";
+                            try {
+                                const errorData = JSON.parse(xhr.responseText);
+                                if (errorData.errors) {
+                                    errorMessage = errorData.errors.join("<br>");
+                                }
+                            } catch (e) {
+                                errorMessage = "Failed to parse error response: " + xhr.responseText;
+                            }
+                            document.getElementById(`result-${index}`).innerHTML = `<b>${file.name}</b>: ${errorMessage}`;
+                            completedRequests++;
+                            checkCompletion();
+                        }
+                    });
+                };
+                reader.readAsText(file);
+            });
+
+            function checkCompletion() {
+                if (completedRequests === Records.length) {
+                    if (validFilesCount === Records.length) {
+                        var saveButton = document.getElementById("ButtonS");
+                        saveButton.style.display = "block";
+                    }
+                }
+            }
+        }
+
+    </script>
+
+    <script>
+
+        function saveAllRecords() {
+            let savecont = document.getElementById("SaveSection");
+            savecont.style.display="block";
+            let savedCount = 0;
+            let failedCount = 0;
+            Records.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const xmlContent = event.target.result;
+                    const rootNodeName = getRootNodeName(xmlContent);
+                    const templateId = Testid(rootNodeName);
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlContent, "application/xml");
+                    const measurementCampaignID = xmlDoc.getElementsByTagName("MeasurementcampaignID")[0]?.textContent || "Unknown";
+                    const organizationName = xmlDoc.getElementsByTagName("OrganizationName")[0]?.textContent || "Unknown";
+                    const year = xmlDoc.getElementsByTagName("Year")[0]?.textContent || "Unknown";
+                    let namerecord = `${measurementCampaignID}_${organizationName}_${year}`;
+                    const formData = {
+                        xml_data: xmlContent,
+                        title: namerecord,
+                        template_id: templateId
+                    };
+                    $.ajax({
+                        url: '/curate/save-xml-data/',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': csrftoken
+                        },
+                        data: formData,
+                        success: function(response) {
+                            savedCount++;
+                            savecont.innerHTML += `<div class="result"><b>${file.name}</b>: Saved successfully!</div>`;
+                            checkAllSaved(savedCount, failedCount, Records.length);
+                        },
+                        error: function(xhr, status, error) {
+                            failedCount++;
+                            let errorMessage = "Failed to save data.";
+                            if (xhr.status === 403) {
+                                errorMessage = "Insufficient permissions";
+                            }
+                            savecont.innerHTML += `<div class="result"><b>${file.name}</b>: ${errorMessage}</div>`;
+                            checkAllSaved(savedCount, failedCount, Records.length);
+                        }
+                    });
+                };
+                reader.readAsText(file);
+            });
+        }
+
+        function checkAllSaved(savedCount, failedCount, totalFiles) {
+            let vald = document.getElementById("SaveSection");
+            if (savedCount + failedCount === totalFiles) {
+                if (savedCount === totalFiles) {
+                    vald.innerHTML += `<br><br><div class="result"><b>All records saved successfully!</b></div>`;
+                } else {
+                    vald.innerHTML += `<br><br><div class="result"><b>${failedCount} record(s) failed to save.</b></div>`;
+                }
+            }
+        }
+
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+     <nav id="nav">
+        <ul class="horizontal-menu">
+            <li><a href="https://asphaltmine.org/" title="AsphaltMine"><b>AsphaltMine</b></a></li>
+            <li><a href="/gensel">Data Curation</a></li>
+            <li><a href="/explore/keyword/">Database</a></li>
+            <li><a href="/dashboard/records"> My Data</a></li>
+            <li><a href="/dashboard/workspaces"> Shared Workspaces</a></li>
+            <li><a href="/externalml/">Prediction</a></li>
+            <li class="align-right"><a href="/tutorial/">Tutorial</a></li>
+            <li><a href="/help/"> FAQ</a></li>
+            <li class="dropdown-nav">
+                <a href="#" class="dropdown-toggle"><i class="fas fa-user-circle"></i> My Account</a>
+                <ul class="dropdown-menu">
+                    <li><a href="/dashboard/files"><i class="fas fa-file"></i> FileDrop</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/dashboard/my-profile"><i class="fas fa-user"></i> My Profile</a></li>
+                    <li><a href="{% url 'core_main_app_logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
+    <div class="sidebar">
+        <div class="bounded-div">
+            <span> This page is used to bulk upload records using the predefined AsphaltMine Excel sheet.</span>
+        </div>
+    </div>
+
+    <div id="LeftSidebar" class="sidebar-right">
+        <div class="bounded-div">
+            <span style="font-size: 110%;">Functionalities:</span><br />
+            <span>&#8226;&nbsp;&nbsp; Validate records  &nbsp;<i class="fa fa-question-circle moreinfo" data-target="loadfunc-info"></i></span><br />
+            <span>&#8226;&nbsp;&nbsp; Save records  &nbsp;<i class="fa fa-question-circle moreinfo" data-target="savefunc-info"></i></span><br />
+        </div>
+        <br>
+        <div id="loadfunc-info" style="display: none;">
+            <b>Validate Records:</b>
+            You can validate multiple records from your own device. To do this, follow these steps:<br>
+            <ol>
+                <li>Click on the Upload Records button.</li>
+                <li>Select multiple XML records from your own device.</li>
+                <li>Click the Validate button.</li>
+            </ol>
+            Once the records are successfully loaded, you will see which records are valid and which are invalid. The screen will also display the reason for any invalid records.<br><br>
+            For more information, please check the <a style="color: black;" href="/tutorial/"><i>Tutorial</i></a> page.
+        </div>
+        <div id="savefunc-info" style="display: none;">
+            <b>Save Records:</b>
+            Once all the records are valid, you can save them to the database at once by simply clicking the "Save" button that will appear after validation. The button will only appear if all records are valid.<br><br>
+            For more information, please check the <a style="color: black;" href="/tutorial/"><i>Tutorial</i></a> page.
+        </div>
+    </div>
+
+    <br>
+
+    <form id="SmallScreenForm" style="display:none;width: 100%; max-width: 40%;"></form>
+
+    <form id="xmlForm">
+
+        <h2 style="text-align: center;">Bulk Record Upload</h2><br><br>
+            <div id="externalUpload">
+                <div class="wrapper">
+                    <div class="file-upload">
+                        <input type="file" id="xmlFileExt" accept=".xml" multiple onchange="updateFileName()" title="Upload Records from your own Device">
+                        <span id="FileExtName" style="text-align: center;"><b>Upload Records from your own Device</b></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <button type="button" class="main-button" id="ButtonV" onclick="Confirmation('V')">Validate</button>
+        <div id="ValidationSection" style="display:none"></div>
+        <br>
+        <br>
+        <button type="button" class="main-button" id="ButtonS" style="display:none" onclick="Confirmation('S')">Save</button>
+        <div id="SaveSection" style="display:none"></div>
+
+        <!--<br><br><br><br>
+        <h2>Jupyter-like Python in Browser</h2>
+        <textarea id="pythonCode" rows="5" cols="50">
+        print("Hello from Python!")
+        </textarea>
+        <br>
+        <button type="button" onclick="runPython()">Run</button>
+        <div id="output" style="white-space: pre-wrap; background: #f4f4f4; padding: 10px; margin-top: 10px;"></div>
+    -->
+    </form>
+
+    <div id="footer">
+        <div class="footer-flex">
+            <div id="copyright">
+                <span>&copy; 2025 AsphaltMine&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="Font-size:80%">v1.1.0</span></span>
+            </div>
+            <div id="footer-right">
+                <!--<span>All rights reserved</span>-->
+            </div>
+        </div>
+    </div>
+    
+    <p class="screen-message">
+        <b style="font-size: 200%;">ALERT</b>
+        <br><br>Your screen size is too small to display the form properly.
+        <br><br>The form requires a minimum screen width of <b>800 pixels</b> to function properly and <b>1400 pixels</b> to ensure full functionality.
+        <br><br>Please try accessing it from a device with a larger screen or increase the size of your current screen for optimal viewing.
+    </p>
+
+    <div class="Gen-popup" id="Genpopup">
+        <span id="GenpopMessage"></span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="Gen-popup-close" onclick="ClosePopMsg()">&#128473;</span>&nbsp;&nbsp;
+    </div>
+
+    <div id="explpopup" class="Expl-popup">
+        <div class="Expl-popup-container">
+            <span class="Expl-popup-close">&times;</span>
+            <p id="main-message" style="margin-top:23px;"></p>
+        </div>
+    </div>
+
+    <div id="Confirmationpopup">
+        <div id="Confirmation-popup-container">
+            <h3 id="ConfirmationMessage"></h3>
+            <div class="buttons-grp">
+                <button type="button" id="Cancel-ConfirmationMessage">Cancel</button>
+                <button type="button" id="Confirm-ConfirmationMessage">Confirm</button>  
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
