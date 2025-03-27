@@ -7,10 +7,6 @@
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 <!--      Created by Mohammad Abbas - January 2025    -->
-<!--                      v1.0.0                      -->
-<!------------------------------------------------------>
-<!------------------------------------------------------>
-<!--              © 2025  Mohammad Abbas              -->
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 {% load static %}
@@ -19,16 +15,21 @@
     <title>GV Web Form | AsphaltMine</title>
 {% endblock %}
 {% block theme_css %}
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-   <link rel="stylesheet" href="{% static 'css/gensel.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/gensel.css' %}">
+    <link rel="stylesheet" href="{% static 'css/General/navigator.css' %}">
+    <link rel="stylesheet" href="{% static 'css/General/footer.css' %}">
 {% endblock %}
 {% block theme_js %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'core_main_app/common/js/csrf.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script>
+<script>
  
         // Functions concerning upload
         function updateFileName() {
@@ -195,18 +196,12 @@
             const container = document.getElementById(containerId);
             const newIndex = container.childElementCount; 
             const newField = document.createElement('div');
-            let name = type.startsWith("BTSV") ? "Parameter" : "Test Method";
             newField.className = theclass;
             newField.innerHTML = `
-                <span class="multilabel"> •&nbsp; Property ${newIndex} &nbsp;• </span>
-
-                <label for="TestMethod${type}_${newIndex}" titletip-dyn="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">${name}:&nbsp;&nbsp;<div class="tooltip-dyn"><i class="fa fa-info-circle information"></i> <span class="tooltiptext-dyn"></span></div></label>
                 <input type="text" id="TestMethod${type}_${newIndex}" name="TestMethod${type}_${newIndex}" >
-
-                <label for="Value${type}_${newIndex}" titletip-dyn="The value of the additional property of the considered raw material (e.g., 16).">Value:&nbsp;&nbsp;<div class="tooltip-dyn"><i class="fa fa-info-circle information"></i> <span class="tooltiptext-dyn"></span></div></label>
+                
                 <input type="text" id="Value${type}_${newIndex}" name="Value${type}_${newIndex}">
-
-                <label for="Unit${type}_${newIndex}" titletip-dyn="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit:&nbsp;&nbsp;<div class="tooltip-dyn"><i class="fa fa-info-circle information"></i> <span class="tooltiptext-dyn"></span></div></label>
+                
                 <input type="text" id="Unit${type}_${newIndex}" name="Unit${type}_${newIndex}">
             `;
             container.appendChild(newField);
@@ -233,25 +228,27 @@
                     <div class="innertab-lvl4-content-adtv form-group TwoColumn">
                         <fieldset id="fld14-${newIndex}" class="TwoColumn-fieldset inner-fieldset">
                             <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content-adtv">&minus;</span></legend>
-                            <div id="AdditionalPropertiesAddtv_${newIndex}" class="form-group">
-                                <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                <label for="TestMethodAddtv_${newIndex}_1" titletip-dynadtv="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip-dynadtv"><i class="fa fa-info-circle information"></i> <span class="tooltiptext-dynadtv"></span></div></label>
-                                <input type="text" id="TestMethodAddtv_${newIndex}_1" name="TestMethodAddtv_${newIndex}_1">
-                                
-                                <label for="ValueAddtv_${newIndex}_1" titletip-dynadtv="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip-dynadtv"><i class="fa fa-info-circle information"></i> <span class="tooltiptext-dynadtv"></span></div></label>
-                                <input type="text" id="ValueAddtv_${newIndex}_1" name="ValueAddtv_${newIndex}_1">
-                                
-                                <label for="UnitAddtv_${newIndex}_1" titletip-dynadtv="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip-dynadtv"><i class="fa fa-info-circle information"></i> <span class="tooltiptext-dynadtv"></span></div></label>
-                                <input type="text" id="UnitAddtv_${newIndex}_1" name="UnitAddtv_${newIndex}_1">
+                            <div id="AdditionalPropertiesAddtv_${newIndex}" class="form-group grid-wrap">
+                                <div class="label-input-pair">
+                                    <label for="TestMethodAddtv_${newIndex}_1" titletip-dynadtv="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip-dynadtv"><i class="fa fa-info-circle information"></i> <span class="tooltiptext-dynadtv"></span></div></label>
+                                    <input type="text" id="TestMethodAddtv_${newIndex}_1" name="TestMethodAddtv_${newIndex}_1">
+                                </div>
+                                <div class="label-input-pair">
+                                    <label for="ValueAddtv_${newIndex}_1" titletip-dynadtv="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip-dynadtv"><i class="fa fa-info-circle information"></i> <span class="tooltiptext-dynadtv"></span></div></label>
+                                    <input type="text" id="ValueAddtv_${newIndex}_1" name="ValueAddtv_${newIndex}_1">
+                                </div>
+                                <div class="label-input-pair">
+                                    <label for="UnitAddtv_${newIndex}_1" titletip-dynadtv="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip-dynadtv"><i class="fa fa-info-circle information"></i> <span class="tooltiptext-dynadtv"></span></div></label>
+                                    <input type="text" id="UnitAddtv_${newIndex}_1" name="UnitAddtv_${newIndex}_1">
+                                </div>
                             </div>
                         </fieldset>
-                    <button type="button" class= "additive-property-button TwoColumn"  onclick="addadditional('fld14-${newIndex}','Addtv_${newIndex}','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                    <button type="button" class= "additive-property-button TwoColumn"  onclick="addadditional('fld14-${newIndex}','Addtv_${newIndex}','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
                     </div>
                 `;
             container.appendChild(newField);
             attachTooltipListenersAdtv(newField);
         }
-
 
         // General function to add additional properties for the mix design process
         function addmixdesign(containerId, theclass) {
@@ -260,15 +257,10 @@
             const newField = document.createElement('div');
             newField.className = theclass;
             newField.innerHTML = `
-                <span class="multilabel"> 	&#9664;&nbsp; Property ${newIndex} &nbsp;&#9654;	 </span>
-
-                <label for="OtherMixingPropertyName_${newIndex}" titletip-dyn="The name of a non-standard property in the mixing design process (e.g., Fibres percentage).">Name: &nbsp;&nbsp;<div class="tooltip-dyn"><i class="fa fa-info-circle information"></i> <span class="tooltiptext-dyn"></span></div></label>
                 <input type="text" id="OtherMixingPropertyName_${newIndex}" name="OtherMixingPropertyName_${newIndex}">
                 
-                <label for="OtherMixingPropertyValue_${newIndex}" titletip-dyn="The value of the non-standard property in the mixing design process (e.g., 0.042).">Value: &nbsp;&nbsp;<div class="tooltip-dyn"><i class="fa fa-info-circle information"></i> <span class="tooltiptext-dyn"></span></div></label>
                 <input type="text" id="OtherMixingPropertyValue_${newIndex}" name="OtherMixingPropertyValue_${newIndex}">
                 
-                <label for="OtherMixingPropertyUnit_${newIndex}" titletip-dyn="The unit of measurement for the non-standard property in the mixing design process (e.g., Mass-%).">Unit: &nbsp;&nbsp;<div class="tooltip-dyn"><i class="fa fa-info-circle information"></i> <span class="tooltiptext-dyn"></span></div></label>
                 <input type="text" id="OtherMixingPropertyUnit_${newIndex}" name="OtherMixingPropertyUnit_${newIndex}">           
             `;
             container.appendChild(newField);
@@ -2724,7 +2716,7 @@
                     }
 
                     // Populate Notes element
-                    populateField(xmlDoc, 'NotesSourceContent', 'Notes');
+                    populateField(xmlDoc, 'NotesSourceContent', 'DataSource Notes');
                 }
 
                 //////////////////////////
@@ -2774,14 +2766,14 @@
                     populateField(xmlDoc, "TotallyRoundedParticlesVA", "MixtureComponentProperties VirginAggregates RoundedAndCrushed TotallyRoundedParticles");
                     populateField(xmlDoc, "BitumenCoverageDegreeValueVA", "MixtureComponentProperties VirginAggregates BitumenCoverageDegree BitumenCoverageDegreeValue");
                     populateField(xmlDoc, "BitumenCoverageDegreeMethodVA", "MixtureComponentProperties VirginAggregates BitumenCoverageDegree BitumenCoverageDegreeMethod");
-                    XMLaddProperties(xmlDoc,'field9-2','VA','form-group TwoColumn dynamicPro','MixtureComponentProperties VirginAggregates');
+                    XMLaddProperties(xmlDoc,'field9-2','VA','form-group grid-wrap-one-row TwoColumn dynamicPro','MixtureComponentProperties VirginAggregates');
 
                     // Populate Filler element within MixtureComponentProperties element
                     populateField(xmlDoc, "NatureFiller", "MixtureComponentProperties Filler Nature");
                     populateField(xmlDoc, "StiffeningEffectFiller", "MixtureComponentProperties Filler StiffeningEffect");
                     populateField(xmlDoc, "ParticleDensityFillerValue", "MixtureComponentProperties Filler ParticleDensity");
                     populateField(xmlDoc, "WaterSusceptibilityFiller", "MixtureComponentProperties Filler WaterSusceptibility");
-                    XMLaddProperties(xmlDoc,'field10-2','Filler','form-group TwoColumn dynamicPro','MixtureComponentProperties Filler');
+                    XMLaddProperties(xmlDoc,'field10-2','Filler','form-group grid-wrap-one-row TwoColumn dynamicPro','MixtureComponentProperties Filler');
 
                     // Populate VirginBinder elemen
                     populateField(xmlDoc, "PenetrationVB", "MixtureComponentProperties VirginBinder Penetration");
@@ -2791,7 +2783,7 @@
                     populateField(xmlDoc, "RotationalDynamicViscosityVB", "MixtureComponentProperties VirginBinder Viscosities RotationalDynamicViscosity");
                     populateField(xmlDoc, "TemperatureVB", "MixtureComponentProperties VirginBinder BTSV Temperature");
                     populateField(xmlDoc, "PhaseAngleVB", "MixtureComponentProperties VirginBinder BTSV PhaseAngle");
-                    XMLaddProperties(xmlDoc,'field11-1-1','BTSVVB','form-group TwoColumn dynamicPro','MixtureComponentProperties VirginBinder BTSV');
+                    XMLaddProperties(xmlDoc,'field11-1-1','BTSVVB','form-group grid-wrap-one-row TwoColumn dynamicPro','MixtureComponentProperties VirginBinder BTSV');
                     populateField(xmlDoc, "AveragePercentRecovery100PaVB", "MixtureComponentProperties VirginBinder MSCRT AveragePercentRecovery100Pa");
                     populateField(xmlDoc, "AveragePercentRecovery3200PaVB", "MixtureComponentProperties VirginBinder MSCRT AveragePercentRecovery3200Pa");
                     populateField(xmlDoc, "RecoveryPercentageDifferenceVB", "MixtureComponentProperties VirginBinder MSCRT RecoveryPercentageDifference");
@@ -2810,10 +2802,10 @@
                     populateField(xmlDoc, "ElasticRecoveryVB", "MixtureComponentProperties VirginBinder ElasticRecovery");
                     populateField(xmlDoc, "CohesionEnergyVB", "MixtureComponentProperties VirginBinder CohesionEnergy");
                     populateField(xmlDoc, "SolubilityVB", "MixtureComponentProperties VirginBinder Solubility");
-                    XMLaddProperties(xmlDoc,'field11-4','VB','form-group TwoColumn dynamicPro','MixtureComponentProperties VirginBinder');
+                    XMLaddProperties(xmlDoc,'field11-4','VB','form-group grid-wrap-one-row TwoColumn dynamicPro','MixtureComponentProperties VirginBinder');
 
                     // Populate Additive element
-                    XMLaddAdditive(xmlDoc,'fld14','form-group TwoColumn dynamicPro')
+                    XMLaddAdditive(xmlDoc,'fld14','form-group TwoColumn dynamicPro','form-group grid-wrap-one-row TwoColumn dynamicPro')
 
                     // Populate ReclaimedAsphalt element including ReclaimedAsphaltBinder child element
                     const RApoints = Array.from(xmlDoc.querySelectorAll("MixtureComponentProperties ReclaimedAsphalt GrainSizeDistribution Point")).map(point => {
@@ -2842,7 +2834,7 @@
                     populateField(xmlDoc, "RotationalDynamicViscosityRB", "MixtureComponentProperties ReclaimedAsphaltBinder Viscosities RotationalDynamicViscosity");
                     populateField(xmlDoc, "TemperatureRB", "MixtureComponentProperties ReclaimedAsphaltBinder BTSV Temperature");
                     populateField(xmlDoc, "PhaseAngleRB", "MixtureComponentProperties ReclaimedAsphaltBinder BTSV PhaseAngle");
-                    XMLaddProperties(xmlDoc,'field13-1-1','BTSVRB','form-group TwoColumn dynamicPro','MixtureComponentProperties ReclaimedAsphaltBinder BTSV');
+                    XMLaddProperties(xmlDoc,'field13-1-1','BTSVRB','form-group grid-wrap-one-row TwoColumn dynamicPro','MixtureComponentProperties ReclaimedAsphaltBinder BTSV');
                     populateField(xmlDoc, "AveragePercentRecovery100PaRB", "MixtureComponentProperties ReclaimedAsphaltBinder MSCRT AveragePercentRecovery100Pa");
                     populateField(xmlDoc, "AveragePercentRecovery3200PaRB", "MixtureComponentProperties ReclaimedAsphaltBinder MSCRT AveragePercentRecovery3200Pa");
                     populateField(xmlDoc, "RecoveryPercentageDifferenceRB", "MixtureComponentProperties ReclaimedAsphaltBinder MSCRT RecoveryPercentageDifference");
@@ -2858,11 +2850,11 @@
                     populateField(xmlDoc, "ElasticRecoveryRB", "MixtureComponentProperties ReclaimedAsphaltBinder ElasticRecovery");
                     populateField(xmlDoc, "CohesionEnergyRB", "MixtureComponentProperties ReclaimedAsphaltBinder CohesionEnergy");
                     populateField(xmlDoc, "SolubilityRB", "MixtureComponentProperties ReclaimedAsphaltBinder Solubility");
-                    XMLaddProperties(xmlDoc,'field13-3','RB','form-group TwoColumn dynamicPro','MixtureComponentProperties ReclaimedAsphaltBinder');
+                    XMLaddProperties(xmlDoc,'field13-3','RB','form-group grid-wrap-one-row TwoColumn dynamicPro','MixtureComponentProperties ReclaimedAsphaltBinder');
 
                     populateField(xmlDoc, "BitumenCoverageDegreeValueRA", "MixtureComponentProperties ReclaimedAsphalt BitumenCoverageDegree BitumenCoverageDegreeValue");
                     populateField(xmlDoc, "BitumenCoverageDegreeMethodRA", "MixtureComponentProperties ReclaimedAsphalt BitumenCoverageDegree BitumenCoverageDegreeMethod");
-                    XMLaddProperties(xmlDoc,'field12-2','RA','form-group TwoColumn dynamicPro','MixtureComponentProperties ReclaimedAsphalt');
+                    XMLaddProperties(xmlDoc,'field12-2','RA','form-group grid-wrap-one-row TwoColumn dynamicPro','MixtureComponentProperties ReclaimedAsphalt');
     
                     // Populate PreMixingBinderBlend element
                     populateField(xmlDoc, "PenetrationPmB", "MixtureComponentProperties PreMixingBinderBlend Penetration");
@@ -2872,7 +2864,7 @@
                     populateField(xmlDoc, "RotationalDynamicViscosityPmB", "MixtureComponentProperties PreMixingBinderBlend Viscosities RotationalDynamicViscosity");
                     populateField(xmlDoc, "TemperaturePmB", "MixtureComponentProperties PreMixingBinderBlend BTSV Temperature");
                     populateField(xmlDoc, "PhaseAnglePmB", "MixtureComponentProperties PreMixingBinderBlend BTSV PhaseAngle");
-                    XMLaddProperties(xmlDoc,'field15-1-1','BTSVPmB','form-group TwoColumn dynamicPro','MixtureComponentProperties PreMixingBinderBlend BTSV');
+                    XMLaddProperties(xmlDoc,'field15-1-1','BTSVPmB','form-group grid-wrap-one-row TwoColumn dynamicPro','MixtureComponentProperties PreMixingBinderBlend BTSV');
                     populateField(xmlDoc, "AveragePercentRecovery100PaPmB", "MixtureComponentProperties PreMixingBinderBlend MSCRT AveragePercentRecovery100Pa");
                     populateField(xmlDoc, "AveragePercentRecovery3200PaPmB", "MixtureComponentProperties PreMixingBinderBlend MSCRT AveragePercentRecovery3200Pa");
                     populateField(xmlDoc, "RecoveryPercentageDifferencePmB", "MixtureComponentProperties PreMixingBinderBlend MSCRT RecoveryPercentageDifference");
@@ -2891,11 +2883,11 @@
                     populateField(xmlDoc, "ElasticRecoveryPmB", "MixtureComponentProperties PreMixingBinderBlend ElasticRecovery");
                     populateField(xmlDoc, "CohesionEnergyPmB", "MixtureComponentProperties PreMixingBinderBlend CohesionEnergy");
                     populateField(xmlDoc, "SolubilityPmB", "MixtureComponentProperties PreMixingBinderBlend Solubility");
-                    XMLaddProperties(xmlDoc,'field15-4','PmB','form-group TwoColumn dynamicPro','MixtureComponentProperties PreMixingBinderBlend');
+                    XMLaddProperties(xmlDoc,'field15-4','PmB','form-group grid-wrap-one-row TwoColumn dynamicPro','MixtureComponentProperties PreMixingBinderBlend');
 
                     // Populate OtherMaterials element within MixtureComponentProperties element
                     populateField(xmlDoc, "NameOtherMaterials", "MixtureComponentProperties OtherMaterials Name");
-                    XMLaddProperties(xmlDoc,'fieldN-1','OtherMaterials','form-group TwoColumn dynamicPro','MixtureComponentProperties OtherMaterials');
+                    XMLaddProperties(xmlDoc,'fieldN-1','OtherMaterials','form-group grid-wrap-one-row TwoColumn dynamicPro','MixtureComponentProperties OtherMaterials');
 
                     // Populate Aggregates element within RecoveredMaterials element
                     const CApoints = Array.from(xmlDoc.querySelectorAll("RecoveredMaterials Aggregates GrainSizeDistribution Point")).map(point => {
@@ -2917,7 +2909,7 @@
                     populateField(xmlDoc, "TotallyRoundedParticlesCA", "RecoveredMaterials Aggregates RoundedAndCrushed TotallyRoundedParticles");
                     populateField(xmlDoc, "BitumenCoverageDegreeValueCA", "RecoveredMaterials Aggregates BitumenCoverageDegree BitumenCoverageDegreeValue");
                     populateField(xmlDoc, "BitumenCoverageDegreeMethodCA", "RecoveredMaterials Aggregates BitumenCoverageDegree BitumenCoverageDegreeMethod");
-                    XMLaddProperties(xmlDoc,'field17-2','CA','form-group TwoColumn dynamicPro','RecoveredMaterials Aggregates');             
+                    XMLaddProperties(xmlDoc,'field17-2','CA','form-group grid-wrap-one-row TwoColumn dynamicPro','RecoveredMaterials Aggregates');             
 
                     // Populate Binder element within RecoveredMaterials element
                     populateField(xmlDoc, "PercentageContentCB", "RecoveredMaterials Binder BinderContent");
@@ -2928,7 +2920,7 @@
                     populateField(xmlDoc, "RotationalDynamicViscosityCB", "RecoveredMaterials Binder Viscosities RotationalDynamicViscosity");
                     populateField(xmlDoc, "TemperatureCB", "RecoveredMaterials Binder BTSV Temperature");
                     populateField(xmlDoc, "PhaseAngleCB", "RecoveredMaterials Binder BTSV PhaseAngle");
-                    XMLaddProperties(xmlDoc,'field18-1-1','BTSVCB','form-group TwoColumn dynamicPro','RecoveredMaterials Binder BTSV');
+                    XMLaddProperties(xmlDoc,'field18-1-1','BTSVCB','form-group grid-wrap-one-row TwoColumn dynamicPro','RecoveredMaterials Binder BTSV');
                     populateField(xmlDoc, "AveragePercentRecovery100PaCB", "RecoveredMaterials Binder MSCRT AveragePercentRecovery100Pa");
                     populateField(xmlDoc, "AveragePercentRecovery3200PaCB", "RecoveredMaterials Binder MSCRT AveragePercentRecovery3200Pa");
                     populateField(xmlDoc, "RecoveryPercentageDifferenceCB", "RecoveredMaterials Binder MSCRT RecoveryPercentageDifference");
@@ -2947,7 +2939,7 @@
                     populateField(xmlDoc, "ElasticRecoveryCB", "RecoveredMaterials Binder ElasticRecovery");
                     populateField(xmlDoc, "CohesionEnergyCB", "RecoveredMaterials Binder CohesionEnergy");
                     populateField(xmlDoc, "SolubilityCB", "RecoveredMaterials Binder Solubility");
-                    XMLaddProperties(xmlDoc,'field18-4','CB','form-group TwoColumn dynamicPro','RecoveredMaterials Binder');
+                    XMLaddProperties(xmlDoc,'field18-4','CB','form-group grid-wrap-one-row TwoColumn dynamicPro','RecoveredMaterials Binder');
 
                     // Populate Mixing element
                     populateField(xmlDoc, "MixingMethod", "Mixing MixingMethod");
@@ -2956,7 +2948,7 @@
                     populateField(xmlDoc, "MixtureTemperature", "Mixing MixtureTemperature");
                     populateField(xmlDoc, "ReclaimedAsphaltTemperature", "Mixing ReclaimedAsphaltTemperature");
                     populateField(xmlDoc, "MixingDurationValue", "Mixing MixingDuration");
-                    XMLaddmixingproperty(xmlDoc,'field16-3', 'form-group TwoColumn dynamicPro');
+                    XMLaddmixingproperty(xmlDoc,'field16-3', 'form-group grid-wrap-one-row TwoColumn dynamicPro');
 
                     // Populate Notes element
                     populateField(xmlDoc, 'NotesMixtureContent', 'Mixture Notes');
@@ -3393,7 +3385,7 @@
             }
         }
 
-        function XMLaddAdditive(xmlDoc, containerId, theclass) {
+        function XMLaddAdditive(xmlDoc, containerId, theclass, theaddclass) {
             const additives = xmlDoc.querySelectorAll(`MixtureComponentProperties Additive`);
             for (let i = 0; i < additives.length; i++) {
                 populateField(additives[i], `TypeAddtv_${i+1}`, "Type");
@@ -3403,7 +3395,7 @@
                     populateField(addprop[j], `TestMethodAddtv_${i+1}_${j+1}`, "Property");
                     populateField(addprop[j], `ValueAddtv_${i+1}_${j+1}`, "Value");
                     populateField(addprop[j], `UnitAddtv_${i+1}_${j+1}`, "Unit");
-                    if (j + 1 < addprop.length) {addadditional(`${containerId}-${i+1}`, `Addtv_${i+1}`, theclass);}
+                    if (j + 1 < addprop.length) {addadditional(`${containerId}-${i+1}`, `Addtv_${i+1}`, theaddclass);}
                 }
                 if (i + 1 < additives.length) {addAdditive(containerId, theclass);
                     const viewable = document.getElementById(`adtvtab-${i+2}`);
@@ -4165,48 +4157,6 @@
 
     <script>
 
-        // Navigator dropdown Functionality
-        document.addEventListener("DOMContentLoaded", function() {
-            var dropdownToggle = document.querySelectorAll('.dropdown-toggle');
-            dropdownToggle.forEach(function(el) {
-                el.addEventListener('click', function(e) {
-                    var parent = this.parentElement;
-                    var dropdownMenu = parent.querySelector('.dropdown-menu');
-                    if (parent.classList.contains('open')) {
-                        parent.classList.remove('open');
-                        hideDropdownMenu(dropdownMenu);
-                    } else {
-                        closeAllDropdowns();
-                        parent.classList.add('open');
-                        showDropdownMenu(dropdownMenu);
-                    }
-                    e.preventDefault();
-                });
-            });
-            function hideDropdownMenu(menu) {
-                if (menu) {menu.style.display = 'none';}
-            }
-            function showDropdownMenu(menu) {
-                if (menu) {menu.style.display = 'block';}
-            }
-            function closeAllDropdowns() {
-                var dropdowns = document.querySelectorAll('.dropdown-nav');
-                dropdowns.forEach(function(dropdown) {
-                    dropdown.classList.remove('open');
-                    var menu = dropdown.querySelector('.dropdown-menu');
-                    hideDropdownMenu(menu);
-                });
-            }
-            document.addEventListener('click', function(e) {
-                var target = e.target;
-                if (!target.closest('.dropdown-nav')) {closeAllDropdowns();}
-            });
-        });
-
-    </script>
-
-    <script>
-
         // Test Selection Functionality
         function ShowTestSelectionPopup() { document.getElementById('Testpopup').style.display = 'block';}
         function CloseTestSelectionPopup() {document.getElementById('Testpopup').style.display = 'none';}
@@ -4483,12 +4433,12 @@
         // Identify Test ID in AsphaltMine from Root nodes
         function Testid(testname) {
             const ExpNames = {
-                "RuttingExp": 19,
-                "MarshallExp": 11,
-                "ITSExp": 12,
-                "TSRSTExp": 13,
-                "UTSTExp": 14,
-                "StiffnessExp": 20,
+                "RuttingExp": 21,
+                "MarshallExp": 22,
+                "ITSExp": 23,
+                "TSRSTExp": 24,
+                "UTSTExp": 25,
+                "StiffnessExp": 26,
             };
             const testnumber = ExpNames[testname];
             return testnumber !== undefined ? testnumber : `Test name '${testname}' is not found.`;
@@ -4497,12 +4447,12 @@
         // Identify the selected tests from Test IDs in AsphaltMine 
         function TestSelectionFromId(testid){
             const ExpNames = {
-                19: "select-rut",
-                11: "select-mar",
-                12: "select-its",
-                13: "select-tsr",
-                14: "select-uts",
-                20: "select-stf",
+                21: "select-rut",
+                22: "select-mar",
+                23: "select-its",
+                24: "select-tsr",
+                25: "select-uts",
+                26: "select-stf",
             };
             const selectedCheckboxId = ExpNames[testid];
             if (selectedCheckboxId) {
@@ -4707,29 +4657,9 @@
 
 {% block body %}
 
-<nav id="nav">
-        <ul class="horizontal-menu">
-            <li><a href="https://asphaltmine.org/" title="AsphaltMine"><b>AsphaltMine</b></a></li>
-            <li><a href="/gensel">Data Curation</a></li>
-            <li><a href="/explore/keyword/">Database</a></li>
-            <li><a href="/dashboard/records"> My Data</a></li>
-            <li><a href="/dashboard/workspaces"> Shared Workspaces</a></li>
-            <li><a href="/externalml/">Prediction</a></li>
-            <li class="align-right"><a href="/tutorial/">Tutorial</a></li>
-            <li><a href="/help/"> FAQ</a></li>
-            <li class="dropdown-nav">
-                <a href="#" class="dropdown-toggle"><i class="fas fa-user-circle"></i> My Account</a>
-                <ul class="dropdown-menu">
-                    <li><a href="/dashboard/files"><i class="fas fa-file"></i> FileDrop</a></li>
-                    <li class="divider"></li>
-                    <li><a href="/dashboard/my-profile"><i class="fas fa-user"></i> My Profile</a></li>
-                    <li><a href="{% url 'core_main_app_logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+    {% include "General/navigator.html" %}
     
-    <div class="sidebar">
+<div class="sidebar">
         <span class="side-title">GV Web Form</span>
         <ul>
             <li><a href="#OuterfieldA"><b>Data Source</b></a>
@@ -4772,8 +4702,8 @@
             </li>
             <li><a href="#OuterfieldD"><b>Notes</b></a></li>
         </ul>
-    <span id="arrow-up"><i class="fa-solid fa-chevron-up"></i></span>
-    <span id="arrow-down"><i class="fa-solid fa-chevron-down"></i></span>
+        <span id="arrow-up"><i class="fa-solid fa-chevron-up"></i></span>
+        <span id="arrow-down"><i class="fa-solid fa-chevron-down"></i></span>
     </div>
 
     <div id="LeftSidebar" class="sidebar-right">
@@ -4899,12 +4829,12 @@
         <fieldset id="field-U" class="" style="border-width:4px;">
             <legend class="specific-legend">Select elements to upload</legend>
             <div class="upload-select-group">
-                <label><input type="checkbox" id="select-source" checked> Data Source</label><br>
-                <label><input type="checkbox" id="select-mixture" checked> Mixture</label><br>
-                <label><input type="checkbox" id="select-sample" checked> Sample Properties</label><br>
-                <label><input type="checkbox" id="select-results" checked> Results</label><br>
-                <label><input type="checkbox" id="select-notes" checked> General Notes</label><br>
-                <label><input type="checkbox" id="select-all" checked> All Elements</label><br>
+                <label><input type="checkbox" id="select-source" checked> Data Source</label>
+                <label><input type="checkbox" id="select-mixture" checked> Mixture</label>
+                <label><input type="checkbox" id="select-sample" checked> Sample Properties</label>
+                <label><input type="checkbox" id="select-results" checked> Results</label>
+                <label><input type="checkbox" id="select-notes" checked> General Notes</label>
+                <label><input type="checkbox" id="select-all" checked> All Elements</label>
             </div>
         </fieldset>
 
@@ -5426,19 +5356,22 @@
                                 <div id="VirginAggregates-4" class="form-group">
                                     <fieldset id="field9-2" class="TwoColumn-fieldset inner-fieldset">
                                         <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
-                                        <div id="AdditionalPropertiesVA" class="form-group">
-                                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                            <label for="TestMethodVA_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="TestMethodVA_1" name="TestMethodVA_1">
-                                            
-                                            <label for="ValueVA_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="ValueVA_1" name="ValueVA_1">
-                                            
-                                            <label for="UnitVA_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="UnitVA_1" name="UnitVA_1">
+                                        <div id="AdditionalPropertiesVA" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodVA_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodVA_1" name="TestMethodVA_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValueVA_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValueVA_1" name="ValueVA_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitVA_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitVA_1" name="UnitVA_1">
+                                            </div>
                                         </div>
                                     </fieldset>
-                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field9-2','VA','form-group TwoColumn dynamicPro')">&#10010; Property</button>
+                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field9-2','VA','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>
                                 </div>
                             </div>
                         </fieldset>
@@ -5471,19 +5404,22 @@
                                 <div id="Filler-2" class="form-group">
                                     <fieldset id="field10-2" class="TwoColumn-fieldset inner-fieldset">
                                         <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
-                                        <div id="AdditionalPropertiesFiller" class="form-group">
-                                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                            <label for="TestMethodFiller_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="TestMethodFiller_1" name="TestMethodFiller_1">
-                                            
-                                            <label for="ValueFiller_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="ValueFiller_1" name="ValueFiller_1">
-                                            
-                                            <label for="UnitFiller_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="UnitFiller_1" name="UnitFiller_1">
+                                        <div id="AdditionalPropertiesFiller" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodFiller_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodFiller_1" name="TestMethodFiller_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValueFiller_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValueFiller_1" name="ValueFiller_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitFiller_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitFiller_1" name="UnitFiller_1">
+                                            </div>
                                         </div>
                                     </fieldset>
-                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field10-2','Filler','form-group TwoColumn dynamicPro')"> &#10010; Property</button>                    
+                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field10-2','Filler','form-group grid-wrap-one-row TwoColumn dynamicPro')"> &#10010; Property</button>                    
                                 </div>
                             </div>
                         </fieldset>
@@ -5555,19 +5491,22 @@
                                             
                                             <fieldset id="field11-1-1" class="TwoColumn-fieldset inner-fieldset">
                                                 <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
-                                                <div id="AdditionalPropertiesBTSVVB" class="form-group">
-                                                    <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                                    <label for="TestMethodBTSVVB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Parameter: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                                    <input type="text" id="TestMethodBTSVVB_1" name="TestMethodBTSVVB_1">
-                                                    
-                                                    <label for="ValueBTSVVB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                                    <input type="text" id="ValueBTSVVB_1" name="ValueBTSVVB_1">
-                                                    
-                                                    <label for="UnitBTSVVB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                                    <input type="text" id="UnitBTSVVB_1" name="UnitBTSVVB_1">
+                                                <div id="AdditionalPropertiesBTSVVB" class="form-group grid-wrap">
+                                                    <div class="label-input-pair">
+                                                        <label for="TestMethodBTSVVB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Parameter: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                        <input type="text" id="TestMethodBTSVVB_1" name="TestMethodBTSVVB_1">
+                                                    </div>
+                                                    <div class="label-input-pair">
+                                                        <label for="ValueBTSVVB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                        <input type="text" id="ValueBTSVVB_1" name="ValueBTSVVB_1">
+                                                    </div>
+                                                    <div class="label-input-pair">
+                                                        <label for="UnitBTSVVB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                        <input type="text" id="UnitBTSVVB_1" name="UnitBTSVVB_1">
+                                                    </div>
                                                 </div>
                                             </fieldset>
-                                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field11-1-1','BTSVVB','form-group TwoColumn dynamicPro')">&#10010; BTSV Property</button>
+                                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field11-1-1','BTSVVB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; BTSV Property</button>
                                         </div>
                                     </fieldset>
                                 </div>
@@ -5588,10 +5527,10 @@
                                             <label for="RecoveryPercentageDifferenceVB" titletip="The value of the percentage difference in recovery between 100 Pa and 3200 Pa (e.g., 10.8).">Recovery Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="RecoveryPercentageDifferenceVB" name="RecoveryPercentageDifferenceVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
                                             
-                                            <label for="NonrecoverableCreepCompliance100PaVB" titletip="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): &nbsp;&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <label for="NonrecoverableCreepCompliance100PaVB" titletip="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="NonrecoverableCreepCompliance100PaVB" name="NonrecoverableCreepCompliance100PaVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                             
-                                            <label for="NonrecoverableCreepCompliance3200PaVB" titletip="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <label for="NonrecoverableCreepCompliance3200PaVB" titletip="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="NonrecoverableCreepCompliance3200PaVB" name="NonrecoverableCreepCompliance3200PaVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                             
                                             <label for="NonrecoverableCreepCompliancePercentageDifferenceVB" titletip="The value of the percentage difference in non-recoverable creep compliance between 100 Pa and 3200 Pa (e.g., 16.1).">Nonrecoverable Creep Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
@@ -5612,7 +5551,7 @@
                                                     <label for="NonrecoverableCreepComplianceSpecifiedStressVB" titletip="The value of the non-recoverable creep compliance at the specified stress, expressed in 1/kPa (e.g., 0.227).">Nonrecoverable Creep (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                                     <input type="text" id="NonrecoverableCreepComplianceSpecifiedStressVB" name="NonrecoverableCreepComplianceSpecifiedStressVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                                     
-                                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressVB" titletip="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecoverable Creep Difference (%):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressVB" titletip="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecov. Creep Difference (%):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                                     <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressVB" name="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                                   
                                                 </div>
                                             </fieldset>
@@ -5627,7 +5566,7 @@
                                     <fieldset id="field11-3" class="TwoColumn-fieldset inner-fieldset">
                                         <legend class="specific-legend" title="The results of the Rolling Thin Film Oven Test (RTFOT) according to EN 12607-1.">Aging Resistance &nbsp;&nbsp;&nbsp;<span class="standard">EN 12607-1</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
                                         <div id="AgingResistanceVB" class="form-group">
-                                            <label for="MassLossVB" titletip="The mass loss according to EN 12607-1, expressed as a negative percentage. A positive value represents a gain (e.g., -1.05).">Mass Loss (%) <span class="semicolon">(negative values represent loss)</span>:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <label for="MassLossVB" titletip="The mass loss according to EN 12607-1, expressed as a negative percentage. A positive value represents a gain (e.g., -1.05).">Mass Loss (%) <span class="semicolon">(negative values represent loss)</span>:&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="MassLossVB" name="MassLossVB" pattern="^-?(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between -100 and 100.">
                                             
                                             <label for="PenetrationChangeVB" titletip="The increase in penetration according to EN 12607-1 and EN 1426, expressed as a percentage (e.g., 75.07).">Retained Penetration (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
@@ -5645,19 +5584,22 @@
                                 <div id="VirginBinder-7" class="form-group">
                                     <fieldset id="field11-4" class="TwoColumn-fieldset inner-fieldset">
                                         <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
-                                        <div id="AdditionalPropertiesVB" class="form-group">
-                                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                            <label for="TestMethodVB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="TestMethodVB_1" name="TestMethodVB_1">
-                                            
-                                            <label for="ValueVB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="ValueVB_1" name="ValueVB_1">
-                                            
-                                            <label for="UnitVB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="UnitVB_1" name="UnitVB_1">
+                                        <div id="AdditionalPropertiesVB" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodVB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodVB_1" name="TestMethodVB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValueVB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValueVB_1" name="ValueVB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitVB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitVB_1" name="UnitVB_1">
+                                            </div>
                                         </div>
                                     </fieldset>
-                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field11-4','VB','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field11-4','VB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
                                 </div>
                             </div>
                         </fieldset>
@@ -5680,19 +5622,22 @@
                                 <div class="innertab-lvl4-content form-group TwoColumn">
                                     <fieldset id="fld14-1" class="TwoColumn-fieldset inner-fieldset">
                                         <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties <span class="hideinner-lvl4-content">&minus;</span></legend>
-                                        <div id="AdditionalPropertiesAddtv_1" class="form-group">
-                                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                            <label for="TestMethodAddtv_1_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="TestMethodAddtv_1_1" name="TestMethodAddtv_1_1">
-                                            
-                                            <label for="ValueAddtv_1_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="ValueAddtv_1_1" name="ValueAddtv_1_1">
-                                            
-                                            <label for="UnitAddtv_1_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="UnitAddtv_1_1" name="UnitAddtv_1_1">
+                                        <div id="AdditionalPropertiesAddtv_1" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodAddtv_1_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodAddtv_1_1" name="TestMethodAddtv_1_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValueAddtv_1_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValueAddtv_1_1" name="ValueAddtv_1_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitAddtv_1_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitAddtv_1_1" name="UnitAddtv_1_1">
+                                            </div>
                                         </div>
                                     </fieldset>
-                                    <button type="button" class= "additive-property-button TwoColumn"  onclick="addadditional('fld14-1','Addtv_1','form-group TwoColumn dynamicPro')">&#10010; Property</button>
+                                    <button type="button" class= "additive-property-button TwoColumn"  onclick="addadditional('fld14-1','Addtv_1','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>
                                 </div>
                             </div>
                         </fieldset>
@@ -5790,19 +5735,22 @@
                                 <div id="ReclaimedAsphaltdiv-4" class="form-group">
                                     <fieldset id="field12-2" class="TwoColumn-fieldset inner-fieldset">
                                         <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
-                                        <div id="AdditionalPropertiesRA" class="form-group">
-                                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                            <label for="TestMethodRA_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="TestMethodRA_1" name="TestMethodRA_1">
-                                            
-                                            <label for="ValueRA_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="ValueRA_1" name="ValueRA_1">
-                                            
-                                            <label for="UnitRA_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="UnitRA_1" name="UnitRA_1">
+                                        <div id="AdditionalPropertiesRA" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodRA_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodRA_1" name="TestMethodRA_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValueRA_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValueRA_1" name="ValueRA_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitRA_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitRA_1" name="UnitRA_1">
+                                            </div>
                                         </div>
                                     </fieldset>
-                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field12-2','RA','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field12-2','RA','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
                                 </div>
                             </div>
                         </fieldset>
@@ -5878,19 +5826,22 @@
                                             
                                             <fieldset id="field13-1-1" class="TwoColumn-fieldset inner-fieldset">
                                                 <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
-                                                <div id="AdditionalPropertiesBTSVRB" class="form-group">
-                                                    <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                                    <label for="TestMethodBTSVRB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Parameter: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                                    <input type="text" id="TestMethodBTSVRB_1" name="TestMethodBTSVRB_1">
-                                                    
-                                                    <label for="ValueBTSVRB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                                    <input type="text" id="ValueBTSVRB_1" name="ValueBTSVRB_1">
-                                                    
-                                                    <label for="UnitBTSVRB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                                    <input type="text" id="UnitBTSVRB_1" name="UnitBTSVRB_1">
+                                                <div id="AdditionalPropertiesBTSVRB" class="form-group grid-wrap">
+                                                    <div class="label-input-pair">
+                                                        <label for="TestMethodBTSVRB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Parameter: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                        <input type="text" id="TestMethodBTSVRB_1" name="TestMethodBTSVRB_1">
+                                                    </div>
+                                                    <div class="label-input-pair">
+                                                        <label for="ValueBTSVRB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                        <input type="text" id="ValueBTSVRB_1" name="ValueBTSVRB_1">
+                                                    </div>
+                                                    <div class="label-input-pair">
+                                                        <label for="UnitBTSVRB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                        <input type="text" id="UnitBTSVRB_1" name="UnitBTSVRB_1">
+                                                    </div>
                                                 </div>
                                             </fieldset>
-                                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field13-1-1','BTSVRB','form-group TwoColumn dynamicPro')">&#10010; BTSV Property</button>
+                                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field13-1-1','BTSVRB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; BTSV Property</button>
                                         </div>
                                     </fieldset>
                                 </div>
@@ -5911,10 +5862,10 @@
                                             <label for="RecoveryPercentageDifferenceRB" titletip="The value of the percentage difference in recovery between 100 Pa and 3200 Pa (e.g., 10.8).">Recovery Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="RecoveryPercentageDifferenceRB" name="RecoveryPercentageDifferenceRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
                                             
-                                            <label for="NonrecoverableCreepCompliance100PaRB" titletip="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <label for="NonrecoverableCreepCompliance100PaRB" titletip="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="NonrecoverableCreepCompliance100PaRB" name="NonrecoverableCreepCompliance100PaRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                             
-                                            <label for="NonrecoverableCreepCompliance3200PaRB" titletip="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <label for="NonrecoverableCreepCompliance3200PaRB" titletip="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="NonrecoverableCreepCompliance3200PaRB" name="NonrecoverableCreepCompliance3200PaRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                             
                                             <label for="NonrecoverableCreepCompliancePercentageDifferenceRB" titletip="The value of the percentage difference in non-recoverable creep compliance between 100 Pa and 3200 Pa (e.g., 16.1).">Nonrecoverable Creep Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
@@ -5935,7 +5886,7 @@
                                                     <label for="NonrecoverableCreepComplianceSpecifiedStressRB" titletip="The value of the non-recoverable creep compliance at the specified stress, expressed in 1/kPa (e.g., 0.227).">Nonrecoverable Creep (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                                     <input type="text" id="NonrecoverableCreepComplianceSpecifiedStressRB" name="NonrecoverableCreepComplianceSpecifiedStressRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                                     
-                                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressRB" titletip="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecoverable Creep Difference (%):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressRB" titletip="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecov. Creep Difference (%):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                                     <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressRB" name="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                                   
                                                 </div>
                                             </fieldset>
@@ -5949,19 +5900,22 @@
                                 <div id="ReclaimedAsphaltBinder-5" class="form-group">
                                     <fieldset id="field13-3" class="TwoColumn-fieldset inner-fieldset">
                                         <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
-                                        <div id="AdditionalPropertiesRB" class="form-group">
-                                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                            <label for="TestMethodRB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="TestMethodRB_1" name="TestMethodRB_1">
-                                            
-                                            <label for="ValueRB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="ValueRB_1" name="ValueRB_1">
-                                            
-                                            <label for="UnitRB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="UnitRB_1" name="UnitRB_1">
+                                        <div id="AdditionalPropertiesRB" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodRB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodRB_1" name="TestMethodRB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValueRB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValueRB_1" name="ValueRB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitRB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitRB_1" name="UnitRB_1">
+                                            </div>
                                         </div>
                                     </fieldset>
-                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field13-3','RB','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field13-3','RB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
                                 </div>
                             </div>
                         </fieldset>
@@ -6034,19 +5988,22 @@
                                             
                                             <fieldset id="field15-1-1" class="TwoColumn-fieldset inner-fieldset">
                                                 <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
-                                                <div id="AdditionalPropertiesBTSVPmB" class="form-group">
-                                                    <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                                    <label for="TestMethodBTSVPmB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Parameter: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                                    <input type="text" id="TestMethodBTSVPmB_1" name="TestMethodBTSVPmB_1">
-                                                    
-                                                    <label for="ValueBTSVPmB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                                    <input type="text" id="ValueBTSVPmB_1" name="ValueBTSVPmB_1">
-                                                    
-                                                    <label for="UnitBTSVPmB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                                    <input type="text" id="UnitBTSVPmB_1" name="UnitBTSVPmB_1">
+                                                <div id="AdditionalPropertiesBTSVPmB" class="form-group grid-wrap">
+                                                    <div class="label-input-pair">
+                                                        <label for="TestMethodBTSVPmB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Parameter: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                        <input type="text" id="TestMethodBTSVPmB_1" name="TestMethodBTSVPmB_1">
+                                                    </div>
+                                                    <div class="label-input-pair">
+                                                        <label for="ValueBTSVPmB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                        <input type="text" id="ValueBTSVPmB_1" name="ValueBTSVPmB_1">
+                                                    </div>
+                                                    <div class="label-input-pair">
+                                                        <label for="UnitBTSVPmB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                        <input type="text" id="UnitBTSVPmB_1" name="UnitBTSVPmB_1">
+                                                    </div>
                                                 </div>
                                             </fieldset>
-                                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field15-1-1','BTSVPmB','form-group TwoColumn dynamicPro')">&#10010; BTSV Property</button>
+                                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field15-1-1','BTSVPmB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; BTSV Property</button>
                                         </div>
                                     </fieldset>
                                 </div>
@@ -6067,10 +6024,10 @@
                                             <label for="RecoveryPercentageDifferencePmB" titletip="The value of the percentage difference in recovery between 100 Pa and 3200 Pa (e.g., 10.8).">Recovery Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="RecoveryPercentageDifferencePmB" name="RecoveryPercentageDifferencePmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
                                             
-                                            <label for="NonrecoverableCreepCompliance100PaPmB" titletip="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <label for="NonrecoverableCreepCompliance100PaPmB" titletip="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="NonrecoverableCreepCompliance100PaPmB" name="NonrecoverableCreepCompliance100PaPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                             
-                                            <label for="NonrecoverableCreepCompliance3200PaPmB" titletip="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <label for="NonrecoverableCreepCompliance3200PaPmB" titletip="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="NonrecoverableCreepCompliance3200PaPmB" name="NonrecoverableCreepCompliance3200PaPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                             
                                             <label for="NonrecoverableCreepCompliancePercentageDifferencePmB" titletip="The value of the percentage difference in non-recoverable creep compliance between 100 Pa and 3200 Pa (e.g., 16.1).">Nonrecoverable Creep Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
@@ -6091,7 +6048,7 @@
                                                     <label for="NonrecoverableCreepComplianceSpecifiedStressPmB" titletip="The value of the non-recoverable creep compliance at the specified stress, expressed in 1/kPa (e.g., 0.227).">Nonrecoverable Creep (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                                     <input type="text" id="NonrecoverableCreepComplianceSpecifiedStressPmB" name="NonrecoverableCreepComplianceSpecifiedStressPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                                     
-                                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressPmB" titletip="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecoverable Creep Difference (%):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressPmB" titletip="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecov. Creep Difference (%):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                                     <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressPmB" name="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                                   
                                                 </div>
                                             </fieldset>
@@ -6106,7 +6063,7 @@
                                     <fieldset id="field15-3" class="TwoColumn-fieldset inner-fieldset">
                                         <legend class="specific-legend" title="The results of the Rolling Thin Film Oven Test (RTFOT) according to EN 12607-1.">Aging Resistance &nbsp;&nbsp;&nbsp;<span class="standard">EN 12607-1</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
                                         <div id="AgingResistancePmB" class="form-group">
-                                            <label for="MassLossPmB" titletip="The mass loss according to EN 12607-1, expressed as a negative percentage. A positive value represents a gain (e.g., -1.05).">Mass Loss (%) <span class="semicolon">(negative values represent loss)</span>: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <label for="MassLossPmB" titletip="The mass loss according to EN 12607-1, expressed as a negative percentage. A positive value represents a gain (e.g., -1.05).">Mass Loss (%) <span class="semicolon">(negative values represent loss)</span>:&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="MassLossPmB" name="MassLossPmB" pattern="^-?(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between -100 and 100.">
                                             
                                             <label for="PenetrationChangePmB" titletip="The increase in penetration according to EN 12607-1 and EN 1426, expressed as a percentage (e.g., 75.07).">Retained Penetration (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
@@ -6124,19 +6081,22 @@
                                 <div id="PreMixingBinderBlend-7" class="form-group">
                                     <fieldset id="field15-4" class="TwoColumn-fieldset inner-fieldset">
                                         <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
-                                        <div id="AdditionalPropertiesPmB" class="form-group">
-                                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                            <label for="TestMethodPmB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="TestMethodPmB_1" name="TestMethodPmB_1">
-                                            
-                                            <label for="ValuePmB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="ValuePmB_1" name="ValuePmB_1">
-                                            
-                                            <label for="UnitPmB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="UnitPmB_1" name="UnitPmB_1">
+                                        <div id="AdditionalPropertiesPmB" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodPmB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodPmB_1" name="TestMethodPmB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValuePmB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValuePmB_1" name="ValuePmB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitPmB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitPmB_1" name="UnitPmB_1">
+                                            </div>
                                         </div>
                                     </fieldset>
-                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field15-4','PmB','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field15-4','PmB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
                                 </div>
                             </div>
                         </fieldset>
@@ -6156,19 +6116,22 @@
                                 <div id="OtherMaterials-2" class="form-group">
                                     <fieldset id="fieldN-1" class="TwoColumn-fieldset inner-fieldset">
                                         <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
-                                        <div id="AdditionalPropertiesOtherMaterials" class="form-group">
-                                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                            <label for="TestMethodOtherMaterials_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="TestMethodOtherMaterials_1" name="TestMethodOtherMaterials_1">
-                                            
-                                            <label for="ValueOtherMaterials_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="ValueOtherMaterials_1" name="ValueOtherMaterials_1">
-                                            
-                                            <label for="UnitOtherMaterials_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="UnitOtherMaterials_1" name="UnitOtherMaterials_1">
+                                        <div id="AdditionalPropertiesOtherMaterials" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodOtherMaterials_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodOtherMaterials_1" name="TestMethodOtherMaterials_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValueOtherMaterials_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValueOtherMaterials_1" name="ValueOtherMaterials_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitOtherMaterials_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitOtherMaterials_1" name="UnitOtherMaterials_1">
+                                            </div>
                                         </div>
                                     </fieldset>
-                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('fieldN-1','OtherMaterials','form-group TwoColumn dynamicPro')"> &#10010; Property</button>                    
+                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('fieldN-1','OtherMaterials','form-group grid-wrap-one-row TwoColumn dynamicPro')"> &#10010; Property</button>                    
                                 </div>
                             </div>
                         </fieldset>
@@ -6272,19 +6235,22 @@
                                 <div id="RecoveredAggregatesdiv-4" class="form-group"> 
                                     <fieldset id="field17-2" class="TwoColumn-fieldset inner-fieldset">
                                         <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
-                                        <div id="AdditionalPropertiesCA" class="form-group">
-                                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                            <label for="TestMethodCA_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="TestMethodCA_1" name="TestMethodCA_1">
-                                            
-                                            <label for="ValueCA_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="ValueCA_1" name="ValueCA_1">
-                                            
-                                            <label for="UnitCA_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="UnitCA_1" name="UnitCA_1">
+                                        <div id="AdditionalPropertiesCA" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodCA_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodCA_1" name="TestMethodCA_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValueCA_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValueCA_1" name="ValueCA_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitCA_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitCA_1" name="UnitCA_1">
+                                            </div>
                                         </div>
                                     </fieldset>
-                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field17-2','CA','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field17-2','CA','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
                                 </div>
                             </div>
                         </fieldset>
@@ -6360,19 +6326,22 @@
                                             
                                             <fieldset id="field18-1-1" class="TwoColumn-fieldset inner-fieldset">
                                                 <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
-                                                <div id="AdditionalPropertiesBTSVCB" class="form-group">
-                                                    <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                                    <label for="TestMethodBTSVCB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Parameter: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                                    <input type="text" id="TestMethodBTSVCB_1" name="TestMethodBTSVCB_1">
-                                                    
-                                                    <label for="ValueBTSVCB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                                    <input type="text" id="ValueBTSVCB_1" name="ValueBTSVCB_1">
-                                                    
-                                                    <label for="UnitBTSVCB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                                    <input type="text" id="UnitBTSVCB_1" name="UnitBTSVCB_1">
+                                                <div id="AdditionalPropertiesBTSVCB" class="form-group grid-wrap">
+                                                    <div class="label-input-pair">
+                                                        <label for="TestMethodBTSVCB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Parameter: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                        <input type="text" id="TestMethodBTSVCB_1" name="TestMethodBTSVCB_1">
+                                                    </div>
+                                                    <div class="label-input-pair">
+                                                        <label for="ValueBTSVCB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                        <input type="text" id="ValueBTSVCB_1" name="ValueBTSVCB_1">
+                                                    </div>
+                                                    <div class="label-input-pair">
+                                                        <label for="UnitBTSVCB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                        <input type="text" id="UnitBTSVCB_1" name="UnitBTSVCB_1">
+                                                    </div>
                                                 </div>
                                             </fieldset>
-                                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field18-1-1','BTSVCB','form-group TwoColumn dynamicPro')">&#10010; BTSV Property</button>
+                                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field18-1-1','BTSVCB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; BTSV Property</button>
                                         </div>
                                     </fieldset>
                                 </div>
@@ -6393,10 +6362,10 @@
                                             <label for="RecoveryPercentageDifferenceCB" titletip="The value of the percentage difference in recovery between 100 Pa and 3200 Pa (e.g., 10.8).">Recovery Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="RecoveryPercentageDifferenceCB" name="RecoveryPercentageDifferenceCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
                                             
-                                            <label for="NonrecoverableCreepCompliance100PaCB" titletip="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <label for="NonrecoverableCreepCompliance100PaCB" titletip="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="NonrecoverableCreepCompliance100PaCB" name="NonrecoverableCreepCompliance100PaCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                             
-                                            <label for="NonrecoverableCreepCompliance3200PaCB" titletip="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <label for="NonrecoverableCreepCompliance3200PaCB" titletip="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="NonrecoverableCreepCompliance3200PaCB" name="NonrecoverableCreepCompliance3200PaCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                             
                                             <label for="NonrecoverableCreepCompliancePercentageDifferenceCB" titletip="The value of the percentage difference in non-recoverable creep compliance between 100 Pa and 3200 Pa (e.g., 16.1).">Nonrecoverable Creep Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
@@ -6417,7 +6386,7 @@
                                                     <label for="NonrecoverableCreepComplianceSpecifiedStressCB" titletip="The value of the non-recoverable creep compliance at the specified stress, expressed in 1/kPa (e.g., 0.227).">Nonrecoverable Creep (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                                     <input type="text" id="NonrecoverableCreepComplianceSpecifiedStressCB" name="NonrecoverableCreepComplianceSpecifiedStressCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                                     
-                                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressCB" titletip="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecoverable Creep Difference (%):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressCB" titletip="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecov. Creep Difference (%):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                                     <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressCB" name="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                                   
                                                 </div>
                                             </fieldset>
@@ -6432,7 +6401,7 @@
                                     <fieldset id="field18-3" class="TwoColumn-fieldset inner-fieldset">
                                         <legend class="specific-legend" title="The results of the Rolling Thin Film Oven Test (RTFOT) according to EN 12607-1.">Aging Resistance &nbsp;&nbsp;&nbsp;<span class="standard">EN 12607-1</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
                                         <div id="AgingResistanceCB" class="form-group">
-                                            <label for="MassLossCB" titletip="The mass loss according to EN 12607-1, expressed as a negative percentage. A positive value represents a gain (e.g., -1.05).">Mass Loss (%) <span class="semicolon">(negative values represent loss)</span>: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <label for="MassLossCB" titletip="The mass loss according to EN 12607-1, expressed as a negative percentage. A positive value represents a gain (e.g., -1.05).">Mass Loss (%) <span class="semicolon">(negative values represent loss)</span>:&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                             <input type="text" id="MassLossCB" name="MassLossCB" pattern="^-?(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between -100 and 100.">
                                             
                                             <label for="PenetrationChangeCB" titletip="The increase in penetration according to EN 12607-1 and EN 1426, expressed as a percentage (e.g., 75.07).">Retained Penetration (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
@@ -6450,19 +6419,22 @@
                                 <div id="RecoveredBinderdiv-7" class="form-group">
                                     <fieldset id="field18-4" class="TwoColumn-fieldset inner-fieldset">
                                         <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
-                                        <div id="AdditionalPropertiesCB" class="form-group">
-                                            <span class="multilabel"> •&nbsp; Property 1 &nbsp;• </span>
-                                            <label for="TestMethodCB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="TestMethodCB_1" name="TestMethodCB_1">
-                                            
-                                            <label for="ValueCB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="ValueCB_1" name="ValueCB_1">
-                                            
-                                            <label for="UnitCB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                            <input type="text" id="UnitCB_1" name="UnitCB_1">
+                                        <div id="AdditionalPropertiesCB" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodCB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodCB_1" name="TestMethodCB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValueCB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValueCB_1" name="ValueCB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitCB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitCB_1" name="UnitCB_1">
+                                            </div>
                                         </div>
                                     </fieldset>
-                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field18-4','CB','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field18-4','CB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
                                 </div>
                             </div>
                         </fieldset>
@@ -6505,19 +6477,22 @@
                             <div id="Mixing-2" class="form-group">
                                 <fieldset id="field16-3" class="TwoColumn-fieldset inner-fieldset">
                                     <legend class="specific-legend" title="The name, value, and unit of measurement for any other non-standard property in the mixing design process.">Other Mixing Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
-                                    <div id="OtherMixingPropertydiv" class="form-group">
-                                        <span class="multilabel"> &#9664;&nbsp; Property 1 &nbsp;&#9654; </span>
-                                        <label for="OtherMixingPropertyName_1" titletip="The name of a non-standard property in the mixing design process (e.g., Fibres percentage).">Name: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                        <input type="text" id="OtherMixingPropertyName_1" name="OtherMixingPropertyName_1">
-                                        
-                                        <label for="OtherMixingPropertyValue_1" titletip="The value of the non-standard property in the mixing design process (e.g., 0.042).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                        <input type="text" id="OtherMixingPropertyValue_1" name="OtherMixingPropertyValue_1">
-                                        
-                                        <label for="OtherMixingPropertyUnit_1" titletip="The unit of measurement for the non-standard property in the mixing design process (e.g., Mass-%).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                        <input type="text" id="OtherMixingPropertyUnit_1" name="OtherMixingPropertyUnit_1">
+                                    <div id="OtherMixingPropertydiv" class="form-group grid-wrap">
+                                        <div class="label-input-pair">
+                                            <label for="OtherMixingPropertyName_1" titletip="The name of a non-standard property in the mixing design process (e.g., Fibres percentage).">Name: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="OtherMixingPropertyName_1" name="OtherMixingPropertyName_1">
+                                        </div>
+                                        <div class="label-input-pair">
+                                            <label for="OtherMixingPropertyValue_1" titletip="The value of the non-standard property in the mixing design process (e.g., 0.042).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="OtherMixingPropertyValue_1" name="OtherMixingPropertyValue_1">
+                                        </div>
+                                        <div class="label-input-pair">
+                                            <label for="OtherMixingPropertyUnit_1" titletip="The unit of measurement for the non-standard property in the mixing design process (e.g., Mass-%).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="OtherMixingPropertyUnit_1" name="OtherMixingPropertyUnit_1">
+                                        </div>
                                     </div>
                                 </fieldset>
-                                <button type="button" class= "special-button TwoColumn"  onclick="addmixdesign('field16-3','form-group TwoColumn dynamicPro')">&#10010; Property</button>                    
+                                <button type="button" class= "special-button TwoColumn"  onclick="addmixdesign('field16-3','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
                             </div>
                         </div>
                     </fieldset>
@@ -6614,39 +6589,39 @@
                                         <fieldset id="field20-6-1" class="TwoColumn-fieldset inner-fieldset">
                                             <legend class="specific-legend" title="The aging of loose mixture according to Method A in EN 12697-52.">Loose Mixture</legend>
                                             <div id="LooseMixturediv" class="form-group">
-                                                <label for="MixtureAgingDurationShort" titletip="The period the mixture was aged before compaction according to Procedure A.1, expressed in hours (e.g., 4).">Short-Term Aging Durtaion (hours):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <label for="MixtureAgingDurationShort" titletip="The period the mixture was aged before compaction according to Procedure A.1, expressed in hours (e.g., 4).">Short-Term Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                                 <input type="text" id="MixtureAgingDurationShort" name="MixtureAgingDurationShort" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                                 
-                                                <label for="MixtureAgingTemperatureShort" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.1, measured in Degrees Celsius (e.g., 140).">Short-Term Aging Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <label for="MixtureAgingTemperatureShort" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.1, measured in Degrees Celsius (e.g., 140).">Short-Term Aging Temperature (°C):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                                 <input type="text" id="MixtureAgingTemperatureShort" name="MixtureAgingTemperatureShort" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                                 
-                                                <label for="MixtureAgingDurationLong" titletip="The period the mixture was aged before compaction according to Procedure A.2, expressed in hours (e.g., 120).">Long-Term Aging Durtaion (hours):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <label for="MixtureAgingDurationLong" titletip="The period the mixture was aged before compaction according to Procedure A.2, expressed in hours (e.g., 120).">Long-Term Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                                 <input type="text" id="MixtureAgingDurationLong" name="MixtureAgingDurationLong" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
 
-                                                <label for="MixtureAgingTemperatureLong" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.2, measured in Degrees Celsius (e.g., 150).">Long-Term Aging Temperature (°C):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <label for="MixtureAgingTemperatureLong" titletip="The temperature at which the mixture was aged before compaction according to Procedure A.2, measured in Degrees Celsius (e.g., 150).">Long-Term Aging Temperature (°C):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                                 <input type="text" id="MixtureAgingTemperatureLong" name="MixtureAgingTemperatureLong" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
                                             </div>
                                         </fieldset>
                                         <fieldset id="field20-6-2" class="TwoColumn-fieldset inner-fieldset">
                                             <legend class="specific-legend" title="The aging of compacted specimens from bituminous mixtures according to Method B EN 12697-52.">Compacted Mixture</legend>
                                             <div id="CompactedMixturediv" class="form-group">
-                                                <label for="MixtureAgingDurationB1" titletip="The period the mixture was aged according to Procedure B.1, expressed in hours (e.g., 80).">Procedure B.1 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                                <label for="MixtureAgingDurationB1" titletip="The period the mixture was aged according to Procedure B.1, expressed in hours (e.g., 80).">Proced. B.1 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
                                                 <input type="text" id="MixtureAgingDurationB1" name="MixtureAgingDurationB1" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                                 
-                                                <label for="MixtureAgingTemperatureB1" titletip="The temperature at which the mixture was aged according to Procedure B.1, measured in Degrees Celsius (e.g., 140).">Procedure B.1 Aging Temperature (°C):<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                                <label for="MixtureAgingTemperatureB1" titletip="The temperature at which the mixture was aged according to Procedure B.1, measured in Degrees Celsius (e.g., 140).">Proced. B.1 Aging Temperature (°C):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
                                                 <input type="text" id="MixtureAgingTemperatureB1" name="MixtureAgingTemperatureB1" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                                 
-                                                <label for="MixtureAgingDurationB2" titletip="The period the mixture was aged according to Procedure B.2, expressed in hours (e.g., 160).">Procedure B.2 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                                <label for="MixtureAgingDurationB2" titletip="The period the mixture was aged according to Procedure B.2, expressed in hours (e.g., 160).">Proced. B.2 Aging Durtaion (hours):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
                                                 <input type="text" id="MixtureAgingDurationB2" name="MixtureAgingDurationB2" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
 
-                                                <label for="MixtureAgingTemperatureB2" titletip="The temperature at which the mixture was aged according to Procedure B.2, measured in Degrees Celsius (e.g., 140).">Procedure B.2 Aging Temperature (°C):<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                                                <label for="MixtureAgingTemperatureB2" titletip="The temperature at which the mixture was aged according to Procedure B.2, measured in Degrees Celsius (e.g., 140).">Proced. B.2 Aging Temperature (°C):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
                                                 <input type="text" id="MixtureAgingTemperatureB2" name="MixtureAgingTemperatureB2" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">                                   
                                             </div>
                                         </fieldset>
                                     </div>
                                 </fieldset> 
                             </div>    
-                        </div>          
+                        </div>       
                         
                         <!-- SAMPLE PROPERTIES:  Marshall Test -->
                         <div id="marsmplproptab" class="TwoColumn innertab-test hidden">Marshall Test</div>
@@ -6680,7 +6655,7 @@
                                     <input type="text" id="CompactionTemperatureMar" name="CompactionTemperatureMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                     
                                     <label for="BlowsNumberMar" titletip="The number of blows per side (e.g., 50).">Blows Number:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                    <input type="number" id="BlowsNumberMar" name="BlowsNumberMar" min="0" title="Enter a valid positive number.">
+                                    <input type="number" id="BlowsNumberMar" name="BlowsNumberMar" min="0" title="Enter a valid positive integer.">
                                 </div>
                             </fieldset>
 
@@ -6763,7 +6738,7 @@
                                     <input type="text" id="CompactionTemperatureITS" name="CompactionTemperatureITS" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
                                     
                                     <label for="BlowsNumberITS" titletip="The number of blows per side (e.g., 50).">Blows Number:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
-                                    <input type="number" id="BlowsNumberITS" name="BlowsNumberITS" min="0" title="Enter a valid positive number.">
+                                    <input type="number" id="BlowsNumberITS" name="BlowsNumberITS" min="0" title="Enter a valid positive integer.">
                                 </div>
                             </fieldset>
 
@@ -7825,10 +7800,10 @@
                                     <label for="TestTypeStiff" titletip="The test applied to determine the stiffness according to EN 12697-26 (e.g., 4PB-PR).">Test Type: <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
                                     <select id="TestTypeStiff" name="TestTypeStiff" onchange="StiffTestTypeSelection('field21-19-1','field21-19-2','field21-19-3')">
                                         <option value="" disabled selected> Select</option>
-                                        <option value="2PB-TR">Two point bending test on trapezoidal specimen (2PR-TR)</option>
-                                        <option value="2PB-PR">Two point bending test on prismatic specimen (2PR-PR)</option>
-                                        <option value="3PB-PR">Three point bending test on prismatic specimen (3PR-PR)</option>
-                                        <option value="4PB-PR">Four point bending test on prismatic specimen (4PR-PR)</option>
+                                        <option value="2PB-TR">Two point bending test on trapezoidal specimen (2PB-TR)</option>
+                                        <option value="2PB-PR">Two point bending test on prismatic specimen (2PB-PR)</option>
+                                        <option value="3PB-PR">Three point bending test on prismatic specimen (3PB-PR)</option>
+                                        <option value="4PB-PR">Four point bending test on prismatic specimen (4PB-PR)</option>
                                         <option value="IT-CY">Indirect tension to cylindrical specimen (IT-CY)</option>
                                         <option value="CIT-CY">Cyclic indirect tension to cylindrical specimen (CIT-CY)</option>
                                         <option value="DTC-CY">Direct tension-compression test on cylindrical specimen (DTC-CY)</option>
@@ -8021,16 +7996,7 @@
 
     <br>
 
-    <div id="footer">
-        <div class="footer-flex">
-            <div id="copyright">
-                <span>&copy; 2025 AsphaltMine&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="Font-size:80%">v1.0.0</span></span>
-            </div>
-            <div id="footer-right">
-                <!--<span>All rights reserved</span>-->
-            </div>
-        </div>
-    </div>
+    {% include "General/footer.html" %}
 
     <div id="modal" class="modal">
         <div class="modal-content">
@@ -8059,15 +8025,15 @@
 
     <div class="Test-popup" id="Testpopup">
         <div class="Test-popup-container">
-            <span class="Test-popup-close" onclick="CloseTestSelectionPopup()">&times;</span>
+            <button type="button" class="Test-popup-close" onclick="CloseTestSelectionPopup()">&times;</button>
             <h3>Select Performance Tests</h3>
             <div id="Test-selection">
-                <label><input type="checkbox" id="select-rut" checked> Rutting Test</label>
-                <label><input type="checkbox" id="select-mar" > Marshall Test</label>
-                <label><input type="checkbox" id="select-its" > Indirect Tensile Strength Test (ITS)</label>
-                <label><input type="checkbox" id="select-tsr" > Thermal Stress Restrained Specimen Test (TSRST)</label>
-                <label><input type="checkbox" id="select-uts" > Uniaxial Tension Stress Test (UTST)</label>
-                <label><input type="checkbox" id="select-stf" > Stiffness Test</label>
+                <label class="test-option"><input type="checkbox" id="select-rut" checked><span>Rutting Test</span></label>
+                <label class="test-option"><input type="checkbox" id="select-mar"><span>Marshall Test</span></label>
+                <label class="test-option"><input type="checkbox" id="select-its"><span>Indirect Tensile Strength Test (ITS)</span></label>
+                <label class="test-option"><input type="checkbox" id="select-tsr"><span>Thermal Stress Restrained Specimen Test (TSRST)</span></label>
+                <label class="test-option"><input type="checkbox" id="select-uts"><span>Uniaxial Tension Stress Test (UTST)</span></label>
+                <label class="test-option"><input type="checkbox" id="select-stf"><span>Stiffness Test</span></label>
             </div>
             <button type="button" id="apply-selection-button" onclick="ApplyTestSelection()">Apply</button>
         </div>
@@ -8091,7 +8057,7 @@
                         style="width: 99.745%; height: 85vh; border: 3px solid #dddddd;">
                         <span style="color: black; font-size:26px; text-align:center">
                             It appears your browser does not support PDFs. You can 
-                            <a href="path/to/AsphaltMineQuickStart.pdf">download the PDF</a> instead.
+                            <a href="{% static 'AsphaltMineQuickStart.pdf' %}">download the PDF</a> instead.
                         </span>
                     </object>           
                 </span>
@@ -8110,3 +8076,7 @@
     </div>
 
 {% endblock %}
+
+
+
+
