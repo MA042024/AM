@@ -1,0 +1,544 @@
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                 Bulk Record Upload               -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                 @ AsphaltMine.org                -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--      Created by Mohammad Abbas - March 2025      -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+{% load static %}
+
+{% block head %}
+    <title>Bulk Record Upload | AsphaltMine</title>
+{% endblock %}
+{% block theme_css %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/bulkupload.css' %}">
+    <link rel="stylesheet" href="{% static 'css/General/navigator.css' %}">
+    <link rel="stylesheet" href="{% static 'css/General/footer.css' %}">
+{% endblock %}
+{% block theme_js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'core_main_app/common/js/csrf.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+        // Confirmation Message Functionality
+        function Confirmation(behvr) {
+            let message = "";
+            let actionFunction = null;
+            if (behvr === "E") {
+                message = "This action will extract records from the uploaded Excel sheet, which may take some time. Confirm extraction?";
+                actionFunction = ExtractXML;
+            } else if (behvr === "V") {
+                message = "This action will check the validity of all records. Confirm?";
+                actionFunction = Validate;
+            } else if (behvr === "S") {
+                message = "This action will save all records to the database. Confirm save?";
+                actionFunction = saveAllRecords;
+            }
+            document.getElementById("ConfirmationMessage").textContent = message;
+            document.getElementById("Confirmationpopup").style.display = "block";
+            document.getElementById("Cancel-ConfirmationMessage").onclick = () => {
+                document.getElementById("Confirmationpopup").style.display = "none";
+            };
+            document.getElementById("Confirm-ConfirmationMessage").onclick = () => {
+                document.getElementById("Confirmationpopup").style.display = "none";
+                if (actionFunction) actionFunction();
+            };
+        }
+       
+    </script>
+
+    <script>
+
+        // Identify Test ID in AsphaltMine from Root nodes
+        function Testid(testname) {
+            const ExpNames = {
+                "RuttingExp": 21,
+                "MarshallExp": 22,
+                "ITSExp": 23,
+                "TSRSTExp": 24,
+                "UTSTExp": 25,
+                "StiffnessExp": 26,
+            };
+            const testnumber = ExpNames[testname];
+            return testnumber !== undefined ? testnumber : `Test name '${testname}' is not found.`;
+        }
+                
+    </script>
+
+    <script>
+
+        // Open and close information tabs from the right sidebar
+        document.addEventListener('DOMContentLoaded', function() {
+            var explpop = document.getElementById("explpopup");
+            function closeExplPopup() {explpop.style.display = "none";}
+            document.getElementsByClassName("Expl-popup-close")[0].onclick = closeExplPopup;
+            window.onclick = function(event) {if (event.target == explpop) {closeExplPopup();}}
+        });
+        function PopupMoreInfo(message) {
+            document.getElementById("main-message").innerHTML  = message;
+            document.getElementById("explpopup").style.display = "block";
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            var questionMarks = document.querySelectorAll('.moreinfo');
+            questionMarks.forEach(function(mark) {
+                mark.addEventListener('click', function() {
+                    var targetId = mark.getAttribute('data-target');
+                    var targetDiv = document.getElementById(targetId);
+                    
+                    if (targetDiv) {
+                        var htmlContent = targetDiv.innerHTML;
+                        PopupMoreInfo(htmlContent);
+                    }
+                });
+            });
+        });
+
+        // Open and close QuickStart
+        document.addEventListener('DOMContentLoaded', function () {
+            const quickStartBtn = document.getElementById('quick-start-btn');
+            const popup = document.getElementById('quickstartpopup');
+            const closeBtn = document.querySelector('.quickstart-popup-close');
+            const quickStartContent = document.getElementById('quick-start');
+            quickStartBtn.addEventListener('click', function() {
+                popup.style.display = 'block';
+                quickStartContent.style.display = 'block';
+            });
+            closeBtn.addEventListener('click', function() {
+                popup.style.display = 'none';
+                quickStartContent.style.display = 'none';
+            });
+            window.addEventListener('click', function(event) {
+                if (event.target === popup) {
+                    popup.style.display = 'none';
+                    quickStartContent.style.display = 'none';
+                }
+            });
+        });
+
+        // Reset Page
+        function Reset() {location.reload();}
+
+    </script>
+
+    <script>
+
+        function LabelSelectionColor() {
+            const radios = document.querySelectorAll('input[name="Sheet"]');
+            radios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    radios.forEach(r => {
+                        const label = r.parentNode;
+                        label.classList.remove('selected');
+                    });
+                    const selectedLabel = this.parentNode;
+                    selectedLabel.classList.add('selected');
+                });
+            });
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            LabelSelectionColor();
+        });
+
+    </script>
+
+    <script>
+
+        function getRootNodeName(xmlContent) {
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlContent, "application/xml");
+            const rootNode = xmlDoc.documentElement;
+            return rootNode ? rootNode.nodeName : null;
+        }
+
+        function UploadExcel() {
+            const fileInput = document.getElementById("xmlFileExt");
+            document.getElementById("FileExtName").textContent = `Excel File Uploaded`;
+            document.getElementById("ButtonE").disabled = false;
+            document.getElementById("ButtonE").classList.remove("blocked");
+            document.querySelectorAll('input[name="Sheet"]').forEach(function(radio) {radio.disabled = false;});
+            document.getElementById("ExtractionSection").innerHTML = "";
+            document.getElementById("ExtractionSection").style.display = "none";
+            document.getElementById("ButtonV").style.display = "none";
+            document.getElementById("ButtonV").disabled = false;
+            document.getElementById("ButtonV").classList.remove("blocked");
+            document.getElementById("ValidationSection").innerHTML = "";
+            document.getElementById("ValidationSection").style.display = "none";
+            document.getElementById("ButtonS").style.display = "none";
+            document.getElementById("ButtonS").disabled = false;
+            document.getElementById("ButtonS").classList.remove("blocked");
+            document.getElementById("SaveSection").innerHTML = "";
+            document.getElementById("SaveSection").style.display = "none";
+        }
+
+    </script>
+
+    <script>
+
+        // Extraction Function
+        function ExtractXML() {
+            document.getElementById("ButtonE").disabled = true;
+            document.getElementById("ButtonE").classList.add("blocked");
+            document.querySelectorAll('input[name="Sheet"]').forEach(function(radio) {radio.disabled = true;});
+            document.getElementById("ExtractionSection").style.display = "block";
+            document.getElementById("ExtractionSection").style.backgroundColor = "#FFFFFF";
+            document.getElementById("ExtractionSection").innerHTML = `<p> Processing... Please wait. </p>`;                    
+            const fileInput = document.getElementById('excelInput');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert("Please select an Excel file first.");
+                return;
+            }
+            const sheet = document.querySelector('input[name="Sheet"]:checked').value;
+            const formData = new FormData();
+            formData.append('excelFile', file);
+            formData.append('sheet', sheet);
+            $.ajax({
+                url: '/curate/extractxml/',
+                type: 'POST',
+                headers: {
+                    'X-CSRFToken': csrftoken
+                },
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: 'json',
+                success: function(response) {
+                    Records = response;
+                    const RecordsCount = Object.keys(Records).length;
+                    document.getElementById("ExtractionSection").style.backgroundColor = "#D4EDDA";
+                    if (RecordsCount > 0) {
+                        document.getElementById("ButtonV").style.display = "block";
+                        document.getElementById("ExtractionSection").innerHTML = `<p>Extraction successful! &nbsp;&nbsp;<b>${RecordsCount}<b> records extracted.</p>`;
+                    } else {
+                        document.getElementById("ButtonV").style.display = "none";
+                        document.getElementById("ExtractionSection").innerHTML = `<p>No records to extract.</p>`;
+                    }
+                },
+                error: function(xhr) {
+                    console.error(xhr.responseText);
+                    document.getElementById("ExtractionSection").style.backgroundColor = "#F8D7DA";
+                    document.getElementById("ButtonV").style.display = "none";
+                    document.getElementById("ExtractionSection").innerHTML = `<p>${xhr.responseText}</p>`;
+                }
+            });
+            document.getElementById("FileExtName").textContent = `Upload AsphaltMine Excel File`;
+            document.getElementById('excelInput').value = '';
+        }
+
+    </script>
+
+    <script>
+
+        // Validation Function
+        function Validate() {
+            document.getElementById("ButtonV").disabled = true;
+            document.getElementById("ButtonV").classList.add("blocked");
+            document.getElementById("ValidationSection").style.display = "block";
+            document.getElementById("ValidationSection").style.backgroundColor = "#FFFFFF";
+            document.getElementById("ValidationSection").innerHTML = "";
+            if (Object.keys(Records).length === 0) {
+                alert("No Records found. Please upload an Excel file first.");
+                document.getElementById("ValidationSection").style.display = "none";
+                return;
+            }
+            const keys = Object.keys(Records);
+            const batchSize = 5;
+            let validFilesCount = 0;
+            let completedRequests = 0;
+            function sendBatch(startIndex) {
+                const batch = keys.slice(startIndex, startIndex + batchSize);
+                let promises = [];
+                batch.forEach((fileName, i) => {
+                    const index = startIndex + i;
+                    const xmlContent = Records[fileName];
+                    const rootNodeName = getRootNodeName(xmlContent);
+                    const templateId = Testid(rootNodeName);
+                    if (!templateId) {
+                        document.getElementById("ValidationSection").innerHTML += `<div id="result-${index}" class="result"><b>${fileName}</b>: Test ID not found for root node '${rootNodeName}'</div>`;
+                        completedRequests++;
+                        return;
+                    }
+                    const formData = new FormData();
+                    formData.append("xml_dt", xmlContent);
+                    formData.append("template_id", templateId);
+                    document.getElementById("ValidationSection").innerHTML += `<div id="result-${index}" class="result"><b>Validating ${fileName}...</b></div>`;
+                    const promise = $.ajax({
+                        url: '/curate/validate-record/',
+                        type: 'POST',
+                        headers: {
+                            'X-CSRFToken': csrftoken
+                        },
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        dataType: 'json',
+                        success: function (response) {
+                            const result = response.errors ? response.errors : "VALID";
+                            document.getElementById(`result-${index}`).innerHTML = `<b>${fileName}</b>: ${result}`;
+                            if (result === "VALID") validFilesCount++;
+                            completedRequests++;
+                        },
+                        error: function (xhr) {
+                            let errorMessage = "An error occurred during validation.";
+                            try {
+                                const errorData = JSON.parse(xhr.responseText);
+                                if (errorData.errors) errorMessage = errorData.errors.join("<br>");
+                            } catch (e) {
+                                errorMessage = "Failed to parse error response: " + xhr.responseText;
+                            }
+                            document.getElementById(`result-${index}`).innerHTML = `<b>${fileName}</b>: ${errorMessage}`;
+                            completedRequests++;
+                        }
+                    });
+                    promises.push(promise);
+                });
+                Promise.all(promises).then(() => {
+                    if (startIndex + batchSize < keys.length) {
+                        sendBatch(startIndex + batchSize);
+                    } else {
+                        if (validFilesCount === keys.length) {
+                            document.getElementById("ValidationSection").style.backgroundColor = "#D4EDDA";
+                            document.getElementById("ValidationSection").innerHTML += `<br><br><div class="result" style="text-align: center;"><b>All records are VALID!</b></div>`;
+                            document.getElementById("ButtonS").style.display = "block";
+                        } else {
+                            document.getElementById("ValidationSection").style.backgroundColor = "#F8D7DA";
+                            document.getElementById("ValidationSection").innerHTML += `<br><br><div class="result" style="text-align: center;"><b>Some records are INVALID. Please review your Excel sheet.</b></div>`;
+                        }
+                    }
+                });
+            }
+            sendBatch(0);
+        }
+
+
+    </script>
+
+    <script>
+
+        // Save Function
+        function saveAllRecords() {
+            document.getElementById("ButtonS").disabled = true;
+            document.getElementById("ButtonS").classList.add("blocked");
+            document.getElementById("SaveSection").style.display = "block";
+            document.getElementById("SaveSection").style.backgroundColor = "#FFFFFF";
+            let savedCount = 0;
+            let failedCount = 0;
+            Object.keys(Records).forEach((fileName, index) => {
+                const xmlContent = Records[fileName];
+                const rootNodeName = getRootNodeName(xmlContent);
+                const templateId = Testid(rootNodeName);
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlContent, "application/xml");
+                const measurementCampaignID = xmlDoc.getElementsByTagName("MeasurementCampaignID")[0]?.textContent || "Unknown";
+                const organizationName = xmlDoc.getElementsByTagName("OrganizationName")[0]?.textContent || "Unknown";
+                const year = xmlDoc.getElementsByTagName("Year")[0]?.textContent || "Unknown";
+                let namerecord = `${measurementCampaignID}_${organizationName}_${year}`;
+                const formData = {
+                    xml_data: xmlContent,
+                    title: namerecord,
+                    template_id: templateId
+                };
+                $.ajax({
+                    url: '/curate/save-xml-data/',
+                    type: 'POST',
+                    headers: {
+                        'X-CSRFToken': csrftoken
+                    },
+                    data: formData,
+                    success: function(response) {
+                        savedCount++;
+                        document.getElementById("SaveSection").innerHTML += `<div class="result"><b>${fileName}</b>: Saved successfully!</div>`;
+                        checkAllSaved(savedCount, failedCount, Object.keys(Records).length);
+                    },
+                    error: function(xhr, status, error) {
+                        failedCount++;
+                        let errorMessage = "Failed to save data.";
+                        if (xhr.status === 403) {
+                            errorMessage = "Insufficient permissions";
+                        }
+                        document.getElementById("SaveSection").innerHTML += `<div class="result"><b>${fileName}</b>: ${errorMessage}</div>`;
+                        checkAllSaved(savedCount, failedCount, Object.keys(Records).length);
+                    }
+                });
+            });
+        }
+
+        function checkAllSaved(savedCount, failedCount, totalFiles) {
+            if (savedCount + failedCount === totalFiles) {
+                if (savedCount === totalFiles) {
+                    document.getElementById("SaveSection").innerHTML += `<br><br><div class="result" style="text-align: center;"><b>All records have been saved successfully!</b></div>`;
+                    document.getElementById("SaveSection").style.backgroundColor = "#D4EDDA";
+                } else {
+                    document.getElementById("SaveSection").innerHTML += `<br><br><div class="result" style="text-align: center;"><b>${failedCount} record(s) failed to save.</b></div>`;
+                    document.getElementById("SaveSection").style.backgroundColor = "#F8D7DA";
+                }
+            }
+        }
+
+    </script>
+
+{% endblock %}
+
+{% block body %}
+
+    {% include "General/navigator.html" %}
+    
+    <div class="sidebar">
+        <div class="bounded-div">
+            <span> This page is used to bulk upload records using the predefined AsphaltMine Excel sheet.</span>
+        </div>
+        <div class="bounded-div">
+            <span> To download the predefined AsphaltMine Excel file, click <a class="refer-link" href="https://www.asphaltmine.org/download.php?file=AsphaltMine%20Database%20Structure.xlsx">here</a>.</span>
+        </div>
+        <div class="bounded-div">
+            <span> To reset the page, click the 'Reset' button below.</span>
+        </div>
+        <button id="reset-btn" onclick="Reset()">Reset</button>
+    </div>
+
+    <div id="LeftSidebar" class="sidebar-right">
+        <div class="bounded-div">
+            <span style="font-size: 110%;">Functionalities:</span><br />
+            <span>&#8226;&nbsp;&nbsp; Extract records &nbsp;<i class="fa fa-question-circle moreinfo" data-target="extractfunc-info"></i></span><br />
+            <span>&#8226;&nbsp;&nbsp; Validate records  &nbsp;<i class="fa fa-question-circle moreinfo" data-target="validfunc-info"></i></span><br />
+            <span>&#8226;&nbsp;&nbsp; Save records  &nbsp;<i class="fa fa-question-circle moreinfo" data-target="savefunc-info"></i></span><br />
+        </div>
+        <br>
+        <button id="quick-start-btn">Quick Start</button>
+        <div id="extractfunc-info" style="display: none;">
+            <b>Extract Records:</b>
+            You can extract records from the predefined AsphaltMine Excel sheet. To do this, follow these steps:
+            <ol>
+                <li>Click on the Upload AsphaltMine Excel File button.</li> 
+                <li>Select the Excel file from your own device.</li> 
+                <li>Select one of the two available sheets: either the Columns sheet or the Rows sheet.</li>
+                <li>Click Extract, then click Confirm.</li> 
+            </ol> 
+            Once the process is finished, a message will appear showing the number of records extracted, or if no records are extracted. This process could take some time depending on the size of the Excel sheet.<br><br>
+            For more information, please check the <a style="color: black;" href="/tutorial/"><i>Tutorial</i></a> page.
+        </div>
+        <div id="validfunc-info" style="display: none;">
+            <b>Validate Records:</b>
+            You can validate the extracted records. This validation button will only appear if at least one record was extracted from the Excel sheet. To do this, click on the Validate button.<br><br>
+            Once the records are successfully checked, you will see which records are valid and which are invalid. The screen will also display the reason for any invalid records.<br><br>
+            For more information, please check the <a style="color: black;" href="/tutorial/"><i>Tutorial</i></a> page.
+        </div>
+        <div id="savefunc-info" style="display: none;">
+            <b>Save Records:</b>
+            Once all the records are valid, you can save them to the database at once by simply clicking the "Save" button that will appear after validation. The save button will only appear if all records are valid.<br><br>
+            For more information, please check the <a style="color: black;" href="/tutorial/"><i>Tutorial</i></a> page.
+        </div>
+    </div>
+
+    <br>
+
+    <form id="SmallScreenForm" style="display:none;width: 100%; max-width: 40%;"></form>
+
+    <form id="xmlForm">
+
+        <h2 style="text-align: center;">Bulk Record Upload</h2><br><br>
+        <div id="externalUpload1">
+            <div class="wrapper">
+                <div class="file-upload">
+                    <input type="file" accept=".xls,.xlsx" id="excelInput" onchange="UploadExcel()" title="Upload AsphaltMine Excel File">
+                    <span id="FileExtName" style="text-align: center;"><b>Upload AsphaltMine Excel File</b></span>
+                </div>
+            </div>
+        </div>
+        <div class="sheetoptions">
+            <div class="sheet-c">
+                <div class="sheet-r merged">
+                    <span class="sheet-label">Sheet:</span>
+                </div>
+            </div>
+            <div class="sheet-c">
+                <div class="sheet-r">
+                    <label class="sheet-container selected">
+                        <input type="radio" name="Sheet" value="Columns" checked>
+                        &nbsp;&nbsp;Database (Columns)
+                    </label>
+                </div>
+                <div class="sheet-r">
+                    <label class="sheet-container">
+                        <input type="radio" name="Sheet" value="Rows">
+                        &nbsp;&nbsp;Database (Rows)
+                    </label>
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        <br>
+        <button type="button" class="main-button" id="ButtonE" onclick="Confirmation('E')" disabled>Extract</button>
+        <div id="ExtractionSection" style="display:none"></div>
+        <br>
+        <br>
+        <button type="button" class="main-button" id="ButtonV" style="display:none" onclick="Confirmation('V')">Validate</button>
+        <div id="ValidationSection" style="display:none"></div>
+        <br>
+        <br>
+        <button type="button" class="main-button" id="ButtonS" style="display:none" onclick="Confirmation('S')">Save</button>
+        <div id="SaveSection" style="display:none"></div>
+
+    </form>
+
+    {% include "General/footer.html" %}
+    
+    <p class="screen-message">
+        <b style="font-size: 200%;">ALERT</b>
+        <br><br>Your screen size is too small to display the form properly.
+        <br><br>The form requires a minimum screen width of <b>800 pixels</b> to function properly and <b>1400 pixels</b> to ensure full functionality.
+        <br><br>Please try accessing it from a device with a larger screen or increase the size of your current screen for optimal viewing.
+    </p>
+
+    <div id="explpopup" class="Expl-popup">
+        <div class="Expl-popup-container">
+            <span class="Expl-popup-close">&times;</span>
+            <p id="main-message" style="margin-top:23px;"></p>
+        </div>
+    </div>
+
+    <div id="quickstartpopup" class="Expl-popup">
+        <div class="quickstart-popup-container" style="max-width: 1500px;">
+            <span class="quickstart-popup-close">&times;</span>
+            <p style="margin-top:2px;">
+                <span id="quick-start" style="display: none;">
+                    <object 
+                        data="{% static 'AsphaltMineBulkUploadQuickStart.pdf' %}" 
+                        type="application/pdf" 
+                        style="width: 99.745%; height: 85vh; border: 3px solid #dddddd;">
+                        <span style="color: black; font-size:26px; text-align:center">
+                            It appears your browser does not support PDFs. You can 
+                            <a href="{% static 'AsphaltMineBulkUploadQuickStart.pdf' %}">download the PDF</a> instead.
+                        </span>
+                    </object>           
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <div id="Confirmationpopup">
+        <div id="Confirmation-popup-container">
+            <h3 id="ConfirmationMessage"></h3>
+            <div class="buttons-grp">
+                <button type="button" id="Cancel-ConfirmationMessage">Cancel</button>
+                <button type="button" id="Confirm-ConfirmationMessage">Confirm</button>  
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+
