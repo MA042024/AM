@@ -51,6 +51,10 @@ Menu.add_item(
 )
 
 Menu.add_item(
+    "nodropdown", MenuItem("Bulk Upload", reverse("bulk_upload"))
+)
+
+Menu.add_item(
     "nodropdown",
     MenuItem("Database", reverse("core_explore_keyword_app_search")),
 )
@@ -64,7 +68,12 @@ Menu.add_item(
 
 Menu.add_item(
     "nodropdown",
-    MenuItem("Prediction", reverse("machine_learning_prediction")),
+    MenuItem("Visualization Tool", reverse("visualization")),
+)
+
+Menu.add_item(
+    "nodropdown",
+    MenuItem("Prediction Tool", reverse("machine_learning_prediction")),
 )
 
 #Menu.add_item(
@@ -124,7 +133,7 @@ Menu.items["dashboard"] = []
 
 Menu.add_item(
     "dashboard",
-    MenuItem("FileDrop", reverse("core_dashboard_files"), icon="file"),
+    MenuItem("File Attachments", reverse("core_dashboard_files"), icon="file"),
 )
 
 #Menu.add_item(
