@@ -1,0 +1,32 @@
+<form id="SmallScreenForm" style="display:none;width: 100%; max-width: 40%;"></form>
+
+<form id="xmlForm">
+    <h2 class="form-title">Bulk Record Upload</h2>
+    <div id="externalUpload1">
+        <div class="wrapper">
+            <div class="file-upload">
+                <input type="file" accept=".xls,.xlsx" id="excelInput" onchange="UploadExcel()" title="Upload AsphaltMine Excel File">
+                <span id="FileExtName" style="text-align: center;"><b>Upload AsphaltMine Excel File</b></span>
+            </div>
+        </div>
+    </div>
+    <div class="sheetoptions">
+        <span class="sheet-label">Sheet:</span>
+        <div class="sheet-options-row">
+            <label class="sheet-container selected">
+                <input type="radio" name="Sheet" value="Columns" checked>
+                Database (Columns)
+            </label>
+            <label class="sheet-container">
+                <input type="radio" name="Sheet" value="Rows">
+                Database (Rows)
+            </label>
+        </div>
+    </div>
+    <button type="button" class="main-button" id="ButtonE" onclick="Confirmation('E')" disabled>Extract</button>
+    <div id="ExtractionSection" style="display:none"></div>
+    <button type="button" class="main-button" id="ButtonV" style="display:none" onclick="Confirmation('V')">Validate</button>
+    <div id="ValidationSection" style="display:none"></div>
+    <button type="button" class="main-button" id="ButtonS" style="display:none" onclick="Confirmation('S')">Save</button>
+    <div id="SaveSection" style="display:none"></div>
+</form>

@@ -1,0 +1,64 @@
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                 Bulk Record Upload               -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                 @ AsphaltMine.org                -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--      Created by Mohammad Abbas - March 2025      -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+{% load static %}
+
+{% block head %}
+    <title>Bulk Record Upload | AsphaltMine</title>
+{% endblock %}
+{% block theme_css %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/bulkupload.css' %}">
+    <link rel="stylesheet" href="{% static 'css/General/navigator.css' %}">
+    <link rel="stylesheet" href="{% static 'css/General/footer.css' %}">
+{% endblock %}
+{% block theme_js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'core_main_app/common/js/csrf.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{% static 'js/BulkUpload/confirmation.js' %}" defer></script>
+    <script src="{% static 'js/BulkUpload/testID.js' %}" defer></script>
+    <script src="{% static 'js/BulkUpload/popups.js' %}" defer></script>
+    <script src="{% static 'js/BulkUpload/upload.js' %}" defer></script>
+    <script src="{% static 'js/BulkUpload/extract.js' %}" defer></script>
+    <script src="{% static 'js/BulkUpload/validate.js' %}" defer></script>
+    <script src="{% static 'js/BulkUpload/save.js' %}" defer></script>
+    <script src="{% static 'js/General/sidebar-footer-clamp.js' %}" defer></script>
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="page-flex">
+    {% include "General/navigator.html" %}
+
+    <div class="page-flex-main">
+    {% include "BulkUpload/left_sidebar.html" %}
+    {% include "BulkUpload/right_sidebar.html" %}
+
+    <br>
+
+    {% include "BulkUpload/upload_form.html" %}
+    </div>
+
+    {% include "General/footer.html" %}
+    </div>
+
+    {% include "BulkUpload/popups.html" %}
+
+{% endblock %}
+
+
+
