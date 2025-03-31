@@ -6,11 +6,7 @@
 <!--                 @ AsphaltMine.org                -->
 <!------------------------------------------------------>
 <!------------------------------------------------------>
-<!--      Created by Mohammad Abbas - August 2024     -->
-<!--                   Beta version                   -->
-<!------------------------------------------------------>
-<!------------------------------------------------------>
-<!--              © 2024  Mohammad Abbas              -->
+<!--       Created by Mohammad Abbas - June 2025      -->
 <!------------------------------------------------------>
 <!------------------------------------------------------>
 {% load static %}
@@ -20,90 +16,864 @@
     <title>Prediction | AsphaltMine</title>
 {% endblock %}
 {% block theme_css %}
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-   <link rel="stylesheet" href="{% static 'css/gensel.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/Prediction.css' %}">
+    <link rel="stylesheet" href="{% static 'css/General/navigator.css' %}">
 {% endblock %}
 {% block theme_js %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{% static 'core_main_app/common/js/csrf.js' %}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
 
-   <script>
-
-        // Navigator dropdown Functionality
+    <script>
+        // Tooltips opening and closing
         document.addEventListener("DOMContentLoaded", function() {
-            var dropdownToggle = document.querySelectorAll('.dropdown-toggle');
-            dropdownToggle.forEach(function(el) {
-                el.addEventListener('click', function(e) {
-                    var parent = this.parentElement;
-                    var dropdownMenu = parent.querySelector('.dropdown-menu');
-                    if (parent.classList.contains('open')) {
-                        parent.classList.remove('open');
-                        hideDropdownMenu(dropdownMenu);
-                    } else {
-                        closeAllDropdowns();
-                        parent.classList.add('open');
-                        showDropdownMenu(dropdownMenu);
+            var tooltips = document.querySelectorAll('.tooltip');
+            var skipNextDocumentClick = false;
+            var closeTimeout;
+
+            function closeVisibleTooltip() {
+                var visibleTooltip = document.querySelector('.tooltiptext.visible');
+                if (visibleTooltip) {
+                    visibleTooltip.classList.remove('visible');
+                }
+            }
+
+            tooltips.forEach(function(tooltip) {
+                var title = tooltip.parentElement.getAttribute('titletip');
+                var tooltipText = tooltip.querySelector('.tooltiptext');
+                var icon = tooltip.querySelector('.fa-info-circle');
+                if (tooltipText && icon) {
+                    icon.addEventListener('click', function(event) {
+                        closeVisibleTooltip();
+                        if (!tooltipText.classList.contains('visible')) {
+                            tooltipText.textContent = title;
+                            tooltipText.classList.add('visible');
+                            skipNextDocumentClick = true;
+                            clearTimeout(closeTimeout);
+                            closeTimeout = setTimeout(closeVisibleTooltip, 5000);
+                        }
+                        event.stopPropagation();
+                    });
+                }
+            });
+
+            document.addEventListener('click', function(event) {
+                if (skipNextDocumentClick) {
+                    skipNextDocumentClick = false;
+                    return;
+                }
+                var visibleTooltip = document.querySelector('.tooltiptext.visible');
+                var infoCircle = document.querySelector('.fa-info-circle');
+                if (visibleTooltip && !visibleTooltip.contains(event.target) && 
+                    (!infoCircle || !infoCircle.contains(event.target))) {
+                    closeVisibleTooltip();
+                }
+            });
+        });
+    </script>
+    <script>
+        window.showLoading = function(msg) {
+            var overlay = document.getElementById('loading-overlay');
+            overlay.style.display = 'flex';
+            if (msg) overlay.querySelector('div > div:last-child').textContent = msg;
+        };
+        window.hideLoading = function() {
+            document.getElementById('loading-overlay').style.display = 'none';
+        };
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            function showTab(tab) {
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(sec => sec.classList.remove('active'));
+
+                document.querySelector(`.tab-btn[data-tab="${tab}"]`).classList.add('active');
+                document.getElementById(`tab-${tab}`).classList.add('active');
+            }
+            
+            tabBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                const tab = this.getAttribute('data-tab');
+                showTab(tab);
+                if (tab === 'prediction' && (!location.hash || location.hash.length <= 1)) {
+                location.hash = 'Marshall';
+                }
+                if (tab === 'general') {
+                history.replaceState(null, '', window.location.pathname);
+                }
+            });
+            });
+            if (location.hash && location.hash.length > 1) {
+                showTab('prediction');
+            } else {
+                showTab('general');
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        function setupSubbar() {
+            const subbarBtns = document.querySelectorAll('.subbar-btn');
+            const subbarContents = document.querySelectorAll('.subbar-content');
+
+            function showSubtab(subtab) {
+            const btn = document.querySelector(`.subbar-btn[data-subtab="${subtab}"]`);
+            const panel = document.getElementById(`subtab-${subtab}`);
+            if (!btn || !panel) subtab = 'Marshall';
+
+            subbarBtns.forEach(b => b.classList.remove('active'));
+            subbarContents.forEach(sec => sec.classList.remove('active'));
+
+            document.querySelector(`.subbar-btn[data-subtab="${subtab}"]`).classList.add('active');
+            document.getElementById(`subtab-${subtab}`).classList.add('active');
+            }
+            subbarBtns.forEach(btn => {
+            btn.addEventListener('click', function () {
+                const subtab = this.getAttribute('data-subtab');
+                showSubtab(subtab);
+                location.hash = subtab;
+            });
+            });
+            const initial = (location.hash && location.hash.length > 1)
+            ? location.hash.substring(1)
+            : 'Marshall';
+            showSubtab(initial);
+            window.addEventListener('hashchange', () => {
+            const subtab = (location.hash && location.hash.length > 1)
+                ? location.hash.substring(1)
+                : 'Marshall';
+            showSubtab(subtab);
+            });
+        }
+        if (document.querySelector('.subbar')) setupSubbar();
+        });
+    </script>
+    <script>
+        // ============== //
+        // CONFIGURATIONS //
+        // ============== //
+        const TEST_CONFIGURATIONS = {
+            Marshall: {
+                suffix: 'Mar',
+                formId: 'MarshallpredictionForm',
+                endpoint: '/Predict/Marshall/',
+                resultsConfig: {
+                    outputs: [
+                        { label: 'Marshall Stability', key: 'stability', unit: 'kN' },
+                        { label: 'Marshall Flow', key: 'flow', unit: 'mm' }
+                    ]
+                },
+                fields: {
+                    MaximumDensity: {
+                        id: 'MaximumDensityMar',
+                        label: 'Maximum Density',
+                        unit: 'Mg/m³',
+                        randomRange: { min: 2.410, max: 2.542, decimals: 3 },
+                        placeholder: 'e.g. 2.480'
+                    },
+                    BulkDensity: {
+                        id: 'BulkDensityValueMar',
+                        label: 'Bulk Density',
+                        unit: 'Mg/m³',
+                        randomRange: { min: 2.300, max: 2.43, decimals: 3 },
+                        placeholder: 'e.g. 2.386',
+                        specialLogic: 'lessThanMaxDensity'
+                    },
+                    Penetration: {
+                        id: 'PenetrationMar',
+                        label: 'Penetration',
+                        unit: '0.1mm',
+                        randomRange: { min: 26, max: 63, decimals: 0 },
+                        placeholder: 'e.g. 35'
+                    },
+                    Softening: {
+                        id: 'SofteningMar',
+                        label: 'Softening Point',
+                        unit: '°C',
+                        randomRange: { min: 52.0, max: 81.5, decimals: 1 },
+                        placeholder: 'e.g. 65.4'
+                    },
+                    BinderContent: {
+                        id: 'BinderContentMar',
+                        label: 'Binder Content',
+                        unit: '%',
+                        randomRange: { min: 3.7, max: 6.5, decimals: 2 },
+                        placeholder: 'e.g. 5.2'
+                    }	
+                },
+                sieves: [
+                    { id: 'sieve_0_063Mar', size: '0.063 mm', min: 6.8, max: 8.5 },
+                    { id: 'sieve_0_125Mar', size: '0.125 mm', min: 8.8, max: 11 },
+                    { id: 'sieve_0_25Mar', size: '0.25 mm', min: 11.6, max: 14.2 },
+                    { id: 'sieve_0_5Mar', size: '0.5 mm', min: 15, max: 18.5 },
+                    { id: 'sieve_1Mar', size: '1 mm', min: 19.7, max: 24.8 },
+                    { id: 'sieve_2Mar', size: '2 mm', min: 27.7, max: 35.2 },
+                    { id: 'sieve_4Mar', size: '4 mm', min: 40.6, max: 58.6 },
+                    { id: 'sieve_5_6Mar', size: '5.6 mm', min: 49.7, max: 71.6 },
+                    { id: 'sieve_8Mar', size: '8 mm', min: 60, max: 96.2 },
+                    { id: 'sieve_11_2Mar', size: '11.2 mm', min: 71, max: 100 },
+                    { id: 'sieve_16Mar', size: '16 mm', min: 84, max: 100 },
+                    { id: 'sieve_22_4Mar', size: '22.4 mm', min: 100, max: 100 },
+                    { id: 'sieve_31_5Mar', size: '31.5 mm', min: 100, max: 100 },
+                    { id: 'sieve_45Mar', size: '45 mm', min: 100, max: 100 }
+                ]
+            }
+        };
+
+        // ========= //
+        // FUNCTIONS //
+        // ========= //
+        function randomInRange(min, max, decimals = 1) {
+            const value = Math.random() * (max - min) + min;
+            return parseFloat(value.toFixed(decimals));
+        }
+
+        function toggleResults(show) {
+            const results = document.getElementById('results');
+            if (show) {
+                results.classList.add('show');
+            } else {
+                results.classList.remove('show');
+            }
+        }
+
+        // ==================== //
+        // RANDOM FILL FUNCTION //
+        // ==================== //
+        function RandomFill(testType) {
+            const config = TEST_CONFIGURATIONS[testType];
+            if (!config) {
+                console.error(`No configuration found for test type: ${testType}`);
+                return;
+            }
+            Object.entries(config.fields).forEach(([fieldName, fieldConfig]) => {
+                const element = document.getElementById(fieldConfig.id);
+                if (element && fieldConfig.randomRange) {
+                    let value = randomInRange(
+                        fieldConfig.randomRange.min,
+                        fieldConfig.randomRange.max,
+                        fieldConfig.randomRange.decimals
+                    );
+                    if (fieldConfig.specialLogic === 'lessThanMaxDensity') {
+                        const maxDensityValue = parseFloat(
+                            document.getElementById(config.fields.MaximumDensity.id).value
+                        );
+                        if (maxDensityValue) {
+                            value = Math.min(value, maxDensityValue - 0.08);
+                        }
+                    }  
+                    element.value = value.toFixed(fieldConfig.randomRange.decimals);
+                }
+            });
+            if (config.sieves) {
+                let previousValue = 0;
+                config.sieves.forEach((sieve) => {
+                    const element = document.getElementById(sieve.id);
+                    if (element) {
+                        const minAllowed = Math.max(sieve.min, previousValue);
+                        const value = randomInRange(minAllowed, sieve.max, 1);
+                        element.value = value.toFixed(1);
+                        previousValue = value;
                     }
-                    e.preventDefault();
+                });
+            }
+        }
+
+        // ============ //
+        // CLEAR FIELDS //
+        // ============ //
+        function ClearFields(testType) {
+            const config = TEST_CONFIGURATIONS[testType];
+            if (!config) {
+                console.error(`No configuration found for test type: ${testType}`);
+                return;
+            }
+            Object.entries(config.fields).forEach(([fieldName, fieldConfig]) => {
+                const element = document.getElementById(fieldConfig.id);
+                if (element) {
+                    element.value = '';
+                }
+            });
+            if (config.sieves) {
+                config.sieves.forEach((sieve) => {
+                    const element = document.getElementById(sieve.id);
+                    if (element) {
+                        element.value = '';
+                    }
+                });
+            }
+
+            toggleResults(false);
+            const content = document.getElementById('resultsContent');
+            if (content) {
+                content.innerHTML = '';
+                content.classList.remove('show');
+            }
+        }
+
+        // ==================== //
+        // VALIDATION FUNCTION  //
+        // ==================== //
+        function validateInputs(testType) {
+            const config = TEST_CONFIGURATIONS[testType];
+            const errors = [];
+            if (config.fields.BulkDensity && config.fields.MaximumDensity) {
+                const maxDensity = parseFloat(document.getElementById(config.fields.MaximumDensity.id).value);
+                const bulkDensity = parseFloat(document.getElementById(config.fields.BulkDensity.id).value);
+                if (bulkDensity >= maxDensity) {errors.push('❌ Bulk Density must be less than Maximum Density.');}
+            }
+            if (config.sieves) {
+                let previousValue = -1;
+                let previousSize = '';
+                config.sieves.forEach((sieve) => {
+                    const currentValue = parseFloat(document.getElementById(sieve.id).value);
+                    if (currentValue < previousValue) {
+                        errors.push(
+                            `❌ Percentage passing Sieve ${sieve.size} (${currentValue}%) ` +
+                            `must be greater than percentage passing ${previousSize} (${previousValue}%)`
+                        );
+                    }
+                    previousValue = currentValue;
+                    previousSize = sieve.size;
+                });
+            }
+            return errors;
+        }
+
+        // =============== //
+        // DATA COLLECTION //
+        // =============== //
+        function collectFormData(testType) {
+            const config = TEST_CONFIGURATIONS[testType];
+            const formData = {};
+            Object.entries(config.fields).forEach(([fieldName, fieldConfig]) => {
+                const element = document.getElementById(fieldConfig.id);
+                if (element) {
+                    const fieldKey = fieldConfig.id.replace(config.suffix, '');
+                    formData[fieldKey] = element.value;
+                }
+            });
+            if (config.sieves) {
+                config.sieves.forEach((sieve) => {
+                    const element = document.getElementById(sieve.id);
+                    if (element) {
+                        const sieveName = sieve.id.replace(config.suffix, '');
+                        formData[sieveName] = element.value;
+                    }
+                });
+            }
+            return formData;
+        }
+
+        // ======= //
+        // DISPLAY //
+        // ======= //
+        function displayErrors(errors) {
+            const content = document.getElementById('resultsContent');
+            const errorHTML = errors.map(err => 
+                `<p style="color: #dc3545; margin: 8px 0;">${err}</p>`
+            ).join('');
+            content.innerHTML = `
+                <h2 style="color: #dc3545;">⚠️ Validation Errors</h2>
+                <div style="background: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 15px; margin: 15px 0;">
+                    ${errorHTML}
+                </div>
+                <p style="margin-top: 15px;"><strong>Please correct the input and try again!</strong></p>
+            `; 
+            toggleResults(true);
+            setTimeout(() => content.classList.add('show'), 100);
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function displayProcessing() {
+            const content = document.getElementById('resultsContent');
+            content.innerHTML = '<h2>Processing...</h2><p>Please wait ...</p>';
+            toggleResults(true);
+            setTimeout(() => content.classList.add('show'), 100);
+        }
+
+        function displayResults(data, testType) {
+            const config = TEST_CONFIGURATIONS[testType];
+            const content = document.getElementById('resultsContent');
+
+            const preds = data.predictions;
+            const msg   = data.message;
+            const infoImageUrl = data.Mar_prop_url;
+            const plotImageUrl = data.Mar_pred_url;
+
+            const S_std_lo = parseFloat(preds["S_sigma_kN-"]);
+            const S_std_hi = parseFloat(preds["S_sigma_kN+"]);
+            const S_R_lo   = parseFloat(preds["S_R_kN-"]);
+            const S_R_hi   = parseFloat(preds["S_R_kN+"]);
+            const F_std_lo = parseFloat(preds["F_sigma_mm-"]);
+            const F_std_hi = parseFloat(preds["F_sigma_mm+"]);
+            const F_R_lo   = parseFloat(preds["F_R_mm-"]);
+            const F_R_hi   = parseFloat(preds["F_R_mm+"]);
+
+            const intervalsHTML = ([
+                S_std_lo, S_std_hi, S_R_lo, S_R_hi,
+                F_std_lo, F_std_hi, F_R_lo, F_R_hi
+            ].every(v => !isNaN(v))) ? `
+                <div class="marshall-intervals">
+                    <div class="marshall-interval-column">
+                        <h3>Marshall Stability Intervals</h3>
+                        <p>
+                            <span class="interval-label">&plusmn;&sigma;<sub>R</sub>:</span>
+                            <span class="interval-value">[&nbsp;&nbsp;${S_std_lo.toFixed(1)}&nbsp;&nbsp;,&nbsp;&nbsp;${S_std_hi.toFixed(1)}&nbsp;&nbsp;]&nbsp;&nbsp;kN</span>
+                        </p>
+                        <p>
+                            <span class="interval-label">&plusmn;R:</span>
+                            <span class="interval-value">[&nbsp;&nbsp;${S_R_lo.toFixed(1)}&nbsp;&nbsp;,&nbsp;&nbsp;${S_R_hi.toFixed(1)}&nbsp;&nbsp;]&nbsp;&nbsp;kN</span>
+                        </p>
+                    </div>
+                    <div class="marshall-interval-column">
+                        <h3>Marshall Flow Intervals</h3>
+                        <p>
+                            <span class="interval-label">&plusmn;&sigma;<sub>R</sub>:</span>
+                            <span class="interval-value">[&nbsp;&nbsp;${F_std_lo.toFixed(1)}&nbsp;&nbsp;,&nbsp;&nbsp;${F_std_hi.toFixed(1)}&nbsp;&nbsp;]&nbsp;&nbsp;mm</span>
+                        </p>
+                        <p>
+                            <span class="interval-label">&plusmn;R:</span>
+                            <span class="interval-value">[&nbsp;&nbsp;${F_R_lo.toFixed(1)}&nbsp;&nbsp;,&nbsp;&nbsp;${F_R_hi.toFixed(1)}&nbsp;&nbsp;]&nbsp;&nbsp;mm</span>
+                        </p>
+                    </div>
+                </div>
+            ` : '';
+
+            const MarStandImageUrl = "{% static 'Tests/Mar_Standard.png' %}";
+
+            content.innerHTML = `
+                <h2>Mixture Properties</h2>
+                <div class="marshall-block">
+                    <img src="${infoImageUrl}"
+                        alt="Gradation Curve and Mixture Properties"
+                        class="test-prop-image">
+                </div>
+                <div class="section-divider"></div>
+                <h2>Prediction Results</h2>
+                <div class="marshall-block">
+                    <img src="${plotImageUrl}"
+                        alt="Marshall Stability versus Marshall Flow Prediction"
+                        class="test-pred-image">
+                </div>
+                ${intervalsHTML}
+                <div class="marshall-block">
+                    <p>The test experimental reproducibility defined by EN 12697‑34 for the Marshall test is:</p>
+                    <img src="${MarStandImageUrl}"
+                        alt="Marshall Reproducibility"
+                        class="test-stand-image">
+                </div>
+            `;
+
+            toggleResults(true);
+            setTimeout(() => content.classList.add('show'), 100);
+        }    
+
+        // ================== //
+        // SUBMISSION HANDLER //
+        // ================== //
+        function setupFormSubmission(testType) {
+            const config = TEST_CONFIGURATIONS[testType];
+            const form = document.getElementById(config.formId);
+            if (!form) {
+                console.warn(`Form ${config.formId} not found. Skipping setup.`);
+                return;
+            }
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const validationErrors = validateInputs(testType);
+                if (validationErrors.length > 0) {
+                    displayErrors(validationErrors);
+                    return;
+                }
+                toggleResults(false);
+                /*displayProcessing();*/
+                showLoading();
+                const formData = collectFormData(testType);
+                const sessionId = window.sessionId || (window.sessionId = uuidv4());
+                formData.session_id = sessionId;
+                fetch(config.endpoint, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': csrftoken,
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.success) {
+                        throw new Error(data.error || 'Unknown error');
+                    }
+                    hideLoading();
+                    displayResults(data, testType);
+                })
+                .catch(error => {
+                    console.error('Prediction error:', error);
+                    //hideLoading();
+                    displayErrors([error.message || 'An error occurred during prediction. Please try again.']);
                 });
             });
-            function hideDropdownMenu(menu) {
-                if (menu) {menu.style.display = 'none';}
+        }
+
+        // ============== //
+        // INITIALIZATION //
+        // ============== //
+        document.addEventListener('DOMContentLoaded', function() {
+            Object.keys(TEST_CONFIGURATIONS).forEach(testType => {
+                setupFormSubmission(testType);
+            }); 
+            //console.log('✅ Prediction forms initialized:', Object.keys(TEST_CONFIGURATIONS));
+        });
+
+    </script>
+
+    <script>
+
+        const MODEL_INFO = {
+            Marshall: {
+            title: "Marshall Model Scope",
+            sections: [
+                {
+                heading: "Source:",
+                bulletsHtml: [
+                    `This model implementation is based on the methodology described in the paper: 
+                    <em>Abbas, M., & Zaumanis, M. (2026). Methodology for Physics-Informed Neural Networks for materials test result prediction: Case study on the Marshall test for asphalt. <span style="font-style: italic;">Case Studies in Construction Materials</span>, 24, e05829.</em>
+                    <a href="https://doi.org/10.1016/j.cscm.2026.e05829" target="_blank" rel="noopener">
+                    https://doi.org/10.1016/j.cscm.2026.e05829
+                    </a>`
+                ]
+                },
+                {
+                heading: "Test General Properties:",
+                bullets: [
+                    "Marshall test is based on European standard EN 12697-34.",
+                    "Marshall tests were performed at temperature 60°C."
+                ]
+                },
+                {
+                heading: "Model Boundary Conditions:",
+                /*intro: [
+                    "The model was trained using Physics-Informed Neural Networks (PINNs).",
+                ],*/
+                bullets: [
+                    "The model was trained using Physics-Informed Neural Networks (PINNs).",
+                    "Total number of records used was 2656 records.",
+                    "All records used in training were from Switzerland (Canton Zurich and Canton Aargau).",
+                    "More than 85% of the records were asphalt concrete.",
+                    "Around 70% of the records used polymer modified binders (PmB), mainly grades 45/80-80 and 45/80-65.",
+                    "Around 30% of the records used unmodified binders, mainly grades 50/70 and 70/100.",
+                    "All polymer modified binders (PmB) used were SBS-modified (styrene–butadiene–styrene)."
+                ]
+                }
+            ]
             }
-            function showDropdownMenu(menu) {
-                if (menu) {menu.style.display = 'block';}
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const modal   = document.getElementById("bc-modal");
+            const titleEl = document.getElementById("bc-title");
+            const bodyEl  = document.getElementById("bc-body");
+            if (!modal || !titleEl || !bodyEl) {
+            console.warn("bc-modal / bc-title / bc-body not found in DOM.");
+            return;
             }
-            function closeAllDropdowns() {
-                var dropdowns = document.querySelectorAll('.dropdown-nav');
-                dropdowns.forEach(function(dropdown) {
-                    dropdown.classList.remove('open');
-                    var menu = dropdown.querySelector('.dropdown-menu');
-                    hideDropdownMenu(menu);
-                });
+            function escapeHtml(s) {
+            return String(s)
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
             }
-            document.addEventListener('click', function(e) {
-                var target = e.target;
-                if (!target.closest('.dropdown-nav')) {closeAllDropdowns();}
+            function renderBC(key) {
+            const cfg = MODEL_INFO[key];
+            if (!cfg) return;
+            titleEl.textContent = cfg.title || "Model info";
+            const sectionsHTML = (cfg.sections || []).map(sec => {
+                const heading = sec.heading ? `<h3 class="bc-h3">${escapeHtml(sec.heading)}</h3>` : "";
+                const introHTML = (sec.intro || [])
+                .map(line => `<p class="bc-p">${escapeHtml(line)}</p>`)
+                .join("");
+                const bulletsHTML = (sec.bulletsHtml && sec.bulletsHtml.length)
+                ? `<ul class="bc-list">${sec.bulletsHtml.map(h => `<li>${h}</li>`).join("")}</ul>`
+                : (sec.bullets && sec.bullets.length)
+                    ? `<ul class="bc-list">${sec.bullets.map(b => `<li>${escapeHtml(b)}</li>`).join("")}</ul>`
+                    : "";
+                return `<div class="bc-section">${heading}${introHTML}${bulletsHTML}</div>`;
+            }).join("");
+            bodyEl.innerHTML = sectionsHTML;
+            }
+            document.addEventListener("click", (e) => {
+            const btn = e.target.closest("[data-bc-open]");
+            if (!btn) return;
+            const key = btn.getAttribute("data-bc-open");
+            renderBC(key);
+            if (typeof modal.showModal === "function") {
+                modal.showModal();
+            } else {
+                modal.setAttribute("open", "open");
+            }
+            });
+            document.addEventListener("click", (e) => {
+            if (!e.target.closest("[data-bc-close]")) return;
+            if (typeof modal.close === "function") modal.close();
+            else modal.removeAttribute("open");
+            });
+            modal.addEventListener("click", (e) => {
+            if (e.target !== modal) return;
+            if (typeof modal.close === "function") modal.close();
+            else modal.removeAttribute("open");
             });
         });
 
     </script>
 
-
 {% endblock %}
 
 {% block body %}
 
-       <nav id="nav">
-        <ul class="horizontal-menu">
-            <li><a href="https://asphaltmine.org/" title="AsphaltMine"><b>AsphaltMine</b></a></li>
-            <li><a href="/gensel">Data Curation</a></li>
-            <li><a href="/explore/keyword/">Database</a></li>
-            <li><a href="/dashboard/records"> My Data</a></li>
-            <li><a href="/dashboard/workspaces"> Shared Workspaces</a></li>
-            <li><a href="/externalml/">Prediction</a></li>
-            <li class="align-right"><a href="/tutorial/">Tutorial</a></li>
-            <li><a href="/help/"> FAQ</a></li>
-            <li class="dropdown-nav">
-                <a href="#" class="dropdown-toggle"><i class="fas fa-user-circle"></i> My Account</a>
-                <ul class="dropdown-menu">
-                    <li><a href="/dashboard/files"><i class="fas fa-file"></i> FileDrop</a></li>
-                    <li class="divider"></li>
-                    <li><a href="/dashboard/my-profile"><i class="fas fa-user"></i> My Profile</a></li>
-                    <li><a href="{% url 'core_main_app_logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+    <div class="background"></div>
+
+    {% include "General/navigator.html" %}
     
-   <br><br>
-   <form style="text-align: center;">
-      <div>
-         <br><br><br><br>
-         <h1>To be Added Later..</h1>
-         <br><br><br><br>
-      </div>
-   </form>
+    <div class="tab-bar">
+        <button class="tab-btn active" data-tab="general">General</button>
+        <button class="tab-btn" data-tab="prediction">Performance Prediction</button>
+        <button class="tab-btn" data-tab="more">Mix Design</button>
+    </div>
+    
+    <main>
+        <section class="tab-content" id="tab-general">
+            <div class="card">
+                <header>
+                    <h1>General Information</h1>
+                    <p>Welcome to the AsphaltMine Prediction Dashboard.</p>
+                    <p>Here you can check the latest asphalt predictive models available to users.</p>
+                    <p>The tool and models are continuously updated. New functionalities will be added in the future.</p>
+                </header>
+            </div>
+        </section>   
+        <section class="tab-content" id="tab-prediction">
+            <div class="subbar">
+                <button class="subbar-btn active" data-subtab="Rutting">Rutting Test</button>
+                <button class="subbar-btn" data-subtab="Marshall">Marshall Test</button>
+                <button class="subbar-btn" data-subtab="ITS">ITS</button>
+                <button class="subbar-btn" data-subtab="TSRST">TSRST</button>
+                <button class="subbar-btn" data-subtab="Stiffness">Stiffness Test</button>
+            </div>
+            <div class="subbar-content active" id="subtab-Rutting">
+                <div class="card">
+                    <header>
+                        <h1>Performance Prediction</h1>
+                        <p>To be added...</p>
+                    </header>
+                </div>
+            </div>
+            <div class="subbar-content" id="subtab-Marshall">
+                <div class="card">
+                    <header>
+                        <h1>Marshall Test Performance Prediction</h1>
+                        <p>Input your parameters to predict Marshall Stability and Flow.</p>
+                        <p>The parameters below are for materials recovered from the mixtures.</p>
+                        <p>For the model scope, check&nbsp;&nbsp;
+                            <button type="button" class="random-btn bc-trigger" data-bc-open="Marshall"><i class="fa fa-info-circle"></i>Assumptions & Conditions</button>
+                        </p>
+                        <p>You can clear or randomly fill all fields by clicking the buttons below.</p>
+                        <p>
+                            <button type="button" class="random-btn" onclick="RandomFill('Marshall')"><i class="fa fa-magic"></i> Random Fill</button>
+                            <button type="button" class="random-btn" onclick="ClearFields('Marshall')"><i class="fa fa-eraser"></i> Clear</button>
+                         </p>
+
+                    </header>
+                    <form id="MarshallpredictionForm" autocomplete="off">
+                        <div class="section-divider"></div>
+                        <h3 class="section-title">Volumetric Properties</h3>
+                        <div class="input-block">
+                            <label for="MaximumDensityMar" titletip="The value of the maximum density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.48).">Maximum Density: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                            <input type="text" id="MaximumDensityMar" name="MaximumDensityMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number." required placeholder="e.g. 2.480">
+                            <span class="unit">Mg/m³</span>
+                        </div>
+                        <div class="input-block">
+                            <label for="BulkDensityValueMar" titletip="The value of the bulk density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.326).">Bulk Density: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="BulkDensityValueMar" name="BulkDensityValueMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number." required placeholder="e.g. 2.326">
+                            <span class="unit">Mg/m³</span>
+                        </div>
+                        <div class="section-divider"></div>
+                        <h3 class="section-title">Binder Properties</h3>
+                        <div class="input-block">
+                            <label for="PenetrationMar" titletip="The measured penetration of a standard needle at 25 Degrees Celsius according to EN 1426, expressed in tenths of a millimeter (e.g., 55).">Penetration: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i><span class="tooltiptext"></span></div></label>
+                            <input type="text" id="PenetrationMar" name="PenetrationMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number." required placeholder="e.g. 55">
+                            <span class="unit">0.1mm</span>
+                        </div>
+                        <div class="input-block">
+                            <label for="SofteningMar" titletip="The temperature at which the binder begins to soften and lose its rigidity according to EN 1427, measured in Degrees Celsius (e.g., 65).">Softening Point: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                            <input type="text" id="SofteningMar" name="SofteningMar" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number." required placeholder="e.g. 65">
+                            <span class="unit">°C</span>
+                        </div>                    
+                        <div class="section-divider"></div>
+                        <h3 class="section-title">Composition</h3>
+                        <div class="input-block">
+                            <label for="BinderContentMar" titletip="The percentage by mass of the binder, including that extracted from the reclaimed asphalt, to the total mass of the bituminous mixture according to EN 12697-1 (e.g., 5.2).">Binder Content:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div> </label>
+                            <input type="text" id="BinderContentMar" name="BinderContentMar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." required placeholder="e.g. 5.2">
+                            <span class="unit">%</span>
+                        </div>
+                        <div class="input-block">
+                            <label for="SizeRecovered" titletip="The percentage distribution by mass for recovered aggregates passing the each sizes (e.g., 80.6).">Gradation:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        </div>
+                        <div class="sieve-grid">
+                            <div class="sieve-input-group">
+                                <label for="sieve_0_063Mar">0.063 mm</label>
+                                <input type="text" id="sieve_0_063Mar" name="sieve_0_063Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_0_125Mar">0.125 mm</label>
+                                <input type="text" id="sieve_0_125Mar" name="sieve_0_125Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_0_25Mar">0.25 mm</label>
+                                <input type="text" id="sieve_0_25Mar" name="sieve_0_25Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_0_5Mar">0.5 mm</label>
+                                <input type="text" id="sieve_0_5Mar" name="sieve_0_5Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_1Mar">1 mm</label>
+                                <input type="text" id="sieve_1Mar" name="sieve_1Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_2Mar">2 mm</label>
+                                <input type="text" id="sieve_2Mar" name="sieve_2Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_4Mar">4 mm</label>
+                                <input type="text" id="sieve_4Mar" name="sieve_4Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_5_6Mar">5.6 mm</label>
+                                <input type="text" id="sieve_5_6Mar" name="sieve_5_6Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_8Mar">8 mm</label>
+                                <input type="text" id="sieve_8Mar" name="sieve_8Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_11_2Mar">11.2 mm</label>
+                                <input type="text" id="sieve_11_2Mar" name="sieve_11_2Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_16Mar">16 mm</label>
+                                <input type="text" id="sieve_16Mar" name="sieve_16Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_22_4Mar">22.4 mm</label>
+                                <input type="text" id="sieve_22_4Mar" name="sieve_22_4Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_31_5Mar">31.5 mm</label>
+                                <input type="text" id="sieve_31_5Mar" name="sieve_31_5Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                            <div class="sieve-input-group">
+                                <label for="sieve_45Mar">45 mm</label>
+                                <input type="text" id="sieve_45Mar" name="sieve_45Mar" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" placeholder="%" required>
+                            </div>
+                        </div>
+                        <div class="section-divider"></div>
+                        <button type="submit" class="predict-btn">Predict</button>
+                    </form>
+                    <section class="results" id="results">
+                        <div class="results-card" id="resultsContent">
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="subbar-content" id="subtab-ITS">
+                <div class="card">
+                    <header>
+                        <h1>Performance Prediction</h1>
+                        <p>To be added...</p>
+                    </header>
+                </div>
+            </div>
+            <div class="subbar-content" id="subtab-TSRST">
+                <div class="card">
+                    <header>
+                        <h1>Performance Prediction</h1>
+                        <p>To be added...</p>
+                    </header>
+                </div>
+            </div>
+            <div class="subbar-content" id="subtab-Stiffness">
+                <div class="card">
+                    <header>
+                        <h1>Performance Prediction</h1>
+                        <p>To be added...</p>
+                    </header>
+                </div>
+            </div>
+        </section>
+        <section class="tab-content" id="tab-more">
+            <div class="card">
+                <header>
+                    <h1>Mix Design</h1>
+                    <p>To be added...</p>
+                </header>
+            </div>
+        </section>
+    </main>
+
+    <div id="loading-overlay">
+        <div class="loading-box">
+            <div class="loader">
+            <svg class="spin" width="40" height="40" viewBox="0 0 50 50">
+                <circle cx="25" cy="25" r="20"
+                        stroke="#066"
+                        stroke-width="5"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-dasharray="90 126"
+                        stroke-dashoffset="0"></circle>
+            </svg>
+            </div>
+            <div class="loading-text">Predicting, please wait...</div>
+        </div>
+    </div>
+
+    <dialog id="bc-modal" class="bc-modal" aria-labelledby="bc-title">
+        <div class="bc-modal__header">
+            <h2 id="bc-title">Boundary conditions</h2>
+            <button type="button" class="bc-modal__close" data-bc-close aria-label="Close">×</button>
+        </div>
+        <div class="bc-modal__body" id="bc-body"></div>
+    </dialog>
+
+
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
