@@ -26,9 +26,11 @@ def gensel_edit(request):
         'edit': edit_record_data.get('edit'),
     }
     
-    return render(request, 'gensel.html', context)    
+    return render(request, 'gensel.html', context) 
 
-@login_required
+def vis_view(request):
+    return render(request, 'visualization.html')
+
 def ml_prediction_view(request):
     return render(request, 'ml_external.html')
     #return HttpResponseRedirect('https://www.ml.asphaltmine.org')
