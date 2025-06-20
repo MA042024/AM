@@ -1,0 +1,154 @@
+<div class="card li-card">
+    <header>
+        <h1>Live Insights</h1>
+        <div class="li-header-row">
+            <span class="li-live-badge"><span class="li-live-dot"></span> Live</span>
+            <span class="li-updated" id="li-updated">Loading data…</span>
+            <button type="button" class="li-refresh-btn" id="li-refresh-btn">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                Refresh
+            </button>
+        </div>
+    </header>
+
+    <div class="li-scope-bar">
+        <div class="li-scope-toggle" id="li-scope-toggle">
+            <button type="button" class="li-scope-btn active" data-scope="all">
+                <i class="fas fa-globe"></i> All Data
+            </button>
+            <button type="button" class="li-scope-btn{% if not user.is_authenticated %} li-scope-btn-locked{% endif %}" data-scope="workspace"
+                    {% if not user.is_authenticated %}disabled title="Sign in to filter by workspace"{% endif %}>
+                <i class="fas {% if user.is_authenticated %}fa-folder-open{% else %}fa-lock{% endif %}"></i> Workspaces
+            </button>
+        </div>
+        <div class="li-workspace-select" id="li-workspace-select">
+            <div class="li-tag-input" id="li-workspace-tags">
+                <div class="li-tag-chips" id="li-workspace-chips"></div>
+                <input type="text" id="li-workspace-search" placeholder="Search workspaces…" autocomplete="off">
+                <div class="li-tag-dropdown" id="li-workspace-options" style="display:none;"></div>
+            </div>
+            <button type="button" class="li-clear-filters" id="li-clear-filters">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="5" y1="5" x2="19" y2="19"></line><line x1="19" y1="5" x2="5" y2="19"></line></svg>
+                Clear all
+            </button>
+        </div>
+    </div>
+
+    <div class="li-loading" id="li-overview-loading">
+        <svg class="spin" width="28" height="28" viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="20" stroke="#3CACA8" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="90 126" stroke-dashoffset="0"></circle>
+        </svg>
+        <span>Loading insights…</span>
+    </div>
+    <div class="li-empty" id="li-overview-empty" style="display:none;">
+        No records found for this scope yet.
+    </div>
+
+    <div class="li-overview" id="li-overview" style="display:none;">
+        <div class="li-kpi-grid" id="li-kpi-grid"></div>
+
+        <div class="li-chart-grid">
+            <div class="li-chart-card">
+                <h3>Record Distribution by Test</h3>
+                <p class="li-chart-sub" id="li-sub-tests"></p>
+                <div class="li-chart-wrap"><canvas id="li-chart-tests"></canvas></div>
+            </div>
+            <div class="li-chart-card">
+                <h3>Mixing Method</h3>
+                <div class="li-chart-wrap"><canvas id="li-chart-mixing-method"></canvas></div>
+            </div>
+            <div class="li-chart-card">
+                <h3>Target Binder Grade</h3>
+                <p class="li-chart-sub">The most reported grades.</p>
+                <div class="li-chart-wrap"><canvas id="li-chart-binder-grade"></canvas></div>
+            </div>
+            <div class="li-chart-card">
+                <h3>Records by Year</h3>
+                <p class="li-chart-sub" id="li-sub-year"></p>
+                <div class="li-chart-wrap"><canvas id="li-chart-year"></canvas></div>
+            </div>
+            <div class="li-metric-card" id="li-metric-binder"></div>
+            <div class="li-metric-card" id="li-metric-rap"></div>
+            <div class="li-metric-card" id="li-metric-max-density"></div>
+            <div class="li-chart-card li-chart-card-wide">
+                <h3>Sieve Gradation – Composition (as designed)</h3>
+                <p class="li-chart-sub">The solid line is the mean; the shaded band is the 95% interval. Hover a point for details.</p>
+                <div class="li-chart-wrap"><canvas id="li-chart-sieve-composition"></canvas></div>
+            </div>
+            <div class="li-chart-card li-chart-card-wide">
+                <h3>Sieve Gradation – Recovered Materials</h3>
+                <p class="li-chart-sub">The solid line is the mean; the shaded band is the 95% interval. Hover a point for details.</p>
+                <div class="li-chart-wrap"><canvas id="li-chart-sieve-recovered"></canvas></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="li-divider"></div>
+
+    <div class="li-test-selector">
+        <h2 class="li-section-title li-section-title-tight">By Test</h2>
+        <div class="li-subbar" id="li-test-subbar"></div>
+    </div>
+
+    <div class="li-loading" id="li-test-loading" style="display:none;">
+        <svg class="spin" width="28" height="28" viewBox="0 0 50 50">
+            <circle cx="25" cy="25" r="20" stroke="#3CACA8" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="90 126" stroke-dashoffset="0"></circle>
+        </svg>
+        <span>Loading test insights…</span>
+    </div>
+
+    <div class="li-empty" id="li-test-empty">
+        No test selected.
+    </div>
+
+    <div class="li-overview" id="li-test-detail" style="display:none;">
+        <div class="li-section-heading">
+            <h3 class="li-section-title li-section-title-inline">Mixture Insights</h3>
+            <span class="li-section-count" id="li-test-record-count"></span>
+        </div>
+        <div class="li-chart-grid">
+            <div class="li-chart-card">
+                <h3>Mixing Method</h3>
+                <div class="li-chart-wrap"><canvas id="li-chart-test-mixing-method"></canvas></div>
+            </div>
+            <div class="li-chart-card">
+                <h3>Target Binder Grade</h3>
+                <p class="li-chart-sub">The most reported grades.</p>
+                <div class="li-chart-wrap"><canvas id="li-chart-test-binder-grade"></canvas></div>
+            </div>
+            <div class="li-chart-card">
+                <h3>Records by Year</h3>
+                <p class="li-chart-sub" id="li-sub-test-year"></p>
+                <div class="li-chart-wrap"><canvas id="li-chart-test-year"></canvas></div>
+            </div>
+            <div class="li-metric-card" id="li-metric-test-binder"></div>
+            <div class="li-metric-card" id="li-metric-test-rap"></div>
+            <div class="li-metric-card" id="li-metric-test-max-density"></div>
+            <div class="li-chart-card li-chart-card-wide">
+                <h3>Sieve Gradation – Composition (as designed)</h3>
+                <p class="li-chart-sub">The solid line is the mean; the shaded band is the 95% interval. Hover a point for details.</p>
+                <div class="li-chart-wrap"><canvas id="li-chart-test-sieve-composition"></canvas></div>
+            </div>
+            <div class="li-chart-card li-chart-card-wide">
+                <h3>Sieve Gradation – Recovered Materials</h3>
+                <p class="li-chart-sub">The solid line is the mean; the shaded band is the 95% interval. Hover a point for details.</p>
+                <div class="li-chart-wrap"><canvas id="li-chart-test-sieve-recovered"></canvas></div>
+            </div>
+        </div>
+
+        <div class="li-section-heading">
+            <h3 class="li-section-title li-section-title-inline">Test Results</h3>
+            <span class="li-section-count" id="li-test-results-record-count"></span>
+        </div>
+        <div class="li-chart-grid" id="li-test-results-grid"></div>
+
+        <div class="li-correlation-section" id="li-correlation-section">
+            <h3 class="li-section-title li-section-title-major">Correlation Analysis</h3>
+            <div class="li-chart-card li-chart-card-wide" id="li-correlation-card">
+                <p class="li-chart-sub">Lower triangle: Pearson (linear). Upper triangle: Spearman (rank/monotonic). Each cell shows the coefficient with the number of paired records beneath it.</p>
+                <div id="li-correlation-matrix"></div>
+                <button type="button" class="li-correlation-toggle" id="li-correlation-toggle"></button>
+            </div>
+        </div>
+    </div>
+</div>

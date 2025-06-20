@@ -1,0 +1,318 @@
+<div class="subbar">
+    <button class="subbar-btn active" data-subtab="DA1">Input Sheet</button>
+    <button class="subbar-btn" data-subtab="DA2">Customization</button>
+    <button class="subbar-btn" data-subtab="DA3">Basic Statistics</button>
+    <button class="subbar-btn" data-subtab="DA4">Correlation Analysis</button>
+    <button class="subbar-btn" data-subtab="DA5">Plots</button>
+    <button class="subbar-btn" data-subtab="DA6">More</button>
+</div>
+<div class="subbar-content active" id="subtab-DA1">
+    <div class="card">
+        <header>
+            <h1>Data Analysis</h1>
+            <h2>Input Sheet</h2>
+            <button id="upload-trigger" class="predict-btn">
+            <i class="fa fa-upload"></i> Upload File
+            </button>
+            <input type="file" id="excel-file" name="excel_file" accept=".xlsx,.xls" style="display:none;">
+            <div id="sheet-section" style="display:none; margin-top:24px;">
+            <div class="input-block">
+                <label for="sheet_name" titletip="The name of the excel sheet within the uploaded file that will be used for plotting.">Sheet name: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <select id="sheet_name" name="sheet_name" required>
+                    <option value="" disabled selected></option>
+                </select>
+            </div>
+            <div class="input-block">
+                <label for="start_row" titletip="The number of the first row with data in the selected excel sheet.">First data row: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                <input type="number" id="start_row" name="start_row" title="Enter a valid positive integer number." min="1" required placeholder="e.g. 1">
+            </div>
+            <button id="deploy-btn" class="predict-btn" style="margin-top:10px;">
+                <i class="fa fa-play"></i> Deploy
+            </button>
+            </div>
+        </header>
+    </div>
+</div>
+<div class="subbar-content" id="subtab-DA2">
+    <div class="card" id="card-DA2">
+        <header>
+            <h1>Data Analysis</h1>
+            <h2>Customization</h2>
+            <div id="da2-table-wrapper">
+                <p class="no-data-message">Input Excel File...</p>
+                <table id="da2-table" class="col-table" style="display:none;">
+                    <thead>
+                        <tr>
+                            <th>Column Name</th>
+                            <th>Rename</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </header>
+    </div>
+</div>
+<div class="subbar-content" id="subtab-DA3">
+    <div class="card" id="card-DA3">
+        <header>
+            <h1>Data Analysis</h1>
+            <h2>Basic Statistics</h2>
+            <p class="no-data-message">Input Excel File...</p>
+            <form id="basic-stats-form" style="display:block;">
+                <div class="input-block" style="flex-direction:column;align-items:flex-start;">
+                    <label style="padding-bottom:6px;" titletip="The columns to include in the statistical analysis.">Select Columns for Analysis:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>     
+                    <div id="columns-to-analyze" class="checkbox-grid"></div>
+                </div>
+                <div class="input-block" style="flex-direction:column;align-items:flex-start;">
+                    <label style="padding-bottom:6px;" titletip="The rows with empty values in these columns will be excluded from the statistical analysis.">Select Columns to Filter (Optional):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label> 
+                    <div id="columns-to-filter" class="checkbox-grid"></div>
+                </div>
+                <div class="param-section" id="histogram-customize-section" style="margin-top: 24px;">
+                    <h3>Customize Histogram</h3>
+                    <div class="input-block">
+                        <label for="hist_bar_color" titletip="The color of the bars of the histograms.">Histogram Bars Color:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>       
+                        <input type="color" name="hist_bar_color" id="hist_bar_color" value="#008000">
+                    </div>
+                    <div class="input-block">
+                        <label for="hist_bar_width" titletip="The width of the histogram bars. It should be more than 0 (no width) and less than or equal to 1 (full width).">Histogram Bar Width:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" name="hist_bar_width" id="hist_bar_width" min="0.05" max="1" step="0.05" value="0.8">
+                    </div>
+                    <div class="input-block">
+                         <label for="hist_label_fontsize" titletip="The size of the labels on the horizontal axis of the plot.">Axis Label Font Size:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" name="hist_label_fontsize" id="hist_label_fontsize" min="8" max="48" value="14">
+                    </div>
+                    <div class="input-block">
+                        <label for="hist_ticks_fontsize" titletip="The size of the values on the axes of the plot.">Axis Tick Font Size:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" name="hist_ticks_fontsize" id="hist_ticks_fontsize" min="6" max="48" value="10">
+                    </div>
+                    <div class="input-block">
+                        <label for="hist_kde_line" titletip="Displays the density curve over the histogram.">Show Density Curve:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="checkbox" name="hist_kde_line" id="hist_kde_line">
+                    </div>
+                </div>
+                <button type="submit" class="predict-btn">
+                    <i class="fa fa-table"></i> Show Statistics Table
+                </button>
+            </form>
+            <div id="stats-table" style="margin-top:24px;"></div>
+            <div id="histograms-image" style="margin-top:24px; text-align:center;"></div>
+        </header>
+    </div>
+</div>
+<div class="subbar-content" id="subtab-DA4">
+    <div class="card" id="card-DA4">
+        <header>
+            <h1>Data Analysis</h1>
+            <h2>Correlation Matrix</h2>
+            <p class="no-data-message">Input Excel File...</p>
+            <form id="correlation-form" style="display:none;">
+                <div class="input-block" style="flex-direction:column;align-items:flex-start;">
+                    <label style="padding-bottom:6px;" titletip="The columns to include in the correlation matrix.">Select Columns for Correlation:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <div id="correlation-columns" class="checkbox-grid"></div>
+                </div>
+                <div class="param-section">
+                    <h3>Customize Correlation Matrix</h3>
+                    <div class="input-block">
+                        <label for="corr_method" titletip="The correlation method used for each pair of columns.">Correlation Method:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <select name="corr_method" id="corr_method">
+                            <option value="pearson" selected>Pearson</option>
+                            <option value="spearman">Spearman</option>
+                            <!--<option value="kendall">Kendall</option>-->
+                        </select>
+                    </div>
+                    <div class="input-block">
+                        <label for="box_padding" titletip="The amount of space between adjusted boxes.">Space Between Boxes:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" id="box_padding" name="box_padding" step="0.01" min="0" max="2" placeholder="0.15" value="0.15">
+                    </div>
+                    <div class="input-block">
+                        <label for="corr_fontsize" titletip="The size of the values inside the correlation boxes.">Values Font Size:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" id="corr_fontsize" name="corr_fontsize" min="8" max="48" value="14">
+                    </div>
+                    <div class="input-block">
+                        <label for="axis_fontsize" titletip="The size of the labels on both axes of the correlation matrix.">Labels Font Size:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" id="axis_fontsize" name="axis_fontsize" min="8" max="48" value="16">
+                    </div>
+                    <div class="input-block">
+                        <label for="hist_color" titletip="The color of the histograms shown on the diagonal.">Histogram Bars Color:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>       
+                        <input type="color" id="hist_color" name="hist_color" value="#808080">
+                    </div>
+                    <div class="input-block">
+                        <label for="line_color" titletip="The color of the trend lines shown for each pair of columns in their individual plots within the matrix.">Trend Line Color:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>                  
+                        <input type="color" id="line_color" name="line_color" value="#ff0000">
+                    </div>
+                    <div class="input-block">
+                        <label for="scatter_color" titletip="The color of the dots in each pairwise scatter plot within the matrix.">Scatter Color:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>                            
+                        <input type="color" id="scatter_color" name="scatter_color" value="#008000">
+                    </div>
+                    <div class="input-block">
+                        <label for="scatter_alpha" titletip="The transparency of the dots in each pairwise scatter plot within the matrix. This ranges between 0 and 1, where 0 is fully transparent and 1 is fully opaque.">Scatter Opacity:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>                                     
+                        <input type="number" id="scatter_alpha" name="scatter_alpha" step="0.01" min="0" max="1" value="0.7">
+                    </div>
+                    <div class="input-block">
+                        <label for="hue_start" titletip="The starting color of the range used for the correlation boxes.">Boxes Color Range Start:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>                                     
+                        <input type="range" id="hue_start" min="0" max="360" value="10">
+                        <span id="hue_start_value" class="color-box"></span>
+                    </div>
+                    <div class="input-block">
+                        <label for="hue_end" titletip="The ending color of the range used for the correlation boxes.">Boxes Color Range End:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>                                     
+                        <input type="range" id="hue_end" min="0" max="360" value="220">
+                        <span id="hue_end_value" class="color-box"></span>
+                    </div>
+                    <div class="input-block">
+                        <label for="palette_saturation" titletip="The intensity of colors of the correlation boxes. This ranges between 0 and 100, where 0 is greyscale (no color) and 100 is fully vivid (pure color).">Boxes Color Intensity:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>                                     
+                        <input type="number" id="palette_saturation" name="palette_saturation" min="0" max="100" value="99">
+                    </div>
+                </div>
+                <button type="submit" class="predict-btn"><i class="fa fa-table"></i> Show Correlation Matrix</button>
+            </form>
+            <div id="correlation-result" style="margin-top:24px; text-align:center"></div>
+        </header>
+    </div>
+</div>
+<div class="subbar-content" id="subtab-DA5">
+    <div class="card" id="card-DA5">
+        <header>
+            <h1>Data Analysis</h1>
+            <h2>Single Plots</h2>
+            <p class="no-data-message">Input Excel File...</p>
+            <form id="single-plot-form" style="display:none;">    
+                <div class="input-blocks-row">
+                    <div class="input-block axis-select-block">
+                        <label for="x-col" titletip="The numerical column to be plotted on the horizontal axis.">Horizontal Axis:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <select id="x-col" name="x"></select>
+                    </div>
+                    <div class="input-block axis-select-block">
+                        <label for="y-col" titletip="The numerical column to be plotted on the vertical axis.">Vertical Axis:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label> 
+                        <select id="y-col" name="y"></select>
+                    </div>
+                </div>
+                <div class="param-section customize-plot">
+                    <h3>General Plot Options</h3>
+                    <div class="input-block">
+                        <label for="color" titletip="The color of the points in the plot.">Scatter Color:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>                            
+                        <input type="color" id="color" name="color" value="#3776ab">
+                    </div>
+                    <div class="input-block">
+                        <label for="marker" titletip="The shape of the plotted data points.">Marker Style:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>           
+                        <select id="marker">
+                            <option value="o">Circle</option>
+                            <option value="s">Square</option>
+                            <option value="^">Triangle</option>
+                            <option value="x">X</option>
+                            <option value="*">Star</option>
+                        </select>
+                    </div>
+                    <div class="input-block">
+                        <label for="title" titletip="The title of the plot, which is displayed above the figure.">Plot Title:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>    
+                        <input type="text" id="title" name="title" placeholder="Optional">
+                    </div>
+                    <div class="input-block">
+                        <label for="title_fontsize" titletip="The size of the title of the plot.">Title Font Size:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" id="title_fontsize" value="14" min="6" max="48">
+                    </div>
+                    <div class="figsize-row">
+                        <label for="figsize1" class="figsize-title" titletip="Specifies the width and height of the figure in inches.">Figure Size:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>                                                 
+                        <div class="figsize-dims">
+                            <div class="figsize-col">
+                            <div class="figsize-label">Width</div>
+                            <input type="number" id="figsize1" value="8" step="any" min="2" max="40" aria-label="Figure width">
+                            </div>
+                            <div class="figsize-col">
+                            <div class="figsize-label">Height</div>
+                            <input type="number" id="figsize2" value="6" step="any" min="2" max="40"  aria-label="Figure height">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="param-section customize-plot">
+                    <h3>Axis Options</h3>
+                    <div class="input-block">
+                        <label for="xlabel" titletip="The horizontal axis label of the plot.">Horizontal Axis Label:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>    
+                        <input type="text" id="xlabel" placeholder="Optional">
+                    </div>
+                    <div class="input-block">
+                        <label for="ylabel" titletip="The vertical axis label of the plot.">Vertical Axis Label:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>    
+                        <input type="text" id="ylabel" placeholder="Optional">
+                    </div>
+                    <div class="input-block">
+                        <label for="label_fontsize" titletip="The size of the labels on both axes of the plot.">Labels Font Size:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" id="label_fontsize" name="label_fontsize" min="8" max="48" value="12">
+                    </div>
+                    <div class="input-block">
+                        <label for="tick_fontsize" titletip="The size of the values on the axes of the plot.">Axis Tick Labels Size:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" id="tick_fontsize" name="tick_fontsize" min="8" max="48" value="12">
+                    </div>                  
+                    <div class="input-block">
+                        <label for="xmin" titletip="The minimum value on the horizontal axis.">Horizontal Axis Minimum:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" id="xmin" name="xmin" step="any">
+                    </div>
+                    <div class="input-block">
+                        <label for="xmax" titletip="The maximum value on the horizontal axis.">Horizontal Axis Maximum:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" id="xmax" step="any">
+                    </div>
+                    <div class="input-block">
+                        <label for="ymin" titletip="The minimum value on the vertical axis.">Vertical Axis Minimum:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" id="ymin" step="any">
+                    </div>
+                    <div class="input-block">
+                        <label for="ymax" titletip="The maximum value on the vertical axis.">Vertical Axis Maximum:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" id="ymax" step="any">
+                    </div>
+                </div>
+                <div class="param-section customize-plot">
+                    <h3>Statistical Options</h3>
+                    <div class="input-block">
+                        <label for="corr_type" titletip="The correlation method used for calculating the correlation.">Correlation Method:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <select name="corr_type" id="corr_type">
+                            <option value="pearson" selected>Pearson</option>
+                            <option value="spearman">Spearman</option>
+                            <!--<option value="kendall">Kendall</option>-->
+                        </select>
+                    </div>
+                    <div class="input-block">
+                        <label for="add_corr_title" titletip="Displays the correlation value in the plot title.">Show Correlation in Title:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="checkbox" id="add_corr_title" checked>
+                    </div>
+                    <div class="input-block">
+                        <label for="show_trendline" titletip="Displays a statistical trend line on the plot to show overall data direction.">Show Trend Line:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="checkbox" id="show_trendline" checked>
+                    </div>
+                    <div class="input-block">
+                        <label for="show_ci" titletip="Displays a shaded area showing the 95% confidence interval for the trend line.">Trend Line Confidence Band:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="checkbox" id="show_ci" checked>
+                    </div>
+                    <div class="input-block">
+                        <label for="trendline_color" titletip="The color of the trend line shown in the plot.">Trend Line Color:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>                  
+                        <input type="color" id="trendline_color" name="trendline_color" value="#ff0000">
+                    </div>
+                    <div class="input-block">
+                        <label for="trendline_style" titletip="The style of the trend line shown in the plot.">Trend Line Style:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <select id="trendline_style">
+                            <option value="-">Solid</option>
+                            <option value="--">Dashed (--)</option>
+                            <option value=":">Dotted</option>
+                            <option value="-.">Dash-dot (-.)</option>
+                        </select>
+                    </div>
+                    <div class="input-block">
+                        <label for="trendline_width" titletip="The width of the trend line shown in the plot.">Trend Line Width:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="number" id="trendline_width" value="2" min="0.5" max="16" step="any">
+                    </div>
+                </div>
+                <button type="submit" class="predict-btn"><i class="fa fa-line-chart"></i>Show Plot</button>
+            </form>
+            <div id="single-plot-result" style="margin-top:24px; text-align:center"></div>
+        </header>
+    </div>
+</div>
+<div class="subbar-content" id="subtab-DA6">
+    <div class="card" id="card-DA6">
+        <header>
+            <h1>Data Analysis</h1>
+            <p class="no-data-message">To be Added...</p>
+        </header>
+    </div>
+</div>

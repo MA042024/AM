@@ -1,0 +1,86 @@
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                   Visualization                  -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--                 @ AsphaltMine.org                -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+<!--       Created by Mohammad Abbas - June 2025      -->
+<!------------------------------------------------------>
+<!------------------------------------------------------>
+{% load static %}
+
+
+{% block head %}
+    <title>Visualization | AsphaltMine</title>
+{% endblock %}
+{% block theme_css %}
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="stylesheet" href="{% static 'css/Visualization/excel_visu.css' %}">
+   <link rel="stylesheet" href="{% static 'css/Visualization/live-insights.css' %}">
+   <link rel="stylesheet" href="{% static 'css/General/navigator.css' %}">
+   <link rel="stylesheet" href="{% static 'css/General/footer.css' %}">
+{% endblock %}
+{% block theme_js %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'core_main_app/common/js/csrf.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js"></script>
+    <script src="{% static 'js/Visualization/core.js' %}" defer></script>
+    <script src="{% static 'js/Visualization/tooltips.js' %}" defer></script>
+    {% comment %} Data Analysis tab hidden
+    <script src="{% static 'js/Visualization/da1.js' %}" defer></script>
+    <script src="{% static 'js/Visualization/da2.js' %}" defer></script>
+    <script src="{% static 'js/Visualization/da3.js' %}" defer></script>
+    <script src="{% static 'js/Visualization/da4.js' %}" defer></script>
+    <script src="{% static 'js/Visualization/da5.js' %}" defer></script>
+    {% endcomment %}
+    <script src="{% static 'js/Visualization/live-insights.js' %}" defer></script>
+{% endblock %}
+
+{% block body %}
+
+    <div class="background"></div>
+    
+    {% include "General/navigator.html" %}
+
+    <div class="tab-bar">
+        <button class="tab-btn active" data-tab="general">General</button>
+        <button class="tab-btn" data-tab="more">Live Insights</button>
+        {# <button class="tab-btn" data-tab="prediction">Data Analysis</button> #}
+    </div>
+
+    <div id="loading-overlay">
+        <div class="loading-box">
+            <div class="loader">
+                <svg class="spin" width="40" height="40" viewBox="0 0 50 50">
+                    <circle cx="25" cy="25" r="20" stroke="#066" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="90 126" stroke-dashoffset="0"></circle>
+                </svg>
+            </div>
+            <div class="loading-text">
+                Loading, please wait...
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section class="tab-content" id="tab-general">
+            {% include "Visualization/general_info.html" %}
+        </section>
+        <section class="tab-content" id="tab-more">
+            {% include "Visualization/data_insights.html" %}
+        </section>
+        {% comment %}
+        <section class="tab-content" id="tab-prediction">
+            {% include "Visualization/excel_visu.html" %}
+        </section>
+        {% endcomment %}
+    </main>
+
+    {% include "General/footer.html" %}
+
+{% endblock %}
+
+
