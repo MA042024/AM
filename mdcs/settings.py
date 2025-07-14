@@ -15,6 +15,7 @@ from core_main_app.utils.logger.logger_utils import (
     update_logger_with_local_app,
 )
 from .core_settings import *  # noqa: F403
+from celery.schedules import crontab
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -191,7 +192,18 @@ STATICFILES_FINDERS = (
 STATICFILES_DIRS = ("static",)
 
 # https://docs.djangoproject.com/en/4.2/topics/files/
-MEDIA_ROOT = "media"
+#MEDIA_ROOT = "media"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/srv/curator/media'
+
+CELERY_BEAT_SCHEDULE = {
+    'cleanup-media-every-4-hours': {
+        'task': 'mdcs.tasks.cleanup_media',
+        'schedule': crontab(minute=0, hour='*/4'),
+        'args': (4,),
+    },
+}
 
 # https://docs.djangoproject.com/en/4.2/ref/contrib/sites/
 SITE_ID = 1
@@ -536,3 +548,15 @@ LOGIN_URL = "core_main_app_login"
 DEFAULT_EXCEPTION_REPORTER_FILTER = (
     "core_main_app.views.admin.views.CustomExceptionReporter"
 )
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": REDIS_URL,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+
