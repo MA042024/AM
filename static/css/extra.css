@@ -1,11 +1,12 @@
 /* Bootstrap overide */
 .btn.btn-primary {
-    background-color: #007ac1 !important;
+    /*background-color: #007ac1 !important;*/
+    background-color: #3CACA8 !important;
     border-color: #565656;
 }
 
 .btn.btn-primary:hover {
-    background-color: #005f96 !important;
+    background-color: #287371 !important;
 }
 
 .btn.btn-secondary {
@@ -42,8 +43,17 @@
 }
 
 .page-item.active .page-link {
-    background-color: #007ac1 !important;
+    /*background-color: #007ac1 !important;*/
+    background-color: #3CACA8 !important;
     border-color: #565656;
+}
+
+.page-item:not(.active) .page-link {
+  color: #000000 !important;
+}
+
+.page-item:hover {
+    cursor: pointer;
 }
 
 .badge {
@@ -51,7 +61,8 @@
 }
 
 a {
-    color: #007aa7;
+    /*color: #007aa7;*/
+    color: #3CACA8;
 }
 
 .sticky {
