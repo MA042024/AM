@@ -1840,7 +1840,7 @@
 	}
 
 		a:hover {
-			color: #37c0fb;
+			color: #287371;
 			border-bottom-color: transparent;
             text-decoration:unset;
 		}
@@ -2242,7 +2242,8 @@
 		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("../img/bg01.png");
 		background-image: -ms-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("../img/bg01.png");
 		background-image: linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("../img/bg01.png");
-		background-color: #37c0fb;
+		/*background-color: #37c0fb;*/
+		background-color: #3CACA8;
 		border-radius: 5px;
 		border: 0;
 		color: #fff;
@@ -2261,7 +2262,8 @@
 		input[type="reset"]:hover,
 		input[type="button"]:hover,
 		.button:hover {
-			background-color: #50c8fb;
+			/*background-color: #50c8fb;*/
+			background-color: #287371;
 			color: #fff !important;
 		}
 
