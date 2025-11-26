@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.middleware.csrf import CsrfViewMiddleware
 from django.contrib.auth.decorators import login_required
 
@@ -11,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 def gensel_view(request):
     return render(request, 'gensel.html')
 
+@login_required
 def gensel_edit(request):
     
     edit_record_data = request.session.get('edit_record_data')
@@ -28,9 +30,12 @@ def gensel_edit(request):
     
     return render(request, 'gensel.html', context) 
 
+@login_required
 def vis_view(request):
     return render(request, 'visualization.html')
 
+#@login_required
+@ensure_csrf_cookie 
 def ml_prediction_view(request):
     return render(request, 'ml_external.html')
     #return HttpResponseRedirect('https://www.ml.asphaltmine.org')
