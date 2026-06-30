@@ -1,0 +1,23 @@
+<nav id="nav">
+    <ul class="horizontal-menu">
+        <li><a href="https://asphaltmine.org/" title="AsphaltMine"><b>AsphaltMine</b></a></li>
+        <li><a href="/gensel">Data Curation</a></li>
+        <li><a href="/bulkupload">Bulk Upload</a></li>
+        <li><a href="/explore/keyword/">Database</a></li>
+        <li><a href="/dashboard/records"> My Data</a></li>
+        <li><a href="/dashboard/workspaces"> Shared Workspaces</a></li>
+        <li><a href="/visualization/">Visualization Tool</a></li>
+        <li><a href="/prediction/">Prediction Tool</a></li>
+        <li class="align-right"><a href="/tutorial/">Tutorial</a></li>
+        <li><a href="/help/"> FAQ</a></li>
+        <li class="dropdown-nav">
+            <a href="#" class="dropdown-toggle"><i class="fas fa-user-circle"></i> My Account</a>
+            <ul class="dropdown-menu">
+                <li><a href="/dashboard/files"><i class="fas fa-file"></i> File Attachments</a></li>
+                <li class="divider"></li>
+                <li><a href="/dashboard/my-profile"><i class="fas fa-user"></i> My Profile</a></li>
+                <li><a href="{% url 'core_main_app_logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
