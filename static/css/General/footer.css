@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+.page-flex {
+  min-height: 100vh !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+.page-flex-main {
+  flex: 1 0 auto !important;
+}
+#footer,
+#footer * {
+  box-sizing: border-box !important;
+  line-height: normal !important;
+  font-family: 'Inter', Arial, sans-serif !important;
+  font-weight: 400 !important;
+}
+#footer {
+  --footer-primary-rgb: 60, 172, 168;
+  --footer-panel-dark-rgb: 63, 86, 109;
+
+  background-color: rgba(var(--footer-panel-dark-rgb), 0.92);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  color: #fff;
+  width: 100%;
+  height: auto !important;
+  margin-top: 1em;
+  padding: 0 !important;
+  text-align: left !important;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.18);
+  font-size: 16px !important;
+  flex-shrink: 0 !important;
+  position: relative;
+  z-index: 1;
+}
+.footer-flex {
+  display: flex;
+  align-items: center;
+  margin: 0 1.2em 0 1.2em !important;
+  padding: 20px 20px !important;
+}
+#copyright,
+#footer-right {
+  margin: 0 !important;
+}
+#copyright {
+  margin-right: auto !important;
+}
+#footer-right span {
+  margin-left: 30px !important;
+}
+#footer a {
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+#footer a:hover,
+#footer a:focus-visible {
+  background-color: rgba(var(--footer-primary-rgb), 0.35);
+  box-shadow: 0 0 8px rgba(var(--footer-primary-rgb), 0.5);
+}
+#footer a:focus-visible {
+  outline: 2px solid #CEDE94;
+  outline-offset: 2px;
+}
+#footer-right ul.menu {
+  display: flex;
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none;
+}
+#footer-right ul.menu li,
+#footer-right ul.menu li:last-child {
+  border-left: solid 1px rgba(255, 255, 255, 0.3) !important;
+  border-right: none !important;
+  padding: 0 0 0 1em !important;
+  margin: 0 0 0 1em !important;
+}
+#footer-right ul.menu li:first-child {
+  border-left: 0 !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+#footer-right ul.menu li a {
+  display: inline-block;
+  padding: 4px 8px !important;
+}
+@media screen and (min-width: 1001px) {
+  .footer-flex {
+    font-size: 110% !important;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .footer-flex {
+    font-size: 80% !important;
+  }
+}
