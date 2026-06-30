@@ -1,0 +1,57 @@
+<nav id="am-navbar">
+    <a href="https://asphaltmine.org/" title="AsphaltMine" class="am-brand">AsphaltMine</a>
+    <button id="am-nav-toggle" class="am-nav-toggle" type="button" aria-expanded="false" aria-controls="am-nav-menu" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+    </button>
+    <ul class="horizontal-menu" id="am-nav-menu">
+        <li><a href="/gensel" title="Data Curation" class="{% if request.path == '/gensel' %}active{% endif %}"><i class="fas fa-edit"></i> <span class="am-label">Data Curation</span></a></li>
+        <li><a href="/bulkupload" title="Bulk Upload" class="{% if request.path == '/bulkupload' %}active{% endif %}"><i class="fas fa-upload"></i> <span class="am-label">Bulk Upload</span></a></li>
+        <li><a href="/explore/keyword/" title="Database" class="{% if request.path == '/explore/keyword/' %}active{% endif %}"><i class="fas fa-database"></i> <span class="am-label">Database</span></a></li>
+        <li><a href="/dashboard/records" title="My Data" class="{% if request.path == '/dashboard/records' %}active{% endif %}"><i class="fas fa-folder-open"></i> <span class="am-label">My Data</span></a></li>
+        <li><a href="/dashboard/workspaces" title="Shared Workspaces" class="{% if request.path == '/dashboard/workspaces' %}active{% endif %}"><i class="fas fa-users"></i> <span class="am-label">Shared Workspaces</span></a></li>
+        <li><a href="/visualization/" title="Visualization" class="{% if request.path == '/visualization/' %}active{% endif %}"><i class="fas fa-chart-line"></i> <span class="am-label">Visualization</span></a></li>
+        <li><a href="/prediction/" title="Prediction" class="{% if request.path == '/prediction/' %}active{% endif %}"><i class="fas fa-brain"></i> <span class="am-label">Prediction</span></a></li>
+        <li class="align-right"><a href="/tutorial/" title="Tutorial" class="{% if request.path == '/tutorial/' %}active{% endif %}"><i class="fas fa-graduation-cap"></i> <span class="am-label">Tutorial</span></a></li>
+        <li><a href="/help/" title="FAQ" class="{% if request.path == '/help/' %}active{% endif %}"><i class="fas fa-question-circle"></i> <span class="am-label">FAQ</span></a></li>
+        {% if user.is_authenticated %}
+        <li class="am-dropdown-nav">
+            <a href="#" class="am-dropdown-toggle{% if request.path == '/dashboard/files' or '/dashboard/my-profile' in request.path or '/core-admin/' in request.path %} active{% endif %}" title="My Account"><i class="fas fa-user-circle"></i> <span class="am-label">My Account</span></a>
+            <ul class="am-dropdown-menu">
+                <li><a href="/dashboard/files"><i class="fas fa-file"></i> File Attachments</a></li>
+                <li class="am-divider"></li>
+                <li><a href="/dashboard/my-profile"><i class="fas fa-user"></i> My Profile</a></li>
+                {% if user.is_staff %}
+                <li><a href="{% url 'core-admin:core_main_app_admin_home' %}"><i class="fas fa-cog"></i> Administration</a></li>
+                {% endif %}
+                <li class="am-divider"></li>
+                <li><a href="{% url 'core_main_app_logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </li>
+        {% else %}
+        <li><a href="{% url LOGIN_URL %}" title="Log In / Sign Up"><i class="fas fa-sign-in-alt"></i> <span class="am-label">Log In / Sign Up</span></a></li>
+        {% endif %}
+    </ul>
+</nav>
+<script>
+(function () {
+    var navToggle = document.getElementById('am-nav-toggle');
+    var navMenu = document.getElementById('am-nav-menu');
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+            var isOpen = navMenu.classList.toggle('am-nav-open');
+            navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+    }
+
+    var dropdownToggle = document.querySelector('#am-navbar .am-dropdown-toggle');
+    var dropdownItem = dropdownToggle ? dropdownToggle.closest('.am-dropdown-nav') : null;
+    if (dropdownToggle && dropdownItem) {
+        dropdownToggle.addEventListener('click', function (e) {
+            if (window.matchMedia('(max-width: 900px)').matches) {
+                e.preventDefault();
+                dropdownItem.classList.toggle('am-nav-open');
+            }
+        });
+    }
+})();
+</script>
