@@ -1,0 +1,1325 @@
+<fieldset id="OuterfieldB" class="outer-fieldset outertab">
+    <legend class="outer-legend outertab-title">Mixture<span class="hideouter-content">&minus;</span></legend>
+    <div class="outertab-t">Show</div>
+    <div class="outertab-content">
+
+        <div class="innertab-t">Mixture Identifiers</div>
+        <div class="innertab-content">
+            <fieldset id="field5">
+                <legend class="innertab-title">Mixture Identifiers<span class="hideinner-content">&minus;</span></legend>
+                <div id="MixtureIdentifiers" class="form-group">
+                    <label for="MixtureID" titletip="The local identifier used for the mixture (e.g., B-102).">Mixture ID:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div> </label>
+                    <input type="text" id="MixtureID" name="MixtureID" >
+                    <label for="MixtureType" titletip="The mixture type (e.g., AC B-32).">Mixture Type: <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="MixtureType" name="MixtureType" required>
+                </div>
+            </fieldset>
+        </div>
+
+        <div id="Empty1" class="innertab-lvl2">Mixture Recipe <span class="hideinner-lvl2-content">&minus;</span></div>
+        <div class="innertab-lvl2-t">Mixture Recipe</div>
+        <div class="innertab-lvl2-content">
+
+            <div class="innertab-lvl3-t">Composition</div>
+            <div class="innertab-lvl3-content">
+                <fieldset id="fld6">
+                    <legend title="The percentage by mass of the components of the bituminous mixture." class="innertab-title">Composition<span class="hideinner-lvl3-content">&minus;</span></legend>
+                    <div id="MixtureComposition-0" class="form-group"> 
+                        <fieldset id="field6-0" class="TwoColumn-fieldset inner-fieldset">
+                            <legend class="specific-legend" title="The distribution of grain sizes by mass for the aggregates.">Aggregates Grain Size Distribution <span class="semicolon">(semicolon separated)</span>&nbsp;&nbsp;&nbsp;<span class="standard"> EN 933-1 </span> &nbsp;</legend>
+                            <div id="AggregatesDistributiondiv" class="graph-form-group">
+                                <label for="SizeAgg" titletip="The nominal size of the sieve in millimeters (e.g., 5.6).">Size (mm):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div> </label>
+                                <input type="text" id="SizeAgg" name="SizeAgg">
+                                <label for="PercentageAgg" titletip="The percentage distribution by mass for particles passing the specified size (e.g., 70.4).">Proportion (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                <input type="text" id="PercentageAgg" name="PercentageAgg">
+                                <button class="graph-form-group-button" type="button"  title="Show or hide plot." onclick="PlotGraph('field6-0','Aggregates Distribution','SizeAgg','Size','pn','PercentageAgg','Proportion','p%')">&#x1F4C8;</button>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div id="MixtureComposition" class="form-group">
+                        <label for="VirginFiller" titletip="The percentage by mass of the virgin filler to the total mass of the bituminous mixture(e.g., 3.2).">Virgin Filler (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="VirginFiller" name="VirginFiller" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <label for="RecoveredFiller" titletip="The percentage by mass of the recovered filler to the total mass of the bituminous mixture(e.g., 3.2).">Recovered Filler (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="RecoveredFiller" name="RecoveredFiller" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <label for="ReclaimedAsphalt" titletip="The percentage by mass of the reclaimed asphalt to the total mass of the bituminous mixture (e.g., 40).">Reclaimed Asphalt (%):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div> </label>
+                        <input type="text" id="ReclaimedAsphalt" name="ReclaimedAsphalt" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                    </div>
+                    <div class="form-group">
+                        <fieldset id="field6-1" class="TwoColumn-fieldset inner-fieldset">
+                            <legend class="specific-legend">Binder</legend>
+                            <div id="MixtureCompositionBinder" class="form-group-3c">
+                                <label for="TargetBinderGrade" titletip="The target binder grade, as reported in the form X/Y-Z or any other format (e.g., 50/75-60).">Target Binder Grade:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div> </label>
+                                <input type="text" id="TargetBinderGrade" name="TargetBinderGrade" >
+                                <span></span>
+                                <label for="Binder" titletip="The percentage by mass of the binder, including that extracted from the reclaimed asphalt, to the total mass of the bituminous mixture according to EN 12697-1 (e.g., 4.1).">Binder Content (%):&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div> </label>
+                                <input type="text" id="Binder" name="Binder" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                <span class="standard">EN 12697-1</span>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <span class="refer-note">Other materials can be added in <span class="refer-link" onclick="LinkToAdtv()">Additives</span></span>
+                </fieldset>
+            </div>
+
+            <div class="innertab-lvl3-t">Mixture Maximum Density</div>
+            <div class="innertab-lvl3-content">
+                <fieldset id="fld8">
+                    <legend class="innertab-title">Mixture Maximum Density<span class="hideinner-lvl3-content">&minus;</span></legend>
+                    <div id="MixtureMaximumDensity" class="form-group">
+                        <label for="MaximumDensityValue" titletip="The value of the maximum density of the bituminous specimen, expressed in Mg/m&sup3; (e.g., 2.48).">Maximum Density (Mg/m&sup3;): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="MaximumDensityValue" name="MaximumDensityValue" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    </div>
+                </fieldset>
+            </div>
+            <div id="Empty1-end" class="innertab-lvl2-end"></div>
+        </div>
+
+        <div id="Empty2" class="innertab-lvl2">Mixture Component Properties <span class="hideinner-lvl2-content">&minus;</span></div>
+        <div class="innertab-lvl2-t">Mixture Component Properties</div>
+        <div class="innertab-lvl2-content">
+
+            <div class="innertab-lvl3-t">Virgin Aggregates</div>
+            <div class="innertab-lvl3-content">
+                <fieldset id="fld9">
+                    <legend class="innertab-title">Virgin Aggregates<span class="hideinner-lvl3-content">&minus;</span></legend>
+                    <div id="VirginAggregates-0" class="form-group"> 
+                        <fieldset id="field7-1" class="TwoColumn-fieldset inner-fieldset">
+                            <legend class="specific-legend" title="The distribution of grain sizes by mass for the virign aggregates.">Grain Size Distribution <span class="semicolon">(semicolon separated)</span>&nbsp;&nbsp;&nbsp;<span class="standard"> EN 933-1 </span> &nbsp;</legend>
+                            <div id="GrainSizeDistributionVirgin" class="graph-form-group">
+                                <label for="SizeVirgin" titletip="The nominal size of the sieve in millimeters (e.g., 5.6).">Size (mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                <input type="text" id="SizeVirgin" name="SizeVirgin">
+                                <label for="PercentageVirgin" titletip="The percentage distribution by mass for particles passing the specified size (e.g., 70.4).">Proportion (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                <input type="text" id="PercentageVirgin" name="PercentageVirgin">
+                                <button class="graph-form-group-button" type="button"  title="Show or hide plot." onclick="PlotGraph('field7-1','Virgin Aggregates Distribution','SizeVirgin','Size','pn','PercentageVirgin','Proportion','p%')">&#x1F4C8;</button>
+                            </div>
+                        </fieldset>
+                    </div>
+            
+                    <div id="VirginAggregates-1" class="form-group-3c">
+                        <label for="NatureVA" titletip="The nature of the aggregates in the bituminous mixture (e.g., Granite).">Nature: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="NatureVA" name="NatureVA">
+                        <span></span>
+
+                        <label for="LosAngelesTestResultVA" titletip="The percentage of wear calculated during the Los Angeles Abrasion Test according to EN 1097-2, expressed as a percentage of the original weight of the sample (e.g., 25).">Los Angeles Test Result (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="LosAngelesTestResultVA" name="LosAngelesTestResultVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 1097-2</span>
+                        
+                        <label for="FlakinessIndexVA" titletip="The flakiness index of aggregates, expressed as a percentage, which is measured according to EN 933-3 (e.g., 22).">Flakiness Index (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="FlakinessIndexVA" name="FlakinessIndexVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 933-3</span>
+
+                        <label for="ShapeIndexVA" titletip="The shape index of aggregates according to EN 933-4, expressed as a percentage (e.g., 30).">Shape Index (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="ShapeIndexVA" name="ShapeIndexVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 933-4</span>
+
+                        <label for="FlowCoefficientVA" titletip="The value of the sand flow coefficient of the aggregate according to EN 933-6, expressed in seconds (e.g., 40).">Sand Flow Coefficient (seconds): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="FlowCoefficientVA" name="FlowCoefficientVA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 933-6</span>
+
+                        <label for="NordicAbrasionValueVA" titletip="The value of the Nordic abrasion according to EN 1097-9, expressed in percentage (e.g., 45).">Nordic Abrasion Value (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="NordicAbrasionValueVA" name="NordicAbrasionValueVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 1097-9</span>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Rounded and Crushed Proportions <span class="standard-lvls"> EN 933-5 </span> </div>
+                    <div class="innertab-lvl4-content">
+                        <div id="VirginAggregates-2" class="form-group">
+                            <fieldset id="field9-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The percentage of semi-crushed, totally crushed, semi-rounded and totally rounded aggregate particles according to EN 933-5.">Rounded and Crushed Proportions &nbsp;&nbsp;&nbsp;<span class="standard"> EN 933-5 </span> &nbsp; <span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="RoundedAndCrushedVA" class="form-group">
+                                    <label for="SemiCrushedParticlesVA" titletip="The percentage of the semi-crushed coarse aggregate particles according to EN 12697-11 (e.g., 27.5).">Semi-Crushed Particles (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="SemiCrushedParticlesVA" name="SemiCrushedParticlesVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="TotallyCrushedParticlesVA" titletip="The percentage of the totally crushed coarse aggregate particles according to EN 12697-11 (e.g., 53.4).">Totally Crushed Particles (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="TotallyCrushedParticlesVA" name="TotallyCrushedParticlesVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="SemiRoundedParticlesVA" titletip="The percentage of the semi-rounded coarse aggregate particles according to EN 12697-11 (e.g., 26.8).">Semi-Rounded Particles (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="SemiRoundedParticlesVA" name="SemiRoundedParticlesVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." >
+                                    
+                                    <label for="TotallyRoundedParticlesVA" titletip="The percentage of the totally rounded coarse aggregate particles according to EN 12697-11 (e.g., 40.6).">Totally Rounded Particles (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="TotallyRoundedParticlesVA" name="TotallyRoundedParticlesVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." >
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Bitumen Coverage Degree <span class="standard-lvls"> EN 12697-11 </span> </div>
+                    <div class="innertab-lvl4-content">
+                        <div id="VirginAggregates-3" class="form-group">
+                            <fieldset id="field9-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The average proportion of the surface area of the virgin aggregate particles that are covered with bitumen according to EN 12697-11.">Bitumen Coverage Degree &nbsp;&nbsp;&nbsp;<span class="standard"> EN 12697-11 </span> &nbsp; <span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="BitumenCoverageDegreeVA" class="form-group">
+                                    <label for="BitumenCoverageDegreeValueVA" titletip="The value of the average proportion of the surface area of the virgin aggreagte particles that are covered with bitumen according to EN 12697-11, expressed as a percentage (e.g., 45).">Value (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="BitumenCoverageDegreeValueVA" name="BitumenCoverageDegreeValueVA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+
+                                    <label for="BitumenCoverageDegreeMethodVA" titletip="The method of measurement of the degree of bitumen coverage according to EN 12697-11 (e.g., Static Test).">Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <select id="BitumenCoverageDegreeMethodVA" name="BitumenCoverageDegreeMethodVA">
+                                        <option value="">Select </option>
+                                        <option value="Rolling Bottle Test">Rolling Bottle Test</option>
+                                        <option value="Static Test">Static Test</option>
+                                        <option value="Boiling Water Stripping Test">Boiling Water Stripping Test</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Additional Properties </div>
+                    <div class="innertab-lvl4-content">
+                        <div id="VirginAggregates-4" class="form-group">
+                            <fieldset id="field9-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="AdditionalPropertiesVA" class="form-group grid-wrap">
+                                    <div class="label-input-pair">
+                                        <label for="TestMethodVA_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="TestMethodVA_1" name="TestMethodVA_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="ValueVA_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="ValueVA_1" name="ValueVA_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="UnitVA_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="UnitVA_1" name="UnitVA_1">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field9-2','VA','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="innertab-lvl3-t">Filler</div>
+            <div class="innertab-lvl3-content">
+                <fieldset id="fld10">
+                    <legend class="innertab-title">Filler<span class="hideinner-lvl3-content">&minus;</span></legend>
+                    <div id="Filler-1" class="form-group-3c">
+                        <label for="NatureFiller" titletip="The nature of the filler in the bituminous mixture (e.g., Limestone powder).">Nature: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="NatureFiller" name="NatureFiller">
+                        <span></span>
+                        
+                        <label for="StiffeningEffectFiller" titletip="The value of the stiffening effect of filler aggregate when mixed with bitumen, measured in Degrees Celsius, according to EN 13179-1 (e.g., 20).">Stiffening Effect (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="StiffeningEffectFiller" name="StiffeningEffectFiller"  pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 13179-1</span>
+
+                        <label for="ParticleDensityFillerValue" titletip="The value of the particle density of the filler according to EN 1097-7, expressed in Mg/m&sup3; (e.g., 2.753).">Particle Density (Mg/m&sup3;): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="ParticleDensityFillerValue" name="ParticleDensityFillerValue" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 1097-7</span>
+
+                        <label for="WaterSusceptibilityFiller" titletip="The value of the water susceptibility of fillers for bituminous mixtures, expressed in percentage, according to EN 1744-4 (e.g., 25).">Water Susceptibility (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="WaterSusceptibilityFiller" name="WaterSusceptibilityFiller" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 1744-4</span>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Additional Properties </div>
+                    <div class="innertab-lvl4-content">
+                        <div id="Filler-2" class="form-group">
+                            <fieldset id="field10-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="AdditionalPropertiesFiller" class="form-group grid-wrap">
+                                    <div class="label-input-pair">
+                                        <label for="TestMethodFiller_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="TestMethodFiller_1" name="TestMethodFiller_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="ValueFiller_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="ValueFiller_1" name="ValueFiller_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="UnitFiller_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="UnitFiller_1" name="UnitFiller_1">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field10-2','Filler','form-group grid-wrap-one-row TwoColumn dynamicPro')"> &#10010; Property</button>                    
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="innertab-lvl3-t">Virgin Binder</div>
+            <div class="innertab-lvl3-content">
+                <fieldset id="fld11">
+                    <legend class="innertab-title">Virgin Binder<span class="hideinner-lvl3-content">&minus;</span></legend>
+                    <div id="VirginBinder-0" class="form-group-3c">
+                        <label for="PenetrationVB" titletip="The measured penetration of a standard needle at 25 Degrees Celsius according to EN 1426, expressed in tenths of a millimeter (e.g., 55).">Penetration (0.1mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="PenetrationVB" name="PenetrationVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 1426</span>
+
+                        <label for="SofteningPointVB" titletip="The temperature at which the binder begins to soften and lose its rigidity according to EN 1427, measured in Degrees Celsius (e.g., 45).">Softening Point (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="SofteningPointVB" name="SofteningPointVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 1427</span>
+
+                        <label for="FraassBreakingPointVB" titletip="The value of the Fraass breaking point according to EN 12593, at which a film of bituminous binder of a specified and uniform thickness will break under defined loading conditions, measured in Degrees Celsius (e.g., -20).">Fraass Breaking Point (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="FraassBreakingPointVB" name="FraassBreakingPointVB" pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+                        <span class="standard">EN 12593</span>
+
+                        <label for="ElasticRecoveryVB" titletip="The value of the elastic recovery of the binder according to EN 13398 at 25 Degrees Celsius, expressed as a percentage (e.g., 50).">Elastic Recovery (%) at 25°C: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="ElasticRecoveryVB" name="ElasticRecoveryVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 13398</span>
+                        
+                        <label for="CohesionEnergyVB" titletip="The value of cohesion energy of the bitumen obtained from the force ductility method according to EN 13589 at 5 Degrees Celsius, measured in joules per square centimetres (e.g., 0.9).">Cohesion Energy (J/cm&sup2;) at 5°C: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="CohesionEnergyVB" name="CohesionEnergyVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 13589</span>
+
+                        <label for="SolubilityVB" titletip="The value of the percentage of mass of the soluble material to the total mass according to EN 12592 (e.g., 7.6).">Solubility (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="SolubilityVB" name="SolubilityVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 12592</span>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Viscosities </div>
+                    <div class="innertab-lvl4-content">
+                        <div id="VirginBinder-1" class="form-group">
+                            <fieldset id="field11-0" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend">Viscosities <span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="ViscositiesVB" class="form-group-3c">
+                                    <label for="KinematicViscosityVB" titletip="The value of the kinematic viscosity of the binder according to EN 12595, measured in square millimeter per second (e.g., 30).">Kinematic Viscosity (mm&sup2;/s): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="KinematicViscosityVB" name="KinematicViscosityVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    <span class="standard">EN 12595</span>
+                
+                                    <label for="DynamicViscosityVB" titletip="The value of the dynamic viscosity of the binder according to EN 12596, measured in Pascal-second (e.g., 11).">Dynamic Viscosity (Pa.s): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="DynamicViscosityVB" name="DynamicViscosityVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    <span class="standard">EN 12596</span>
+                
+                                    <label for="RotationalDynamicViscosityVB" titletip="The value of the rotational dynamic viscosity of the binder using a rotating spindle apparatus according to EN 13302, measured in Pascal-second (e.g., 8).">Rotational Dynamic Viscosity (Pa.s): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="RotationalDynamicViscosityVB" name="RotationalDynamicViscosityVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    <span class="standard">EN 13302</span>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> BTSV <span class="standard-lvls">EN 17643</span></div>
+                    <div class="innertab-lvl4-content">       
+                        <div id="VirginBinder-2" class="form-group">
+                            <fieldset id="field11-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The results of the Binder Fast Characterization Test (BTSV) according to EN 17643.">BTSV &nbsp;&nbsp;&nbsp;<span class="standard">EN 17643</span>&nbsp; <span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="BTSVVB" class="form-group">
+                                    <label for="TemperatureVB" titletip="The value of the Binder Fast Characterization Test (BTSV) temperature, which is determined using the Dynamic Shear Rheometer (DSR), measured in Degrees Celsius (e.g., 65).">Temperature (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="TemperatureVB" name="TemperatureVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="PhaseAngleVB" titletip="The value of the Binder Fast Characterization Test (BTSV) phase angle, which is determined using the Dynamic Shear Rheometer (DSR), measured in Angle Degrees (e.g., 42).">Phase Angle (°): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="PhaseAngleVB" name="PhaseAngleVB" pattern="^(90(\.0{1,4})?|[1-8]?\d(\.\d{1,4})?|0(\.\d{1,4})?)$" title="Enter a valid number between 0 and 90.">
+                                    
+                                    <fieldset id="field11-1-1" class="TwoColumn-fieldset inner-fieldset">
+                                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                                        <div id="AdditionalPropertiesBTSVVB" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodBTSVVB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Parameter: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodBTSVVB_1" name="TestMethodBTSVVB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValueBTSVVB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValueBTSVVB_1" name="ValueBTSVVB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitBTSVVB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitBTSVVB_1" name="UnitBTSVVB_1">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field11-1-1','BTSVVB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; BTSV Property</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> MSCRT <span class="standard-lvls">EN 16659</span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="VirginBinder-3" class="form-group">
+                            <fieldset id="field11-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The results of the Multiple Stress Creep and Recovery Test (MSCRT) according to EN 16659.">MSCRT &nbsp;&nbsp;&nbsp;<span class="standard">EN 16659</span>&nbsp; <span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="MSCRTVB" class="form-group">
+                                    <label for="AveragePercentRecovery100PaVB" titletip="The value of the average percentage recovery at 100 Pa (e.g., 40.5).">Average Recovery at 0.1kPa (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="AveragePercentRecovery100PaVB" name="AveragePercentRecovery100PaVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="AveragePercentRecovery3200PaVB" titletip="The value of the average percentage recovery at 3200 Pa (e.g., 64.7).">Average Recovery at 3.2kPa (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="AveragePercentRecovery3200PaVB" name="AveragePercentRecovery3200PaVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="RecoveryPercentageDifferenceVB" titletip="The value of the percentage difference in recovery between 100 Pa and 3200 Pa (e.g., 10.8).">Recovery Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="RecoveryPercentageDifferenceVB" name="RecoveryPercentageDifferenceVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="NonrecoverableCreepCompliance100PaVB" titletip="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="NonrecoverableCreepCompliance100PaVB" name="NonrecoverableCreepCompliance100PaVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="NonrecoverableCreepCompliance3200PaVB" titletip="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="NonrecoverableCreepCompliance3200PaVB" name="NonrecoverableCreepCompliance3200PaVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceVB" titletip="The value of the percentage difference in non-recoverable creep compliance between 100 Pa and 3200 Pa (e.g., 16.1).">Nonrecoverable Creep Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceVB" name="NonrecoverableCreepCompliancePercentageDifferenceVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <fieldset id="field11-2-1" class="TwoColumn-fieldset inner-fieldset">
+                                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">MSCRT Non-standard Stress</legend>
+                                        <div id="NonstandardStressVB" class="form-group">
+                                            <label for="SpecifiedStressVB" titletip="The value of the non-standard specified stress, other than 100 Pa and 3200 Pa, expressed in Pascal (e.g., 10000).">Specified Stress (Pa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="SpecifiedStressVB" name="SpecifiedStressVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                            
+                                            <label for="AveragePercentRecoverySpecifiedStressVB" titletip="The value of the average percentage recovery at the specified stress (e.g., 59.5).">Average Recovery (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="AveragePercentRecoverySpecifiedStressVB" name="AveragePercentRecoverySpecifiedStressVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                            
+                                            <label for="RecoveryPercentageDifferenceSpecifiedStressVB" titletip="The value of the percentage difference in recovery between 3200 Pa and the specified stress (e.g., 15.7).">Recovery Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="RecoveryPercentageDifferenceSpecifiedStressVB" name="RecoveryPercentageDifferenceSpecifiedStressVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                            
+                                            <label for="NonrecoverableCreepComplianceSpecifiedStressVB" titletip="The value of the non-recoverable creep compliance at the specified stress, expressed in 1/kPa (e.g., 0.227).">Nonrecoverable Creep (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="NonrecoverableCreepComplianceSpecifiedStressVB" name="NonrecoverableCreepComplianceSpecifiedStressVB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                            
+                                            <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressVB" titletip="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecov. Creep Difference (%):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressVB" name="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressVB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                                   
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    
+                    <div class="innertab-lvl4-t"> Aging Resistance <span class="standard-lvls">EN 12607-1</span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="VirginBinder-5" class="form-group">
+                            <fieldset id="field11-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The results of the Rolling Thin Film Oven Test (RTFOT) according to EN 12607-1.">Aging Resistance &nbsp;&nbsp;&nbsp;<span class="standard">EN 12607-1</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="AgingResistanceVB" class="form-group">
+                                    <label for="MassLossVB" titletip="The mass loss according to EN 12607-1, expressed as a negative percentage. A positive value represents a gain (e.g., -1.05).">Mass Loss (%) <span class="semicolon">(negative values represent loss)</span>:&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="MassLossVB" name="MassLossVB" pattern="^-?(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between -100 and 100.">
+                                    
+                                    <label for="PenetrationChangeVB" titletip="The increase in penetration according to EN 12607-1 and EN 1426, expressed as a percentage (e.g., 75.07).">Retained Penetration (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="PenetrationChangeVB" name="PenetrationChangeVB" pattern="^-?(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between -100 and 100.">
+                                
+                                    <label for="SofteningPointIncreaseVB" titletip="The absolute increase in softening point according to EN 12607-1 and EN 1427, measured in Degrees Celsius. A negative value represents a decrease (e.g., 5.02).">Softening Point Increase (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="SofteningPointIncreaseVB" name="SofteningPointIncreaseVB" pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                
+                    <div class="innertab-lvl4-t"> Additional Properties </div>
+                    <div class="innertab-lvl4-content">
+                        <div id="VirginBinder-7" class="form-group">
+                            <fieldset id="field11-4" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="AdditionalPropertiesVB" class="form-group grid-wrap">
+                                    <div class="label-input-pair">
+                                        <label for="TestMethodVB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="TestMethodVB_1" name="TestMethodVB_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="ValueVB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="ValueVB_1" name="ValueVB_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="UnitVB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="UnitVB_1" name="UnitVB_1">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field11-4','VB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+
+            <div class="innertab-lvl3-t">Additives</div>
+            <div class="innertab-lvl3-content">
+                <fieldset id="fld14">
+                    <legend class="innertab-title">Additives<span class="hideinner-lvl3-content">&minus;</span></legend>
+                    <div id="Additive_1" class="form-group">
+                        <span class="multilabel multilabellarger"> &#11201;&nbsp; Additive 1 &nbsp;&#11201; </span>
+                        <label for="TypeAddtv_1" titletip="The type of the additive (e.g., Recycling agent).">Type: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="TypeAddtv_1" name="TypeAddtv_1">
+
+                        <label for="PercentageMassAddtv_1" titletip="The percentage by mass of this additive to the total mass of the bituminous mixture (e.g., 1.1).">Percentage by Mixture Mass (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="PercentageMassAddtv_1" name="PercentageMassAddtv_1" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        
+                        <div class="innertab-lvl4-t TwoColumn"> Additional Properties </div>
+                        <div class="innertab-lvl4-content form-group TwoColumn">
+                            <fieldset id="fld14-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties <span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="AdditionalPropertiesAddtv_1" class="form-group grid-wrap">
+                                    <div class="label-input-pair">
+                                        <label for="TestMethodAddtv_1_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="TestMethodAddtv_1_1" name="TestMethodAddtv_1_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="ValueAddtv_1_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="ValueAddtv_1_1" name="ValueAddtv_1_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="UnitAddtv_1_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="UnitAddtv_1_1" name="UnitAddtv_1_1">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "additive-property-button TwoColumn"  onclick="addadditional('fld14-1','Addtv_1','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>
+                        </div>
+                    </div>
+                </fieldset>
+                <button type="button" class= "additive-button TwoColumn"  onclick="addAdditive('fld14','form-group')">Add New Additive</button>                    
+            </div>
+
+            <div class="innertab-lvl3-t">Reclaimed Asphalt Aggregates</div>
+            <div class="innertab-lvl3-content">
+                <fieldset id="fld12">
+                    <legend class="innertab-title">Reclaimed Asphalt Aggregates<span class="hideinner-lvl3-content">&minus;</span></legend>
+                    <div id="ReclaimedAsphaltdiv-0" class="form-group"> 
+                        <fieldset id="field7-2"  class="TwoColumn-fieldset inner-fieldset">
+                            <legend class="specific-legend" title="The distribution of grain sizes by mass for the reclaimed aggregates.">Grain Size Distribution <span class="semicolon">(semicolon separated)</span>&nbsp;&nbsp;&nbsp;<span class="standard"> EN 12697-2 </span> &nbsp;</legend>
+                            <div id="GrainSizeDistributionReclaimed" class="graph-form-group">
+                                <label for="SizeReclaimed" titletip="The nominal size of the sieve in millimeters (e.g., 5.6).">Size (mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                <input type="text" id="SizeReclaimed" name="SizeReclaimed">
+                                <label for="PercentageReclaimed" titletip="The percentage distribution by mass for particles passing the specified size (e.g., 70.4).">Proportion (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                <input type="text" id="PercentageReclaimed" name="PercentageReclaimed">
+                                <button class="graph-form-group-button" type="button" title="Show or hide plot." onclick="PlotGraph('field7-2','Reclaimed Aggregates Distribution','SizeReclaimed','Size','pn','PercentageReclaimed','Proportion','p%')">&#x1F4C8;</button>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div id="ReclaimedAsphaltdiv-1" class="form-group-3c">
+                        <label for="NatureRA" titletip="The nature of the aggregates in the bituminous mixture (e.g., Granite).">Nature: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="NatureRA" name="NatureRA">
+                        <span></span>
+
+                        <label for="LosAngelesTestResultRA" titletip="The percentage of wear calculated during the Los Angeles Abrasion Test according to EN 1097-2, expressed as a percentage of the original weight of the sample (e.g., 25).">Los Angeles Test Result (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="LosAngelesTestResultRA" name="LosAngelesTestResultRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 1097-2</span>
+
+                        <label for="FlakinessIndexRA" titletip="The flakiness index of the reclaimed aggregates, expressed as a percentage, which is measured according to EN 933-3 (e.g., 22).">Flakiness Index (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="FlakinessIndexRA" name="FlakinessIndexRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 933-3</span>
+
+                        <label for="ShapeIndexRA" titletip="The shape index of the reclaimed aggregates according to EN 933-4, expressed as a percentage (e.g., 30).">Shape Index (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="ShapeIndexRA" name="ShapeIndexRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 933-4</span>
+
+                        <label for="FlowCoefficientRA" titletip="The value of the sand flow coefficient of the reclaimed aggregate according to EN 933-6, expressed in seconds (e.g., 40).">Sand Flow Coefficient (seconds): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="FlowCoefficientRA" name="FlowCoefficientRA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 933-6</span>
+
+                        <label for="NordicAbrasionValueRA" titletip="The value of the Nordic abrasion according to EN 1097-9, expressed in percentage (e.g., 45).">Nordic Abrasion Value (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="NordicAbrasionValueRA" name="NordicAbrasionValueRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 1097-9</span>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Rounded and Crushed Proportions <span class="standard-lvls"> EN 933-5 </span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="ReclaimedAsphaltdiv-2" class="form-group">
+                            <fieldset id="field12-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The percentage of semi-crushed, totally crushed, semi-rounded and totally rounded reclaimed aggregate particles according to EN 933-5.">Rounded and Crushed Proportions &nbsp;&nbsp;&nbsp;<span class="standard"> EN 933-5 </span> &nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="RoundedAndCrushedRA" class="form-group">
+                                    <label for="SemiCrushedParticlesRA" titletip="The percentage of the semi-crushed coarse aggregate particles according to EN 12697-11 (e.g., 27.5).">Semi-Crushed Particles (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="SemiCrushedParticlesRA" name="SemiCrushedParticlesRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="TotallyCrushedParticlesRA" titletip="The percentage of the totally crushed coarse aggregate particles according to EN 12697-11 (e.g., 53.4).">Totally Crushed Particles (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="TotallyCrushedParticlesRA" name="TotallyCrushedParticlesRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="SemiRoundedParticlesRA" titletip="The percentage of the semi-rounded coarse aggregate particles according to EN 12697-11 (e.g., 26.8).">Semi-Rounded Particles (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="SemiRoundedParticlesRA" name="SemiRoundedParticlesRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." >
+                                    
+                                    <label for="TotallyRoundedParticlesRA" titletip="The percentage of the totally rounded coarse aggregate particles according to EN 12697-11 (e.g., 40.6).">Totally Rounded Particles (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="TotallyRoundedParticlesRA" name="TotallyRoundedParticlesRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." >
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Bitumen Coverage Degree <span class="standard-lvls"> EN 12697-11 </span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="ReclaimedAsphaltdiv-3" class="form-group">
+                            <fieldset id="field12-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The average proportion of the surface area of the reclaimed aggregate particles that are covered with bitumen according to EN 12697-11.">Bitumen Coverage Degree &nbsp;&nbsp;&nbsp;<span class="standard"> EN 12697-11 </span> &nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="BitumenCoverageDegreeRA" class="form-group">
+                                    <label for="BitumenCoverageDegreeValueRA" titletip="The value of the average proportion of the surface area of the reclaimed aggreagte particles that are covered with bitumen according to EN 12697-11, expressed as a percentage (e.g., 45).">Value (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="BitumenCoverageDegreeValueRA" name="BitumenCoverageDegreeValueRA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+
+                                    <label for="BitumenCoverageDegreeMethodRA" titletip="The method of measurement of the degree of bitumen coverage according to EN 12697-11 (e.g., Static Test).">Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <select id="BitumenCoverageDegreeMethodRA" name="BitumenCoverageDegreeMethodRA">
+                                        <option value="">Select </option>
+                                        <option value="Rolling Bottle Test">Rolling Bottle Test</option>
+                                        <option value="Static Test">Static Test</option>
+                                        <option value="Boiling Water Stripping Test">Boiling Water Stripping Test</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Additional Properties</div>
+                    <div class="innertab-lvl4-content">
+                        <div id="ReclaimedAsphaltdiv-4" class="form-group">
+                            <fieldset id="field12-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="AdditionalPropertiesRA" class="form-group grid-wrap">
+                                    <div class="label-input-pair">
+                                        <label for="TestMethodRA_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="TestMethodRA_1" name="TestMethodRA_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="ValueRA_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="ValueRA_1" name="ValueRA_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="UnitRA_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="UnitRA_1" name="UnitRA_1">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field12-2','RA','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="innertab-lvl3-t">Reclaimed Asphalt Binder</div>
+            <div class="innertab-lvl3-content">
+                <fieldset id="fld13">
+                    <legend class="innertab-title">Reclaimed Asphalt Binder<span class="hideinner-lvl3-content">&minus;</span></legend>
+                    <div id="ReclaimedAsphaltBinder-0" class="form-group-3c">
+                        <label for="PercentageContentRB" titletip="The percentage by mass of the binder in the reclaimed asphalt (e.g., 6.3).">Binder Content in Reclaimed Asphalt (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="PercentageContentRB" name="PercentageContentRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 12697-1</span>
+
+                        <label for="PenetrationRB" titletip="The measured penetration of a standard needle at 25 Degrees Celsius according to EN 1426, expressed in tenths of a millimeter (e.g., 55).">Penetration (0.1mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="PenetrationRB" name="PenetrationRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 1426</span>
+
+                        <label for="SofteningPointRB" titletip="The temperature at which the reclaimed binder begins to soften and lose its rigidity according to EN 1427, measured in Degrees Celsius (e.g., 45).">Softening Point (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="SofteningPointRB" name="SofteningPointRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 1427</span>
+
+                        <label for="FraassBreakingPointRB" titletip="The value of the Fraass breaking point according to EN 12593, at which a film of bituminous binder of a specified and uniform thickness will break under defined loading conditions, measured in Degrees Celsius (e.g., -20).">Fraass Breaking Point (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="FraassBreakingPointRB" name="FraassBreakingPointRB" pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+                        <span class="standard">EN 12593</span>
+
+                        <label for="ElasticRecoveryRB" titletip="The value of the elastic recovery of the binder according to EN 13398 at 25 Degrees Celsius, expressed as a percentage (e.g., 50).">Elastic Recovery (%) at 25°C: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="ElasticRecoveryRB" name="ElasticRecoveryRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 13398</span>
+
+                        <label for="CohesionEnergyRB" titletip="The value of cohesion energy of the bitumen obtained from the force ductility method according to EN 13589 at 5 Degrees Celsius, measured in joules per square centimetres (e.g., 0.9).">Cohesion Energy (J/cm&sup2;) at 5°C: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="CohesionEnergyRB" name="CohesionEnergyRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 13589</span>
+
+                        <label for="SolubilityRB" titletip="The value of the percentage of mass of the soluble material to the total mass according to EN 12592 (e.g., 7.6).">Solubility (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="SolubilityRB" name="SolubilityRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 12592</span>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Viscosities </div>
+                    <div class="innertab-lvl4-content">
+                        <div id="ReclaimedAsphaltBinder-1" class="form-group">
+                            <fieldset id="field13-0" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend">Viscosities <span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="ViscositiesRB" class="form-group-3c">
+                                    <label for="KinematicViscosityRB" titletip="The value of the kinematic viscosity of the reclaimed binder according to EN 12595, measured in square millimeter per second (e.g., 30).">Kinematic Viscosity (mm&sup2;/s): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="KinematicViscosityRB" name="KinematicViscosityRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    <span class="standard">EN 12595</span>
+                
+                                    <label for="DynamicViscosityRB" titletip="The value of the dynamic viscosity of the reclaimed binder according to EN 12596, measured in Pascal-second (e.g., 11).">Dynamic Viscosity (Pa.s): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="DynamicViscosityRB" name="DynamicViscosityRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    <span class="standard">EN 12596</span>
+                
+                                    <label for="RotationalDynamicViscosityRB" titletip="The value of the rotational dynamic viscosity of the reclaimed binder using a rotating spindle apparatus according to EN 13302, measured in Pascal-second (e.g., 8).">Rotational Dynamic Viscosity (Pa.s): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="RotationalDynamicViscosityRB" name="RotationalDynamicViscosityRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    <span class="standard">EN 13302</span>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> BTSV<span class="standard-lvls">EN 17643</span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="ReclaimedAsphaltBinder-2" class="form-group">
+                            <fieldset id="field13-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The results of the Binder Fast Characterization Test (BTSV) according to EN 17643.">BTSV&nbsp;&nbsp;&nbsp;<span class="standard">EN 17643</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="BTSVRB" class="form-group">
+                                    <label for="TemperatureRB" titletip="The value of the Binder Fast Characterization Test (BTSV) temperature, which is determined using the Dynamic Shear Rheometer (DSR), measured in Degrees Celsius (e.g., 65).">Temperature (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="TemperatureRB" name="TemperatureRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="PhaseAngleRB" titletip="The value of the Binder Fast Characterization Test (BTSV) phase angle, which is determined using the Dynamic Shear Rheometer (DSR), measured in Angle Degrees (e.g., 42).">Phase Angle (°): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="PhaseAngleRB" name="PhaseAngleRB" pattern="^(90(\.0{1,4})?|[1-8]?\d(\.\d{1,4})?|0(\.\d{1,4})?)$" title="Enter a valid number between 0 and 90.">
+                                    
+                                    <fieldset id="field13-1-1" class="TwoColumn-fieldset inner-fieldset">
+                                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                                        <div id="AdditionalPropertiesBTSVRB" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodBTSVRB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Parameter: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodBTSVRB_1" name="TestMethodBTSVRB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValueBTSVRB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValueBTSVRB_1" name="ValueBTSVRB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitBTSVRB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitBTSVRB_1" name="UnitBTSVRB_1">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field13-1-1','BTSVRB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; BTSV Property</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> MSCRT<span class="standard-lvls">EN 16659</span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="ReclaimedAsphaltBinder-3" class="form-group">
+                            <fieldset id="field13-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The results of the Multiple Stress Creep and Recovery Test (MSCRT) according to EN 16659.">MSCRT &nbsp;&nbsp;&nbsp;<span class="standard">EN 16659</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="MSCRTRB" class="form-group">
+                                    <label for="AveragePercentRecovery100PaRB" titletip="The value of the average percentage recovery at 100 Pa (e.g., 40.5).">Average Recovery at 0.1kPa (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="AveragePercentRecovery100PaRB" name="AveragePercentRecovery100PaRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="AveragePercentRecovery3200PaRB" titletip="The value of the average percentage recovery at 3200 Pa (e.g., 64.7).">Average Recovery at 3.2kPa (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="AveragePercentRecovery3200PaRB" name="AveragePercentRecovery3200PaRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="RecoveryPercentageDifferenceRB" titletip="The value of the percentage difference in recovery between 100 Pa and 3200 Pa (e.g., 10.8).">Recovery Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="RecoveryPercentageDifferenceRB" name="RecoveryPercentageDifferenceRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="NonrecoverableCreepCompliance100PaRB" titletip="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="NonrecoverableCreepCompliance100PaRB" name="NonrecoverableCreepCompliance100PaRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="NonrecoverableCreepCompliance3200PaRB" titletip="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="NonrecoverableCreepCompliance3200PaRB" name="NonrecoverableCreepCompliance3200PaRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceRB" titletip="The value of the percentage difference in non-recoverable creep compliance between 100 Pa and 3200 Pa (e.g., 16.1).">Nonrecoverable Creep Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceRB" name="NonrecoverableCreepCompliancePercentageDifferenceRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <fieldset id="field13-2-1" class="TwoColumn-fieldset inner-fieldset">
+                                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">MSCRT Non-standard Stress</legend>
+                                        <div id="NonstandardStressRB" class="form-group">
+                                            <label for="SpecifiedStressRB" titletip="The value of the non-standard specified stress, other than 100 Pa and 3200 Pa, expressed in Pascal (e.g., 10000).">Specified Stress (Pa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="SpecifiedStressRB" name="SpecifiedStressRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                            
+                                            <label for="AveragePercentRecoverySpecifiedStressRB" titletip="The value of the average percentage recovery at the specified stress (e.g., 59.5).">Average Recovery (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="AveragePercentRecoverySpecifiedStressRB" name="AveragePercentRecoverySpecifiedStressRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                            
+                                            <label for="RecoveryPercentageDifferenceSpecifiedStressRB" titletip="The value of the percentage difference in recovery between 3200 Pa and the specified stress (e.g., 15.7).">Recovery Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="RecoveryPercentageDifferenceSpecifiedStressRB" name="RecoveryPercentageDifferenceSpecifiedStressRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                            
+                                            <label for="NonrecoverableCreepComplianceSpecifiedStressRB" titletip="The value of the non-recoverable creep compliance at the specified stress, expressed in 1/kPa (e.g., 0.227).">Nonrecoverable Creep (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="NonrecoverableCreepComplianceSpecifiedStressRB" name="NonrecoverableCreepComplianceSpecifiedStressRB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                            
+                                            <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressRB" titletip="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecov. Creep Difference (%):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressRB" name="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressRB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                                   
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </fieldset>
+                        </div> 
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Additional Properties</div>
+                    <div class="innertab-lvl4-content">
+                        <div id="ReclaimedAsphaltBinder-5" class="form-group">
+                            <fieldset id="field13-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="AdditionalPropertiesRB" class="form-group grid-wrap">
+                                    <div class="label-input-pair">
+                                        <label for="TestMethodRB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="TestMethodRB_1" name="TestMethodRB_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="ValueRB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="ValueRB_1" name="ValueRB_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="UnitRB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="UnitRB_1" name="UnitRB_1">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field13-3','RB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="innertab-lvl3-t">Pre-mixing Binder Blend</div>
+            <div class="innertab-lvl3-content">
+                <fieldset id="fld15">
+                    <legend title="The properties of the binder blend that contains the virgin binder, the reclaimed binder and the additives." class="innertab-title">Pre-mixing Binder Blend<span class="hideinner-lvl3-content">&minus;</span></legend>
+                    <div id="PreMixingBinderBlend-0" class="form-group-3c">
+
+                        <label for="PenetrationPmB" titletip="The measured penetration of a standard needle at 25 Degrees Celsius according to EN 1426, expressed in tenths of a millimeter (e.g., 55).">Penetration (0.1mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="PenetrationPmB" name="PenetrationPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 1426</span>
+
+                        <label for="SofteningPointPmB" titletip="The temperature at which the binder begins to soften and lose its rigidity according to EN 1427, measured in Degrees Celsius (e.g., 45).">Softening Point (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="SofteningPointPmB" name="SofteningPointPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 1427</span>
+
+                        <label for="FraassBreakingPointPmB" titletip="The value of the Fraass breaking point according to EN 12593, at which a film of bituminous binder of a specified and uniform thickness will break under defined loading conditions, measured in Degrees Celsius (e.g., -20).">Fraass Breaking Point (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="FraassBreakingPointPmB" name="FraassBreakingPointPmB" pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+                        <span class="standard">EN 12593</span>
+
+                        <label for="ElasticRecoveryPmB" titletip="The value of the elastic recovery of the binder according to EN 13398 at 25 Degrees Celsius, expressed as a percentage (e.g., 50).">Elastic Recovery (%) at 25 °C: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="ElasticRecoveryPmB" name="ElasticRecoveryPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 13398</span>
+
+                        <label for="CohesionEnergyPmB" titletip="The value of cohesion energy of the bitumen obtained from the force ductility method according to EN 13589 at 5 Degrees Celsius, measured in joules per square centimetres (e.g., 0.9).">Cohesion Energy (J/cm&sup2;) at 5°C: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="CohesionEnergyPmB" name="CohesionEnergyPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 13589</span>
+
+                        <label for="SolubilityPmB" titletip="The value of the percentage of mass of the soluble material to the total mass according to EN 12592 (e.g., 7.6).">Solubility (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="SolubilityPmB" name="SolubilityPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 12592</span>
+                    </div>
+                
+                    <div class="innertab-lvl4-t"> Viscosities </div>
+                    <div class="innertab-lvl4-content">
+                        <div id="PreMixingBinderBlend-1" class="form-group">
+                            <fieldset id="field15-0" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend">Viscosities <span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="ViscositiesPmB" class="form-group-3c">
+                                    <label for="KinematicViscosityPmB" titletip="The value of the kinematic viscosity of the binder according to EN 12595, measured in square millimeter per second (e.g., 30).">Kinematic Viscosity (mm&sup2;/s): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="KinematicViscosityPmB" name="KinematicViscosityPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    <span class="standard">EN 12595</span>
+                
+                                    <label for="DynamicViscosityPmB" titletip="The value of the dynamic viscosity of the binder according to EN 12596, measured in Pascal-second (e.g., 11).">Dynamic Viscosity (Pa.s): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="DynamicViscosityPmB" name="DynamicViscosityPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    <span class="standard">EN 12596</span>
+                
+                                    <label for="RotationalDynamicViscosityPmB" titletip="The value of the rotational dynamic viscosity of the binder using a rotating spindle apparatus according to EN 13302, measured in Pascal-second (e.g., 8).">Rotational Dynamic Viscosity (Pa.s): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="RotationalDynamicViscosityPmB" name="RotationalDynamicViscosityPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    <span class="standard">EN 13302</span>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> BTSV <span class="standard-lvls">EN 17643</span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="PreMixingBinderBlend-2" class="form-group">
+                            <fieldset id="field15-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The results of the Binder Fast Characterization Test (BTSV) according to EN 17643.">BTSV &nbsp;&nbsp;&nbsp;<span class="standard">EN 17643</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="BTSVPmB" class="form-group">
+                                    <label for="TemperaturePmB" titletip="The value of the Binder Fast Characterization Test (BTSV) temperature, which is determined using the Dynamic Shear Rheometer (DSR), measured in Degrees Celsius (e.g., 65).">Temperature (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="TemperaturePmB" name="TemperaturePmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="PhaseAnglePmB" titletip="The value of the Binder Fast Characterization Test (BTSV) phase angle, which is determined using the Dynamic Shear Rheometer (DSR), measured in Angle Degrees (e.g., 42).">Phase Angle (°): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="PhaseAnglePmB" name="PhaseAnglePmB" pattern="^(90(\.0{1,4})?|[1-8]?\d(\.\d{1,4})?|0(\.\d{1,4})?)$" title="Enter a valid number between 0 and 90.">
+                                    
+                                    <fieldset id="field15-1-1" class="TwoColumn-fieldset inner-fieldset">
+                                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                                        <div id="AdditionalPropertiesBTSVPmB" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodBTSVPmB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Parameter: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodBTSVPmB_1" name="TestMethodBTSVPmB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValueBTSVPmB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValueBTSVPmB_1" name="ValueBTSVPmB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitBTSVPmB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitBTSVPmB_1" name="UnitBTSVPmB_1">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field15-1-1','BTSVPmB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; BTSV Property</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                
+                    <div class="innertab-lvl4-t"> MSCRT <span class="standard-lvls">EN 16659</span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="PreMixingBinderBlend-3" class="form-group">
+                            <fieldset id="field15-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The results of the Multiple Stress Creep and Recovery Test (MSCRT) according to EN 16659.">MSCRT &nbsp;&nbsp;&nbsp;<span class="standard">EN 16659</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="MSCRTPmB" class="form-group">
+                                    <label for="AveragePercentRecovery100PaPmB" titletip="The value of the average percentage recovery at 100 Pa (e.g., 40.5).">Average Recovery at 0.1kPa (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="AveragePercentRecovery100PaPmB" name="AveragePercentRecovery100PaPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="AveragePercentRecovery3200PaPmB" titletip="The value of the average percentage recovery at 3200 Pa (e.g., 64.7).">Average Recovery at 3.2kPa (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="AveragePercentRecovery3200PaPmB" name="AveragePercentRecovery3200PaPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="RecoveryPercentageDifferencePmB" titletip="The value of the percentage difference in recovery between 100 Pa and 3200 Pa (e.g., 10.8).">Recovery Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="RecoveryPercentageDifferencePmB" name="RecoveryPercentageDifferencePmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="NonrecoverableCreepCompliance100PaPmB" titletip="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="NonrecoverableCreepCompliance100PaPmB" name="NonrecoverableCreepCompliance100PaPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="NonrecoverableCreepCompliance3200PaPmB" titletip="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="NonrecoverableCreepCompliance3200PaPmB" name="NonrecoverableCreepCompliance3200PaPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="NonrecoverableCreepCompliancePercentageDifferencePmB" titletip="The value of the percentage difference in non-recoverable creep compliance between 100 Pa and 3200 Pa (e.g., 16.1).">Nonrecoverable Creep Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="NonrecoverableCreepCompliancePercentageDifferencePmB" name="NonrecoverableCreepCompliancePercentageDifferencePmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <fieldset id="field15-2-1" class="TwoColumn-fieldset inner-fieldset">
+                                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">MSCRT Non-standard Stress</legend>
+                                        <div id="NonstandardStressPmB" class="form-group">
+                                            <label for="SpecifiedStressPmB" titletip="The value of the non-standard specified stress, other than 100 Pa and 3200 Pa, expressed in Pascal (e.g., 10000).">Specified Stress (Pa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="SpecifiedStressPmB" name="SpecifiedStressPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                            
+                                            <label for="AveragePercentRecoverySpecifiedStressPmB" titletip="The value of the average percentage recovery at the specified stress (e.g., 59.5).">Average Recovery (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="AveragePercentRecoverySpecifiedStressPmB" name="AveragePercentRecoverySpecifiedStressPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                            
+                                            <label for="RecoveryPercentageDifferenceSpecifiedStressPmB" titletip="The value of the percentage difference in recovery between 3200 Pa and the specified stress (e.g., 15.7).">Recovery Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="RecoveryPercentageDifferenceSpecifiedStressPmB" name="RecoveryPercentageDifferenceSpecifiedStressPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                            
+                                            <label for="NonrecoverableCreepComplianceSpecifiedStressPmB" titletip="The value of the non-recoverable creep compliance at the specified stress, expressed in 1/kPa (e.g., 0.227).">Nonrecoverable Creep (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="NonrecoverableCreepComplianceSpecifiedStressPmB" name="NonrecoverableCreepComplianceSpecifiedStressPmB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                            
+                                            <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressPmB" titletip="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecov. Creep Difference (%):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressPmB" name="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressPmB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                                   
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Aging Resistance <span class="standard-lvls">EN 12607-1</span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="PreMixingBinderBlend-5" class="form-group">
+                            <fieldset id="field15-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The results of the Rolling Thin Film Oven Test (RTFOT) according to EN 12607-1.">Aging Resistance &nbsp;&nbsp;&nbsp;<span class="standard">EN 12607-1</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="AgingResistancePmB" class="form-group">
+                                    <label for="MassLossPmB" titletip="The mass loss according to EN 12607-1, expressed as a negative percentage. A positive value represents a gain (e.g., -1.05).">Mass Loss (%) <span class="semicolon">(negative values represent loss)</span>:&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="MassLossPmB" name="MassLossPmB" pattern="^-?(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between -100 and 100.">
+                                    
+                                    <label for="PenetrationChangePmB" titletip="The increase in penetration according to EN 12607-1 and EN 1426, expressed as a percentage (e.g., 75.07).">Retained Penetration (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="PenetrationChangePmB" name="PenetrationChangePmB" pattern="^-?(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between -100 and 100.">
+                                
+                                    <label for="SofteningPointIncreasePmB" titletip="The absolute increase in softening point according to EN 12607-1 and EN 1427, measured in Degrees Celsius. A negative value represents a decrease (e.g., 5.02).">Softening Point Increase (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="SofteningPointIncreasePmB" name="SofteningPointIncreasePmB" pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                
+                    <div class="innertab-lvl4-t"> Additional Properties</div>
+                    <div class="innertab-lvl4-content">
+                        <div id="PreMixingBinderBlend-7" class="form-group">
+                            <fieldset id="field15-4" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="AdditionalPropertiesPmB" class="form-group grid-wrap">
+                                    <div class="label-input-pair">
+                                        <label for="TestMethodPmB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="TestMethodPmB_1" name="TestMethodPmB_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="ValuePmB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="ValuePmB_1" name="ValuePmB_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="UnitPmB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="UnitPmB_1" name="UnitPmB_1">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field15-4','PmB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="innertab-lvl3-t">Other Materials</div>
+            <div class="innertab-lvl3-content">
+                <fieldset id="fldN">
+                    <legend class="innertab-title">Other Materials<span class="hideinner-lvl3-content">&minus;</span></legend>
+                    <div id="OtherMaterials-1" class="form-group">
+                        <label for="NameOtherMaterials" titletip="The name of the non-standard mixture component added to the bituminous mixture (e.g., Copper slag).">Name: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="NameOtherMaterials" name="NameOtherMaterials">
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Additional Properties </div>
+                    <div class="innertab-lvl4-content">
+                        <div id="OtherMaterials-2" class="form-group">
+                            <fieldset id="fieldN-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="AdditionalPropertiesOtherMaterials" class="form-group grid-wrap">
+                                    <div class="label-input-pair">
+                                        <label for="TestMethodOtherMaterials_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="TestMethodOtherMaterials_1" name="TestMethodOtherMaterials_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="ValueOtherMaterials_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="ValueOtherMaterials_1" name="ValueOtherMaterials_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="UnitOtherMaterials_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="UnitOtherMaterials_1" name="UnitOtherMaterials_1">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('fieldN-1','OtherMaterials','form-group grid-wrap-one-row TwoColumn dynamicPro')"> &#10010; Property</button>                    
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="Empty2-end" class="innertab-lvl2-end"></div>
+        </div>
+
+        <div id="Empty3" class="innertab-lvl2">Recovered Materials <span class="hideinner-lvl2-content">&minus;</span></div>
+        <div class="innertab-lvl2-t">Recovered Materials</div>
+        <div class="innertab-lvl2-content">
+
+            <div class="innertab-lvl3-t">Recovered Aggregates</div>
+            <div class="innertab-lvl3-content">
+                <fieldset id="fld17">
+                    <legend class="innertab-title">Recovered Aggregates<span class="hideinner-lvl3-content">&minus;</span></legend>
+                    <div id="RecoveredAggregatesdiv-5" class="form-group"> 
+                        <fieldset id="field17-3" class="TwoColumn-fieldset inner-fieldset">
+                            <legend class="specific-legend" title="The distribution of grain sizes by mass for the recovered aggregates.">Grain Size Distribution <span class="semicolon">(semicolon separated)</span>&nbsp;&nbsp;&nbsp;<span class="standard"> EN 12697-2 </span> &nbsp;</legend>
+                            <div id="GrainSizeDistributionRecovered" class="graph-form-group">
+                                <label for="SizeCA" titletip="The nominal size of the sieve in millimeters (e.g., 5.6).">Size (mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                <input type="text" id="SizeCA" name="SizeCA">
+                                <label for="PercentageCA" titletip="The percentage distribution by mass for particles passing the specified size (e.g., 70.4).">Proportion (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                <input type="text" id="PercentageCA" name="PercentageCA">
+                                <button class="graph-form-group-button" type="button" title="Show or hide plot." onclick="PlotGraph('field17-3','Recovered Aggregates Distribution','SizeCA','Size','pn','PercentageCA','Proportion','p%')">&#x1F4C8;</button>
+                            </div>
+                        </fieldset>
+                    </div>
+
+                    <div id="RecoveredAggregatesdiv-1" class="form-group-3c">
+                        <label for="NatureCA" titletip="The nature of the aggregates in the bituminous mixture (e.g., Granite).">Nature: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="NatureCA" name="NatureCA">
+                        <span></span>
+
+                        <label for="LosAngelesTestResultCA" titletip="The percentage of wear calculated during the Los Angeles Abrasion Test according to EN 1097-2, expressed as a percentage of the original weight of the sample (e.g., 25).">Los Angeles Test Result (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="LosAngelesTestResultCA" name="LosAngelesTestResultCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 1097-2</span>
+
+                        <label for="FlakinessIndexCA" titletip="The flakiness index of the recovered aggregates, expressed as a percentage, which is measured according to EN 933-3 (e.g., 22).">Flakiness Index (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="FlakinessIndexCA" name="FlakinessIndexCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 933-3</span>
+
+                        <label for="ShapeIndexCA" titletip="The shape index of the recovered aggregates according to EN 933-4, expressed as a percentage (e.g., 30).">Shape Index (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="ShapeIndexCA" name="ShapeIndexCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 933-4</span>
+
+                        <label for="FlowCoefficientCA" titletip="The value of the sand flow coefficient of the recovered aggregate according to EN 933-6, expressed in seconds (e.g., 40).">Sand Flow Coefficient (seconds): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="FlowCoefficientCA" name="FlowCoefficientCA" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 933-6</span>
+
+                        <label for="NordicAbrasionValueCA" titletip="The value of the Nordic abrasion according to EN 1097-9, expressed in percentage (e.g., 45).">Nordic Abrasion Value (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="NordicAbrasionValueCA" name="NordicAbrasionValueCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 1097-9</span>
+                    </div>
+        
+                    <div class="innertab-lvl4-t"> Rounded and Crushed Proportions <span class="standard-lvls">EN 933-5</span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="RecoveredAggregatesdiv-2" class="form-group">
+                            <fieldset id="field17-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The percentage of semi-crushed, totally crushed, semi-rounded and totally rounded recovered aggregate particles according to EN 933-5.">Rounded and Crushed Proportions &nbsp;&nbsp;&nbsp;<span class="standard">EN 933-5</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="RoundedAndCrushedCA" class="form-group">
+                                    <label for="SemiCrushedParticlesCA" titletip="The percentage of the semi-crushed coarse aggregate particles according to EN 12697-11 (e.g., 27.5).">Semi-Crushed Particles (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="SemiCrushedParticlesCA" name="SemiCrushedParticlesCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="TotallyCrushedParticlesCA" titletip="The percentage of the totally crushed coarse aggregate particles according to EN 12697-11 (e.g., 53.4).">Totally Crushed Particles (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="TotallyCrushedParticlesCA" name="TotallyCrushedParticlesCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="SemiRoundedParticlesCA" titletip="The percentage of the semi-rounded coarse aggregate particles according to EN 12697-11 (e.g., 26.8).">Semi-Rounded Particles (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="SemiRoundedParticlesCA" name="SemiRoundedParticlesCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." >
+                                    
+                                    <label for="TotallyRoundedParticlesCA" titletip="The percentage of the totally rounded coarse aggregate particles according to EN 12697-11 (e.g., 40.6).">Totally Rounded Particles (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="TotallyRoundedParticlesCA" name="TotallyRoundedParticlesCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100." >
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Bitumen Coverage Degree <span class="standard-lvls"> EN 12697-11 </span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="RecoveredAggregatesdiv-3" class="form-group">    
+                            <fieldset id="field17-4" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The average proportion of the surface area of the recovered aggregate particles that are covered with bitumen according to EN 12697-11.">Bitumen Coverage Degree &nbsp;&nbsp;&nbsp;<span class="standard"> EN 12697-11 </span> &nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="BitumenCoverageDegreeCA" class="form-group">
+                                    <label for="BitumenCoverageDegreeValueCA" titletip="The value of the average proportion of the surface area of the recovered aggreagte particles that are covered with bitumen according to EN 12697-11, expressed as a percentage (e.g., 45).">Value (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="BitumenCoverageDegreeValueCA" name="BitumenCoverageDegreeValueCA" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+
+                                    <label for="BitumenCoverageDegreeMethodCA" titletip="The method of measurement of the degree of bitumen coverage according to EN 12697-11 (e.g., Static Test).">Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <select id="BitumenCoverageDegreeMethodCA" name="BitumenCoverageDegreeMethodCA">
+                                        <option value="">Select </option>
+                                        <option value="Rolling Bottle Test">Rolling Bottle Test</option>
+                                        <option value="Static Test">Static Test</option>
+                                        <option value="Boiling Water Stripping Test">Boiling Water Stripping Test</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Additional Properties</div>
+                    <div class="innertab-lvl4-content">
+                        <div id="RecoveredAggregatesdiv-4" class="form-group"> 
+                            <fieldset id="field17-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="AdditionalPropertiesCA" class="form-group grid-wrap">
+                                    <div class="label-input-pair">
+                                        <label for="TestMethodCA_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="TestMethodCA_1" name="TestMethodCA_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="ValueCA_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="ValueCA_1" name="ValueCA_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="UnitCA_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="UnitCA_1" name="UnitCA_1">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field17-2','CA','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+    
+            <div class="innertab-lvl3-t">Recovered Binder</div>
+            <div class="innertab-lvl3-content">
+                <fieldset id="fld18">
+                    <legend class="innertab-title">Recovered Binder<span class="hideinner-lvl3-content">&minus;</span></legend>
+                    <div id="RecoveredBinderdiv-0" class="form-group-3c">
+                        <label for="PercentageContentCB" titletip="The percentage by mass of the binder in the asphalt (e.g., 6.3).">Binder Content (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="PercentageContentCB" name="PercentageContentCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 12697-1</span>
+
+                        <label for="PenetrationCB" titletip="The measured penetration of a standard needle at 25 Degrees Celsius according to EN 1426, expressed in tenths of a millimeter (e.g., 55).">Penetration (0.1mm): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="PenetrationCB" name="PenetrationCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 1426</span>
+
+                        <label for="SofteningPointCB" titletip="The temperature at which the binder begins to soften and lose its rigidity according to EN 1427, measured in Degrees Celsius (e.g., 45).">Softening Point (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="SofteningPointCB" name="SofteningPointCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 1427</span>
+
+                        <label for="FraassBreakingPointCB" titletip="The value of the Fraass breaking point according to EN 12593, at which a film of bituminous binder of a specified and uniform thickness will break under defined loading conditions, measured in Degrees Celsius (e.g., -20).">Fraass Breaking Point (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="FraassBreakingPointCB" name="FraassBreakingPointCB" pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+                        <span class="standard">EN 12593</span>
+
+                        <label for="ElasticRecoveryCB" titletip="The value of the elastic recovery of the recovered binder according to EN 13398 at 25 Degrees Celsius, expressed as a percentage (e.g., 50).">Elastic Recovery (%) at 25 °C: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="ElasticRecoveryCB" name="ElasticRecoveryCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 13398</span>
+
+                        <label for="CohesionEnergyCB" titletip="The value of cohesion energy of the bitumen obtained from the force ductility method according to EN 13589 at 5 Degrees Celsius, measured in joules per square centimetres (e.g., 0.9).">Cohesion Energy (J/cm&sup2;)  at 5°C: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="CohesionEnergyCB" name="CohesionEnergyCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                        <span class="standard">EN 13589</span>
+
+                        <label for="SolubilityCB" titletip="The value of the percentage of mass of the soluble material to the total mass according to EN 12592 (e.g., 7.6).">Solubility (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                        <input type="text" id="SolubilityCB" name="SolubilityCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                        <span class="standard">EN 12592</span>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> Viscosities </div>
+                    <div class="innertab-lvl4-content">
+                        <div id="RecoveredBinderdiv-1" class="form-group">
+                            <fieldset id="field18-0" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend">Viscosities <span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="ViscositiesCB" class="form-group-3c">
+                                    <label for="KinematicViscosityCB" titletip="The value of the kinematic viscosity of the recovered binder according to EN 12595, measured in square millimeter per second (e.g., 30).">Kinematic Viscosity (mm&sup2;/s): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="KinematicViscosityCB" name="KinematicViscosityCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    <span class="standard">EN 12595</span>
+                
+                                    <label for="DynamicViscosityCB" titletip="The value of the dynamic viscosity of the recovered binder according to EN 12596, measured in Pascal-second (e.g., 11).">Dynamic Viscosity (Pa.s): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="DynamicViscosityCB" name="DynamicViscosityCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    <span class="standard">EN 12596</span>
+                
+                                    <label for="RotationalDynamicViscosityCB" titletip="The value of the rotational dynamic viscosity of the binder using a rotating spindle apparatus according to EN 13302, measured in Pascal-second (e.g., 8).">Rotational Dynamic Viscosity (Pa.s): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="RotationalDynamicViscosityCB" name="RotationalDynamicViscosityCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    <span class="standard">EN 13302</span>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                
+                    <div class="innertab-lvl4-t"> BTSV <span class="standard-lvls">EN 17643</span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="RecoveredBinderdiv-2" class="form-group">
+                            <fieldset id="field18-1" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The results of the Binder Fast Characterization Test (BTSV) according to EN 17643.">BTSV &nbsp;&nbsp;&nbsp;<span class="standard">EN 17643</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="BTSVCB" class="form-group">
+                                    <label for="TemperatureCB" titletip="The value of the Binder Fast Characterization Test (BTSV) temperature, which is determined using the Dynamic Shear Rheometer (DSR), measured in Degrees Celsius (e.g., 65).">Temperature (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="TemperatureCB" name="TemperatureCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="PhaseAngleCB" titletip="The value of the Binder Fast Characterization Test (BTSV) phase angle, which is determined using the Dynamic Shear Rheometer (DSR), measured in Angle Degrees (e.g., 42).">Phase Angle (°): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="PhaseAngleCB" name="PhaseAngleCB" pattern="^(90(\.0{1,4})?|[1-8]?\d(\.\d{1,4})?|0(\.\d{1,4})?)$" title="Enter a valid number between 0 and 90.">
+                                    
+                                    <fieldset id="field18-1-1" class="TwoColumn-fieldset inner-fieldset">
+                                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties</legend>
+                                        <div id="AdditionalPropertiesBTSVCB" class="form-group grid-wrap">
+                                            <div class="label-input-pair">
+                                                <label for="TestMethodBTSVCB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Parameter: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="TestMethodBTSVCB_1" name="TestMethodBTSVCB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="ValueBTSVCB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="ValueBTSVCB_1" name="ValueBTSVCB_1">
+                                            </div>
+                                            <div class="label-input-pair">
+                                                <label for="UnitBTSVCB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                                <input type="text" id="UnitBTSVCB_1" name="UnitBTSVCB_1">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field18-1-1','BTSVCB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; BTSV Property</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+                    <div class="innertab-lvl4-t"> MSCRT<span class="standard-lvls">EN 16659</span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="RecoveredBinderdiv-3" class="form-group">
+                            <fieldset id="field18-2" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The results of the Multiple Stress Creep and Recovery Test (MSCRT) according to EN 16659.">MSCRT &nbsp;&nbsp;&nbsp;<span class="standard">EN 16659</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="MSCRTCB" class="form-group">
+                                    <label for="AveragePercentRecovery100PaCB" titletip="The value of the average percentage recovery at 100 Pa (e.g., 40.5).">Average Recovery at 0.1kPa (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="AveragePercentRecovery100PaCB" name="AveragePercentRecovery100PaCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="AveragePercentRecovery3200PaCB" titletip="The value of the average percentage recovery at 3200 Pa (e.g., 64.7).">Average Recovery at 3.2kPa (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="AveragePercentRecovery3200PaCB" name="AveragePercentRecovery3200PaCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="RecoveryPercentageDifferenceCB" titletip="The value of the percentage difference in recovery between 100 Pa and 3200 Pa (e.g., 10.8).">Recovery Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="RecoveryPercentageDifferenceCB" name="RecoveryPercentageDifferenceCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <label for="NonrecoverableCreepCompliance100PaCB" titletip="The value of the non-recoverable creep compliance at 100 Pa, expressed in 1/kPa (e.g., 0.084).">Nonrecoverable Creep at 0.1kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="NonrecoverableCreepCompliance100PaCB" name="NonrecoverableCreepCompliance100PaCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="NonrecoverableCreepCompliance3200PaCB" titletip="The value of the non-recoverable creep compliance at 3200 Pa, expressed in 1/kPa (e.g., 0.343).">Nonrecoverable Creep at 3.2kPa (1/kPa): &nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="NonrecoverableCreepCompliance3200PaCB" name="NonrecoverableCreepCompliance3200PaCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                    
+                                    <label for="NonrecoverableCreepCompliancePercentageDifferenceCB" titletip="The value of the percentage difference in non-recoverable creep compliance between 100 Pa and 3200 Pa (e.g., 16.1).">Nonrecoverable Creep Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceCB" name="NonrecoverableCreepCompliancePercentageDifferenceCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                    
+                                    <fieldset id="field18-2-1" class="TwoColumn-fieldset inner-fieldset">
+                                        <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">MSCRT Non-standard Stress</legend>
+                                        <div id="NonstandardStressCB" class="form-group">
+                                            <label for="SpecifiedStressCB" titletip="The value of the non-standard specified stress, other than 100 Pa and 3200 Pa, expressed in Pascal (e.g., 10000).">Specified Stress (Pa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="SpecifiedStressCB" name="SpecifiedStressCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                            
+                                            <label for="AveragePercentRecoverySpecifiedStressCB" titletip="The value of the average percentage recovery at the specified stress (e.g., 59.5).">Average Recovery (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="AveragePercentRecoverySpecifiedStressCB" name="AveragePercentRecoverySpecifiedStressCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                            
+                                            <label for="RecoveryPercentageDifferenceSpecifiedStressCB" titletip="The value of the percentage difference in recovery between 3200 Pa and the specified stress (e.g., 15.7).">Recovery Difference (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="RecoveryPercentageDifferenceSpecifiedStressCB" name="RecoveryPercentageDifferenceSpecifiedStressCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">
+                                            
+                                            <label for="NonrecoverableCreepComplianceSpecifiedStressCB" titletip="The value of the non-recoverable creep compliance at the specified stress, expressed in 1/kPa (e.g., 0.227).">Nonrecoverable Creep (1/kPa): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="NonrecoverableCreepComplianceSpecifiedStressCB" name="NonrecoverableCreepComplianceSpecifiedStressCB" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                                            
+                                            <label for="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressCB" titletip="The value of the percentage difference in non-recoverable creep compliance between 3200 Pa and the specified stress (e.g., 16.1).">Nonrecov. Creep Difference (%):&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                            <input type="text" id="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressCB" name="NonrecoverableCreepCompliancePercentageDifferenceSpecifiedStressCB" pattern="^(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between 0 and 100.">                                   
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+        
+                    <div class="innertab-lvl4-t"> Aging Resistance<span class="standard-lvls">EN 12607-1</span></div>
+                    <div class="innertab-lvl4-content">
+                        <div id="RecoveredBinderdiv-5" class="form-group">
+                            <fieldset id="field18-3" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The results of the Rolling Thin Film Oven Test (RTFOT) according to EN 12607-1.">Aging Resistance &nbsp;&nbsp;&nbsp;<span class="standard">EN 12607-1</span>&nbsp;<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="AgingResistanceCB" class="form-group">
+                                    <label for="MassLossCB" titletip="The mass loss according to EN 12607-1, expressed as a negative percentage. A positive value represents a gain (e.g., -1.05).">Mass Loss (%) <span class="semicolon">(negative values represent loss)</span>:&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="MassLossCB" name="MassLossCB" pattern="^-?(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between -100 and 100.">
+                                    
+                                    <label for="PenetrationChangeCB" titletip="The increase in penetration according to EN 12607-1 and EN 1426, expressed as a percentage (e.g., 75.07).">Retained Penetration (%): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="PenetrationChangeCB" name="PenetrationChangeCB" pattern="^-?(100(\.0{1,4})?|\d{1,2}(\.\d{1,4})?)$" title="Enter a valid number between -100 and 100.">
+                                
+                                    <label for="SofteningPointIncreaseCB" titletip="The absolute increase in softening point according to EN 12607-1 and EN 1427, measured in Degrees Celsius. A negative value represents a decrease (e.g., 5.02).">Softening Point Increase (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="SofteningPointIncreaseCB" name="SofteningPointIncreaseCB" pattern="^(-?[0-9]\d*(\.\d{1,4})?)$" title="Enter a valid number.">
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+        
+                    <div class="innertab-lvl4-t"> Additional Properties</div>
+                    <div class="innertab-lvl4-content">
+                        <div id="RecoveredBinderdiv-7" class="form-group">
+                            <fieldset id="field18-4" class="TwoColumn-fieldset inner-fieldset">
+                                <legend class="specific-legend" title="The name, value, and unit of measurement for any additional properties of the used material.">Additional Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
+                                <div id="AdditionalPropertiesCB" class="form-group grid-wrap">
+                                    <div class="label-input-pair">
+                                        <label for="TestMethodCB_1" titletip="The name of the additional property of the considered raw material (e.g., Micro-Deval test).">Test Method: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="TestMethodCB_1" name="TestMethodCB_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="ValueCB_1" titletip="The value of the additional property of the considered raw material (e.g., 16).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="ValueCB_1" name="ValueCB_1">
+                                    </div>
+                                    <div class="label-input-pair">
+                                        <label for="UnitCB_1" titletip="The unit of measurement of the additional property of the considered raw material (e.g., percentage).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                        <input type="text" id="UnitCB_1" name="UnitCB_1">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <button type="button" class= "special-button TwoColumn"  onclick="addadditional('field18-4','CB','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="Empty3-end" class="innertab-lvl2-end"></div>
+        </div>
+
+        <div class="innertab-t">Mixing</div>
+        <div class="innertab-content">
+            <fieldset id="field16">
+                <legend class="innertab-title">Mixing<span class="hideinner-content">&minus;</span></legend>
+                <div id="Mixing-1" class="form-group">
+                    <label for="MixingMethod" titletip="The name of the mixing method used (e.g., Laboratory mechanical mixing).">Mixing Method: <span class="red-text">*</span>&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <select id="MixingMethod" name="MixingMethod" required>
+                        <option value="" disabled selected> Select </option>
+                        <option value="Laboratory hand mixing">Laboratory hand mixing</option>
+                        <option value="Laboratory mechanical mixing">Laboratory mechanical mixing</option>
+                        <option value="Plant mixing">Plant mixing</option>
+                    </select>
+
+                    <label for="TypeofMixer" titletip="The type of mechanical mixer used (e.g., Countertop mixer).">Type of Mixer: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="TypeofMixer" name="TypeofMixer">
+
+                    <label for="MixingSequence" titletip="The mixing sequence followed during the mixing process of the bituminous mixture (e.g. aggregates &gt; binder &gt; additive).">Mixing Sequence: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="MixingSequence" name="MixingSequence">
+
+                    <label for="MixtureTemperature" titletip=">The value of the mixture temperature in Degrees Celsius (e.g., 150).">MixtureTemperature (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="MixtureTemperature" name="MixtureTemperature" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                    
+                    <label for="ReclaimedAsphaltTemperature" titletip="The temperature at which the reclaimed asphalt was heated before mixing, measured in degrees Celsius (e.g., 120).">Reclaimed Asphalt Temperature (°C): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="ReclaimedAsphaltTemperature" name="ReclaimedAsphaltTemperature" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+
+                    <label for="MixingDurationValue" titletip="The duration of mixing in minutes(e.g., 5).">Mixing Duration (mins): &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="MixingDurationValue" name="MixingDurationValue" pattern="^([0-9]\d*(\.\d{1,4})?)$" title="Enter a valid positive number.">
+                </div>
+
+                <div class="innertab-lvl4-t"> Additional Properties</div>
+                <div class="innertab-lvl4-content">
+                    <div id="Mixing-2" class="form-group">
+                        <fieldset id="field16-3" class="TwoColumn-fieldset inner-fieldset">
+                            <legend class="specific-legend" title="The name, value, and unit of measurement for any other non-standard property in the mixing design process.">Other Mixing Properties<span class="hideinner-lvl4-content">&minus;</span></legend>
+                            <div id="OtherMixingPropertydiv" class="form-group grid-wrap">
+                                <div class="label-input-pair">
+                                    <label for="OtherMixingPropertyName_1" titletip="The name of a non-standard property in the mixing design process (e.g., Fibres percentage).">Name: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="OtherMixingPropertyName_1" name="OtherMixingPropertyName_1">
+                                </div>
+                                <div class="label-input-pair">
+                                    <label for="OtherMixingPropertyValue_1" titletip="The value of the non-standard property in the mixing design process (e.g., 0.042).">Value: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="OtherMixingPropertyValue_1" name="OtherMixingPropertyValue_1">
+                                </div>
+                                <div class="label-input-pair">
+                                    <label for="OtherMixingPropertyUnit_1" titletip="The unit of measurement for the non-standard property in the mixing design process (e.g., Mass-%).">Unit: &nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                                    <input type="text" id="OtherMixingPropertyUnit_1" name="OtherMixingPropertyUnit_1">
+                                </div>
+                            </div>
+                        </fieldset>
+                        <button type="button" class= "special-button TwoColumn"  onclick="addmixdesign('field16-3','form-group grid-wrap-one-row TwoColumn dynamicPro')">&#10010; Property</button>                    
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    
+        <div class="innertab-t">Mixture Notes</div>
+        <div class="innertab-content">
+            <fieldset id="field19">
+                <legend class="innertab-title">Notes<span class="hideinner-content">&minus;</span></legend>
+                <div id="NotesMixture" class="form-group">
+                    <label for="NotesMixtureContent" titletip="The content of the text note concerning the mixture.">Mixture Notes:&nbsp;&nbsp;<div class="tooltip"><i class="fa fa-info-circle information"></i> <span class="tooltiptext"></span></div></label>
+                    <input type="text" id="NotesMixtureContent" name="NotesMixtureContent">
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</fieldset>

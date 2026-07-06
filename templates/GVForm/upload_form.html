@@ -1,0 +1,40 @@
+<form id="SmallScreenForm" style="display:none;width: 100%; max-width: 40%;"></form>
+
+<form id="xmlForm">
+
+    <h2 style="text-align: center;">Upload Form</h2>
+    <div class="form-group">
+        <div id="databaseUpload">
+            <div class="wrapper">
+                <a href="/explore/keyword/" id="xmlFileDb" class="link-upload-ref" title="Choose Record from AsphaltMine Database">
+                    <div class="link-upload">
+                        <span id="FileDbName" style="text-align: center;"><b>Choose Record from AsphaltMine Database</b></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div id="externalUpload">
+            <div class="wrapper">
+                <div class="file-upload">
+                    <input type="file" id="xmlFileExt" accept=".xml" onchange="updateFileName()" title="Choose Record from your own Device">
+                    <span id="FileExtName" style="text-align: center;"><b>Choose Record from your own Device</b></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <fieldset id="field-U" class="" style="border-width:4px;">
+        <legend class="specific-legend">Select elements to upload</legend>
+        <div class="upload-select-group">
+            <label><input type="checkbox" id="select-source" checked> Data Source</label>
+            <label><input type="checkbox" id="select-mixture" checked> Mixture</label>
+            <label><input type="checkbox" id="select-sample" checked> Sample Properties</label>
+            <label><input type="checkbox" id="select-results" checked> Results</label>
+            <label><input type="checkbox" id="select-notes" checked> General Notes</label>
+            <label><input type="checkbox" id="select-all" checked> All Elements</label>
+        </div>
+    </fieldset>
+
+    <button type="button" class="main-button" id="ButtonL" onclick="Load()">Load</button>
+
+</form>
