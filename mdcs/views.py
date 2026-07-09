@@ -37,7 +37,7 @@ def vis_view(request):
 #@login_required
 @ensure_csrf_cookie 
 def ml_prediction_view(request):
-    return render(request, 'ml_external.html')
+    return render(request, 'prediction.html')
     #return HttpResponseRedirect('https://www.ml.asphaltmine.org')
 
 def tutorial_view(request):
