@@ -1,11 +1,12 @@
 /* Bootstrap overide */
 .btn.btn-primary {
-    background-color: #007ac1 !important;
+    /*background-color: #007ac1 !important;*/
+    background-color: #3CACA8 !important;
     border-color: #565656;
 }
 
 .btn.btn-primary:hover {
-    background-color: #005f96 !important;
+    background-color: #287371 !important;
 }
 
 .btn.btn-secondary {
@@ -18,19 +19,28 @@
     background-color: #e2e2e2 !important;
 }
 
-#content {
-    width: calc(100% - 3em);
-    min-height: calc(100% - 151px);
-    background-color: #fff;
-    margin: 0 1.5em;
-    padding: 4.5rem 1.5em 2.5em 1.5em;
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
+.btn.btn-danger {
+    background-color: #C75450 !important;
+    border-color: #A8433F !important;
 }
 
-#page-wrapper {
-    height: inherit;
-    display: inline;
+.btn.btn-danger:hover {
+    background-color: #A8433F !important;
+    border-color: #8F3835 !important;
+}
+
+#content {
+    width: calc(100% - 3em);
+    max-width: 1200px;
+    min-height: calc(100% - 151px);
+    background-color: #fff;
+    margin: 32px auto;
+    padding: 2.5rem 1.5em 2.5em 1.5em;
+    border-radius: 22px;
+}
+
+body {
+    background: radial-gradient(ellipse at 60% 20%, #e5e9f2 0%, #f3f6fa 90%);
 }
 
 .textarea_lock_h {
@@ -41,9 +51,42 @@
     color: #a94442;
 }
 
+.pagination {
+    gap: 6px;
+    margin-top: 28px;
+    margin-bottom: 24px;
+}
+
+.page-item .page-link {
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 600;
+    border-radius: 999px !important;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+    min-width: 40px;
+    text-align: center;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
 .page-item.active .page-link {
-    background-color: #007ac1 !important;
-    border-color: #565656;
+    background-color: #3CACA8 !important;
+    border-color: #3CACA8 !important;
+    color: #fff !important;
+}
+
+.page-item:not(.active) .page-link:hover {
+    background-color: rgba(60, 172, 168, 0.12);
+    border-color: #3CACA8;
+    color: #287371 !important;
+}
+
+.page-item.disabled .page-link {
+    color: #cbd5e1 !important;
+    border-color: #e2e8f0;
+}
+
+.page-item:hover {
+    cursor: pointer;
 }
 
 .badge {
@@ -51,7 +94,12 @@
 }
 
 a {
-    color: #007aa7;
+    /*color: #007aa7;*/
+    color: #3CACA8;
+}
+
+a:hover, a:focus {
+    color: #287371;
 }
 
 .sticky {

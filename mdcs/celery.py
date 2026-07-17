@@ -17,3 +17,6 @@ app.config_from_object("django.conf:settings")
 
 # Autodiscover tasks : tasks.py
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+
+# Import project-level tasks
+import mdcs.tasks

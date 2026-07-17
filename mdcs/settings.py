@@ -15,6 +15,8 @@ from core_main_app.utils.logger.logger_utils import (
     update_logger_with_local_app,
 )
 from .core_settings import *  # noqa: F403
+from celery.schedules import crontab
+from .explore_keyword_extras import KeywordSearchExtras
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,7 +28,7 @@ SECRET_KEY = (
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = (
     os.environ["ALLOWED_HOSTS"].split(",")
@@ -117,15 +119,13 @@ INSTALLED_APPS = (
     "core_module_remote_blob_host_app",
     "core_module_advanced_blob_host_app",
     "core_module_excel_uploader_app",
-    "core_module_periodic_table_app",
-    "core_module_chemical_composition_app",
-    "core_module_chemical_composition_simple_app",
     "core_module_text_area_app",
     # Local apps
     "mdcs_home",
 )
 
 MIDDLEWARE = (
+    "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -134,10 +134,8 @@ MIDDLEWARE = (
     "defender.middleware.FailedLoginMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "django.middleware.security.SecurityMiddleware",
     "core_main_app.middleware.timezone.TimezoneMiddleware",
 )
-
 
 TEMPLATES = [
     {
@@ -152,6 +150,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "core_main_app.utils.custom_context_processors.domain_context_processor",  # Needed by any curator app
                 "django.template.context_processors.i18n",
+                "mdcs.context_processors.app_version",
             ],
         },
     },
@@ -191,8 +190,29 @@ STATICFILES_FINDERS = (
 
 STATICFILES_DIRS = ("static",)
 
+# Explore by Keyword page customization (AsphaltMine branding)
+EXPLORE_KEYWORD_APP_EXTRAS = [KeywordSearchExtras]
+
+# Records per page on the "My Data" dashboard (default is 10)
+RECORD_PER_PAGE_PAGINATION = 50
+
+# Site version shown in the footer (General/footer.html). Bump this one
+# value for a release instead of editing the footer template.
+APP_VERSION = "1.0.0"
+
 # https://docs.djangoproject.com/en/4.2/topics/files/
-MEDIA_ROOT = "media"
+#MEDIA_ROOT = "media"
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/srv/curator/media'
+
+CELERY_BEAT_SCHEDULE = {
+    'cleanup-media-every-4-hours': {
+        'task': 'mdcs.tasks.cleanup_media',
+        'schedule': crontab(minute=0, hour='*/4'),
+        'args': (4,),
+    },
+}
 
 # https://docs.djangoproject.com/en/4.2/ref/contrib/sites/
 SITE_ID = 1
@@ -291,11 +311,6 @@ DEFENDER_LOCKOUT_URL = "/locked"
 
 # Django simple-menu
 MENU_SELECT_PARENTS = False
-
-# mdcs_home
-HOMEPAGE_NB_LAST_TEMPLATES = 6
-""" integer: How many templates are displayed on the homepage
-"""
 
 # Logging
 
@@ -537,3 +552,15 @@ LOGIN_URL = "core_main_app_login"
 DEFAULT_EXCEPTION_REPORTER_FILTER = (
     "core_main_app.views.admin.views.CustomExceptionReporter"
 )
+
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": REDIS_URL,
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
+

@@ -1,0 +1,96 @@
+{% load static %}
+{% load stripjs %}
+<h1>FAQ</h1>
+
+{% if data.help %}
+<div class="left word-wrap">
+    {{ data.help.content | stripjs }}
+</div>
+{% else %}
+<div class="am-faq-list">
+    <details class="am-faq-item">
+        <summary><span>What is the {{CUSTOM_NAME}}?</span><i class="fas fa-chevron-down"></i></summary>
+        <div class="am-faq-answer">
+            <p>{{CUSTOM_NAME}} is a platform for collecting asphalt test results in an organized online database and for using this data to train machine
+            learning models to predict asphalt performance. More information can be found <a href="https://asphaltmine.org/about/">here</a>.</p>
+        </div>
+    </details>
+    <details class="am-faq-item">
+        <summary><span>How do I get access to the {{CUSTOM_NAME}}?</span><i class="fas fa-chevron-down"></i></summary>
+        <div class="am-faq-answer">
+            <p>An individual may make a request to access {{CUSTOM_NAME}} using the online request form. Once the {{CUSTOM_NAME}} administrator accepts
+            the account request, the user is notified that the account is created with the appropriate credentials.</p>
+        </div>
+    </details>
+    <details class="am-faq-item">
+        <summary><span>What tasks can I perform on the {{CUSTOM_NAME}}?</span><i class="fas fa-chevron-down"></i></summary>
+        <div class="am-faq-answer">
+            <p>A user can input and curate asphalt test results, search and explore existing data, display or conceal their data, and share it either
+            publicly or with specific groups. You can find information about the functionalities available on the <a href="{% url 'tutorial' %}">tutorial</a> page.</p>
+        </div>
+    </details>
+    <details class="am-faq-item">
+        <summary><span>What asphalt tests are available in the {{CUSTOM_NAME}}?</span><i class="fas fa-chevron-down"></i></summary>
+        <div class="am-faq-answer">
+            <p>Currently, the available tests in the {{CUSTOM_NAME}} are the Rutting Test, Marshall Test, Indirect Tensile Strength Test, Thermal Stress Restrained
+            Specimen Test (TSRST), Uniaxial Tension Stress Test (UTST) and Stiffness Test. You can view the data structure for these
+            tests <a href="https://asphaltmine.org/mix-test-database-structure/">here</a>.</p>
+        </div>
+    </details>
+    <details class="am-faq-item">
+        <summary><span>How do I contact the {{CUSTOM_NAME}} administrator for questions?</span><i class="fas fa-chevron-down"></i></summary>
+        <div class="am-faq-answer">
+            <p>You can contact the {{CUSTOM_NAME}} administrator using this <a href="https://asphaltmine.org/contact-us/">form</a>.</p>
+        </div>
+    </details>
+</div>
+
+<style>
+.am-faq-list {
+    margin-top: 24px;
+    border-top: 1px solid var(--am-border, #e2e8f0);
+}
+.am-faq-item {
+    border-bottom: 1px solid var(--am-border, #e2e8f0);
+}
+.am-faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 4px;
+    font-weight: 600;
+    font-size: 1.02rem;
+    color: var(--am-text, #1f2937);
+}
+.am-faq-item summary::-webkit-details-marker {
+    display: none;
+}
+.am-faq-item summary::marker {
+    content: "";
+}
+.am-faq-item summary i {
+    color: var(--am-accent, #3CACA8);
+    transition: transform 0.2s ease;
+    flex: 0 0 auto;
+}
+.am-faq-item[open] summary i {
+    transform: rotate(180deg);
+}
+.am-faq-answer {
+    padding: 0 28px 18px 4px;
+    color: var(--am-text-muted, #64748b);
+    line-height: 1.6;
+}
+.am-faq-answer a {
+    color: var(--am-accent, #3CACA8);
+    font-weight: 600;
+    text-decoration: none;
+}
+.am-faq-answer a:hover {
+    text-decoration: underline;
+}
+</style>
+{% endif %}

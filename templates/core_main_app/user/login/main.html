@@ -1,0 +1,155 @@
+{% load static %}
+<div class="am-login-wrap am-login-page">
+    <div class="am-login-card">
+        <img src="{% static 'img/favicon.png' %}" alt="AsphaltMine" class="am-login-logo">
+        <h2 class="am-login-title">Login</h2>
+        <p class="am-login-subtitle">Sign in to AsphaltMine</p>
+
+        {% if data.login_error %}
+        <div class="alert alert-danger">
+            <i class="fas fa-exclamation-circle"></i> Invalid username and/or password. Please try again or
+            contact an administrator for any assistance.
+        </div>
+        {% endif %}
+        {% if data.login_locked %}
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i> Your username is not activated yet. Please check back soon or
+            contact an administrator for any assistance.
+        </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'core_main_app_login' %}" class="am-login-form">
+            {% csrf_token %}
+
+            {% for field in data.login_form.visible_fields %}
+            <div class="am-login-field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+
+            {% for field in data.login_form.hidden_fields %}
+                {{ field }}
+            {% endfor %}
+
+            <button type="submit" class="am-login-submit">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+
+            <div class="am-login-links">
+                {% if data.with_website_features %}
+                    <a href="{% url 'core_website_app_account_request' %}">
+                        <i class="fas fa-user-plus"></i> Request an Account
+                    </a>
+                {% endif %}
+                {% if not data.ENABLE_SAML2_SSO_AUTH %}
+                    <a href="{% url 'password_reset' %}">
+                        <i class="fas fa-lock" aria-hidden="true"></i> Forgot password
+                    </a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+/* Login page sits directly on the site background instead of inside
+   the big shared #content panel -- avoids stacking two white boxes. */
+#content:has(.am-login-page) {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 40px 0;
+}
+.am-login-wrap {
+  display: flex;
+  justify-content: center;
+}
+.am-login-card {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(30, 41, 59, 0.1);
+  border: 1px solid #e2e8f0;
+  padding: 40px 34px 34px;
+  text-align: center;
+}
+.am-login-logo {
+  width: 64px;
+  height: auto;
+  margin-bottom: 10px;
+}
+.am-login-title {
+  margin: 0 0 4px;
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #3CACA8;
+}
+.am-login-subtitle {
+  margin: 0 0 22px;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+.am-login-form {
+  text-align: left;
+}
+.am-login-field {
+  margin-bottom: 16px;
+}
+.am-login-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 0.92rem;
+}
+.am-login-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 14px;
+  border: 2px solid #b2c2d6;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.am-login-field input:focus {
+  outline: none;
+  border-color: #3CACA8;
+  box-shadow: 0 0 0 3px rgba(60, 172, 168, 0.18);
+}
+.am-login-submit {
+  display: block;
+  width: 100%;
+  margin: 6px 0 20px;
+  padding: 12px 0;
+  background: linear-gradient(90deg, #3CACA8, #5ABCB8);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.am-login-submit:hover, .am-login-submit:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(60, 172, 168, 0.35);
+}
+.am-login-links {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.am-login-links a {
+  color: #3CACA8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.am-login-links a:hover {
+  color: #287371;
+  text-decoration: underline;
+}
+</style>
