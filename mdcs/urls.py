@@ -15,9 +15,9 @@ Including another URLconf
 from django.conf.urls import include
 from django.contrib import admin
 from django.urls import re_path
+from . import views
 
 from core_main_app.admin import core_admin_site
-from core_parser_app.tools.modules.discover import discover_modules
 
 admin.autodiscover()
 
@@ -25,11 +25,23 @@ urlpatterns = [
     re_path(r"^admin/", admin.site.urls),
     re_path(r"^core-admin/", core_admin_site.urls),
     re_path(r"^admin/defender/", include("defender.urls")),
+    re_path(r"^captcha/", include("captcha.urls")),
     re_path(
         r"^o/", include("oauth2_provider.urls", namespace="oauth2_provider")
     ),
+    re_path(r"^$", views.gvform_view, name="core_main_app_homepage"),
     re_path(r"^", include("core_main_app.urls")),
-    re_path(r"^home/", include("mdcs_home.urls")),
+    re_path(r"^gvform$", views.gvform_view, name='gvform'),
+    re_path(r"^gvform/edit", views.gvform_edit, name='gvform_edit'),
+    re_path(r"^bulkupload/workspaces/", views.bulk_upload_workspaces, name='bulk_upload_workspaces'),
+    re_path(r"^bulkupload/assign-workspace/", views.bulk_upload_assign_workspace, name='bulk_upload_assign_workspace'),
+    re_path(r"^bulkupload", views.bulk_upload_view, name='bulk_upload'),
+    re_path(r"^visualization/", views.vis_view, name='visualization'),
+    re_path(r"^prediction/", views.ml_prediction_view, name='machine_learning_prediction'),
+    re_path(r"^", include('Visualization.tools_urls')),
+    re_path(r"^", include('DownloadExcel.downloadexcel_urls')),
+    re_path(r"^", include('Prediction.Prediction_urls')),
+    re_path(r"^tutorial/", views.tutorial_view, name='tutorial'),
     re_path(r"^", include("core_website_app.urls")),
     re_path(r"^curate/", include("core_curate_app.urls")),
     re_path(r"^composer/", include("core_composer_app.urls")),
@@ -49,12 +61,6 @@ urlpatterns = [
     re_path(r"^", include("core_module_remote_blob_host_app.urls")),
     re_path(r"^", include("core_module_advanced_blob_host_app.urls")),
     re_path(r"^", include("core_module_excel_uploader_app.urls")),
-    re_path(r"^", include("core_module_periodic_table_app.urls")),
-    re_path(r"^", include("core_module_chemical_composition_simple_app.urls")),
-    re_path(r"^", include("core_module_chemical_composition_app.urls")),
     re_path(r"^", include("core_module_text_area_app.urls")),
     re_path(r"^pid/", include("core_linked_records_app.urls")),
 ]
-
-# TODO: see if we can automate the discovery and run it from parser app
-discover_modules(urlpatterns)

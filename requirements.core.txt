@@ -1,21 +1,18 @@
-core_main_app[mongodb]==2.8.*
-core_composer_app==2.8.*
-core_curate_app==2.8.*
-core_dashboard_common_app==2.8.*
-core_dashboard_app==2.8.*
-core_explore_example_app==2.8.*
-core_explore_keyword_app==2.8.*
-core_explore_federated_search_app==2.8.*
-core_exporters_app==2.8.*
-core_federated_search_app==2.8.*
-core_website_app==2.8.*
-core_module_blob_host_app==2.8.*
-core_module_remote_blob_host_app==2.8.*
-core_module_advanced_blob_host_app==2.8.*
-core_module_excel_uploader_app==2.8.*
-core_module_periodic_table_app==2.8.*
-core_module_chemical_composition_app==2.8.*
-core_module_chemical_composition_simple_app==2.8.*
-core_module_text_area_app==2.8.*
-core_file_preview_app==2.8.*
-core_linked_records_app==2.8.*
+core_composer_app==2.9.0
+core_explore_example_app==2.9.0
+core_explore_federated_search_app==2.9.0
+core_federated_search_app==2.9.0
+core_module_blob_host_app==2.9.0
+core_module_remote_blob_host_app==2.9.0
+core_module_advanced_blob_host_app==2.9.0
+core_module_excel_uploader_app==2.9.0
+core_module_text_area_app==2.9.0
+core_file_preview_app==2.9.0
+core_linked_records_app==2.9.0
+core_website_app @ git+https://github.com/Moha-Abbas/AM_core_website_app.git
+-e git+https://github.com/Moha-Abbas/AM_core_curate_app.git#egg=core_curate_app
+core_explore_keyword_app @ git+https://github.com/Moha-Abbas/AM_core_explore_keyword_app.git
+core_main_app[mongodb] @ git+https://github.com/Moha-Abbas/AM_core_main_app.git
+core_dashboard_app @ git+https://github.com/Moha-Abbas/AM_core_dashboard_app.git
+core_exporters_app @ git+https://github.com/Moha-Abbas/AM_core_exporters_app.git
+core_explore_common_app @ git+https://github.com/Moha-Abbas/AM_core_explore_common_app.git
